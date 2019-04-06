@@ -2,13 +2,10 @@ import graphql from 'babel-plugin-relay/macro';
 // import { graphql } from 'react-relay';
 
 const query = graphql`
-  query AppQuery {
-    viewer {
-      id,
-      me {
-        ...Navbar_me
-      }
-    }
+  fragment Navbar_me on User {
+    id,
+    username,
+    isAuthenticated
   }
 `;
 export default query

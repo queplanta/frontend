@@ -10,6 +10,8 @@ import * as serviceWorker from './serviceWorker.js';
 import createRelayEnvironment from './relay/createRelayEnvironment.js';
 import { historyMiddlewares, render, routeConfig } from './router.js';
 
+import './index.css';
+
 // (async () => {
   const resolver = new Resolver(
     createRelayEnvironment(
@@ -26,8 +28,6 @@ import { historyMiddlewares, render, routeConfig } from './router.js';
     resolver,
     render,
   });
-
-  console.log('sera')
 
   ReactDOM.hydrate(
     <Router resolver={resolver} />,
