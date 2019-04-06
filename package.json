@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "farce": "^0.2.8",
+    "found": "^0.3.21",
+    "found-relay": "0.4.0-alpha.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-relay": "^3.0.0",
+    "react-relay-network-modern-ssr": "^1.2.2",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -27,5 +32,6 @@
     "babel-plugin-relay": "^3.0.0",
     "graphql": "^14.2.1",
     "relay-compiler": "^3.0.0"
-  }
+  },
+  "proxy": "http://queplanta.com"
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Route from 'found/lib/Route';
 import logo from './logo.svg';
 import './App.css';
+import AppQuery from './App.query.js'
 
 class App extends Component {
   render() {
@@ -25,4 +27,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export const appRoute = <Route
+	path="/"
+	Component={App}
+	query={AppQuery}
+/>
