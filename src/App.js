@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <AuthDialog>
+        <AuthDialog viewer={viewer}>
           <AppBar position="static">
             <Toolbar>
               <Typography className={classes.title} component={Link} to="/" noWrap>

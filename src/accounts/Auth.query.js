@@ -1,13 +1,11 @@
 import graphql from 'babel-plugin-relay/macro';
 
 const query = graphql`
-  query AppQuery {
-    viewer {
-      id,
-      me {
-        ...Navbar_me
-      }
-      ...Auth_viewer
+  fragment Auth_viewer on Query {
+    id,
+    me {
+      username,
+      isAuthenticated
     }
   }
 `;
