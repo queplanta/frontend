@@ -23,13 +23,13 @@ const mutation = graphql`
 
 let nextClientMutationId = 0;
 
-function commit(environment, username, password) {
+function commit(environment, input, config) {
   const clientMutationId = (nextClientMutationId++).toString();
 
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: { username, password, clientMutationId },
+      input: { clientMutationId, ...input },
     },
     updater(store) {
       const rootViewer = store.getRoot();
@@ -39,8 +39,11 @@ function commit(environment, username, password) {
       }
     },
     onCompleted(response, errors) {
-      console.log('onCompleted.response', response)
-      console.log('onCompleted.errors', errors)
+			if (response.authenticate.errors.length > 0) {
+				if (typeof config.setFormErrors === 'function') {
+					config.setFormErrors(response.authenticate.errors)
+				}
+			}
     },
     onError(error) {
       console.log('onError', error)

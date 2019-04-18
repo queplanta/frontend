@@ -3,7 +3,8 @@ import { Dialog, DialogTitle, DialogContent, Button, TextField, withStyles } fro
 import { createFragmentContainer } from 'react-relay';
 import AuthMutation from './Auth.mutation.js';
 import query from './Auth.query.js';
-
+import {hasFormErrors, FormErrors} from '../FormErrors.js';
+ 
 export const AuthDialogContext = React.createContext({
   open: false,
   toggleAuthDialog: () => {},
@@ -19,6 +20,7 @@ class AuthDialog extends Component {
       toggleAuthDialog: this.toggleAuthDialog,
       username: '',
       password: '',
+      errors: [],
     }
   }
 
@@ -29,8 +31,17 @@ class AuthDialog extends Component {
 
   handleAuthSubmit(e) {
     e.preventDefault()
-    const { relay } = this.props;
-    AuthMutation.commit(relay.environment, this.state.username, this.state.password)
+    const { relay, setFormErrors } = this.props;
+    AuthMutation.commit(
+			relay.environment,
+			{
+				username: this.state.username,
+				password: this.state.password
+			},
+			{
+				setFormErrors
+			}
+		)
   }
 
   toggleAuthDialog() {
@@ -48,8 +59,9 @@ class AuthDialog extends Component {
             aria-labelledby="auth-dialog-title"
           >
             <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
-            <DialogContent component="form" onSubmit={this.handleAuthSubmit}>
-              <form>
+            <DialogContent>
+							<FormErrors filter={{location: "__all__"}} />
+              <form onSubmit={this.handleAuthSubmit}>
                 <TextField
                   autoFocus
                   margin="dense"
@@ -77,6 +89,6 @@ class AuthDialog extends Component {
 }
 
 export default createFragmentContainer(
-  withStyles({})(AuthDialog),
+  withStyles({})(hasFormErrors(AuthDialog)),
   query
 )
