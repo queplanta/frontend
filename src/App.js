@@ -5,8 +5,9 @@ import { AppBar, Toolbar, Typography, Chip, withStyles } from '@material-ui/core
 import { Link } from 'found';
 import AppQuery from './App.query.js';
 import logoImg from './assets/logo-queplanta-32px.png';
-import AccountNavbar from './accounts/Navbar.js'
-import AuthDialog from './accounts/AuthDialog.js'
+import AccountNavbar from './accounts/Navbar.js';
+import AuthDialog from './accounts/AuthDialog.js';
+import {homeRoute} from './Home.js';
 
 class App extends Component {
   render() {
@@ -15,15 +16,14 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
         <AuthDialog viewer={viewer}>
-          <AppBar position="static">
-            <Toolbar>
+          <AppBar position="static" color="default">
+            <Toolbar className={classes.toolbar}>
               <Typography className={classes.title} component={Link} to="/" noWrap>
                 <img src={logoImg} alt="Que Planta" />
                 Que Planta
               </Typography>
-              <Chip label="em desenvolvimento" className={classes.chip} color="secondary" />
+              <Chip label="em desenvolvimento" className={classes.chip} color="secondary"  variant="outlined" />
               <div className={classes.grow} />
-
               <AccountNavbar me={viewer.me} />
             </Toolbar>
           </AppBar>
@@ -38,6 +38,22 @@ class App extends Component {
 const styles = {
   grow: {
     flexGrow: 1,
+  },
+  title: {
+    color: '#005027',
+    fontSize: 18,
+    fontWeight: 700,
+    textDecoration: 'none',
+    marginRight: 20,
+    '& > img': {
+      marginRight: 10,
+      verticalAlign: 'middle',
+    },
+  },
+  toolbar: {
+    maxWidth: 1140,
+    width: '100%',
+    margin: '0 auto',
   }
 }
 
@@ -45,4 +61,6 @@ export const appRoute = <Route
 	path="/"
 	Component={withStyles(styles)(App)}
 	query={AppQuery}
-/>
+>
+	{homeRoute}
+</Route>

@@ -12,6 +12,11 @@ import { historyMiddlewares, render, routeConfig } from './router.js';
 
 import './index.css';
 
+import { IntlProvider } from 'react-intl';
+import {addLocaleData} from 'react-intl';
+import pt from 'react-intl/locale-data/pt';
+addLocaleData([...pt]);
+
 // (async () => {
   const resolver = new Resolver(
     createRelayEnvironment(
@@ -30,7 +35,9 @@ import './index.css';
   });
 
   ReactDOM.hydrate(
-    <Router resolver={resolver} />,
+    <IntlProvider locale="pt-BR">
+      <Router resolver={resolver} />
+    </IntlProvider>,
     document.getElementById('root'),
   );
 

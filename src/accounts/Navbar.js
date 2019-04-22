@@ -25,7 +25,7 @@ class AccountNavbar extends Component {
     } else {
       return <AuthDialogContext.Consumer>
         {({toggleAuthDialog}) => {
-          return <div>Quer participar? <Button onClick={toggleAuthDialog}>Entre ou registre-se</Button> em segundos.</div>
+          return <div>Quer participar? <Button onClick={toggleAuthDialog} variant="outlined" color="primary">Entre ou registre-se</Button> em segundos.</div>
         }}
       </AuthDialogContext.Consumer>
     }
