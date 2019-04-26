@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Route from 'found/lib/Route';
 import { withStyles } from '@material-ui/core';
-import {Width} from './ui'
+import { Width } from './ui'
 import HomeQuery from './Home.query.js';
 import LatestPosts from './blog/LatestPosts.js';
 

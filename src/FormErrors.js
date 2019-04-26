@@ -39,7 +39,8 @@ export function hasFormErrors(WrappedComponent) {
 
 export function FormErrors(props) {
 	return <FormErrorsContext.Consumer>
-		{errors => _.filter(errors, props.filter).map(error => <SnackbarContent
+		{errors => _.filter(errors, props.filter).map((error, index) => <SnackbarContent
+      key={index}
 			message={error.message}
 		/>)}	
 	</FormErrorsContext.Consumer>

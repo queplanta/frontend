@@ -8,6 +8,7 @@ import logoImg from './assets/logo-queplanta-32px.png';
 import AccountNavbar from './accounts/Navbar.js';
 import AuthDialog from './accounts/AuthDialog.js';
 import {homeRoute} from './Home.js';
+import {blogRoutes} from './blog/routes.js';
 
 class App extends Component {
   render() {
@@ -63,4 +64,5 @@ export const appRoute = <Route
 	query={AppQuery}
 >
 	{homeRoute}
+  {blogRoutes}
 </Route>
