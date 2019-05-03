@@ -7,6 +7,7 @@ import AppQuery from './App.query.js';
 import logoImg from './assets/logo-queplanta-32px.png';
 import AccountNavbar from './accounts/Navbar.js';
 import AuthDialog from './accounts/AuthDialog.js';
+import Footer from './Footer.js';
 import {homeRoute} from './Home.js';
 import {blogRoutes} from './blog/routes.js';
 
@@ -30,6 +31,8 @@ class App extends Component {
           </AppBar>
 
           {this.props.children}
+
+          <Footer />
         </AuthDialog>
       </React.Fragment>
     );

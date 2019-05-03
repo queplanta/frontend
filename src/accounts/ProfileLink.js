@@ -1,7 +1,7 @@
 import React from 'react';
 import { createFragmentContainer } from 'react-relay';
-import { Link } from 'found';
-import { Tooltip, withStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'found';
+import { Link,Tooltip, withStyles } from '@material-ui/core';
 import query from './ProfileLink.query.js';
 
 class ProfileLink extends React.Component {
@@ -13,7 +13,7 @@ class ProfileLink extends React.Component {
       Reputação: {user.reputation}
     </div>;
     return <Tooltip interactive title={title} classes={{ tooltip: classes.tooltip }}>
-      <Link to={`/u/${user.username}`}>{user.username}</Link>
+      <Link to={`/u/${user.username}`} component={RouterLink}>{user.username}</Link>
     </Tooltip>;
   }
 }
