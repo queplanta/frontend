@@ -1,7 +1,7 @@
 import React from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { Link as RouterLink } from 'found';
-import { Link,Tooltip, withStyles } from '@material-ui/core';
+import { Link, Tooltip, withStyles } from '@material-ui/core';
 import query from './ProfileLink.query.js';
 
 class ProfileLink extends React.Component {

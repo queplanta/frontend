@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { Button, withStyles } from '@material-ui/core';
+import Media from 'react-media';
 import query from './Navbar.query.js';
 import { AuthDialogContext } from './AuthDialog.js'
 import DeauthMutation from './Deauth.mutation.js'
@@ -25,7 +26,14 @@ class AccountNavbar extends Component {
     } else {
       return <AuthDialogContext.Consumer>
         {({toggleAuthDialog}) => {
-          return <div>Quer participar? <Button onClick={toggleAuthDialog} variant="outlined" color="primary">Entre ou registre-se</Button> em segundos.</div>
+          return <Media
+            query="(min-width: 768px)"
+          >
+            {matches => matches ? (
+              <div>Quer participar? <Button onClick={toggleAuthDialog} variant="outlined" color="primary">Entre ou registre-se</Button> em segundos.</div>) : (
+              <div>mobile button</div>
+            )}
+          </Media>
         }}
       </AuthDialogContext.Consumer>
     }

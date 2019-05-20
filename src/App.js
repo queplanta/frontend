@@ -10,6 +10,7 @@ import AuthDialog from './accounts/AuthDialog.js';
 import Footer from './Footer.js';
 import {homeRoute} from './Home.js';
 import {blogRoutes} from './blog/routes.js';
+import {pagesRoutes} from './pages/routes.js';
 
 class App extends Component {
   render() {
@@ -68,4 +69,5 @@ export const appRoute = <Route
 >
 	{homeRoute}
   {blogRoutes}
+  {pagesRoutes}
 </Route>
