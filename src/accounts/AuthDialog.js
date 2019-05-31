@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, withStyles } from '@material-ui/core';
 import { createFragmentContainer } from 'react-relay';
 import AuthMutation from './Auth.mutation.js';
+import RegisterMutation from './Register.mutation.js';
 import query from './Auth.query.js';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
  
@@ -15,13 +16,20 @@ class AuthDialog extends Component {
     super(props);
     this.toggleAuthDialog = this.toggleAuthDialog.bind(this)
     this.handleAuthSubmit = this.handleAuthSubmit.bind(this)
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.renderLogin = this.renderLogin.bind(this)
+    this.changeToRegister = this.changeToRegister.bind(this)
+    this.changeToAuth = this.changeToAuth.bind(this)
     this.state = {
       open: false,
       toggleAuthDialog: this.toggleAuthDialog,
       username: '',
-      password: '',
+      firstName: '',
+      email: '',
+      password1: '',
+      password2: '',
       errors: [],
+      tab: 'auth',
     }
   }
 
@@ -37,7 +45,25 @@ class AuthDialog extends Component {
 			relay.environment,
 			{
 				username: this.state.username,
-				password: this.state.password
+				password: this.state.password1
+			},
+			{
+				setFormErrors
+			}
+		)
+  }
+
+  handleRegisterSubmit(e) {
+    e.preventDefault()
+    const { relay, setFormErrors } = this.props;
+    RegisterMutation.commit(
+			relay.environment,
+			{
+				firstName: this.state.firstName,
+				username: this.state.username,
+				email: this.state.email,
+				password1: this.state.password1,
+				password2: this.state.password2
 			},
 			{
 				setFormErrors
@@ -48,8 +74,17 @@ class AuthDialog extends Component {
   toggleAuthDialog() {
     this.setState(state => ({open: !state.open}))
   }
+  
+  changeToRegister() {
+    this.setState({tab: 'register'})
+  }
+  
+  changeToAuth() {
+    this.setState({tab: 'auth'})
+  }
 
   render() {
+    const isAuthScreen = this.state.tab === 'auth'
     return <AuthDialogContext.Provider value={this.state}>
       {this.props.children}
       <AuthDialogContext.Consumer>
@@ -60,10 +95,10 @@ class AuthDialog extends Component {
             aria-labelledby="auth-dialog-title"
             PaperProps={{
               component: "form",
-              onSubmit: this.handleAuthSubmit
+              onSubmit: isAuthScreen ? this.handleAuthSubmit : this.handleRegisterSubmit
             }}
           >
-            {this.renderLogin()}
+            {isAuthScreen ? this.renderLogin() : this.renderRegister()}
           </Dialog>
         )}
       </AuthDialogContext.Consumer>
@@ -76,27 +111,91 @@ class AuthDialog extends Component {
       <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
       <DialogContent>
         <FormErrors filter={{location: "__all__"}} />
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Usuário"
-            onChange={this.handleChangeInput.bind(this, 'username')}
-            required
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            label="Senha"
-            type="password"
-            onChange={this.handleChangeInput.bind(this, 'password')}
-            required
-            fullWidth
-          />
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Usuário"
+          onChange={this.handleChangeInput.bind(this, 'username')}
+          value={this.state.username}
+          required
+          fullWidth
+        />
+        <TextField
+          margin="dense"
+          label="Senha"
+          type="password"
+          onChange={this.handleChangeInput.bind(this, 'password1')}
+          value={this.state.password1}
+          required
+          fullWidth
+        />
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
         <Button variant="contained" color="primary" type="submit">Entrar</Button>
         <Button disabled>Ou</Button>
-        <Button>Cadastrar</Button>
+        <Button onClick={this.changeToRegister}>Cadastrar</Button>
+      </DialogActions>
+    </React.Fragment>
+  }
+
+  renderRegister() {
+    const {classes} = this.props
+    return <React.Fragment>
+      <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
+      <DialogContent>
+        <FormErrors filter={{location: "__all__"}} />
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Usuário"
+          placeholder="Nome de usuário unico na rede, será sua identificação principal"
+          onChange={this.handleChangeInput.bind(this, 'username')}
+          value={this.state.username}
+          required
+          fullWidth
+        />
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Nome e Sobrenome"
+          onChange={this.handleChangeInput.bind(this, 'firstName')}
+          value={this.state.firstName}
+          required
+          fullWidth
+        />
+        <TextField
+          margin="dense"
+          label="E-mail"
+          type="email"
+          onChange={this.handleChangeInput.bind(this, 'email')}
+          value={this.state.email}
+          required
+          fullWidth
+        />
+        <TextField
+          margin="dense"
+          label="Senha"
+          type="password"
+          onChange={this.handleChangeInput.bind(this, 'password1')}
+          value={this.state.password1}
+          required
+          fullWidth
+        />
+        <TextField
+          margin="dense"
+          label="Confirmar Senha"
+          placeholder="Repita sua senha para ter certeza que não digitou errado"
+          type="password"
+          onChange={this.handleChangeInput.bind(this, 'password2')}
+          value={this.state.password2}
+          required
+          fullWidth
+        />
+      </DialogContent>
+      <DialogActions className={classes.dialogActions}>
+        <Button variant="contained" color="primary" type="submit">Criar conta</Button>
+        <Button disabled>Ou se já tiver um cadastro</Button>
+        <Button onClick={this.changeToAuth}>Entrar</Button>
       </DialogActions>
     </React.Fragment>
   }

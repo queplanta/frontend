@@ -2,8 +2,8 @@ import graphql from 'babel-plugin-relay/macro';
 import { commitMutation } from 'react-relay';
 
 const mutation = graphql`
-  mutation AuthMutation($input: AuthenticateInput!) {
-    authenticate(input: $input) {
+  mutation RegisterMutation($input: RegisterAndAuthenticateInput!) {
+    registerAndAuthenticate(input: $input) {
       viewer {
         id,
         me {
@@ -33,13 +33,13 @@ function commit(environment, input, config) {
     },
     updater(store) {
       const rootViewer = store.getRoot();
-      const me = store.getRootField('authenticate').getLinkedRecord('viewer').getLinkedRecord('me');
+      const me = store.getRootField('registerAndAuthenticate').getLinkedRecord('viewer').getLinkedRecord('me');
       if (me) {
         rootViewer.setLinkedRecord(me, 'me')
       }
     },
     onCompleted(response, errors) {
-			if (response.authenticate.errors.length > 0) {
+			if (response.registerAndAuthenticate.errors.length > 0) {
 				if (typeof config.setFormErrors === 'function') {
 					config.setFormErrors(response.authenticate.errors)
 				}
