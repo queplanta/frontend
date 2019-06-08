@@ -38,14 +38,14 @@ function Page(props) {
 
 const styles = (theme) => ({
   root: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   title: {
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing(2),
   },
   actions: {
     borderBottom: `1px solid ${theme.palette.grey['500']}`,
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing(1),
     color: theme.palette.grey['600'],
   }
 })

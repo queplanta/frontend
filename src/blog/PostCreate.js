@@ -47,7 +47,7 @@ function PostCreate({environment, setFormErrors}) {
     <Helmet
       title="Escrever novo Post"
     />
-    <Grid container spacing={24} component="form" onSubmit={handleSubmit}>
+    <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
       <Grid item xs={12}>
         <Typography component="h5" variant="h2" gutterBottom>Escrever novo Post</Typography>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />

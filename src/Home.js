@@ -8,7 +8,7 @@ import LatestPosts from './blog/LatestPosts.js';
 function Home(props) {
 	const {viewer} = props;
   return <Width component="footer">
-		<Grid container spacing={24}>
+		<Grid container spacing={3}>
 			<Grid item xs={12}>
 				<LatestPosts viewer={viewer} />
 			</Grid>

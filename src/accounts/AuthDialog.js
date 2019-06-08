@@ -208,9 +208,9 @@ class AuthDialog extends Component {
 
 const styles = theme => ({
   dialogActions: {
-    marginLeft: theme.spacing.unit * 3 - 4,
-    marginRight: theme.spacing.unit * 3 - 4,
-    marginBottom: theme.spacing.unit * 3,
+    marginLeft: theme.spacing(3) - 4,
+    marginRight: theme.spacing(3) - 4,
+    marginBottom: theme.spacing(3),
     justifyContent: "flex-start",
   },
 });

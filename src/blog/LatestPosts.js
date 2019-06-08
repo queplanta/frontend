@@ -35,10 +35,10 @@ const styles = (theme) => ({
   root: {
   },
   title: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   actionRoot: {
-    right: theme.spacing.unit * 2
+    right: theme.spacing(2),
   },
 })
 

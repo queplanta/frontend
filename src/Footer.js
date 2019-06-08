@@ -8,7 +8,7 @@ import parceriasImg from './assets/parcerias-sustentaveis.png';
 function Footer(props) {
   const {classes} = props;
   return <Width component="footer">
-		<Grid container spacing={24}>
+		<Grid container spacing={3}>
 			<Grid item xs={12} className={classes.links}>
 				<Link to={`/blog`} component={RouterLink}>Blog</Link>
 				{` . `}
