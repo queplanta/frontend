@@ -1,7 +1,6 @@
 import React, {useReducer} from 'react';
 import _ from 'lodash';
 import { SnackbarContent } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
 
 export function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -44,21 +43,5 @@ export function FormErrors(props) {
       key={index}
 			message={error.message}
 		/>)}	
-	</FormErrorsContext.Consumer>
-}
-
-export function TextFieldWithError(props) {
-  const {errorFilter, ...others} = props
-	return <FormErrorsContext.Consumer>
-    {errors => {
-      const filteredErrors = errorFilter ? _.filter(errors, errorFilter).map(error => error.message) : []
-      const errorText = _.join(filteredErrors, " \n")
-      const hasError = filteredErrors.length > 0
-      return <TextField
-        error={hasError}
-        helperText={errorText}
-        {...others}
-      />
-    }}	
 	</FormErrorsContext.Consumer>
 }

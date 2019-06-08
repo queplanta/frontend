@@ -11,6 +11,7 @@ import Footer from './Footer.js';
 import {homeRoute} from './Home.js';
 import {blogRoutes} from './blog/routes.js';
 import {pagesRoutes} from './pages/routes.js';
+import {plantsRoutes} from './plants/routes.js';
 
 class App extends Component {
   render() {
@@ -68,6 +69,7 @@ export const appRoute = <Route
 	query={AppQuery}
 >
 	{homeRoute}
+  {plantsRoutes}
   {blogRoutes}
   {pagesRoutes}
 </Route>

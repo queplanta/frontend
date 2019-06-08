@@ -4,7 +4,7 @@ import { createFragmentContainer } from 'react-relay';
 import AuthMutation from './Auth.mutation.js';
 import RegisterMutation from './Register.mutation.js';
 import query from './Auth.query.js';
-import { hasFormErrors, FormErrors } from '../FormErrors.js';
+import { hasFormErrors, FormErrors, TextFieldWithError } from '../FormErrors.js';
  
 export const AuthDialogContext = React.createContext({
   open: false,
@@ -144,50 +144,55 @@ class AuthDialog extends Component {
       <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
       <DialogContent>
         <FormErrors filter={{location: "__all__"}} />
-        <TextField
+        <TextFieldWithError
           autoFocus
           margin="dense"
           label="Usuário"
           placeholder="Nome de usuário unico na rede, será sua identificação principal"
           onChange={this.handleChangeInput.bind(this, 'username')}
           value={this.state.username}
+          errorFilter={{location: "username"}}
           required
           fullWidth
         />
-        <TextField
+        <TextFieldWithError
           autoFocus
           margin="dense"
           label="Nome e Sobrenome"
           onChange={this.handleChangeInput.bind(this, 'firstName')}
           value={this.state.firstName}
+          errorFilter={{location: "firstName"}}
           required
           fullWidth
         />
-        <TextField
+        <TextFieldWithError
           margin="dense"
           label="E-mail"
           type="email"
           onChange={this.handleChangeInput.bind(this, 'email')}
           value={this.state.email}
+          errorFilter={{location: "email"}}
           required
           fullWidth
         />
-        <TextField
+        <TextFieldWithError
           margin="dense"
           label="Senha"
           type="password"
           onChange={this.handleChangeInput.bind(this, 'password1')}
           value={this.state.password1}
+          errorFilter={{location: "password1"}}
           required
           fullWidth
         />
-        <TextField
+        <TextFieldWithError
           margin="dense"
           label="Confirmar Senha"
           placeholder="Repita sua senha para ter certeza que não digitou errado"
           type="password"
           onChange={this.handleChangeInput.bind(this, 'password2')}
           value={this.state.password2}
+          errorFilter={{location: "password2"}}
           required
           fullWidth
         />
