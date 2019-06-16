@@ -1,5 +1,5 @@
 import React from 'react';
-import Route from 'found/lib/Route';
+import Route from '../relay/RouteWithLoading';
 import Plant from './Plant.js';
 import PlantQuery from './Plant.query.js';
 

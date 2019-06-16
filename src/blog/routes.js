@@ -1,5 +1,5 @@
 import React from 'react';
-import Route from 'found/lib/Route';
+import Route from '../relay/RouteWithLoading';
 import PostCreate from './PostCreate.js';
 import PostCreateQuery from './PostCreate.query.js';
 
