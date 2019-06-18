@@ -9,13 +9,14 @@ const query = graphql`
       edges {
         node {
           id,
-          bigImage: image(width: 800, height: 600) {
+          bigImage: image(width: 400, height: 300) {
             url
           }
         }
       }
     }
     revisionCreated {
+      createdAt
       author {
         avatar(width: 40, height: 40) {
           url
@@ -23,8 +24,8 @@ const query = graphql`
         username
         ...ProfileLink_user
       }
-      createdAt
     }
+    ...SuggestionsList_occurrence
   }
 `;
 export default query

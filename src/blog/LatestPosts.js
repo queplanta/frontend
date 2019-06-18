@@ -3,13 +3,13 @@ import { List, ListItem, ListItemText, ListItemSecondaryAction, Typography, Pape
 import { createFragmentContainer } from 'react-relay';
 import { Link as RouterLink } from 'found';
 import query from './LatestPosts.query.js';
-import {RelativeDate} from '../ui';
+import { RelativeDate } from '../ui';
 import ProfileLink from '../accounts/ProfileLink.js';
 
 function LatestPosts(props) {
   const {classes, viewer: {allPosts: {edges: posts}}} = props;
   return <Paper className={classes.root}>
-    <Typography component="h5" variant="h4" className={classes.title}>Últimas atualizações</Typography>
+    <Typography component="h3" variant="h5" className={classes.title}>Últimas atualizações</Typography>
     <List>
       {posts.map(({node: post}) => {
         return <ListItem key={post.id} button component={RouterLink} to={`/blog/${post.url}`}>
@@ -35,7 +35,7 @@ const styles = (theme) => ({
   root: {
   },
   title: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(2, 2, 0, 2),
   },
   actionRoot: {
     right: theme.spacing(2),

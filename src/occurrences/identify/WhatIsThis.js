@@ -8,12 +8,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 // import { Link as RouterLink } from 'found';
 import { createFragmentContainer } from 'react-relay';
 import query from './WhatIsThis.query.js';
-// import {RelativeDate} from '../../ui';
+import { RelativeDate } from '../../ui';
 import ProfileLink from '../../accounts/ProfileLink.js';
+import SuggestionsList from './SuggestionsList.js';
 
 function WhatIsThis(props) {
-  const {classes, occurrence} = props;
-  return <Card classes={{root: classes.root}}>
+  const {classes, occurrence, environment} = props;
+  return <Card classes={{root: classes.root}} elevation={3}>
     <CardHeader
       avatar={<Avatar
         className={classes.avatar}
@@ -26,7 +27,7 @@ function WhatIsThis(props) {
         </IconButton>
       }
       title={<ProfileLink user={occurrence.revisionCreated.author} hideAvatar={true} />}
-      subheader="September 14, 2016"
+      subheader={<RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />}
     />
     <div className={classes.imagesWrapper}>
       {occurrence.images.edges.map((edge) => {
@@ -43,8 +44,10 @@ function WhatIsThis(props) {
       })}
     </div>
     <CardContent>
-      {occurrence.where}
-      {occurrence.when}
+      {occurrence.where} {occurrence.when}
+    </CardContent>
+    <CardContent>
+      <SuggestionsList occurrence={occurrence} environment={environment} />
     </CardContent>
   </Card>
 }
@@ -58,7 +61,7 @@ const styles = (theme) => ({
   },
   imageContainer: {
     width: '100%',
-    height: 500,
+    height: 300,
     position: 'relative',
     display: 'inline-block',
     overflow: 'hidden',
