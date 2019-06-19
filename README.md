@@ -1,8 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Que Planta Frontend
 
-## Available Scripts
+To run this project make sure you have [nvm](https://github.com/nvm-sh/nvm) or [Node.JS](https://nodejs.org/en/) version 10.
 
-In the project directory, you can run:
+### `nvm use` if you have nvm installed run if not skip this.
+
+### `npm install -g yarn` kake sure you have yarn installed globaly
+
+### `yarn install` to install project's dependencies 
+
 
 ### `npm start`
 
