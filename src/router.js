@@ -1,11 +1,27 @@
+import React from 'react';
+import Route from 'found/lib/Route';
 import queryMiddleware from 'farce/lib/queryMiddleware';
 import createRender from 'found/lib/createRender';
 import makeRouteConfig from 'found/lib/makeRouteConfig';
 
-import {appRoute} from './App.js';
+import App from './App.js';
+import AppQuery from './App.query.js';
+import {homeRoute} from './Home.js';
+import {blogRoutes} from './blog/routes.js';
+import {pagesRoutes} from './pages/routes.js';
+import {plantsRoutes} from './plants/routes.js';
 
 export const historyMiddlewares = [queryMiddleware];
 
-export const routeConfig = makeRouteConfig(appRoute);
+export const routeConfig = makeRouteConfig(<Route
+  path="/"
+  Component={App}
+  query={AppQuery}
+>
+  {homeRoute}
+  {plantsRoutes}
+  {blogRoutes}
+  {pagesRoutes}
+</Route>);
 
 export const render = createRender({});

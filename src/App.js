@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import Route from 'found/lib/Route';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { AppBar, Toolbar, Typography, Chip, withStyles } from '@material-ui/core';
 import { Link } from 'found';
-import AppQuery from './App.query.js';
 import logoImg from './assets/logo-queplanta-32px.png';
 import AccountNavbar from './accounts/Navbar.js';
 import AuthDialog from './accounts/AuthDialog.js';
 import Footer from './Footer.js';
-import {homeRoute} from './Home.js';
-import {blogRoutes} from './blog/routes.js';
-import {pagesRoutes} from './pages/routes.js';
-import {plantsRoutes} from './plants/routes.js';
 
-class App extends Component {
+export class App extends Component {
   render() {
     const {classes, viewer} = this.props;
     return (
@@ -63,13 +57,4 @@ const styles = {
   }
 }
 
-export const appRoute = <Route
-	path="/"
-	Component={withStyles(styles)(App)}
-	query={AppQuery}
->
-	{homeRoute}
-  {plantsRoutes}
-  {blogRoutes}
-  {pagesRoutes}
-</Route>
+export default withStyles(styles)(App)
