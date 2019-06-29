@@ -32,7 +32,7 @@ function SuggestionsList(props) {
               {suggestion.identity.title}
             </ListItemText>
             <ListItemSecondaryAction>
-              <VotingButtons voting={suggestion.voting} />
+              <VotingButtons voting={suggestion.voting} parentId={suggestion.id} />
             </ListItemSecondaryAction>
           </ListItem>
         </React.Fragment>
