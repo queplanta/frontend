@@ -6,6 +6,7 @@
     "@material-ui/core": "4.0.2",
     "@material-ui/icons": "4.0.1",
     "@material-ui/styles": "4.0.2",
+    "classnames": "^2.2.6",
     "eslint-plugin-react-hooks": "^1.6.0",
     "farce": "^0.2.8",
     "found": "^0.3.21",
