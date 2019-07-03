@@ -1,45 +1,49 @@
 import React from 'react';
-import { Typography, Paper, Link, Tabs, Tab, Badge, withStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'found';
-import Markdown from 'react-remarkable';
+import { Paper, Typography, Grid, Button, withStyles } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import { Width } from '../ui';
-import ProfileLink from '../accounts/ProfileLink.js';
+import EdibilityBadge from './EdibilityBadge.js'
+import RankDisplay from './RankDisplay.js'
 import NotFound from '../pages/NotFound.js'
-
-const markdownOptions = {
-  html: true,
-};
 
 function Plant(props) {
   const {classes, plant} = props
 
   if (!plant) {
     return <NotFound />
-  }
+  }  
 
   return <Width>
     <Paper className={classes.root}>
       <Typography component="h1" variant="h4" className={classes.title}>{plant.title}</Typography>
-      <div>
-        <Tabs value="main" indicatorColor="primary" textColor="primary">
-          <Tab value="main" label="Descrição" />
-          <Tab value="photos" label={
-            <Badge className={classes.tabBadge} badgeContent={4} color="primary">
-              Fotos
-            </Badge>}
-          />
-          <Tab label="Ocorrências" />
-        </Tabs>
-        <Markdown options={markdownOptions} container="div">{plant.description}</Markdown>
-      </div>
-      <div className={classes.actions}>
-        Enviada por <ProfileLink user={plant.revisionCreated.author} />
-        {` `}
-        <i className="fa fa-clock-o" aria-hidden="true" />
-        {` `}
-        <span> . </span>
-        <Link component={RouterLink} to={`/revisions/${plant.id}`}>{plant.document.revisionsCount} alterações</Link>
-      </div>
+      <Grid item xs={12} md={3}>
+        {plant.images.edges.map((edge) => {
+          const mainImage = edge.node
+          return <div key={mainImage.id}>
+            <img
+            src={mainImage.bigImage.url}
+            alt={mainImage.description}
+            width="100%"
+            />
+          </div>
+        })}
+        <EdibilityBadge plant={plant} />
+        <div>
+          <Button variant="contained" color="primary" className={classes.customBtn} fullWidth={true}>
+            <AddIcon className={classes.leftIcon} />
+            Adicionar à lista
+          </Button>
+          <Button variant="contained" color="primary" className={classes.customBtn} color="primary" fullWidth={true}>
+            <AddIcon className={classes.leftIcon} />
+            Ocorrência
+          </Button>
+          <Button variant="contained" color="secondary" className={classes.customBtn} color="primary" fullWidth={true}>
+            <AddIcon className={classes.leftIcon} />
+            Tenho semente
+          </Button>
+        </div>
+        <RankDisplay plant={plant} />
+      </Grid>      
     </Paper>
   </Width>
 }
@@ -56,8 +60,12 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(1),
     color: theme.palette.grey['600'],
   },
-  tabBadge: {
-    padding: theme.spacing(0, 2),
+  customBtn: {
+    marginBottom: theme.spacing(1),
+    textAlign: "left",
+  },
+  leftIcon: {
+    marginRight: theme.spacing(1),
   },
 })
 
