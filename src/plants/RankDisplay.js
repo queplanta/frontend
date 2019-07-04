@@ -1,12 +1,20 @@
 import React from 'react';
 import { createFragmentContainer } from 'react-relay';
-import { Table, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core';
+import { Typography, Table, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core';
 import PlantLink from './PlantLink';
 import query from './RankDisplay.query.js';
 
 function RankDisplay(props) {
   const {classes, plant} = props;
-  return<div>
+  return <div>
+    <Typography
+      color="textPrimary"
+      display="block"
+      variant="overline"
+      align="center"
+    >
+      Taxonomia
+    </Typography>
     <Table className={classes.table} size="small">
       <TableBody>
         <TableRow>
