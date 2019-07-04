@@ -21,14 +21,17 @@ const query = graphql`
           }
         }
       }
-      document {
-        revisionsCount
-      },
-      revisionCreated {
-        author {
-          ...ProfileLink_user
+      lifeNodeCommonname(first: 20) {
+        edges {
+          node {
+            id
+            title
+          }
         }
       }
+      document {
+        ...RevisionBox_document
+      }      
     }
   }
 `;

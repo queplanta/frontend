@@ -42,6 +42,7 @@ const styles = (theme) => ({
   },
   excellent: {
     backgroundColor: '#28a745',
+    borderColor: '#28a745',
     color: '#FFFFFF',
   },
 })
