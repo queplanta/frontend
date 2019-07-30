@@ -21,11 +21,12 @@ const query = graphql`
           }
         }
       }
-      lifeNodeCommonname(first: 20) {
+      commonNames(first: 20) {
         edges {
           node {
             id
-            title
+            name
+            language
           }
         }
       }

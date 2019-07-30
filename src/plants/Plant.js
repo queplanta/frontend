@@ -1,5 +1,6 @@
 import React from 'react';
-import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, withStyles } from '@material-ui/core';
+import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, Box, withStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import { Width } from '../ui';
 import EdibilityBadge from './EdibilityBadge.js'
@@ -7,9 +8,40 @@ import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
 
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
 function Plant(props) {
   const {classes, plant} = props
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('description');
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -66,19 +98,38 @@ function Plant(props) {
             textColor="primary"
             centered
           >
-            <Tab label="Descrição" />
-            <Tab label="Ocorrências" />
-            <Tab label="Usos" />
-            <Tab label="Listas" />
-            <Tab label="Trocas e Vendas" />
+            <Tab value="description" label="Descrição" wrapped {...a11yProps('description')} />
+            <Tab value="ocurrences" label="Ocorrências" wrapped {...a11yProps('ocurrences')} />
+            <Tab value="uses" label="Usos" wrapped {...a11yProps('uses')} />
+            <Tab value="lists" label="Listas" wrapped {...a11yProps('lists')} />
+            <Tab value="deals-and-sales" label="Trocas e Vendas" wrapped {...a11yProps('deals-and-sales')} />
           </Tabs>
-          
-          {plant.lifeNodeCommonname.edges.map((edge) => {
-            const commonname = edge.node
-            return <div key={commonname.id}>
-              { commonname.title}
-            </div>
-          })}
+          <TabPanel value={value} index="description">
+            <Typography variant="body1" className={classes.marginBottom}>{plant.description}</Typography>
+            <Typography variant="h6">Nomes comuns</Typography>
+            <ol>
+              {plant.commonNames.edges.map((edge) => {
+                const commonName = edge.node
+                return <li key={commonName.id}>
+                  { commonName.name} {commonName.language ? `(${commonName.language})` : ''}
+                </li>
+              })}
+            </ol>
+            <Typography variant="h6">Sinônimos</Typography>
+            <Typography variant="h6">Referências</Typography>
+          </TabPanel>
+          <TabPanel value={value} index="ocurrences">
+            OCORRENCIAS
+          </TabPanel>
+          <TabPanel value={value} index="uses">
+            USOS
+          </TabPanel>
+          <TabPanel value={value} index="lists">
+            Listas
+          </TabPanel>
+          <TabPanel value={value} index="deals-and-sales">
+            TROCAS E VENDAS
+          </TabPanel> 
         </Paper>
         <Paper className={classes.root}>
           <Typography variant="overline">Colaboradores</Typography>
