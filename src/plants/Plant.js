@@ -41,11 +41,7 @@ function a11yProps(index) {
 
 function Plant(props) {
   const {classes, plant} = props
-  const [value, setValue] = React.useState('description');
-
-  function handleChange(event, newValue) {
-    setValue(newValue);
-  }
+  const [currentTab, setTab] = React.useState('description');
 
   if (!plant) {
     return <NotFound />
@@ -92,8 +88,8 @@ function Plant(props) {
       <Grid item xs={12} md={9}>
         <Paper className={classes.marginBottom}>
           <Tabs
-            value={value}
-            onChange={handleChange}
+            value={currentTab}
+            onChange={(e, value) => {setTab(value)}}
             indicatorColor="primary"
             textColor="primary"
             centered
@@ -104,7 +100,7 @@ function Plant(props) {
             <Tab value="lists" label="Listas" wrapped {...a11yProps('lists')} />
             <Tab value="deals-and-sales" label="Trocas e Vendas" wrapped {...a11yProps('deals-and-sales')} />
           </Tabs>
-          <TabPanel value={value} index="description">
+          <TabPanel value={currentTab} index="description">
             <Typography variant="body1" className={classes.marginBottom}>{plant.description}</Typography>
             <Typography variant="h6">Nomes comuns</Typography>
             <ol>
@@ -118,16 +114,16 @@ function Plant(props) {
             <Typography variant="h6">Sinônimos</Typography>
             <Typography variant="h6">Referências</Typography>
           </TabPanel>
-          <TabPanel value={value} index="ocurrences">
+          <TabPanel value={currentTab} index="ocurrences">
             OCORRENCIAS
           </TabPanel>
-          <TabPanel value={value} index="uses">
+          <TabPanel value={currentTab} index="uses">
             USOS
           </TabPanel>
-          <TabPanel value={value} index="lists">
+          <TabPanel value={currentTab} index="lists">
             Listas
           </TabPanel>
-          <TabPanel value={value} index="deals-and-sales">
+          <TabPanel value={currentTab} index="deals-and-sales">
             TROCAS E VENDAS
           </TabPanel> 
         </Paper>
