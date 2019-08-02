@@ -39,7 +39,7 @@ class AuthDialog extends Component {
   }
 
   handleAuthSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     const { relay, setFormErrors } = this.props;
     AuthMutation.commit(
 			relay.environment,

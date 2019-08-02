@@ -8,8 +8,7 @@ const mutation = graphql`
         id,
         me {
           id,
-          username,
-          isAuthenticated
+          ...Navbar_me
         }
       },
       errors {

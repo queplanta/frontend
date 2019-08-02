@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
+<<<<<<< HEAD
+import { AppBar, Toolbar, Typography, Chip, withStyles } from '@material-ui/core';
+import { Link } from 'found';
+import { SnackbarProvider } from 'notistack';
+import logoImg from './assets/logo-queplanta-32px.png';
+=======
 import { 
   AppBar, Toolbar, Typography, Chip, Button, Tooltip,
   TextField, Container, Link, InputBase, Drawer, IconButton,
@@ -10,9 +16,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link  as RouterLink } from 'found';
-import { SnackbarProvider } from 'notistack';
 import logoImg from './assets/queplanta-icon.svg';
 import logoTextImg from './assets/queplanta-text-light.svg';
+>>>>>>> 70cd5f9... Links in navbar, camera and search input
 import AccountNavbar from './accounts/Navbar.js';
 import AuthDialog from './accounts/AuthDialog.js';
 import Footer from './Footer.js';
@@ -35,22 +41,39 @@ export class App extends Component {
     const {classes, viewer} = this.props;
     const {drawerOpen} = this.state;
 
-    return (<SnackbarProvider maxSnack={3}>
+    return (
+<<<<<<< HEAD
+      <SnackbarProvider maxSnack={3}>
+        <React.Fragment>
+          <CssBaseline />
+          <AuthDialog viewer={viewer}>
+            <AppBar position="static" color="default">
+              <Toolbar className={classes.toolbar}>
+                <Typography className={classes.title} component={Link} to="/" noWrap>
+                  <img src={logoImg} alt="Que Planta" />
+                  Que Planta
+                </Typography>
+                <Chip label="em desenvolvimento" className={classes.chip} color="secondary"  variant="outlined" />
+                <div className={classes.grow} />
+                <AccountNavbar me={viewer.me} />
+              </Toolbar>
+            </AppBar>
+=======
       <React.Fragment>
         <CssBaseline />
         <AuthDialog viewer={viewer}>
           <AppBar position="static" className={classes.appbar}>            
             <Toolbar className={classes.toolbar}>
               <Drawer
-                className={classes.drawer}
-                variant="temporary"
-                anchor="left"
-                open={drawerOpen}
-                onClose={this.handleDrawerToggle}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-              >
+                      className={classes.drawer}
+                      variant="temporary"
+                      anchor="left"
+                      open={drawerOpen}
+                      onClose={this.handleDrawerToggle}
+                      classes={{
+                        paper: classes.drawerPaper,
+                      }}
+                    >
                 <MenuList component="div" onClick={this.handleDrawerToggle}>
                   <MenuItem to="/" component={RouterLink} exact={true} activeClassName={classes.drawerListItemActive}>
                     <ListItemText primary="Início"/>
@@ -115,13 +138,15 @@ export class App extends Component {
               </nav>
             </Hidden>
           </AppBar>
+>>>>>>> 70cd5f9... Links in navbar, camera and search input
 
-          {this.props.children}
+            {this.props.children}
 
-          <Footer />
-        </AuthDialog>
-      </React.Fragment>
-    </SnackbarProvider>);
+            <Footer />
+          </AuthDialog>
+        </React.Fragment>
+      </SnackbarProvider>
+    );
   }
 }
 
