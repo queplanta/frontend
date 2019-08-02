@@ -8,14 +8,14 @@ import LatestPosts from './blog/LatestPosts.js';
 import TopPlants from './plants/TopPlants.js';
 
 function Home(props) {
-	const {viewer} = props;
-  return <Width component="footer">
-		<Grid container spacing={3} alignItems="flex-start">
+	const {classes, viewer} = props;
+  return <Width component="div">
+		<Grid container spacing={1} alignItems="flex-start">
 			<Grid item xs={12} sm={6}>
         <LatestWhatIsThis viewer={viewer} environment={props.environment} />
       </Grid>
-      <Grid container item xs={12} sm={6} spacing={3}>
-        <Grid item xs={12}>
+      <Grid container item xs={12} sm={6}>
+        <Grid item xs={12} className={classes.gridPaddingBottom}>
           <TopPlants />
         </Grid>
         <Grid item xs={12}>
@@ -26,8 +26,11 @@ function Home(props) {
 	</Width>
 }
 
-const styles = {
-}
+const styles = (theme) => ({
+  gridPaddingBottom: {
+    paddingBottom: theme.spacing(2),
+  }
+})
 
 const HomeStyled = withStyles(styles)(Home)
 

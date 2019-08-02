@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Paper, CircularProgress, withStyles } from '@material-ui/core';
+import { Typography, CircularProgress, withStyles } from '@material-ui/core';
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import { fragmentQuery, query } from './LatestWhatIsThis.query.js';
 import WhatIsThis from './WhatIsThis.js'
@@ -18,7 +18,10 @@ function WhatIsThisList(props) {
 
 const WhatIsThisListStyled = withStyles((theme) => ({
   wrapper: {
-    padding: theme.spacing(2, 2, 0.1, 2),
+    padding: theme.spacing(2, 0, 0.1, 0),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2, 2, 0.1, 2),
+    },
   },
 }))(WhatIsThisList)
 
@@ -41,7 +44,7 @@ const WhatIsThisListPaginated = createPaginationContainer(
 )
 
 const LatestWhatIsThis = ({classes, environment}) => {
-  return <Paper className={classes.root}>
+  return <div>
     <Typography component="h3" variant="h5" className={classes.title}>Últimos pedidos de identificação</Typography>
     {/*<AddIdentify environment={environment} />*/}
     <QueryRenderer
@@ -63,7 +66,7 @@ const LatestWhatIsThis = ({classes, environment}) => {
         return <div className={classes.loading}><CircularProgress /></div>
       }}
     />
-  </Paper>
+  </div>
 }
 
 const styles = (theme) => ({
@@ -74,7 +77,10 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(2),
   },
   title: {
-    padding: theme.spacing(2, 2, 0, 2),
+    padding: theme.spacing(2, 0, 0, 0),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2, 2, 0, 2),
+    },
   },
   actionRoot: {
     right: theme.spacing(2),
