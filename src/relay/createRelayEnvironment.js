@@ -1,17 +1,31 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { isEmpty } from 'lodash';
 
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
-  return fetch("/graphql" , {
-    method: "POST",
+  let requestVariables = {
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      // Auth Headers goes here
-    },
-    body: JSON.stringify({
-      query: operation.text, // GraphQL text from input
-      variables
+      'Accept': "application/json",
+    }
+  }
+
+  let body
+
+  if (uploadables instanceof FormData) {
+    uploadables.append('query', operation.text)
+    uploadables.append('variables', JSON.stringify(variables))
+    body = uploadables
+  } else {
+    requestVariables.headers['Content-Type'] = 'application/json'
+    body = JSON.stringify({
+      query: operation.text,
+      variables,
     })
+  }
+
+  return fetch("/graphql" , {
+    ...requestVariables,
+    body
   }).then(response => {
     return response.json();
   });

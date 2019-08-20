@@ -3,21 +3,9 @@ import Helmet from 'react-helmet';
 import moment from 'moment'
 import { Grid, Typography, TextField, Button, withStyles } from '@material-ui/core';
 import { Width } from '../ui';
-import {hasFormErrors, FormErrors} from '../FormErrors.js';
+import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import PostCreateMutation from './PostCreate.mutation.js';
-
-function useFormInput(initialValue) {
-  const [value, setValue] = useState(initialValue)
-
-  function handleChange(e) {
-    setValue(e.target.value)
-  }
-
-  return {
-    value,
-    onChange: handleChange
-  }
-}
+import { useFormInput } from '../lib/forms.js';
 
 function PostCreate({environment, setFormErrors}) {
   const url = useFormInput('')

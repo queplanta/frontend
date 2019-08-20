@@ -5,6 +5,7 @@ const query = graphql`
     id,
     where,
     when,
+    myPerms,
     images(first: 20) {
       edges {
         node {
