@@ -3,6 +3,7 @@ import { Typography, Paper, CircularProgress, withStyles } from '@material-ui/co
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import { fragmentQuery, query } from './LatestWhatIsThis.query.js';
 import WhatIsThis from './WhatIsThis.js'
+// import AddIdentify from './AddIdentify.js';
 
 function WhatIsThisList(props) {
   const {classes, viewer: {allWhatIsThis: {edges: items}}, environment} = props;
@@ -40,6 +41,7 @@ const WhatIsThisListPaginated = createPaginationContainer(
 const LatestWhatIsThis = ({classes, environment}) => {
   return <Paper className={classes.root}>
     <Typography component="h3" variant="h5" className={classes.title}>Últimos pedidos de identificação</Typography>
+    {/*<AddIdentify environment={environment} />*/}
     <QueryRenderer
       environment={environment}
       query={query}

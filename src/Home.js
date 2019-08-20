@@ -11,10 +11,10 @@ function Home(props) {
 	const {viewer} = props;
   return <Width component="footer">
 		<Grid container spacing={3} alignItems="flex-start">
-			<Grid item xs={6}>
+			<Grid item xs={12} sm={6}>
         <LatestWhatIsThis viewer={viewer} environment={props.environment} />
       </Grid>
-      <Grid container item xs={6} spacing={3}>
+      <Grid container item xs={12} sm={6} spacing={3}>
         <Grid item xs={12}>
           <TopPlants />
         </Grid>
