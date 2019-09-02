@@ -8,6 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import _ from 'lodash';
+import { useSnackbar } from 'notistack';
 import { hasFormErrors, FormErrors } from '../../FormErrors.js';
 import ImgWithLocation from '../../lib/ImgWithLocation.js';
 import { useFormInput, clearFormInput } from '../../lib/forms.js';
@@ -15,6 +16,7 @@ import ButtonWithProgress from '../../lib/ButtonWithProgress.js';
 import AddIdentifyMutation from './AddIdentify.mutation.js';
 
 function AddIdentify({classes, environment, setFormErrors}) {
+  const { enqueueSnackbar } = useSnackbar();
   const when = useFormInput('')
   const where = useFormInput('')
   const notes = useFormInput('')
@@ -46,6 +48,7 @@ function AddIdentify({classes, environment, setFormErrors}) {
     clearFormInput(notes)
     setImages([])
     setIsSaving(false)
+    enqueueSnackbar('Requisição de identificação adicionada com sucesso', {variant: "success"})
   }
 
   function handleSubmit(e) {
@@ -67,6 +70,7 @@ function AddIdentify({classes, environment, setFormErrors}) {
 				setFormErrors,
         onSuccess,
         onError: () => {
+          enqueueSnackbar('Ocorreu um erro', {variant: "error"})
           setIsSaving(false)
         }
 			}

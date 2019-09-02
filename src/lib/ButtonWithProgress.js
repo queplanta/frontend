@@ -4,11 +4,12 @@ import {
   Button, CircularProgress, withStyles
 } from '@material-ui/core';
 
-function ButtonWithProgress({isLoading, children, classes, ...others}) {
-  return <Button disabled={isLoading} {...others}>
+function ButtonWithProgress({isLoading, children, classes, component, ...others}) {
+  const Component = component ? component : Button
+  return <Component disabled={isLoading} {...others}>
     {children}
     {isLoading && <CircularProgress size={24} className={classes.buttonProgress} />}
-  </Button>
+  </Component>
 }
 
 ButtonWithProgress.propTypes = {
