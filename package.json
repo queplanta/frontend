@@ -13,6 +13,7 @@
     "found": "^0.3.21",
     "found-relay": "0.4.0-alpha.7",
     "moment": "^2.24.0",
+    "notistack": "^0.8.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",

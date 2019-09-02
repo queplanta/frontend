@@ -5,17 +5,17 @@ import {
   withStyles
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import DeleteIcon from '@material-ui/icons/Delete';
 // import { Link as RouterLink } from 'found';
 import { createFragmentContainer } from 'react-relay';
 import query from './WhatIsThis.query.js';
 import { RelativeDate } from '../../ui';
 import ProfileLink from '../../accounts/ProfileLink.js';
 import SuggestionsList from './SuggestionsList.js';
+import DeleteButton from '../DeleteButton.js';
 import { hasPerm } from '../../lib/perms.js';
 
 function WhatIsThisMenu(props) {
-  const {occurrence} = props
+  const {occurrence, environment} = props
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
@@ -35,7 +35,6 @@ function WhatIsThisMenu(props) {
       anchorEl={anchorEl}
       open={Boolean(anchorEl)}
       onClose={handleClose}
-      onClick={handleClose}
       getContentAnchorEl={null}
       anchorOrigin={{
         vertical: 'bottom',
@@ -46,7 +45,7 @@ function WhatIsThisMenu(props) {
         horizontal: 'right',
       }}
     >
-      {hasPerm(occurrence, 'delete') && <MenuItem><DeleteIcon fontSize="small" style={{marginRight: 10}} /> Excluir</MenuItem>}
+      {hasPerm(occurrence, 'delete') && <DeleteButton component={MenuItem} environment={environment} occurrence={occurrence} />}
     </Menu>
   </React.Fragment>
 }
@@ -61,7 +60,7 @@ function WhatIsThis(props) {
         src={occurrence.revisionCreated.author.avatar.url}
       />}
       action={
-        <WhatIsThisMenu occurrence={occurrence} />
+        <WhatIsThisMenu occurrence={occurrence} environment={environment} />
       }
       title={<ProfileLink user={occurrence.revisionCreated.author} hideAvatar={true} />}
       subheader={<RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />}

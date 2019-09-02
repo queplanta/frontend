@@ -2,10 +2,7 @@ import React, {useReducer} from 'react';
 import _ from 'lodash';
 import { SnackbarContent } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-
-export function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-}
+import { getDisplayName } from './lib/helpers.js';
 
 function reducer(state, action) {
   switch (action.type) {

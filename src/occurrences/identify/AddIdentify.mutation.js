@@ -42,7 +42,12 @@ function commit(environment, input, uploadables, config) {
       }
     ],
     onCompleted(response, errors) {
-			if (response.whatIsThisCreate.errors && response.whatIsThisCreate.errors.length > 0) {
+      if (errors && errors.length > 0) {
+          console.error(errors)
+          if (typeof config.onError === 'function') {
+            config.onError(errors)
+          }
+      } else if (response.whatIsThisCreate.errors && response.whatIsThisCreate.errors.length > 0) {
 				if (typeof config.onError === 'function') {
           config.onError(response)
         }
