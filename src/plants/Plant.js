@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, Box, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
@@ -50,6 +51,9 @@ function Plant(props) {
   }  
 
   return <Width>
+    <Helmet
+      title={plant.title}
+    />
     <Typography component="h1" variant="h4" className={classes.title}>{plant.title}</Typography>
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
