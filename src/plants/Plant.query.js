@@ -30,6 +30,7 @@ const query = graphql`
           }
         }
       }
+      ...TaxoClimb_lifeNode
       document {
         ...RevisionBox_document
       }      

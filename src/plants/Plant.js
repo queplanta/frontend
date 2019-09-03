@@ -7,6 +7,8 @@ import EdibilityBadge from './EdibilityBadge.js'
 import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
+import PlantLink from '../plants/PlantLink.js';
+import TaxoClimb from './TaxoClimb.js';
 
 
 function TabPanel(props) {
@@ -111,6 +113,7 @@ function Plant(props) {
                 </li>
               })}
             </ol>
+            <TaxoClimb lifeNode={plant} />
             <Typography variant="h6">Sinônimos</Typography>
             <Typography variant="h6">Referências</Typography>
           </TabPanel>
