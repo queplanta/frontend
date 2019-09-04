@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chip, withStyles } from '@material-ui/core';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 function EdibilityBadge(props) {
   const {classes, plant} = props;
@@ -12,7 +12,7 @@ function EdibilityBadge(props) {
   return <Chip
     size="small"
     label={`Comestibilidade: ${plant.edibilityDisplay}`}
-    className={cx(classes[edibility_class], classes.customChip)}
+    className={clsx(classes[edibility_class], classes.customChip)}
     variant="outlined"
     />
 }
