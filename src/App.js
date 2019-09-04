@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { 
@@ -38,6 +39,10 @@ export class App extends Component {
     return (<SnackbarProvider maxSnack={3}>
       <React.Fragment>
         <CssBaseline />
+        <Helmet
+          titleTemplate="%s | Que Planta"
+          defaultTitle="Que Planta - Conectando Pessoas e Plantas"
+        />
         <AuthDialog viewer={viewer}>
           <AppBar position="static" className={classes.appbar}>            
             <Toolbar className={classes.toolbar}>

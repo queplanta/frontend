@@ -10,6 +10,7 @@ import { createFragmentContainer } from 'react-relay';
 import query from './SuggestionsList.query.js';
 // import { RelativeDate } from '../../ui';
 // import ProfileLink from '../../accounts/ProfileLink.js';
+import PlantLink from '../../plants/PlantLink.js';
 import VotingButtons from '../../voting/VotingButtons.js';
 
 function SuggestionsList(props) {
@@ -29,7 +30,7 @@ function SuggestionsList(props) {
               />
             </ListItemAvatar>
             <ListItemText>
-              {suggestion.identity.title}
+              <PlantLink plant={suggestion.identity} />
             </ListItemText>
             <ListItemSecondaryAction>
               <VotingButtons voting={suggestion.voting} parentId={suggestion.id} />

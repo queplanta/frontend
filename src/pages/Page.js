@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Typography, Paper, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import Markdown from 'react-remarkable';
@@ -18,6 +19,9 @@ function Page(props) {
   }
 
   return <Width>
+    <Helmet
+      title={page.title}
+    />
     <Paper className={classes.root}>
       <Typography component="h1" variant="h4" className={classes.title}>{page.title}</Typography>
       <div className={classes.actions}>

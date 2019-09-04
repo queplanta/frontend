@@ -17,6 +17,7 @@ const query = graphql`
           identity {
             id
             title
+            ...PlantLink_plant
           }
           voting {
             ...VotingButtons_voting

@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, Box, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
@@ -7,6 +8,8 @@ import EdibilityBadge from './EdibilityBadge.js'
 import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
+import PlantLink from '../plants/PlantLink.js';
+import TaxoClimb from './TaxoClimb.js';
 
 
 function TabPanel(props) {
@@ -48,6 +51,9 @@ function Plant(props) {
   }  
 
   return <Width>
+    <Helmet
+      title={plant.title}
+    />
     <Typography component="h1" variant="h4" className={classes.title}>{plant.title}</Typography>
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
@@ -111,6 +117,7 @@ function Plant(props) {
                 </li>
               })}
             </ol>
+            <TaxoClimb lifeNode={plant} />
             <Typography variant="h6">Sinônimos</Typography>
             <Typography variant="h6">Referências</Typography>
           </TabPanel>
