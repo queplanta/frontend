@@ -14,6 +14,7 @@ export const AuthDialogContext = React.createContext({
 class AuthDialog extends Component {
   constructor(props) {
     super(props);
+    this.onClose = this.onClose.bind(this)
     this.toggleAuthDialog = this.toggleAuthDialog.bind(this)
     this.handleAuthSubmit = this.handleAuthSubmit.bind(this)
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
@@ -23,6 +24,7 @@ class AuthDialog extends Component {
     this.state = {
       open: false,
       toggleAuthDialog: this.toggleAuthDialog,
+      onClose: this.onClose,
       username: '',
       firstName: '',
       email: '',
@@ -42,37 +44,47 @@ class AuthDialog extends Component {
     e.preventDefault();
     const { relay, setFormErrors } = this.props;
     AuthMutation.commit(
-			relay.environment,
-			{
-				username: this.state.username,
-				password: this.state.password1
-			},
-			{
-				setFormErrors
-			}
-		)
+      relay.environment,
+      {
+        username: this.state.username,
+        password: this.state.password1
+      },
+      {
+        onSuccess: () => {
+          this.onClose()
+        },
+        setFormErrors
+      }
+    )
   }
 
   handleRegisterSubmit(e) {
     e.preventDefault()
     const { relay, setFormErrors } = this.props;
     RegisterMutation.commit(
-			relay.environment,
-			{
-				firstName: this.state.firstName,
-				username: this.state.username,
-				email: this.state.email,
-				password1: this.state.password1,
-				password2: this.state.password2
-			},
-			{
-				setFormErrors
-			}
-		)
+      relay.environment,
+      {
+        firstName: this.state.firstName,
+        username: this.state.username,
+        email: this.state.email,
+        password1: this.state.password1,
+        password2: this.state.password2
+      },
+      {
+        onSuccess: () => {
+          this.onClose()
+        },
+        setFormErrors
+      }
+    )
   }
 
   toggleAuthDialog() {
     this.setState(state => ({open: !state.open}))
+  }
+
+  onClose() {
+    this.setState({open: false})
   }
   
   changeToRegister() {

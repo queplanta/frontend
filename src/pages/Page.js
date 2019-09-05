@@ -4,6 +4,7 @@ import { Typography, Paper, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import Markdown from 'react-remarkable';
 import { RelativeDate, Width } from '../ui';
+import PageTitle from '../lib/PageTitle.js';
 import ProfileLink from '../accounts/ProfileLink.js';
 import NotFound from './NotFound.js'
 
@@ -23,7 +24,7 @@ function Page(props) {
       title={page.title}
     />
     <Paper className={classes.root}>
-      <Typography component="h1" variant="h4" className={classes.title}>{page.title}</Typography>
+      <PageTitle>{page.title}</PageTitle>
       <div className={classes.actions}>
         Enviada por <ProfileLink user={page.revisionCreated.author} />
         {` `}
@@ -43,9 +44,6 @@ function Page(props) {
 const styles = (theme) => ({
   root: {
     padding: theme.spacing(2),
-  },
-  title: {
-    marginBottom: theme.spacing(2),
   },
   actions: {
     borderBottom: `1px solid ${theme.palette.grey['500']}`,

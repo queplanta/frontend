@@ -73,6 +73,7 @@ function WhatIsThis(props) {
           className={classes.imageContainer}
         >
           <img
+            alt="foto de planta para ser identificada"
             className={classes.media}
             src={image.bigImage.url}
           />

@@ -1,5 +1,4 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
-import { isEmpty } from 'lodash';
 
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
   let requestVariables = {

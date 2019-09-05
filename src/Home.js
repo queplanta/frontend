@@ -10,7 +10,7 @@ import TopPlants from './plants/TopPlants.js';
 function Home(props) {
 	const {classes, viewer} = props;
   return <Width component="div">
-		<Grid container spacing={1} alignItems="flex-start">
+		<Grid container spacing={3} alignItems="flex-start">
 			<Grid item xs={12} sm={6}>
         <LatestWhatIsThis viewer={viewer} environment={props.environment} />
       </Grid>

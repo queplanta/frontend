@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Card, CardContent, CardHeader, CardActions, TextField, Button,
+  TextField, Button,
   IconButton,
   withStyles
 } from '@material-ui/core';
@@ -77,63 +77,60 @@ function AddIdentify({classes, environment, setFormErrors}) {
 		)
   }
     
-  return <Card elevation={1} component="form" onSubmit={handleSubmit}>
-    <CardHeader title="Adicionar pedido de identificação" />
-    <CardContent>
-      <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
+  return <form onSubmit={handleSubmit}>
+    <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
 
-      <div className={classes.imgsList}>
-        {images.map((image, i) => {
-          return <span key={i} className={classes.img}>
-            <ImgWithLocation src={image.imagePreviewUrl} onLocation={(location) => {
-              const updatedImages = _.set(images, [i, 'location'], location);
-              setImages(updatedImages)
-            }} />
-            <IconButton aria-label="delete" color="secondary" className={classes.imgDelete} onClick={() => removeImage(i)}>
-              <DeleteIcon />
-            </IconButton>
-          </span>
-        })}
-      </div>
+    <div className={classes.imgsList}>
+      {images.map((image, i) => {
+        return <span key={i} className={classes.img}>
+          <ImgWithLocation src={image.imagePreviewUrl} onLocation={(location) => {
+            const updatedImages = _.set(images, [i, 'location'], location);
+            setImages(updatedImages)
+          }} />
+          <IconButton aria-label="delete" color="secondary" className={classes.imgDelete} onClick={() => removeImage(i)}>
+            <DeleteIcon />
+          </IconButton>
+        </span>
+      })}
+    </div>
 
-      <Button component="label" htmlFor="photosInput"><AddPhotoAlternateIcon className={classes.buttonIcon} /> Adicionar Foto</Button>
-      {/*<Button><PhotoCameraIcon className={classes.buttonIcon} /> Tirar Foto</Button>*/}
+    <Button component="label" htmlFor="photosInput"><AddPhotoAlternateIcon className={classes.buttonIcon} /> Adicionar Foto</Button>
+    {/*<Button><PhotoCameraIcon className={classes.buttonIcon} /> Tirar Foto</Button>*/}
 
-      <input id="photosInput" type="file" multiple accept="image/*" onChange={onChange} style={{display: 'none'}} />
+    <input id="photosInput" type="file" multiple accept="image/*" onChange={onChange} style={{display: 'none'}} />
 
-      <TextField
-        label="Quando?"
-        placeholder="agora, hoje, ontem, 21/06/2010..."
-        type="text"
-        margin="normal"
-        variant="outlined"
-        fullWidth
-        {...when}
-      />
+    <TextField
+      label="Quando?"
+      placeholder="agora, hoje, ontem, 21/06/2010..."
+      type="text"
+      margin="normal"
+      variant="outlined"
+      fullWidth
+      {...when}
+    />
 
-      <TextField
-        label="Onde?"
-        type="text"
-        margin="normal"
-        variant="outlined"
-        fullWidth
-        {...where}
-      />
+    <TextField
+      label="Onde?"
+      type="text"
+      margin="normal"
+      variant="outlined"
+      fullWidth
+      {...where}
+    />
 
-      <TextField
-        label="Informações adicinais"
-        placeholder="O que mais você pode dizer sobre essa planta?"
-        type="text"
-        margin="normal"
-        variant="outlined"
-        fullWidth
-        multiline
-        {...notes}
-      />
+    <TextField
+      label="Informações adicinais"
+      placeholder="O que mais você pode dizer sobre essa planta?"
+      type="text"
+      margin="normal"
+      variant="outlined"
+      fullWidth
+      multiline
+      {...notes}
+    />
 
-      <ButtonWithProgress type="submit" variant="contained" color="primary" className={classes.submitButton} isLoading={isSaving}>enviar</ButtonWithProgress>
-    </CardContent>
-  </Card>
+    <ButtonWithProgress type="submit" variant="contained" color="primary" className={classes.submitButton} isLoading={isSaving}>enviar</ButtonWithProgress>
+  </form>
 }
 
 const styles = (theme) => ({
@@ -166,7 +163,4 @@ const styles = (theme) => ({
   },
 })
 
-// export default createFragmentContainer(
 export default withStyles(styles)(hasFormErrors(AddIdentify))
-//   query
-// )
