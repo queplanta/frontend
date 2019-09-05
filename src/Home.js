@@ -1,10 +1,10 @@
 import React from 'react';
 import Route from './relay/RouteWithLoading';
-import { Grid, withStyles } from '@material-ui/core';
+import { Grid, Paper, Typography, withStyles } from '@material-ui/core';
 import { Width } from './ui'
 import HomeQuery from './Home.query.js';
 import LatestWhatIsThis from './occurrences/identify/LatestWhatIsThis.js';
-import LatestPosts from './blog/LatestPosts.js';
+import PostList from './blog/PostList.js';
 import TopPlants from './plants/TopPlants.js';
 
 function Home(props) {
@@ -19,7 +19,10 @@ function Home(props) {
           <TopPlants />
         </Grid>
         <Grid item xs={12}>
-          <LatestPosts viewer={viewer} />
+          <Paper>
+            <Typography component="h3" variant="h5" className={classes.title}>Últimas atualizações</Typography>
+            <PostList viewer={viewer} title="Últimas atualizações" count={10} />
+          </Paper>
         </Grid>
 			</Grid>
 		</Grid>
@@ -27,6 +30,9 @@ function Home(props) {
 }
 
 const styles = (theme) => ({
+  title: {
+    padding: theme.spacing(2, 2, 0, 2),
+  },
   gridPaddingBottom: {
     paddingBottom: theme.spacing(2),
   }

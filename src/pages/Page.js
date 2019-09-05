@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Typography, Paper, Link, withStyles } from '@material-ui/core';
+import { Paper, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import Markdown from 'react-remarkable';
 import { RelativeDate, Width } from '../ui';
