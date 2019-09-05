@@ -1,8 +1,16 @@
 import graphql from 'babel-plugin-relay/macro';
 
-const query = graphql `
-  fragment CommentsItem_comment on Comment {
+export const query = graphql`
+  fragment CommentsItem_comment on Comment
+    @argumentDefinitions( 
+      isRepliesExpanded:{
+        type:"Boolean!",
+        defaultValue: false
+      }
+    )
+  {
     id
+    myPerms
     body
     document {
       revisionsCount
@@ -21,6 +29,19 @@ const query = graphql `
     voting {
       ...VotingButtons_voting
     }
+    commenting {
+      id
+      count
+      ...CommentsList_commenting @include(if: $isRepliesExpanded)
+    }
   }
 `;
-export default query
+
+export const refetchQuery = graphql`
+  query CommentsItemQuery($id: ID!, $isRepliesExpanded: Boolean!) {
+    comment(id: $id) {
+      id
+      ...CommentsItem_comment @arguments(isRepliesExpanded: $isRepliesExpanded)
+    }
+  }
+`

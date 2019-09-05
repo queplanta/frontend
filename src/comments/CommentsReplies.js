@@ -3,15 +3,11 @@ import { withStyles } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import CommentsItem from './CommentsItem.js';
-import CommentCreate from './CommentCreate.js';
 import { fragmentQuery, query } from './CommentsList.query.js';
 
-function CommentsList(props) {
-  const {relay, commenting: {id: parentId, comments: {edges: comments}}} = props
+function CommentsReplies(props) {
+  const {relay, commenting: {comments}} = props
 
-  if (comments.length === 0) {
-    return null;
-  }
   const [isLoading, setLoading] = useState(false)
   const hasMore = relay.hasMore()
 
@@ -27,19 +23,24 @@ function CommentsList(props) {
     })
   }
 
+  function renderList() {
+    return <React.Fragment>
+      {comments.edges.map(({node: comment}) => {
+        return comment ? <CommentsItem key={comment.id} comment={comment} /> : null
+      })}
+      {hasMore && <ButtonWithProgress variant="outlined" isLoading={isLoading} onClick={handleLoadMore}>... mais comentários</ButtonWithProgress>}
+    </React.Fragment>
+  }
+
   return <div>
-    <CommentCreate parentId={parentId} environment={relay.environment} />
-    {comments.map(({node: comment}) => {
-      return comment ? <CommentsItem key={comment.id} comment={comment} /> : null
-    })}
-    {hasMore && <ButtonWithProgress variant="outlined" isLoading={isLoading} onClick={handleLoadMore}>... mais comentários</ButtonWithProgress>}
+    {(comments && comments.edges.length > 0) && renderList()}
   </div>
 }
 
 const styles = {}
 
 export default createPaginationContainer(
-  withStyles(styles)(CommentsList),
+  withStyles(styles)(CommentsReplies),
   fragmentQuery,
   {
     direction: 'forward',
