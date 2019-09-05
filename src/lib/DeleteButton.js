@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useSnackbar } from 'notistack';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
-import OccurrenceDeleteMutation from './OccurrenceDelete.mutation.js';
 
 function DeleteButton(props, ref) {
   const { enqueueSnackbar } = useSnackbar();
   const [isLoading, setLoading] = useState(false);
-  const {environment, occurrence, classes, appendNotifications, setNotifications, ...otherProps} = props
+  const {children, mutation, environment, node, classes, appendNotifications, setNotifications, ...otherProps} = props
 
   function onDelete() {
     setLoading(true)
-    OccurrenceDeleteMutation.commit(
+    mutation.commit(
       environment,
       {
-        id: occurrence.id,
+        id: node.id,
       },
       {
         onSuccess: () => {
@@ -29,7 +28,9 @@ function DeleteButton(props, ref) {
   }
 
   return <ButtonWithProgress onClick={onDelete} isLoading={isLoading} {...otherProps}>
-    <DeleteIcon fontSize="small" style={{marginRight: 10}} /> Excluir
+    {children ? children : <React.Fragment>
+      <DeleteIcon fontSize="small" style={{marginRight: 10}} /> Excluir
+    </React.Fragment>}
   </ButtonWithProgress>
 }
 

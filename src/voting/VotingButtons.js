@@ -14,8 +14,6 @@ function useVote(parendId, initialValue, environment) {
   const [vote, stateVoteSet] = useState(initialValue);
 
 	function onClick(value) {
-    console.log('vote', vote)
-    console.log('value', value)
     if (vote && vote.value === value) {
       VoteDeleteMutation.commit(
         environment,
@@ -44,7 +42,7 @@ function useVote(parendId, initialValue, environment) {
 }
 
 function VotingButtons(props) {
-  const {voting: {countUps, countDowns, mine}, } = props;
+  const {voting: {countUps, countDowns, mine}} = props;
 	const [myVote, setVote] = useVote(props.parentId, mine, props.relay.environment)
 
   return <span>

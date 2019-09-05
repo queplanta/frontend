@@ -5,13 +5,13 @@ import {
   withStyles
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-// import { Link as RouterLink } from 'found';
 import { createFragmentContainer } from 'react-relay';
 import query from './WhatIsThis.query.js';
 import { RelativeDate } from '../../ui';
 import ProfileLink from '../../accounts/ProfileLink.js';
 import SuggestionsList from './SuggestionsList.js';
-import DeleteButton from '../DeleteButton.js';
+import OccurrenceDeleteMutation from '../OccurrenceDelete.mutation.js';
+import DeleteButton from '../../lib/DeleteButton.js';
 import { hasPerm } from '../../lib/perms.js';
 
 function WhatIsThisMenu(props) {
@@ -45,7 +45,7 @@ function WhatIsThisMenu(props) {
         horizontal: 'right',
       }}
     >
-      {hasPerm(occurrence, 'delete') && <DeleteButton component={MenuItem} environment={environment} occurrence={occurrence} />}
+      {hasPerm(occurrence, 'delete') && <DeleteButton component={MenuItem} environment={environment} node={occurrence} mutation={OccurrenceDeleteMutation} />}
     </Menu>
   </React.Fragment>
 }

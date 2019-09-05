@@ -4,7 +4,7 @@ const query = graphql`
   query IdentifyPageQuery {
     viewer {
       id
-      ...LatestPosts_viewer
+      ...LatestWhatIsThis_viewer
     }
   }
 `;
