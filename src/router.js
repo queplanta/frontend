@@ -10,6 +10,7 @@ import {homeRoute} from './Home.js';
 import {blogRoutes} from './blog/routes.js';
 import {pagesRoutes} from './pages/routes.js';
 import {plantsRoutes} from './plants/routes.js';
+import {occurrencesRoutes} from './occurrences/routes.js';
 
 export const historyMiddlewares = [queryMiddleware];
 
@@ -22,6 +23,7 @@ export const routeConfig = makeRouteConfig(<Route
   {plantsRoutes}
   {blogRoutes}
   {pagesRoutes}
+  {occurrencesRoutes}
 </Route>);
 
 export const render = createRender({});

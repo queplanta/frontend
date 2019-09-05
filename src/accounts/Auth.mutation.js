@@ -42,7 +42,11 @@ function commit(environment, input, config) {
 				if (typeof config.setFormErrors === 'function') {
 					config.setFormErrors(response.authenticate.errors)
 				}
-			}
+			} else {
+        if (typeof config.onSuccess === 'function') {
+          config.onSuccess(response)
+        }
+      }
     },
     onError(error) {
       console.error(error)

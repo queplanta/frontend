@@ -39,11 +39,15 @@ function commit(environment, input, config) {
       }
     },
     onCompleted(response, errors) {
-			if (response.registerAndAuthenticate.errors.length > 0) {
-				if (typeof config.setFormErrors === 'function') {
-					config.setFormErrors(response.registerAndAuthenticate.errors)
-				}
-			}
+      if (response.registerAndAuthenticate.errors.length > 0) {
+        if (typeof config.setFormErrors === 'function') {
+          config.setFormErrors(response.registerAndAuthenticate.errors)
+        }
+      } else {
+        if (typeof config.onSuccess === 'function') {
+          config.onSuccess(response)
+        }
+      }
     },
     onError(error) {
       console.error(error)

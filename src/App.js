@@ -114,7 +114,7 @@ export class App extends Component {
                     />
                   </div>
                   <Tooltip title="Identificar por foto" placement="top">
-                    <Button className={classes.btn}><CameraAltIcon /></Button>
+                    <Button className={classes.btn} component={RouterLink} to="/identificacao/pedido"><CameraAltIcon /></Button>
                   </Tooltip>
                 </Toolbar>
               </nav>

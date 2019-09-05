@@ -4,6 +4,7 @@ import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, Box, withStyles } f
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import { Width } from '../ui';
+import PageTitle from '../lib/PageTitle.js';
 import EdibilityBadge from './EdibilityBadge.js'
 import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
@@ -54,7 +55,7 @@ function Plant(props) {
     <Helmet
       title={plant.title}
     />
-    <Typography component="h1" variant="h4" className={classes.title}>{plant.title}</Typography>
+    <PageTitle>{plant.title}</PageTitle>
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
         <Paper className={classes.root}>
@@ -145,9 +146,6 @@ function Plant(props) {
 const styles = (theme) => ({
   root: {
     padding: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-  title: {
     marginBottom: theme.spacing(2),
   },
   marginBottom: {
