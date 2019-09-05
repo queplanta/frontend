@@ -1,10 +1,11 @@
 import graphql from 'babel-plugin-relay/macro';
 
 const query = graphql`
-  query HomeQuery {
+  query HomeBlogQuery {
     viewer {
-      ...PostList_viewer @arguments(count: 10)
+      ...PostList_viewer
     }
   }
 `;
+
 export default query

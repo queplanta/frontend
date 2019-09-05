@@ -1,15 +1,16 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Markdown from 'react-remarkable';
-import { Link, Paper, Typography, Grid, withStyles } from '@material-ui/core';
+import { Link, Grid, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import { RelativeDate, Width } from '../ui';
+import PageTitle from '../lib/PageTitle.js';
 import ProfileLink from '../accounts/ProfileLink';
 import VotingButtons from '../voting/VotingButtons.js';
 import CommentsList from '../comments/CommentsList.js';
 
 function Post(props) {
-  const {classes, post} = props;
+  const {post} = props;
   const markdownOptions = {
     html: true,
   };
@@ -20,7 +21,7 @@ function Post(props) {
     />
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Typography component="h1" variant="h4">{post.title}</Typography>
+        <PageTitle>{post.title}</PageTitle>
       </Grid>
       <Grid item xs={12}>
         Enviada por <ProfileLink user={post.revisionCreated.author} /> <RelativeDate date={post.publishedAt} /><span>. </span>
@@ -39,10 +40,6 @@ function Post(props) {
   </Width>
 }
 
-const styles = {
-  iconSmall: {
-    height: '14px',
-  }
-}
+const styles = {}
 
 export default withStyles(styles)(Post)

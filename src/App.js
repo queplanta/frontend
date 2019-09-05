@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { 
   AppBar, Toolbar, Typography, Chip, Button, Tooltip,
-  TextField, Container, Link, InputBase, Drawer, IconButton,
+  Divider, Link, InputBase, Drawer, IconButton,
   MenuList, MenuItem, ListItemText, Hidden, withStyles } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -68,6 +68,19 @@ export class App extends Component {
                   </MenuItem>
                   <MenuItem to="/ocorrencias" component={RouterLink} activeClassName={classes.drawerListItemActive}>
                     <ListItemText primary="Ocorrências"/>
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem to="/o-que-e" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                    <ListItemText primary="O que é"/>
+                  </MenuItem>
+                  <MenuItem to="/como-funciona" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                    <ListItemText primary="Como Funciona"/>
+                  </MenuItem>
+                  <MenuItem to="/contribua" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                    <ListItemText primary="Contribua"/>
+                  </MenuItem>
+                   <MenuItem to="/blog" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                    <ListItemText primary="Blog"/>
                   </MenuItem>
                 </MenuList>
               </Drawer>
