@@ -22,8 +22,8 @@ export const routeConfig = makeRouteConfig(<Route
   {homeRoute}
   {plantsRoutes}
   {blogRoutes}
-  {pagesRoutes}
   {occurrencesRoutes}
+  {pagesRoutes}
 </Route>);
 
 export const render = createRender({});

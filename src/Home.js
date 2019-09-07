@@ -12,7 +12,8 @@ function Home(props) {
   return <Width component="div">
 		<Grid container spacing={3} alignItems="flex-start">
 			<Grid item xs={12} sm={6}>
-        <LatestWhatIsThis viewer={viewer} environment={props.environment} />
+        <Typography component="h3" variant="h5" className={classes.titleWhat}>Últimos pedidos de identificação</Typography>
+        <LatestWhatIsThis identified={false} viewer={viewer} environment={props.environment} />
       </Grid>
       <Grid container item xs={12} sm={6}>
         <Grid item xs={12} className={classes.gridPaddingBottom}>
@@ -30,6 +31,9 @@ function Home(props) {
 }
 
 const styles = (theme) => ({
+  titleWhat: {
+    paddingBottom: theme.spacing(2),
+  },
   title: {
     padding: theme.spacing(2, 2, 0, 2),
   },

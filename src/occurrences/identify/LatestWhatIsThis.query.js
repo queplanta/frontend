@@ -5,9 +5,11 @@ export const fragmentQuery = graphql`
   @argumentDefinitions(
     count: {type: "Int", defaultValue: 2}
     after: {type: "String"}
+    isIdentityNull: {type: "Boolean", defaultValue: true}
   )
   {
     allWhatIsThis(
+      isIdentityNull: $isIdentityNull,
       first: $count,
       after: $after
     ) @connection(key: "List_allWhatIsThis") {
@@ -23,11 +25,12 @@ export const fragmentQuery = graphql`
 
 export const query = graphql`
   query LatestWhatIsThisQuery(
+    $isIdentityNull: Boolean!,
     $count: Int!,
     $after: String,
   ) {
     viewer {
-      ...LatestWhatIsThis_viewer @arguments(count: $count, after: $after)
+      ...LatestWhatIsThis_viewer @arguments(count: $count, after: $after, isIdentityNull: $isIdentityNull)
     }
   }
 `;

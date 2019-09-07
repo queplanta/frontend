@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, CircularProgress, withStyles } from '@material-ui/core';
+import { CircularProgress, withStyles } from '@material-ui/core';
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import { fragmentQuery, query } from './LatestWhatIsThis.query.js';
 import WhatIsThis from './WhatIsThis.js'
@@ -38,29 +38,27 @@ const WhatIsThisListPaginated = createPaginationContainer(
   },
 )
 
-const LatestWhatIsThis = ({classes, environment}) => {
-  return <div>
-    <Typography component="h3" variant="h5" className={classes.title}>Últimos pedidos de identificação</Typography>
-    <QueryRenderer
-      environment={environment}
-      query={query}
-      variables={{
-        count: 10,
-        after: '',
-      }}
-      render={({error, props}) => {
-        if (error) {
-          return <div><h1>Error!</h1><br />{error}</div>;
-        }
+const LatestWhatIsThis = ({identified, classes, environment}) => {
+  return <QueryRenderer
+    environment={environment}
+    query={query}
+    variables={{
+      count: 10,
+      after: '',
+      isIdentityNull: !identified,
+    }}
+    render={({error, props}) => {
+      if (error) {
+        return <div><h1>Error!</h1><br />{error}</div>;
+      }
 
-        if (props) {
-          return <WhatIsThisListPaginated {...props} environment={environment} />
-        }
+      if (props) {
+        return <WhatIsThisListPaginated {...props} environment={environment} />
+      }
 
-        return <div className={classes.loading}><CircularProgress /></div>
-      }}
-    />
-  </div>
+      return <div className={classes.loading}><CircularProgress /></div>
+    }}
+  />
 }
 
 const styles = (theme) => ({

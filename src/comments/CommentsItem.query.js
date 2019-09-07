@@ -3,10 +3,7 @@ import graphql from 'babel-plugin-relay/macro';
 export const query = graphql`
   fragment CommentsItem_comment on Comment
     @argumentDefinitions( 
-      isRepliesExpanded:{
-        type:"Boolean!",
-        defaultValue: false
-      }
+      isRepliesExpanded: {type:"Boolean!", defaultValue: false}
     )
   {
     id
