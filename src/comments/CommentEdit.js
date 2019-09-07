@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TextField, Button, withStyles } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
-import { useFormInput, clearFormInput } from '../lib/forms.js';
+import { useFormInput } from '../lib/forms.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import CommentEditMutation from './CommentEdit.mutation.js';
 
@@ -16,13 +16,13 @@ function CommentEdit({comment, closeForm, classes, environment, setFormErrors, f
     e.preventDefault()
     setIsSaving(true)
     CommentEditMutation.commit(
-			environment,
-			{
-				body: body.value,
+      environment,
+      {
+        body: body.value,
         id: comment.id
-			},
-			{
-				setFormErrors,
+      },
+      {
+        setFormErrors,
         onSuccess: () => {
           setIsSaving(false)
           enqueueSnackbar('Comentário editado com sucesso', {variant: "success"})
@@ -32,8 +32,8 @@ function CommentEdit({comment, closeForm, classes, environment, setFormErrors, f
           enqueueSnackbar('Ocorreu um erro', {variant: "error"})
           setIsSaving(false)
         }
-			}
-		)
+      }
+    )
   }
 
   useEffect(() => {

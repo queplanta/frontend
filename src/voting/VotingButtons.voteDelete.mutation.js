@@ -4,9 +4,9 @@ import { commitMutation } from 'react-relay';
 const mutation = graphql`
   mutation VotingButtonsDeleteMutation($input: VoteDeleteInput!) {
     voteDelete(input: $input) {
-			voting {
+      voting {
         ...VotingButtons_voting
-			}
+      }
       errors {
         code,
         location
@@ -26,20 +26,8 @@ function commit(environment, input, config) {
     variables: {
       input: { clientMutationId, ...input },
     },
-    updater(store) {
-      // const rootViewer = store.getRoot();
-      // const me = store.getRootField('voteSet').getLinkedRecord('viewer').getLinkedRecord('me');
-      // if (me) {
-      //   rootViewer.setLinkedRecord(me, 'me')
-      // }
-    },
     onCompleted(response, errors) {
       config.stateVoteSet(null)
-			// if (response.registerAndAuthenticat.errors.length > 0) {
-			//   if (typeof config.setFormErrors === 'function') {
-			//     config.setFormErrors(response.registerAndAuthenticate.errors)
-			//   }
-			// }
     },
     onError(error) {
       console.error(error)

@@ -16,13 +16,13 @@ function CommentCreate({classes, parentId, environment, setFormErrors, focusInpu
     e.preventDefault()
     setIsSaving(true)
     CommentCreateMutation.commit(
-			environment,
-			{
-				body: body.value,
+      environment,
+      {
+        body: body.value,
         parent: parentId
-			},
-			{
-				setFormErrors,
+      },
+      {
+        setFormErrors,
         onSuccess: () => {
           clearFormInput(body)
           setIsSaving(false)
@@ -32,8 +32,8 @@ function CommentCreate({classes, parentId, environment, setFormErrors, focusInpu
           enqueueSnackbar('Ocorreu um erro', {variant: "error"})
           setIsSaving(false)
         }
-			}
-		)
+      }
+    )
   }
 
   useEffect(() => {

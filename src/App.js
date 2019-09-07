@@ -6,12 +6,14 @@ import {
   AppBar, Toolbar, Typography, Chip, Button, Tooltip,
   Divider, Link, InputBase, Drawer, IconButton,
   MenuList, MenuItem, ListItemText, Hidden, withStyles } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 import { fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link  as RouterLink } from 'found';
 import { SnackbarProvider } from 'notistack';
+import theme from './theme.js';
 import logoImg from './assets/queplanta-icon.svg';
 import logoTextImg from './assets/queplanta-text-light.svg';
 import AccountNavbar from './accounts/Navbar.js';
@@ -36,110 +38,113 @@ export class App extends Component {
     const {classes, viewer} = this.props;
     const {drawerOpen} = this.state;
 
-    return (<SnackbarProvider maxSnack={3}>
-      <React.Fragment>
-        <CssBaseline />
-        <Helmet
-          titleTemplate="%s | Que Planta"
-          defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-        />
-        <AuthDialog viewer={viewer}>
-          <AppBar position="static" className={classes.appbar}>            
-            <Toolbar className={classes.toolbar}>
-              <Drawer
-                className={classes.drawer}
-                variant="temporary"
-                anchor="left"
-                open={drawerOpen}
-                onClose={this.handleDrawerToggle}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-              >
-                <MenuList component="div" onClick={this.handleDrawerToggle}>
-                  <MenuItem to="/" component={RouterLink} exact={true} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Início"/>
-                  </MenuItem>
-                  <MenuItem to="/plantas" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Plantas"/>
-                  </MenuItem>
-                  <MenuItem to="/identificacao" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Identificação"/>
-                  </MenuItem>
-                  <MenuItem to="/ocorrencias" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Ocorrências"/>
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem to="/o-que-e" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="O que é"/>
-                  </MenuItem>
-                  <MenuItem to="/como-funciona" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Como Funciona"/>
-                  </MenuItem>
-                  <MenuItem to="/contribua" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Contribua"/>
-                  </MenuItem>
-                   <MenuItem to="/blog" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                    <ListItemText primary="Blog"/>
-                  </MenuItem>
-                </MenuList>
-              </Drawer>
-              <Hidden mdUp implementation="css">
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={this.handleDrawerToggle}
-                  edge="start"
-                  className={clsx(classes.menuButton, drawerOpen && classes.hide)}
+    return (
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider maxSnack={3}>
+        <React.Fragment>
+          <CssBaseline />
+          <Helmet
+            titleTemplate="%s | Que Planta"
+            defaultTitle="Que Planta - Conectando Pessoas e Plantas"
+          />
+          <AuthDialog viewer={viewer}>
+            <AppBar position="static" className={classes.appbar}>            
+              <Toolbar className={classes.toolbar}>
+                <Drawer
+                  className={classes.drawer}
+                  variant="temporary"
+                  anchor="left"
+                  open={drawerOpen}
+                  onClose={this.handleDrawerToggle}
+                  classes={{
+                    paper: classes.drawerPaper,
+                  }}
                 >
-                  <MenuIcon />
-                </IconButton>
-              </Hidden>
-              <Typography className={classes.title} component={RouterLink} to="/" noWrap>
-                <img src={logoImg} alt="Que Planta" width="32" height="32" />
-                <img src={logoTextImg} alt="Que Planta" height="22" />
-              </Typography>
+                  <MenuList component="div" onClick={this.handleDrawerToggle}>
+                    <MenuItem to="/" component={RouterLink} exact={true} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Início"/>
+                    </MenuItem>
+                    <MenuItem to="/plantas" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Plantas"/>
+                    </MenuItem>
+                    <MenuItem to="/identificacao" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Identificação"/>
+                    </MenuItem>
+                    <MenuItem to="/ocorrencias" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Ocorrências"/>
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem to="/o-que-e" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="O que é"/>
+                    </MenuItem>
+                    <MenuItem to="/como-funciona" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Como Funciona"/>
+                    </MenuItem>
+                    <MenuItem to="/contribua" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Contribua"/>
+                    </MenuItem>
+                     <MenuItem to="/blog" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                      <ListItemText primary="Blog"/>
+                    </MenuItem>
+                  </MenuList>
+                </Drawer>
+                <Hidden mdUp implementation="css">
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={this.handleDrawerToggle}
+                    edge="start"
+                    className={clsx(classes.menuButton, drawerOpen && classes.hide)}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Hidden>
+                <Typography className={classes.title} component={RouterLink} to="/" noWrap>
+                  <img src={logoImg} alt="Que Planta" width="32" height="32" />
+                  <img src={logoTextImg} alt="Que Planta" height="22" />
+                </Typography>
+                <Hidden smDown implementation="css">
+                  <Chip label="em desenvolvimento" className={classes.chip} color="secondary"  variant="outlined" />
+                </Hidden>
+                <div className={classes.grow} />
+                <AccountNavbar me={viewer.me} />
+              </Toolbar>
               <Hidden smDown implementation="css">
-                <Chip label="em desenvolvimento" className={classes.chip} color="secondary"  variant="outlined" />
-              </Hidden>
-              <div className={classes.grow} />
-              <AccountNavbar me={viewer.me} />
-            </Toolbar>
-            <Hidden smDown implementation="css">
-              <nav className={classes.subnav}>      
-                <Toolbar className={classes.toolbar}>
-                  <Link activeClassName={classes.navlinkActive} exact={true} className={classes.navlink} to="/" component={RouterLink}>Início</Link>
-                  <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/plantas" component={RouterLink}>Plantas</Link>
-                  <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
-                  <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/ocorrencias" component={RouterLink}>Ocorrências</Link>
-                  <div className={classes.grow} />
-                  <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                      <SearchIcon />
+                <nav className={classes.subnav}>      
+                  <Toolbar className={classes.toolbar}>
+                    <Link activeClassName={classes.navlinkActive} exact={true} className={classes.navlink} to="/" component={RouterLink}>Início</Link>
+                    <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/plantas" component={RouterLink}>Plantas</Link>
+                    <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
+                    <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/ocorrencias" component={RouterLink}>Ocorrências</Link>
+                    <div className={classes.grow} />
+                    <div className={classes.search}>
+                      <div className={classes.searchIcon}>
+                        <SearchIcon />
+                      </div>
+                      <InputBase
+                        placeholder="Buscar..."
+                        classes={{
+                          root: classes.inputRoot,
+                          input: classes.inputInput,
+                        }}
+                        inputProps={{ 'aria-label': 'search' }}
+                      />
                     </div>
-                    <InputBase
-                      placeholder="Buscar..."
-                      classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                      }}
-                      inputProps={{ 'aria-label': 'search' }}
-                    />
-                  </div>
-                  <Tooltip title="Identificar por foto" placement="top">
-                    <Button className={classes.btn} component={RouterLink} to="/identificacao/pedido"><CameraAltIcon /></Button>
-                  </Tooltip>
-                </Toolbar>
-              </nav>
-            </Hidden>
-          </AppBar>
+                    <Tooltip title="Identificar por foto" placement="top">
+                      <Button className={classes.btn} component={RouterLink} to="/identificacao/pedido"><CameraAltIcon /></Button>
+                    </Tooltip>
+                  </Toolbar>
+                </nav>
+              </Hidden>
+            </AppBar>
 
-          {this.props.children}
+            {this.props.children}
 
-          <Footer />
-        </AuthDialog>
-      </React.Fragment>
-    </SnackbarProvider>);
+            <Footer />
+          </AuthDialog>
+        </React.Fragment>
+      </SnackbarProvider>
+    </ThemeProvider>);
   }
 }
 
