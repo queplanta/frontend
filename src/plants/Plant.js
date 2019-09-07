@@ -4,13 +4,14 @@ import { Paper, Typography, Grid, Button, Hidden, Tabs, Tab, Box, withStyles } f
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import { Width } from '../ui';
+import _ from 'lodash';
 import PageTitle from '../lib/PageTitle.js';
 import EdibilityBadge from './EdibilityBadge.js'
 import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
 import TaxoClimb from './TaxoClimb.js';
-
+import ImgDefault from './PlantImgDefault.js';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,6 +51,8 @@ function Plant(props) {
     return <NotFound />
   }  
 
+  let mainImage = _.get(plant, 'images.edges[0].node');
+
   return <Width>
     <Helmet
       title={plant.title}
@@ -58,16 +61,13 @@ function Plant(props) {
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
         <Paper className={classes.root}>
-          {plant.images.edges.map((edge) => {
-            const mainImage = edge.node
-            return <div key={mainImage.id}>
-              <img
+          <div>
+            {mainImage ? <img
               src={mainImage.bigImage.url}
-              alt={mainImage.description}
+              alt={plant.title}
               width="100%"
-              />
-            </div>
-          })}
+            /> : <ImgDefault alt={plant.title} width="100%" />}
+          </div>
           <EdibilityBadge plant={plant} />
           <Hidden smUp>
             <Button variant="contained" color="primary" className={classes.customBtn} fullWidth={true}>
