@@ -8,9 +8,10 @@ function WhatIsThisList(props) {
   const {classes, viewer: {allWhatIsThis: {edges: items}}, environment} = props;
   return <div className={classes.wrapper}>
     {items.map((edge) => {
-      if (edge.node) {
-        return <WhatIsThis key={edge.node.id} occurrence={edge.node} environment={environment} />
+      if (!edge.node) {
+        return null;
       }
+      return <WhatIsThis key={edge.node.id} occurrence={edge.node} environment={environment} />;
     })}
   </div>
 }

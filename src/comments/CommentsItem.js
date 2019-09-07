@@ -20,7 +20,7 @@ import { hasPerm } from '../lib/perms.js';
 
 
 function CommentItem(props) {
-	const {classes, comment, relay} = props;
+  const {classes, comment, relay} = props;
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [replyFormExpanded, setReplyFormExpanded] = React.useState(false)
   const [repliesExpanded, setReplyRepliesExpanded] = React.useState(false)
@@ -75,9 +75,9 @@ function CommentItem(props) {
     }
   }
 
-	return <Card className={classes.mb1}>
-		<CardHeader
-			avatar={
+  return <Card className={classes.mb1}>
+    <CardHeader
+      avatar={
         <Avatar
           alt={comment.revisionCreated.author.username}
           src={comment.revisionCreated.author.avatar.url} />
@@ -136,7 +136,7 @@ function CommentItem(props) {
       {repliesExpanded && <CommentsReplies commenting={comment.commenting} parentId={comment.id} />}
       {isLoadingReplies && <LinearProgress />}
     </CardContent>}
-	</Card>
+  </Card>
 }
 
 const styles = (theme) => ({

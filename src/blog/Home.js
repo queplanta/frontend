@@ -4,7 +4,6 @@ import { Paper, withStyles } from '@material-ui/core';
 import PageTitle from '../lib/PageTitle.js';
 import { Width } from '../ui';
 import PostList from './PostList.js';
-// import { fragmentQuery, query } from './Home.query.js'
 
 function Home(props) {
   const {viewer} = props;
@@ -20,5 +19,4 @@ function Home(props) {
 
 const styles = {}
 
-const HomeStyled = withStyles(styles)(Home)
-export default HomeStyled
+export default withStyles(styles)(Home)

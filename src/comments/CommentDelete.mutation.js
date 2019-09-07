@@ -31,12 +31,12 @@ function commit(environment, input, config) {
       }
     ],
     onCompleted(response, errors) {
-			if (response.commentDelete.errors && response.commentDelete.errors.length > 0) {
-				if (typeof config.onError === 'function') {
+      if (response.commentDelete.errors && response.commentDelete.errors.length > 0) {
+        if (typeof config.onError === 'function') {
           config.onError(response)
         }
       } else {
-				if (typeof config.onSuccess === 'function') {
+        if (typeof config.onSuccess === 'function') {
           config.onSuccess(response)
         }
       }

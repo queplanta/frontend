@@ -74,11 +74,11 @@ function Plant(props) {
               <AddIcon className={classes.leftIcon} />
               Adicionar à lista
             </Button>
-            <Button variant="contained" color="primary" className={classes.customBtn} color="primary" fullWidth={true}>
+            <Button variant="contained" color="primary" className={classes.customBtn} fullWidth={true}>
               <AddIcon className={classes.leftIcon} />
               Ocorrência
             </Button>
-            <Button variant="contained" color="secondary" className={classes.customBtn} color="primary" fullWidth={true}>
+            <Button variant="contained" color="secondary" className={classes.customBtn} fullWidth={true}>
               <AddIcon className={classes.leftIcon} />
               Tenho semente
             </Button>
