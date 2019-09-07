@@ -10,8 +10,15 @@ import PlantPhotos from './PlantPhotos.js';
 import PlantPhotosQuery from './PlantPhotos.query.js';
 import PlantEdit from './PlantEdit.js';
 import PlantEditQuery from './PlantEdit.query.js';
+import HomePlants from './Home.js';
+import HomePlantsQuery from './Home.query.js';
 
 export const plantsRoutes = <React.Fragment>
+  <Route
+    path="/plantas"
+    query={HomePlantsQuery}
+    Component={HomePlants}
+  />
   <Route
     path="/:plantSlug-p:plantID(\d+)"
     query={PlantQuery}
