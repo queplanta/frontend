@@ -1,10 +1,9 @@
 import React from 'react';
 import {
   Card, CardContent, CardHeader,
-  Avatar, IconButton, Menu, MenuItem,
+  Avatar, MenuItem,
   withStyles
 } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { createFragmentContainer } from 'react-relay';
 import query from './WhatIsThis.query.js';
 import { RelativeDate } from '../../ui';
@@ -12,46 +11,12 @@ import ProfileLink from '../../accounts/ProfileLink.js';
 import SuggestionsList from './SuggestionsList.js';
 import OccurrenceDeleteMutation from '../OccurrenceDelete.mutation.js';
 import DeleteButton from '../../lib/DeleteButton.js';
+import MenuButton from '../../lib/MenuButton.js';
 import { hasPerm } from '../../lib/perms.js';
-
-function WhatIsThisMenu(props) {
-  const {occurrence, environment} = props
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
-
-  return <React.Fragment>
-    <IconButton aria-label="Settings" aria-haspopup="true" onClick={handleClick}>
-      <MoreVertIcon />
-    </IconButton>
-    <Menu
-      anchorEl={anchorEl}
-      open={Boolean(anchorEl)}
-      onClose={handleClose}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-    >
-      {hasPerm(occurrence, 'delete') && <DeleteButton component={MenuItem} environment={environment} node={occurrence} mutation={OccurrenceDeleteMutation} />}
-    </Menu>
-  </React.Fragment>
-}
 
 function WhatIsThis(props) {
   const {classes, occurrence, environment} = props;
+  const menuRef = React.useRef()
   return <Card classes={{root: classes.root}} elevation={3}>
     <CardHeader
       avatar={<Avatar
@@ -60,7 +25,9 @@ function WhatIsThis(props) {
         src={occurrence.revisionCreated.author.avatar.url}
       />}
       action={
-        <WhatIsThisMenu occurrence={occurrence} environment={environment} />
+        <MenuButton ref={menuRef}>
+          {hasPerm(occurrence, 'delete') && <DeleteButton component={MenuItem} environment={environment} node={occurrence} mutation={OccurrenceDeleteMutation} />}
+        </MenuButton>
       }
       title={<ProfileLink user={occurrence.revisionCreated.author} hideAvatar={true} />}
       subheader={<RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />}

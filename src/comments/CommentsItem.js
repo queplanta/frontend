@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardContent, CardActions,
-  Typography,Menu, MenuItem, ListItemIcon, ListItemText, Avatar,
-  Button, IconButton, Chip, LinearProgress, withStyles } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+  Typography, MenuItem, ListItemIcon, ListItemText, Avatar,
+  Button, Chip, LinearProgress, withStyles } from '@material-ui/core';
 import ReplyIcon from '@material-ui/icons/Reply';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,17 +14,18 @@ import CommentCreate from './CommentCreate.js';
 import CommentEdit from './CommentEdit.js';
 import CommentsReplies from './CommentsReplies.js';
 import CommentDeleteMutation from './CommentDelete.mutation.js';
+import MenuButton from '../lib/MenuButton.js';
 import DeleteButton from '../lib/DeleteButton.js';
 import { hasPerm } from '../lib/perms.js';
 
 
 function CommentItem(props) {
   const {classes, comment, relay} = props;
-  const [anchorEl, setAnchorEl] = React.useState(null)
   const [replyFormExpanded, setReplyFormExpanded] = React.useState(false)
   const [repliesExpanded, setReplyRepliesExpanded] = React.useState(false)
   const [isLoadingReplies, setLoadingReplies] = React.useState(false)
   const [editing, setEditing] = React.useState(false)
+  const menuRef = React.useRef()
 
   function focusReplyForm() {
     setReplyFormExpanded(true)
@@ -48,17 +48,9 @@ function CommentItem(props) {
     )
   }
 
-  function handleOpen(e) {
-    setAnchorEl(e.currentTarget)
-  }
-
-  function handleClose() {
-    setAnchorEl(null)
-  }
-
   function startEditing() {
     setEditing(true)
-    handleClose()
+    menuRef.current.handleClose()
   }
 
   function renderBody() {
@@ -83,40 +75,20 @@ function CommentItem(props) {
           src={comment.revisionCreated.author.avatar.url} />
       }
       action={
-        <React.Fragment>
-          <IconButton aria-label="settings" onClick={handleOpen}>
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            getContentAnchorEl={null}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem>
-              <ListItemIcon><Chip size="small" label={comment.document.revisionsCount} /></ListItemIcon>
-              <Typography>Alterações</Typography>
-            </MenuItem>
-            <MenuItem onClick={startEditing}>
-              <ListItemIcon><EditIcon /></ListItemIcon>
-              <Typography>Editar</Typography>
-            </MenuItem>
-            {hasPerm(comment, 'delete') && <DeleteButton component={MenuItem} environment={relay.environment} node={comment} mutation={CommentDeleteMutation}>
-              <ListItemIcon><DeleteIcon /></ListItemIcon>
-              <ListItemText>Excluir</ListItemText>
-            </DeleteButton>}
-          </Menu>
-        </React.Fragment>
+        <MenuButton ref={menuRef}>
+          <MenuItem>
+            <ListItemIcon><Chip size="small" label={comment.document.revisionsCount} /></ListItemIcon>
+            <Typography>Alterações</Typography>
+          </MenuItem>
+          <MenuItem onClick={startEditing}>
+            <ListItemIcon><EditIcon /></ListItemIcon>
+            <Typography>Editar</Typography>
+          </MenuItem>
+          {hasPerm(comment, 'delete') && <DeleteButton component={MenuItem} environment={relay.environment} node={comment} mutation={CommentDeleteMutation}>
+            <ListItemIcon><DeleteIcon /></ListItemIcon>
+            <ListItemText>Excluir</ListItemText>
+          </DeleteButton>}
+        </MenuButton>
       }
       title={<ProfileLink user={comment.revisionCreated.author} />}
       subheader={<RelativeDate date={comment.revisionCreated.createdAt} />}

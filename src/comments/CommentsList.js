@@ -9,9 +9,6 @@ import { fragmentQuery, query } from './CommentsList.query.js';
 function CommentsList(props) {
   const {relay, commenting: {id: parentId, comments: {edges: comments}}} = props
 
-  if (comments.length === 0) {
-    return null;
-  }
   const [isLoading, setLoading] = useState(false)
   const hasMore = relay.hasMore()
 
