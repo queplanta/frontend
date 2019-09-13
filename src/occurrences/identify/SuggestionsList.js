@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import {
   List, Typography, Divider, TextField,
   withStyles
@@ -17,7 +18,8 @@ import PlantSelectField from '../../plants/PlantSelectField.js';
 function SuggestionsList(props) {
   const {enqueueSnackbar} = useSnackbar()
   const [isSaving, setIsSaving] = useState(false)
-  const {classes, environment, setFormErrors, occurrence: {id: occurrenceId, suggestions: {edges: items}}} = props;
+  const {classes, environment, setFormErrors, occurrence} = props;
+  const edges = occurrence.suggestions.edges;
   const [selectedPlant, setPlant] = useState(null);
   const notes = useFormInput('')
 
@@ -33,7 +35,7 @@ function SuggestionsList(props) {
     SuggestionAddMutation.commit(
 			environment,
 			{
-        occurrence: occurrenceId,
+        occurrence: occurrence.id,
         identity: selectedPlant.id,
 				notes: notes.value,
 			},
@@ -48,6 +50,8 @@ function SuggestionsList(props) {
 		)
   }
 
+  const items = _.filter(edges, function(edge) { return !!edge.node});
+
   return <div>
     <Typography component="h4" variant="h6" className={classes.title}>Que espécie é esta?</Typography>
 
@@ -56,7 +60,7 @@ function SuggestionsList(props) {
         const suggestion = edge.node;
         return <React.Fragment key={suggestion.id}>
           {i > 0 && <Divider component="li" />}
-          <SuggestionItem suggestionID={suggestion} />
+          <SuggestionItem suggestionID={suggestion} occurrence={occurrence} />
         </React.Fragment>
       })}
     </List>
@@ -65,19 +69,23 @@ function SuggestionsList(props) {
       <PlantSelectField
         environment={environment}
         onChange={setPlant}
+        value={selectedPlant}
         textFieldProps={{
           label: "Sugerir espécie",
           fullWidth: true,
         }}
       />
-
+      
       {selectedPlant && <React.Fragment>
+        <FormErrors filter={{location: 'identity'}} classes={{formError: classes.identityFormError}} />
+
         <TextField
           label="Notas"
           variant="outlined"
           type="text"
           margin="normal"
           fullWidth
+          {...notes}
         />
 
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
@@ -89,6 +97,10 @@ function SuggestionsList(props) {
 }
 
 const styles = (theme) => ({
+  identityFormError: {
+    marginTop: theme.spacing(1),
+    marginBottom: 0,
+  }
 })
 
 export default createFragmentContainer(

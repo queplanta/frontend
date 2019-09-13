@@ -6,6 +6,10 @@ const query = graphql`
     where,
     when,
     myPerms,
+    identity {
+      id
+      ...PlantLink_plant
+    }
     images(first: 20) {
       edges {
         node {

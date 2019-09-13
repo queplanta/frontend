@@ -4,6 +4,7 @@ const query = graphql`
   fragment SuggestionItem_suggestionID on SuggestionID {
     id
     myPerms
+    notes
     author {
       avatar(width: 40, height: 40) {
         url
@@ -13,11 +14,13 @@ const query = graphql`
     }
     identity {
       id
-      title
       ...PlantLink_plant
     }
     voting {
       ...VotingButtons_voting
+    }
+    revisionCreated {
+      createdAt
     }
   }
 `;
