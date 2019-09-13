@@ -92,9 +92,10 @@ function WhatIsThis(props) {
 const styles = (theme) => ({
   root: {
     margin: theme.spacing(0, 0, 2, 0),
+    overflow: 'unset',
   },
   imagesWrapper: {
-    maxHeight: 500,
+    // maxHeight: 500,
   },
   imageContainer: {
     width: '100%',
