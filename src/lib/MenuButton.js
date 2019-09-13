@@ -23,6 +23,11 @@ class MenuButton extends React.Component {
   render() {
     const {anchorEl} = this.state
     const {children, ...otherProps} = this.props
+
+    if (!children) {
+      return null
+    }
+
     return <React.Fragment>
       <IconButton aria-label="settings" onClick={this.handleOpen}>
         <MoreVertIcon />

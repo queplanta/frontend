@@ -11,13 +11,12 @@ import { query, refetchQuery, renderQuery } from './PlantSelectField.query.js';
 import ImgDefault from './PlantImgDefault.js';
 
 function PlantSelectField(props) {
-  const {classes, relay, onChange, textFieldProps, viewer: {allLifeNode: {edges: plants}}} = props;
+  const {value: selectedPlant, classes, relay, onChange, textFieldProps, viewer: {allLifeNode: {edges: plants}}} = props;
   const searchField = useFormInput('')
   const [showResults, setShowResults] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [disposable, setDisposable] = useState(null)
   const [typingTimeout, setTypingTimeout] = useState(null)
-  const [selectedPlant, setSelectedPlant] = useState(null)
 
   useEffect(() => {
     if (typingTimeout) {
@@ -52,12 +51,10 @@ function PlantSelectField(props) {
   function selectPlant(plant) {
     clearFormInput(searchField)
     setShowResults(false)
-    setSelectedPlant(plant)
     onChange(plant)
   }
 
   function deselectPlant() {
-    setSelectedPlant(null)
     onChange(null)
   }
 

@@ -96,7 +96,7 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
     <PageTitle>Adicionar Ocorrência</PageTitle>
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit}>
-        <PlantSelectField environment={environment} onChange={setLifeNode} />
+        <PlantSelectField environment={environment} onChange={setLifeNode} value={lifeNode} />
 
         <div className={classes.where}>
           <FormLabel>Onde?</FormLabel>

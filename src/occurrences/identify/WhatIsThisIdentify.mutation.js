@@ -2,12 +2,12 @@ import graphql from 'babel-plugin-relay/macro';
 import { commitMutation } from 'react-relay';
 
 const mutation = graphql`
-  mutation SuggestionAddMutation($input: SuggestionIDCreateInput!) {
-    suggestionIDCreate(input: $input) {
-      suggestionID {
+  mutation WhatIsThisIdentifyMutation($input: WhatIsThisIdentifyInput!) {
+    whatIsThisIdentify(input: $input) {
+      occurrence {
         node {
           id
-          ...SuggestionItem_suggestionID
+          ...WhatIsThis_occurrence
         }
       }
       errors {
@@ -29,22 +29,11 @@ function commit(environment, input, config) {
     variables: {
       input: { clientMutationId, ...input },
     },
-    configs: [
-      {
-        type: 'RANGE_ADD',
-        parentID: input.occurrence,
-        connectionInfo: [{
-          key: 'Occurrence_suggestions',
-          rangeBehavior: 'append'
-        }],
-        edgeName: 'suggestionID',
-      }
-    ],
     onCompleted(response, errors) {
-      if (response.suggestionIDCreate) {
-        if (response.suggestionIDCreate.errors && response.suggestionIDCreate.errors.length > 0) {
+      if (response.whatIsThisIdentify) {
+        if (response.whatIsThisIdentify.errors && response.whatIsThisIdentify.errors.length > 0) {
           if (typeof config.setFormErrors === 'function') {
-            config.setFormErrors(response.suggestionIDCreate.errors)
+            config.setFormErrors(response.whatIsThisIdentify.errors)
           }
         } else {
           if (typeof config.onSuccess === 'function') {
@@ -60,7 +49,7 @@ function commit(environment, input, config) {
       }
     },
     onError(error) {
-      console.log('onError', error)
+      console.error('onError', error)
     }
   });
 }

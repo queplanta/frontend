@@ -2,14 +2,9 @@ import graphql from 'babel-plugin-relay/macro';
 import { commitMutation } from 'react-relay';
 
 const mutation = graphql`
-  mutation SuggestionAddMutation($input: SuggestionIDCreateInput!) {
-    suggestionIDCreate(input: $input) {
-      suggestionID {
-        node {
-          id
-          ...SuggestionItem_suggestionID
-        }
-      }
+  mutation SuggestionDeleteMutation($input: SuggestionIDDeleteInput!) {
+    suggestionIDDelete(input: $input) {
+      suggestionDeletedID
       errors {
         code,
         location
@@ -31,20 +26,15 @@ function commit(environment, input, config) {
     },
     configs: [
       {
-        type: 'RANGE_ADD',
-        parentID: input.occurrence,
-        connectionInfo: [{
-          key: 'Occurrence_suggestions',
-          rangeBehavior: 'append'
-        }],
-        edgeName: 'suggestionID',
+        type: 'NODE_DELETE',
+        deletedIDFieldName: 'suggestionDeletedID',
       }
     ],
     onCompleted(response, errors) {
-      if (response.suggestionIDCreate) {
-        if (response.suggestionIDCreate.errors && response.suggestionIDCreate.errors.length > 0) {
-          if (typeof config.setFormErrors === 'function') {
-            config.setFormErrors(response.suggestionIDCreate.errors)
+      if (response.suggestionIDDelete) {
+        if (response.suggestionIDDelete.errors && response.suggestionIDDelete.errors.length > 0) {
+          if (typeof config.onError === 'function') {
+            config.onError(response)
           }
         } else {
           if (typeof config.onSuccess === 'function') {
