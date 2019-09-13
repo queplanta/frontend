@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createRefetchContainer } from 'react-relay';
+import { QueryRenderer, createRefetchContainer } from 'react-relay';
 import { TextField, List, ListItem, ListItemText, ListItemAvatar,
   ListItemSecondaryAction, LinearProgress, Paper, IconButton,
   ClickAwayListener, withStyles
@@ -7,11 +7,11 @@ import { TextField, List, ListItem, ListItemText, ListItemAvatar,
 import DeleteIcon from '@material-ui/icons/Delete';
 import _ from 'lodash';
 import { useFormInput, clearFormInput } from '../lib/forms.js';
-import { query, refetchQuery } from './PlantSelectField.query.js';
+import { query, refetchQuery, renderQuery } from './PlantSelectField.query.js';
 import ImgDefault from './PlantImgDefault.js';
 
 function PlantSelectField(props) {
-  const {classes, relay, onChange, viewer: {allLifeNode: {edges: plants}}} = props;
+  const {classes, relay, onChange, textFieldProps, viewer: {allLifeNode: {edges: plants}}} = props;
   const searchField = useFormInput('')
   const [showResults, setShowResults] = useState(false)
   const [isLoading, setLoading] = useState(false)
@@ -76,12 +76,14 @@ function PlantSelectField(props) {
         fullWidth
         className={classes.searchField}
         {...searchField}
+        {...textFieldProps}
       />}
 
       {((showResults || isLoading) && !selectedPlant) && <List component={Paper} className={classes.results} onClick={closeResults}>
         {plants.map(({node: plant}) => {
           return <PlantItem key={plant.id} plant={plant} classes={classes} button onClick={() => selectPlant(plant)} />
         })}
+        {(!isLoading && plants.length === 0) && <ListItem><ListItemText>Nada encontrado com esse nome.</ListItemText></ListItem>}
         {isLoading && <ListItem><ListItemText><LinearProgress /></ListItemText></ListItem>}
       </List>}
     </div>
@@ -135,8 +137,24 @@ const styles = (theme) => ({
     overflow: 'auto',
   }
 });
-export default createRefetchContainer(
+
+const PlantSelectFieldContainer = createRefetchContainer(
   withStyles(styles)(PlantSelectField),
   query,
   refetchQuery
 );
+
+export default function({environment, ...otherProps}) {
+  return <QueryRenderer
+    environment={environment}
+    query={renderQuery}
+    render={({error, props}) => {
+      if (error) {
+        return console.error(error)
+      } else if (props) {
+        return  <PlantSelectFieldContainer {...props} {...otherProps} />
+      }
+      return null
+    }}
+  />
+}

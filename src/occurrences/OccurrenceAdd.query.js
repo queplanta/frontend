@@ -4,7 +4,6 @@ const query = graphql`
   query OccurrenceAddQuery {
     viewer {
       id
-      ...PlantSelectField_viewer
     }
   }
 `;

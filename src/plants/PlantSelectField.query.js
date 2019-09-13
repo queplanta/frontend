@@ -38,3 +38,12 @@ export const refetchQuery = graphql`
     }
   }
 `
+
+export const renderQuery = graphql`
+  query PlantSelectFieldRenderQuery {
+    viewer {
+      id
+      ...PlantSelectField_viewer
+    }
+  }
+`
