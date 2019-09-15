@@ -13,10 +13,11 @@ const query = graphql`
     images(first: 20) {
       edges {
         node {
-          id,
-          bigImage: image(width: 400, height: 300) {
+          id
+          smallImage: image(width: 400, height: 300) {
             url
           }
+          ...ImageThumbnail_image
         }
       }
     }
