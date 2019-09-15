@@ -5,7 +5,7 @@ import PlantQuery from './Plant.query.js';
 
 export const plantsRoutes = <React.Fragment>
   <Route
-    path="/:plantSlug-p:plantID"
+    path="/:plantSlug-p:plantID(\d+)"
     query={PlantQuery}
     Component={Plant}
   />

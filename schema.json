@@ -681,6 +681,33 @@
               "deprecationReason": null,
               "description": "The ID of the object",
               "isDeprecated": false,
+              "name": "image",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Image",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "id",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "The ID of the object",
+              "isDeprecated": false,
               "name": "vote",
               "type": {
                 "kind": "OBJECT",
@@ -1324,7 +1351,7 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.",
+              "description": "Obrigat\u00f3rio. 30 caracteres ou menos. Letras, d\u00edgitos e @/./+/-/_ apenas.",
               "isDeprecated": false,
               "name": "username",
               "type": {
@@ -6118,19 +6145,19 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Kingdom",
+              "description": "Reino",
               "isDeprecated": false,
               "name": "KINGDOM"
             },
             {
               "deprecationReason": null,
-              "description": "Phylum",
+              "description": "Filo",
               "isDeprecated": false,
               "name": "PHYLUM"
             },
             {
               "deprecationReason": null,
-              "description": "Class",
+              "description": "Classe",
               "isDeprecated": false,
               "name": "CLASS"
             },
@@ -6142,31 +6169,31 @@
             },
             {
               "deprecationReason": null,
-              "description": "Family",
+              "description": "Fam\u00edlia",
               "isDeprecated": false,
               "name": "FAMILY"
             },
             {
               "deprecationReason": null,
-              "description": "Genus",
+              "description": "G\u00e9nero",
               "isDeprecated": false,
               "name": "GENUS"
             },
             {
               "deprecationReason": null,
-              "description": "Species",
+              "description": "Esp\u00e9cie",
               "isDeprecated": false,
               "name": "SPECIES"
             },
             {
               "deprecationReason": null,
-              "description": "Infraspecies",
+              "description": "Subesp\u00e9cie",
               "isDeprecated": false,
               "name": "INFRASPECIES"
             },
             {
               "deprecationReason": null,
-              "description": "Variety",
+              "description": "Cultivar",
               "isDeprecated": false,
               "name": "VARIETY"
             }
@@ -7610,6 +7637,22 @@
               "description": "",
               "isDeprecated": false,
               "name": "isCultivated",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isRequest",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,

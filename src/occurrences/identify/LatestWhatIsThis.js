@@ -1,5 +1,6 @@
 import React from 'react';
-import { CircularProgress, withStyles } from '@material-ui/core';
+import { CircularProgress, Link, withStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'found';
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
 import { fragmentQuery, query } from './LatestWhatIsThis.query.js';
 import WhatIsThis from './WhatIsThis.js'
@@ -13,6 +14,9 @@ function WhatIsThisList(props) {
       }
       return <WhatIsThis key={edge.node.id} occurrence={edge.node} environment={environment} />;
     })}
+    {items.length === 0 && <div>
+      Nenhum pedido agora. <Link to={`/identificacao/pedido`} component={RouterLink}>Gostaria de identificar alguma planta?</Link>
+    </div>}
   </div>
 }
 
