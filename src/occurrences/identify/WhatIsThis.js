@@ -56,7 +56,7 @@ function WhatIsThis(props) {
       })}
     </div>
     <CardContent>
-      {occurrence.where} {occurrence.when}
+      {occurrence.where} {occurrence.when} {occurrence.notes}
     </CardContent>
     <CardContent>
       <SuggestionsList occurrence={occurrence} environment={environment} />
