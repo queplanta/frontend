@@ -38,6 +38,17 @@ export class App extends Component {
     const {classes, viewer} = this.props;
     const {drawerOpen} = this.state;
 
+    let isPlantsRoute = null;
+    if (window) {
+      const urlTest = /^\/[-\w]+-p\d+\/?/;
+      if (urlTest.test(window.location.pathname)) {
+        isPlantsRoute = true;
+      }
+      console.log('window.location.pathname', window.location.pathname)
+    }
+
+    console.log('isPlantsRoute', isPlantsRoute)
+
     return (
       <ThemeProvider theme={theme}>
         <SnackbarProvider maxSnack={3}>
@@ -64,7 +75,7 @@ export class App extends Component {
                     <MenuItem to="/" component={RouterLink} exact={true} activeClassName={classes.drawerListItemActive}>
                       <ListItemText primary="Início"/>
                     </MenuItem>
-                    <MenuItem to="/plantas" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                    <MenuItem to="/plantas" selected={isPlantsRoute} component={RouterLink} activeClassName={classes.drawerListItemActive}>
                       <ListItemText primary="Plantas"/>
                     </MenuItem>
                     <MenuItem to="/identificacao" component={RouterLink} activeClassName={classes.drawerListItemActive}>
@@ -112,8 +123,8 @@ export class App extends Component {
               <Hidden smDown implementation="css">
                 <nav className={classes.subnav}>      
                   <Toolbar className={classes.toolbar}>
-                    <Link activeClassName={classes.navlinkActive} exact={true} className={classes.navlink} to="/" component={RouterLink}>Início</Link>
-                    <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/plantas" component={RouterLink}>Plantas</Link>
+                    <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/" component={RouterLink} exact={true}>Início</Link>
+                    <Link activeClassName={classes.navlinkActive} className={clsx(classes.navlink, {[classes.navlinkActive]: isPlantsRoute})} to="/plantas" component={RouterLink}>Plantas</Link>
                     <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
                     <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/ocorrencias" component={RouterLink}>Ocorrências</Link>
                     <div className={classes.grow} />

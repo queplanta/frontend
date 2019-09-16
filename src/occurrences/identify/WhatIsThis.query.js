@@ -5,6 +5,7 @@ const query = graphql`
     id,
     where,
     when,
+    notes,
     myPerms,
     identity {
       id
