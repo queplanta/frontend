@@ -8,7 +8,8 @@ import markerIconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIconShadow from 'leaflet/dist/images/marker-shadow.png';
 export { Popup } from 'react-leaflet';
 
-export const defaultPosition = [-19.964222, -43.407032];
+// export const defaultPosition = [-19.964222, -43.407032];
+export const defaultPosition = [-19.923105, -43.933799];
 
 export const defaultMarkerIcon = new MarkerIcon({
     iconUrl: markerIcon,

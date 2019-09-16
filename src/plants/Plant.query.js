@@ -7,11 +7,10 @@ const query = graphql`
       idInt
       title
       slug
-      description
       edibility
       edibilityDisplay,
       ...RankDisplay_plant
-      images(first: 1) {
+      mainImage: images(first: 1) {
         edges {
           node {
             id
@@ -21,19 +20,9 @@ const query = graphql`
           }
         }
       }
-      commonNames(first: 20) {
-        edges {
-          node {
-            id
-            name
-            language
-          }
-        }
-      }
-      ...TaxoClimb_lifeNode
       document {
         ...RevisionBox_document
-      }      
+      } 
     }
   }
 `;
