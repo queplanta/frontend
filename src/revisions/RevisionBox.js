@@ -15,7 +15,7 @@ function RevisionBox(props) {
         display="block"
         variant="caption"
       >
-        {document.revisionCreated.author ? `Cadastrado por ${<ProfileLink user={document.revisionCreated.author} hideAvatar={true} />}` : `Cadastrado`}
+        {document.revisionCreated.author ? <span>Cadastrado por <ProfileLink user={document.revisionCreated.author} hideAvatar={true} /></span> : `Cadastrado`}
       </Typography>
       <Typography
         color="textSecondary"
@@ -29,7 +29,7 @@ function RevisionBox(props) {
         display="block"
         variant="caption"
       >
-        {document.revisionTip.author ? `Última alteração por ${<ProfileLink user={document.revisionTip.author} hideAvatar={true} />}` : `Última alteração`}
+        {document.revisionTip.author ? <span>Última alteração por <ProfileLink user={document.revisionTip.author} hideAvatar={true} /></span> : `Última alteração`}
       </Typography>      
       <Typography
         color="textSecondary"

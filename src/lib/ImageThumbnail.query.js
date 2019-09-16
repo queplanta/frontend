@@ -2,9 +2,9 @@ import graphql from 'babel-plugin-relay/macro';
 
 export const query = graphql`
   fragment ImageThumbnail_image on Image
-    @argumentDefinitions( 
-      isOpen: {type:"Boolean!", defaultValue: false}
-    )
+  @argumentDefinitions( 
+    isOpen: {type:"Boolean!", defaultValue: false}
+  )
   {
     id
     bigImage: image(width: 800, height: 600) @include(if: $isOpen) {

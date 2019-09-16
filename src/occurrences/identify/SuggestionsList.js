@@ -32,6 +32,7 @@ function SuggestionsList(props) {
 
   function onSubmit(e) {
     e.preventDefault()
+    setIsSaving(true)
     SuggestionAddMutation.commit(
 			environment,
 			{
