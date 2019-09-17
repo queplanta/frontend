@@ -7,7 +7,7 @@ import query from './RevisionBox.query.js';
 import { createFragmentContainer } from 'react-relay';
 
 function RevisionBox(props) {
-  const {classes, document} = props
+  const {classes, children, document: node} = props
 
   return <div>
       <Typography
@@ -15,28 +15,28 @@ function RevisionBox(props) {
         display="block"
         variant="caption"
       >
-        {document.revisionCreated.author ? <span>Cadastrado por <ProfileLink user={document.revisionCreated.author} hideAvatar={true} /></span> : `Cadastrado`}
+        {node.revisionCreated.author ? <span>Cadastrado por <ProfileLink user={node.revisionCreated.author} hideAvatar={true} /></span> : `Cadastrado`}
       </Typography>
       <Typography
         color="textSecondary"
         display="block"
         variant="caption"
       >
-        <RelativeDate date={document.revisionCreated.createdAt} />
+        <RelativeDate date={node.revisionCreated.createdAt} />
       </Typography>
       <Typography
         color="textPrimary"
         display="block"
         variant="caption"
       >
-        {document.revisionTip.author ? <span>Última alteração por <ProfileLink user={document.revisionTip.author} hideAvatar={true} /></span> : `Última alteração`}
+        {node.revisionTip.author ? <span>Última alteração por <ProfileLink user={node.revisionTip.author} hideAvatar={true} /></span> : `Última alteração`}
       </Typography>      
       <Typography
         color="textSecondary"
         display="block"
         variant="caption"
       >
-        <RelativeDate date={document.revisionTip.createdAt} />
+        <RelativeDate date={node.revisionTip.createdAt} />
       </Typography>
       <Divider variant="fullWidth" className={classes.dividerMargin} />
       <Typography
@@ -44,11 +44,11 @@ function RevisionBox(props) {
         display="block"
         variant="caption"
       >
-        
-        <Badge classes={{badge: classes.margin}} badgeContent={document.revisionsCount} max={999} color="primary">
-          <Link to={`/revisions/${document.id}`} className={classes.padding} component={RouterLink}>Historico de alterações </Link>
+        <Badge classes={{badge: classes.margin}} badgeContent={node.revisionsCount} max={999} color="primary">
+          <Link to={`/revisions/${node.id}`} className={classes.padding} component={RouterLink}>Historico de alterações </Link>
         </Badge>
       </Typography>
+      {children}
     </div>
 }
 

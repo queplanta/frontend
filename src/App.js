@@ -44,10 +44,7 @@ export class App extends Component {
       if (urlTest.test(window.location.pathname)) {
         isPlantsRoute = true;
       }
-      console.log('window.location.pathname', window.location.pathname)
     }
-
-    console.log('isPlantsRoute', isPlantsRoute)
 
     return (
       <ThemeProvider theme={theme}>

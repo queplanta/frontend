@@ -1,30 +1,22 @@
 import graphql from 'babel-plugin-relay/macro';
 
 const query = graphql`
-  query PlantQuery($plantID: Int!) {
+  query PlantPhotosQuery($plantID: Int!) {
     plant: lifeNodeByIntID(documentId: $plantID) {
       id
       idInt
       title
-      slug
-      edibility
-      edibilityDisplay
-      ...RankDisplay_plant
-      mainImage: images(first: 1) {
+      images(first: 20) {
         edges {
           node {
             id
-            smallImage: image(width: 225, height: 300) {
+            smallImage: image(width: 200, height: 200) {
               url
             }
             ...ImageThumbnail_image
           }
         }
       }
-      document {
-        ...RevisionBox_document
-      }
-      myPerms
     }
   }
 `;

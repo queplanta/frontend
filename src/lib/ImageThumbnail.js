@@ -48,7 +48,7 @@ function ImageThumbnail(props) {
     >
       <DialogContent className={classes.dialogContent}>
         {isLoading && <CircularProgress />}
-        {image.bigImage && <img
+        {(!isLoading && image.bigImage) && <img
           alt=""
           {...imgProps}
           src={image.bigImage.url}

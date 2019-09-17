@@ -1,7 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Paper, Typography, Grid, Button, Hidden, Box, withStyles } from '@material-ui/core';
+import { Paper, Typography, Grid, Button, Hidden, Box, Link, withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import { Link as RouterLink } from 'found';
 import { Width } from '../ui';
 import _ from 'lodash';
 import PageTitle from '../lib/PageTitle.js';
@@ -11,6 +12,8 @@ import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
 import ImgDefault from './PlantImgDefault.js';
 import { TabsRoute, TabRoute } from '../lib/Tabs.js';
+import ImageThumbnail from '../lib/ImageThumbnail.js';
+import { hasPerm } from '../lib/perms.js';
 
 function Plant(props) {
   const {classes, plant, children} = props
@@ -31,11 +34,12 @@ function Plant(props) {
       <Grid item xs={12} md={3}>
         <Paper className={classes.root}>
           <div>
-            {mainImage ? <img
-              src={mainImage.bigImage.url}
+            {mainImage ? <ImageThumbnail
               alt={plant.title}
-              width="100%"
-            /> : <ImgDefault alt={plant.title} width="100%" />}
+              image={mainImage}
+              src={mainImage.smallImage.url}
+              className={classes.mainImage}
+            /> : <ImgDefault alt={plant.title} className={classes.mainImage} />}
           </div>
           <EdibilityBadge plant={plant} />
           <Hidden smUp>
@@ -57,7 +61,9 @@ function Plant(props) {
           <RankDisplay plant={plant} />
         </Paper>
         <Paper className={classes.root}>
-          <RevisionBox document={plant.document} />   
+          <RevisionBox document={plant.document}>
+            {hasPerm(plant, 'edit') && <Link to={`${baseUrl}/editar`} component={RouterLink}>editar</Link>}
+          </RevisionBox>   
         </Paper>
       </Grid>  
       <Grid item xs={12} md={9}>
@@ -65,9 +71,11 @@ function Plant(props) {
           <TabsRoute
             indicatorColor="primary"
             textColor="primary"
+            className={classes.tabs}
           >
             <TabRoute label="Descrição" wrapped value={baseUrl} />
             <TabRoute label="Ocorrências" wrapped value={`${baseUrl}/ocorrencias`} />
+            <TabRoute label="Fotos" wrapped value={`${baseUrl}/fotos`} />
             {/*<TabRoute label="Usos" wrapped />
             <TabRoute label="Listas" wrapped />
             <TabRoute label="Trocas e Vendas" wrapped />*/}
@@ -88,6 +96,12 @@ const styles = (theme) => ({
   root: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  mainImage: {
+    width: '100%',
+  },
+  tabs: {
+    padding: theme.spacing(1),
   },
   marginBottom: {
     marginBottom: theme.spacing(2),
