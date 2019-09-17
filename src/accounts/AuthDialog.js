@@ -168,7 +168,6 @@ class AuthDialog extends Component {
           fullWidth
         />
         <TextFieldWithError
-          autoFocus
           margin="dense"
           label="Nome e Sobrenome"
           onChange={this.handleChangeInput.bind(this, 'firstName')}

@@ -70,26 +70,26 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
     })
     setIsSaving(true)
     OccurrenceAddMutation.commit(
-			environment,
-			{
+      environment,
+      {
         location: {
           "type": "Point",
           "coordinates": markerPosition
         },
         lifeId: lifeNode.id,
-				when: when.value,
-				notes: notes.value,
-			},
+        when: when.value,
+        notes: notes.value,
+      },
       formData,
-			{
-				setFormErrors,
+      {
+        setFormErrors,
         onSuccess,
         onError: () => {
           enqueueSnackbar('Ocorreu um erro', {variant: "error"})
           setIsSaving(false)
         }
-			}
-		)
+      }
+    )
   }
     
   return <Width component="div">
