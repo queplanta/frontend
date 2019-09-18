@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paper, withStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'found';
 import { Width } from '../../ui';
 import { TabsRoute, TabRoute } from '../../lib/Tabs.js';
 

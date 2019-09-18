@@ -42,6 +42,9 @@ function commit(environment, input, config) {
 				if (typeof config.setFormErrors === 'function') {
 					config.setFormErrors(response.authenticate.errors)
 				}
+        if (typeof config.onError === 'function') {
+          config.onError(response)
+        }
 			} else {
         if (typeof config.onSuccess === 'function') {
           config.onSuccess(response)

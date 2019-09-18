@@ -11,57 +11,76 @@ import clsx from 'clsx';
 import query from './VotingButtons.query.js';
 import VoteSetMutation from './VotingButtons.voteSet.mutation.js';
 import VoteDeleteMutation from './VotingButtons.voteDelete.mutation.js';
+import { useLoginRequired } from '../accounts/LoginRequired.js';
+import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
 function useVote(parendId, initialValue, environment) {
+  const [isSaving, setSaving] = useState(false);
   const [vote, stateVoteSet] = useState(initialValue);
+  const { isAuthenticated } = useLoginRequired();
 
 	function onClick(value) {
-    if (vote && vote.value === value) {
-      VoteDeleteMutation.commit(
-        environment,
-        {
-          id: vote.id,
-        },
-        {
-          stateVoteSet
-        }
-      )
-    } else {
-      VoteSetMutation.commit(
-        environment,
-        {
-          value: value,
-          parent: parendId,
-        },
-        {
-          stateVoteSet
-        }
-      )
+    if (isAuthenticated()) {
+      setSaving(true)
+      if (vote && vote.value === value) {
+        VoteDeleteMutation.commit(
+          environment,
+          {
+            id: vote.id,
+          },
+          {
+            stateVoteSet,
+            onSuccess: () => {
+              setSaving(false)
+            },
+            onError: () => {
+              setSaving(false)
+            }
+          }
+        )
+      } else {
+        VoteSetMutation.commit(
+          environment,
+          {
+            value: value,
+            parent: parendId,
+          },
+          {
+            stateVoteSet,
+            onSuccess: () => {
+              setSaving(false)
+            },
+            onError: () => {
+              setSaving(false)
+            }
+          }
+        )
+      }
     }
 	}
 
-  return [vote, onClick];
+  return [vote, onClick, isSaving];
 }
 
 function VotingButtons(props) {
   const {classes, voting: {countUps, countDowns, mine}} = props;
-	const [myVote, setVote] = useVote(props.parentId, mine, props.relay.environment)
+	const [myVote, setVote, isSaving] = useVote(props.parentId, mine, props.relay.environment)
 
   function isMyVote(value) {
     return myVote && myVote.value === value
   }
 
   return <span>
-    <IconButton variant="outlined" color="primary" onClick={() => {setVote(1)}} className={clsx({[classes.activeUp]: isMyVote(1)})}>
+    <ButtonWithProgress component={IconButton} variant="outlined" color="primary" onClick={() => {setVote(1)}} className={clsx({[classes.activeUp]: isMyVote(1)})} isLoading={isSaving}>
       <Badge badgeContent={countUps}>
         <ThumbUpAlt />
       </Badge>
-    </IconButton>
-    <IconButton variant="outlined" color="secondary" onClick={() => {setVote(-1)}} className={clsx({[classes.activeDown]: isMyVote(-1)})}>
+    </ButtonWithProgress>
+    <ButtonWithProgress component={IconButton} variant="outlined" color="secondary" onClick={() => {setVote(-1)}} className={clsx({[classes.activeDown]: isMyVote(-1)})} isLoading={isSaving}>
       <Badge badgeContent={countDowns}>
         <ThumbDownAlt />
       </Badge>
-    </IconButton>
+    </ButtonWithProgress>
   </span>
 }
 

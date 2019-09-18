@@ -27,10 +27,23 @@ function commit(environment, input, config) {
       input: { clientMutationId, ...input },
     },
     onCompleted(response, errors) {
-      config.stateVoteSet(null)
+      if (response.voteDelete) {
+        if (response.voteDelete.errors && response.voteDelete.errors.length > 0 && typeof config.onError === 'function') {
+          config.onError(response.voteDelete.errors)
+        } else if (typeof config.onSuccess === 'function') {
+          config.onSuccess(response)
+          config.stateVoteSet(null)
+        }
+      }
+      if (errors && typeof config.onError === 'function') {
+        config.onError(errors)
+      }
     },
     onError(error) {
       console.error(error)
+      if (typeof config.onError === 'function') {
+        config.onError(error)
+      }
     }
   });
 }

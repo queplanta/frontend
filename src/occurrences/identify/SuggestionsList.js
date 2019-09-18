@@ -14,9 +14,11 @@ import SuggestionItem from './SuggestionItem.js';
 import SuggestionAddMutation from './SuggestionAdd.mutation.js';
 import query from './SuggestionsList.query.js';
 import PlantSelectField from '../../plants/PlantSelectField.js';
+import { useLoginRequired } from '../../accounts/LoginRequired.js';
 
 function SuggestionsList(props) {
   const {enqueueSnackbar} = useSnackbar()
+  const { isAuthenticated } = useLoginRequired()
   const [isSaving, setIsSaving] = useState(false)
   const {classes, environment, setFormErrors, occurrence} = props;
   const edges = occurrence.suggestions.edges;
@@ -32,23 +34,25 @@ function SuggestionsList(props) {
 
   function onSubmit(e) {
     e.preventDefault()
-    setIsSaving(true)
-    SuggestionAddMutation.commit(
-			environment,
-			{
-        occurrence: occurrence.id,
-        identity: selectedPlant.id,
-				notes: notes.value,
-			},
-			{
-				setFormErrors,
-        onSuccess,
-        onError: () => {
-          enqueueSnackbar('Ocorreu um erro', {variant: "error"})
-          setIsSaving(false)
+    if (isAuthenticated()) {
+      setIsSaving(true)
+      SuggestionAddMutation.commit(
+        environment,
+        {
+          occurrence: occurrence.id,
+          identity: selectedPlant.id,
+          notes: notes.value,
+        },
+        {
+          setFormErrors,
+          onSuccess,
+          onError: () => {
+            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
+            setIsSaving(false)
+          }
         }
-			}
-		)
+      )
+    }
   }
 
   const items = _.filter(edges, function(edge) { return !!edge.node});

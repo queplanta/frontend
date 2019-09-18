@@ -14,9 +14,11 @@ import ImgWithLocation from '../../lib/ImgWithLocation.js';
 import { useFormInput, clearFormInput } from '../../lib/forms.js';
 import ButtonWithProgress from '../../lib/ButtonWithProgress.js';
 import AddIdentifyMutation from './AddIdentify.mutation.js';
+import { useLoginRequired } from '../../accounts/LoginRequired.js';
 
 function AddIdentify({classes, environment, setFormErrors}) {
   const { enqueueSnackbar } = useSnackbar();
+  const { isAuthenticated } = useLoginRequired();
   const when = useFormInput('')
   const where = useFormInput('')
   const notes = useFormInput('')
@@ -53,28 +55,30 @@ function AddIdentify({classes, environment, setFormErrors}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const formData = new FormData()
-    images.forEach(image => {
-      formData.append('images', image.file)
-    })
-    setIsSaving(true)
-    AddIdentifyMutation.commit(
-			environment,
-			{
-				when: when.value,
-				where: where.value,
-				notes: notes.value,
-			},
-      formData,
-			{
-				setFormErrors,
-        onSuccess,
-        onError: () => {
-          enqueueSnackbar('Ocorreu um erro', {variant: "error"})
-          setIsSaving(false)
+    if (isAuthenticated()) {
+      const formData = new FormData()
+      images.forEach(image => {
+        formData.append('images', image.file)
+      })
+      setIsSaving(true)
+      AddIdentifyMutation.commit(
+        environment,
+        {
+          when: when.value,
+          where: where.value,
+          notes: notes.value,
+        },
+        formData,
+        {
+          setFormErrors,
+          onSuccess,
+          onError: () => {
+            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
+            setIsSaving(false)
+          }
         }
-			}
-		)
+      )
+    }
   }
     
   return <form onSubmit={handleSubmit}>

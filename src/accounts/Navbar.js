@@ -6,8 +6,8 @@ import _ from 'lodash';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Media from 'react-media';
 import query from './Navbar.query.js';
-import { AuthDialogContext } from './AuthDialog.js'
-import DeauthMutation from './Deauth.mutation.js'
+import DeauthMutation from './Deauth.mutation.js';
+import { withLoginRequired } from './LoginRequired.js';
 
 class AccountNavbar extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class AccountNavbar extends Component {
     this.handleLogout = this.handleLogout.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleOpenLoginDialog = this.handleOpenLoginDialog.bind(this)
     this.state = {anchorEl: null}
   }
 
@@ -29,6 +30,10 @@ class AccountNavbar extends Component {
 
   handleOpen(e) {
     this.setState({anchorEl: e.currentTarget})
+  }
+
+  handleOpenLoginDialog() {
+    this.props.openAuthDialog()
   }
 
   render() {
@@ -69,20 +74,16 @@ class AccountNavbar extends Component {
         </Menu>
       </div>
     } else {
-      return <AuthDialogContext.Consumer>
-        {({toggleAuthDialog}) => {
-          return <Media
-            query="(min-width: 768px)"
-          >
-            {matches => matches ? (
-              <div>Quer participar? <Button onClick={toggleAuthDialog} variant="outlined" classes={{root:classes.btn}}>Entre ou registre-se</Button> em segundos.</div>) : (
-              <Tooltip title="Minha conta" placement="top">
-                <IconButton onClick={toggleAuthDialog} className={classes.accountIcon}><AccountCircleIcon /></IconButton>
-              </Tooltip>
-            )}
-          </Media>
-        }}
-      </AuthDialogContext.Consumer>
+      return <Media
+        query="(min-width: 768px)"
+      >
+        {matches => matches ? (
+          <div>Quer participar? <Button onClick={this.handleOpenLoginDialog} variant="outlined" classes={{root: classes.btn}}>Entre ou registre-se</Button> em segundos.</div>) : (
+          <Tooltip title="Minha conta" placement="top">
+            <IconButton onClick={this.handleOpenLoginDialog} className={classes.accountIcon}><AccountCircleIcon /></IconButton>
+          </Tooltip>
+        )}
+      </Media>
     }
   }
 }
@@ -107,6 +108,6 @@ const styles = {
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(AccountNavbar),
+  withStyles(styles)(withLoginRequired(AccountNavbar)),
   query
 )

@@ -18,12 +18,13 @@ const initialState = [];
 export const FormErrorsContext = React.createContext(initialState);
 
 export function hasFormErrors(WrappedComponent) {
-	function HasFormErrors(props) {
+	function HasFormErrors(props, ref) {
 		const [errors, setFormErrors]  = useReducer(reducer, initialState)
 		return <FormErrorsContext.Provider value={errors}>
 			<WrappedComponent
 				appendFormErrors={(errors) => setFormErrors({type: 'append', errors})}
 				setFormErrors={(errors) => setFormErrors({type: 'set', errors})}
+        ref={ref}
 				{...props}
 			/>
 		</FormErrorsContext.Provider>
@@ -31,27 +32,26 @@ export function hasFormErrors(WrappedComponent) {
 
 	HasFormErrors.displayName = `WithSubscription(${getDisplayName(WrappedComponent)})`;
 	
-	return HasFormErrors
+	return React.forwardRef(HasFormErrors)
 }
 
-const styles = (theme) => ({
-  formError: {
+export const SnackbarErrorContent = withStyles((theme) => ({
+  root: {
     backgroundColor: theme.palette.error.dark,
     marginBottom: theme.spacing(1)
   }
-})
+}))(SnackbarContent)
 
-export const FormErrors = withStyles(styles)(function(props) {
-  const {filter, classes, ...otherProps} = props;
+export const FormErrors = function(props) {
+  const {filter, ...otherProps} = props;
 	return <FormErrorsContext.Consumer>
-		{errors => _.filter(errors, filter).map((error, index) => <SnackbarContent
+		{errors => _.filter(errors, filter).map((error, index) => <SnackbarErrorContent
       key={index}
 			message={error.message}
-      className={classes.formError}
       {...otherProps}
 		/>)}	
 	</FormErrorsContext.Consumer>
-})
+}
 
 export function TextFieldWithError(props) {
   const {errorFilter, ...others} = props

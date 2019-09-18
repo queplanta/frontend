@@ -5,35 +5,39 @@ import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import { useFormInput, clearFormInput } from '../lib/forms.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import CommentCreateMutation from './CommentCreate.mutation.js';
+import { useLoginRequired } from '../accounts/LoginRequired.js';
 
 function CommentCreate({classes, parentId, environment, setFormErrors, focusInput}) {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar()
+  const { isAuthenticated } = useLoginRequired()
   const body = useFormInput('')
   const bodyEl = useRef(null)
   const [isSaving, setIsSaving] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault()
-    setIsSaving(true)
-    CommentCreateMutation.commit(
-      environment,
-      {
-        body: body.value,
-        parent: parentId
-      },
-      {
-        setFormErrors,
-        onSuccess: () => {
-          clearFormInput(body)
-          setIsSaving(false)
-          enqueueSnackbar('Comentário adicionado com sucesso', {variant: "success"})
+    if (isAuthenticated()) {
+      setIsSaving(true)
+      CommentCreateMutation.commit(
+        environment,
+        {
+          body: body.value,
+          parent: parentId
         },
-        onError: () => {
-          enqueueSnackbar('Ocorreu um erro', {variant: "error"})
-          setIsSaving(false)
+        {
+          setFormErrors,
+          onSuccess: () => {
+            clearFormInput(body)
+            setIsSaving(false)
+            enqueueSnackbar('Comentário adicionado com sucesso', {variant: "success"})
+          },
+          onError: () => {
+            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
+            setIsSaving(false)
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   useEffect(() => {

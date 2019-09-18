@@ -17,9 +17,9 @@ import theme from './theme.js';
 import logoImg from './assets/queplanta-icon.svg';
 import logoTextImg from './assets/queplanta-text-light.svg';
 import AccountNavbar from './accounts/Navbar.js';
-import AuthDialog from './accounts/AuthDialog.js';
 import Footer from './Footer.js';
 import headerNavBackground from './assets/background.jpg';
+import { LoginRequiredProvider } from './accounts/LoginRequired.js';
 
 
 export class App extends Component {
@@ -46,16 +46,15 @@ export class App extends Component {
       }
     }
 
-    return (
-      <ThemeProvider theme={theme}>
+    return (<ThemeProvider theme={theme}>
+      <LoginRequiredProvider viewer={viewer}>
         <SnackbarProvider maxSnack={3}>
-        <React.Fragment>
-          <CssBaseline />
-          <Helmet
-            titleTemplate="%s | Que Planta"
-            defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-          />
-          <AuthDialog viewer={viewer}>
+          <React.Fragment>
+            <CssBaseline />
+            <Helmet
+              titleTemplate="%s | Que Planta"
+              defaultTitle="Que Planta - Conectando Pessoas e Plantas"
+            />
             <AppBar position="static" className={classes.appbar}>            
               <Toolbar className={classes.toolbar}>
                 <Drawer
@@ -149,9 +148,9 @@ export class App extends Component {
             {this.props.children}
 
             <Footer />
-          </AuthDialog>
-        </React.Fragment>
-      </SnackbarProvider>
+          </React.Fragment>
+        </SnackbarProvider>
+      </LoginRequiredProvider>
     </ThemeProvider>);
   }
 }

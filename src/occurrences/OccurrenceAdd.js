@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Helmet from 'react-helmet';
 import {
   TextField, Button, IconButton, Paper, FormLabel,
   withStyles
@@ -16,9 +17,11 @@ import { Width } from '../ui';
 import PageTitle from '../lib/PageTitle.js';
 import { MapGeolocated, Marker, defaultPosition } from './Map.js';
 import PlantSelectField from '../plants/PlantSelectField.js';
+import { useLoginRequired } from '../accounts/LoginRequired.js';
 
 function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
   const { enqueueSnackbar } = useSnackbar()
+  const { isAuthenticated } = useLoginRequired()
   const [lifeNode, setLifeNode] = useState(null)
   const when = useFormInput('')
   const notes = useFormInput('')
@@ -64,35 +67,38 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const formData = new FormData()
-    images.forEach(image => {
-      formData.append('images', image.file)
-    })
-    setIsSaving(true)
-    OccurrenceAddMutation.commit(
-      environment,
-      {
-        location: {
-          "type": "Point",
-          "coordinates": markerPosition
+    if (isAuthenticated()) {
+      const formData = new FormData()
+      images.forEach(image => {
+        formData.append('images', image.file)
+      })
+      setIsSaving(true)
+      OccurrenceAddMutation.commit(
+        environment,
+        {
+          location: {
+            "type": "Point",
+            "coordinates": markerPosition
+          },
+          lifeId: lifeNode.id,
+          when: when.value,
+          notes: notes.value,
         },
-        lifeId: lifeNode.id,
-        when: when.value,
-        notes: notes.value,
-      },
-      formData,
-      {
-        setFormErrors,
-        onSuccess,
-        onError: () => {
-          enqueueSnackbar('Ocorreu um erro', {variant: "error"})
-          setIsSaving(false)
+        formData,
+        {
+          setFormErrors,
+          onSuccess,
+          onError: () => {
+            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
+            setIsSaving(false)
+          }
         }
-      }
-    )
+      )
+    }
   }
     
   return <Width component="div">
+    <Helmet title="Adicionar Ocorrência" />
     <PageTitle>Adicionar Ocorrência</PageTitle>
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit}>
