@@ -4,27 +4,33 @@ import {
   Avatar, Typography, Divider, Paper,
   withStyles
 } from '@material-ui/core';
+import { Link as RouterLink } from 'found';
 
 const items = [
   {
     title: 'Mangifera Indica',
     names: ['Manga'],
     image: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Manga_1.jpg',
+    path: '/mangifera-indica-p385479'
+
   },
   {
     title: 'Lecythis pisonis',
     names: ['Sapucaia', 'Cumbuca de macaco', 'Marmita de macaco'],
     image: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Sapucaia.jpg',
+    path: '/lecythis-pisonis-p200362'
   },
   {
     title: 'Theobroma cacao',
     names: ['Cacaueiro'],
     image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Cocoa_Pods.JPG',
+    path: '/theobroma-cacao-p335229'
   },
   {
     title: 'Plinia cauliflora',
     names: ['Jabuticaba'],
     image: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Jabuticaba_fruto.jpg',
+    path: '/plinia-cauliflora-p349060'
   },
 ]
 
@@ -35,7 +41,7 @@ const TopPlants = ({classes}) => {
       {items.map((item, i) => {
         return <React.Fragment key={i}>
           {i > 0 && <Divider component="li" />}
-          <ListItem button component="a" href={item.image}>
+          <ListItem button component={RouterLink} to={item.path}>
             <ListItemAvatar>
               <Avatar
                 alt={item.title}
