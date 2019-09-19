@@ -3,7 +3,7 @@ import { CircularProgress, Button, Dialog, DialogContent, DialogActions, useMedi
 import { useTheme } from '@material-ui/styles';
 import clsx from 'clsx';
 import { createRefetchContainer } from 'react-relay';
-import { query, refetchQuery } from './ImageThumbnail.query.js';
+import { fragmentSpec, refetchQuery } from './ImageThumbnail.query.js';
 
 function ImageThumbnail(props) {
   const {relay, classes, image, className, ...imgProps} = props;
@@ -73,6 +73,6 @@ const styles = (theme) => ({
 })
 export default createRefetchContainer(
   withStyles(styles)(ImageThumbnail),
-  query,
+  fragmentSpec,
   refetchQuery
 );

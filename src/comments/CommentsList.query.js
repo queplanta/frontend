@@ -26,6 +26,10 @@ export const fragmentQuery = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  commenting: fragmentQuery
+}
+
 export const query = graphql`
   query CommentsListQuery(
     $count: Int!,

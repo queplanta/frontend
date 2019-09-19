@@ -13,9 +13,6 @@ import { historyMiddlewares, render, routeConfig } from './router.js';
 import './index.css';
 
 import { IntlProvider } from 'react-intl';
-import {addLocaleData} from 'react-intl';
-import pt from 'react-intl/locale-data/pt';
-addLocaleData([...pt]);
 
 (async () => {
   const resolver = new Resolver(

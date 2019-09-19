@@ -2,7 +2,7 @@ import React from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { Typography, Table, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core';
 import PlantLink from './PlantLink';
-import query from './RankDisplay.query.js';
+import fragmentSpec from './RankDisplay.query.js';
 
 function RankDisplay(props) {
   const {classes, plant} = props;
@@ -40,5 +40,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(RankDisplay),
-  query
+  fragmentSpec
 );

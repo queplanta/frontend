@@ -8,7 +8,7 @@ import ThumbDownAlt from '@material-ui/icons/ThumbDownAlt';
 import ThumbUpAlt from '@material-ui/icons/ThumbUpAlt';
 import { createFragmentContainer } from 'react-relay';
 import clsx from 'clsx';
-import query from './VotingButtons.query.js';
+import fragmentSpec from './VotingButtons.query.js';
 import VoteSetMutation from './VotingButtons.voteSet.mutation.js';
 import VoteDeleteMutation from './VotingButtons.voteDelete.mutation.js';
 import { useLoginRequired } from '../accounts/LoginRequired.js';
@@ -95,5 +95,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(VotingButtons),
-  query
+  fragmentSpec
 )

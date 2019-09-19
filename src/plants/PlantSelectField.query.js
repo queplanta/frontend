@@ -30,6 +30,10 @@ export const query = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  viewer: query
+}
+
 export const refetchQuery = graphql`
   query PlantSelectFieldQuery($count: Int!, $search: String!) {
     viewer {

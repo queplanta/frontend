@@ -12,7 +12,7 @@ import { hasFormErrors, FormErrors } from '../../FormErrors.js';
 import { useFormInput, clearFormInput } from '../../lib/forms.js';
 import SuggestionItem from './SuggestionItem.js';
 import SuggestionAddMutation from './SuggestionAdd.mutation.js';
-import query from './SuggestionsList.query.js';
+import fragmentSpec from './SuggestionsList.query.js';
 import PlantSelectField from '../../plants/PlantSelectField.js';
 import { useLoginRequired } from '../../accounts/LoginRequired.js';
 
@@ -110,5 +110,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(hasFormErrors(SuggestionsList)),
-  query
+  fragmentSpec
 )

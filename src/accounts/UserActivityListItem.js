@@ -6,7 +6,7 @@ import { RelativeDate } from '../ui';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import query from './UserActivityListItem.query.js';
+import fragmentSpec from './UserActivityListItem.query.js';
 
 function UserActivityListItem(props) {
   const {revision} = props;
@@ -75,5 +75,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(UserActivityListItem),
-  query
+  fragmentSpec
 )

@@ -3,7 +3,7 @@ import { List, withStyles } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import UserActivityListItem from './UserActivityListItem.js';
-import { fragmentQuery, query } from './UserActivityList.query.js';
+import { fragmentSpec, query } from './UserActivityList.query.js';
 
 function UserActivityList(props) {
   const {classes, relay, user: {actions: {edges: actions}}} = props
@@ -43,7 +43,7 @@ const styles = (theme) => ({
 
 export default createPaginationContainer(
   withStyles(styles)(UserActivityList) ,
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

@@ -3,7 +3,7 @@ import { List, withStyles } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import PostItem from './PostItem.js';
-import { fragmentQuery, query } from './PostList.query.js';
+import { fragmentSpec, query } from './PostList.query.js';
 
 function PostList(props) {
   const {classes, relay, viewer: {allPosts: {edges: posts}}} = props
@@ -50,7 +50,7 @@ const styles = (theme) => ({
 
 export default createPaginationContainer(
   withStyles(styles)(PostList) ,
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

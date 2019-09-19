@@ -12,7 +12,7 @@ import { fade } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { createFragmentContainer } from 'react-relay';
 import { useSnackbar } from 'notistack';
-import query from './SuggestionItem.query.js';
+import fragmentSpec from './SuggestionItem.query.js';
 // import { RelativeDate } from '../../ui';
 // import ProfileLink from '../../accounts/ProfileLink.js';
 import PlantLink from '../../plants/PlantLink.js';
@@ -94,5 +94,5 @@ const styles = (theme) => ({
 })
 export default createFragmentContainer(
   withStyles(styles)(SuggestionItem),
-  query
+  fragmentSpec
 )

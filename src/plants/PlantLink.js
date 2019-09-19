@@ -2,7 +2,7 @@ import React from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { Link, Tooltip, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
-import query from './PlantLink.query.js';
+import fragmentSpec from './PlantLink.query.js';
 
 class PlantLink extends React.Component {
   render() {
@@ -24,5 +24,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(PlantLink),
-  query
+  fragmentSpec
 );

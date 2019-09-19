@@ -5,7 +5,7 @@ import { Link  as RouterLink } from 'found';
 import _ from 'lodash';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Media from 'react-media';
-import query from './Navbar.query.js';
+import fragmentSpec from './Navbar.query.js';
 import DeauthMutation from './Deauth.mutation.js';
 import { withLoginRequired } from './LoginRequired.js';
 
@@ -109,5 +109,5 @@ const styles = {
 
 export default createFragmentContainer(
   withStyles(styles)(withLoginRequired(AccountNavbar)),
-  query
+  fragmentSpec
 )

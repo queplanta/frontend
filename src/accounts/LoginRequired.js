@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { createFragmentContainer } from 'react-relay';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import query from './Auth.query.js';
+import fragmentSpec from './Auth.query.js';
 import AuthDialog from './AuthDialog.js';
 import { getDisplayName } from '../lib/helpers.js';
 
@@ -19,7 +19,7 @@ export const LoginRequiredProvider = createFragmentContainer(function({relay, vi
     if (viewer.me && viewer.me.isAuthenticated) {
       return true;
     } else {
-      openAuthDialog()
+      openAuthDialog({showLoginRequired: true})
       return false;
     }
   }
@@ -28,8 +28,8 @@ export const LoginRequiredProvider = createFragmentContainer(function({relay, vi
     dialogRef.current.toggleAuthDialog()
   }
 
-  function openAuthDialog() {
-    dialogRef.current.onOpen({showLoginRequired: true})
+  function openAuthDialog(config) {
+    dialogRef.current.onOpen(config)
   }
 
   function closeAuthDialog() {
@@ -41,7 +41,7 @@ export const LoginRequiredProvider = createFragmentContainer(function({relay, vi
     {children}
     <AuthDialog viewer={viewer} ref={dialogRef} environment={relay.environment} />
   </LoginRequiredContext.Provider>;
-}, query);
+}, fragmentSpec);
 
 export function useLoginRequired() {
   const { isAuthenticated } = useContext(LoginRequiredContext);

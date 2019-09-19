@@ -2,7 +2,7 @@ import React from 'react';
 import { CircularProgress, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import { QueryRenderer, createPaginationContainer } from 'react-relay';
-import { fragmentQuery, query } from './LatestWhatIsThis.query.js';
+import { fragmentSpec, query } from './LatestWhatIsThis.query.js';
 import WhatIsThis from './WhatIsThis.js'
 
 function WhatIsThisList(props) {
@@ -26,7 +26,7 @@ const WhatIsThisListStyled = withStyles((theme) => ({
 
 const WhatIsThisListPaginated = createPaginationContainer(
   WhatIsThisListStyled,
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

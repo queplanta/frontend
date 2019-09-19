@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import PlantLink from '../plants/PlantLink.js';
-import { fragmentQuery, query } from './TaxoClimb.query.js'
+import { fragmentSpec, query } from './TaxoClimb.query.js'
 
 function TaxoClimbing({lifeNode, relay}) {
   if (lifeNode.children.edges.length === 0) {
@@ -37,7 +37,7 @@ function TaxoClimbing({lifeNode, relay}) {
 
 export default createPaginationContainer(
   TaxoClimbing,
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

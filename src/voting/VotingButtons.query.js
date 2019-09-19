@@ -12,5 +12,5 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default {voting: query}
 

@@ -9,6 +9,8 @@ import HomeIdentifyQuery from './identify/Home.query.js';
 import HomeIdentified from './identify/HomeIdentified.js';
 import IdentifyPage from './identify/IdentifyPage.js';
 import IdentifyPageQuery from './identify/IdentifyPage.query.js';
+import Occurrence from './Occurrence.js';
+import OccurrenceQuery from './Occurrence.query.js';
 
 export const occurrencesRoutes = <React.Fragment>
   <Route
@@ -44,6 +46,13 @@ export const occurrencesRoutes = <React.Fragment>
     query={IdentifyPageQuery}
     render={(args) => {
       return <IdentifyPage {...args.props} environment={args.environment} />
+    }}
+  />
+  <Route
+    path="/ocorrencias/:id"
+    query={OccurrenceQuery}
+    render={(args) => {
+      return <Occurrence {...args.props} environment={args.environment} />
     }}
   />
 </React.Fragment>

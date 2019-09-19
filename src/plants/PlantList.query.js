@@ -29,6 +29,10 @@ export const fragmentQuery = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  viewer: fragmentQuery
+}
+
 export const query = graphql`
   query PlantListQuery(
     $count: Int!,

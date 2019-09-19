@@ -1,17 +1,18 @@
 import React from 'react';
 import {
 	injectIntl,
-	FormattedRelative,
+	FormattedRelativeTime,
 } from 'react-intl';
 import {Tooltip} from '@material-ui/core';
 
 const MyFormattedRelative = injectIntl(({date, prefix, intl}) => {
   var title = `${intl.formatDate(date)} às ${intl.formatTime(date)}`;
-  return (<FormattedRelative value={date}>
+  const delta = Math.floor(new Date(date) / 1000) - Math.floor(Date.now() / 1000);
+  return (<FormattedRelativeTime value={delta} numeric="auto" unit="second" updateIntervalInSeconds={30}>
     {(formattedTime) => <Tooltip title={title} placement="top">
       <time dateTime={date}>{prefix && `${prefix} `}{formattedTime}</time>
     </Tooltip>}
-  </FormattedRelative>);
+  </FormattedRelativeTime>);
 });
 
 export class RelativeDate extends React.Component {

@@ -3,7 +3,7 @@ import { Typography, Divider, Link, Badge, withStyles }  from '@material-ui/core
 import ProfileLink from '../accounts/ProfileLink.js';
 import { Link as RouterLink } from 'found';
 import { RelativeDate } from '../ui';
-import query from './RevisionBox.query.js';
+import fragmentSpec from './RevisionBox.query.js';
 import { createFragmentContainer } from 'react-relay';
 
 function RevisionBox(props) {
@@ -67,5 +67,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(RevisionBox),
-  query
+  fragmentSpec
 );
