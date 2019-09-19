@@ -49,6 +49,7 @@ export default createPaginationContainer(
     },
     getVariables(props, paginationInfo, fragmentVariables) {
       return {
+        ...fragmentVariables,
         ...paginationInfo,
       }
     }

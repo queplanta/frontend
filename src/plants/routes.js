@@ -17,12 +17,25 @@ export const plantsRoutes = <React.Fragment>
   <Route
     path="/plantas"
     query={HomePlantsQuery}
-    Component={HomePlants}
+    render={(args) => {
+      const {props, ...otherProps} = args
+      return <HomePlants {...props} relay={otherProps} />
+    }}
+    prepareVariables={(params, {location}) => {
+      return {...params, search: location.query.q}
+    }}
   />
   <Route
     path="/plantas/comestiveis"
     query={HomePlantsQuery}
-    Component={HomePlants}
+    prepareVariables={(params) => ({
+      ...params,
+      edibles: true
+    })}
+    render={(args) => {
+      const {props, ...otherProps} = args
+      return <HomePlants {...props} relay={otherProps} />
+    }}
   />
   <Route
     path="/:plantSlug-p:plantID(\d+)"

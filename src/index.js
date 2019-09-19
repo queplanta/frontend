@@ -17,7 +17,7 @@ import {addLocaleData} from 'react-intl';
 import pt from 'react-intl/locale-data/pt';
 addLocaleData([...pt]);
 
-// (async () => {
+(async () => {
   const resolver = new Resolver(
     createRelayEnvironment(
       // eslint-disable-next-line no-underscore-dangle
@@ -45,4 +45,4 @@ addLocaleData([...pt]);
   // unregister() to register() below. Note this comes with some pitfalls.
   // Learn more about service workers: https://bit.ly/CRA-PWA
   serviceWorker.unregister();
-// })();
+})();

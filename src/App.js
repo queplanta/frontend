@@ -11,7 +11,7 @@ import { fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link  as RouterLink } from 'found';
+import { Link  as RouterLink, withRouter } from 'found';
 import { SnackbarProvider } from 'notistack';
 import theme from './theme.js';
 import logoImg from './assets/queplanta-icon.svg';
@@ -26,12 +26,25 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerOpen: false
+      drawerOpen: false,
+      searchBy: ''
     }
+    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+    this.onChangeSearch = this.onChangeSearch.bind(this)
   }
 
-  handleDrawerToggle = () => {
+  handleDrawerToggle() {
     this.setState({drawerOpen: !this.state.drawerOpen})
+  }
+
+  onChangeSearch(e) {
+    this.setState({searchBy: e.target.value})
+  }
+
+  handleSearch(e) {
+    e.preventDefault();
+    this.props.router.push(`/plantas?q=${this.state.searchBy}`)
   }
 
   render() {
@@ -124,7 +137,7 @@ export class App extends Component {
                     <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
                     <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/ocorrencias" component={RouterLink}>Ocorrências</Link>
                     <div className={classes.grow} />
-                    <div className={classes.search}>
+                    <form className={classes.search} onSubmit={this.handleSearch}>
                       <div className={classes.searchIcon}>
                         <SearchIcon />
                       </div>
@@ -135,8 +148,10 @@ export class App extends Component {
                           input: classes.inputInput,
                         }}
                         inputProps={{ 'aria-label': 'search' }}
+                        value={this.state.searchBy}
+                        onChange={this.onChangeSearch}
                       />
-                    </div>
+                    </form>
                     <Tooltip title="Identificar por foto" placement="top">
                       <Button className={classes.btn} component={RouterLink} to="/identificacao/pedido"><CameraAltIcon /></Button>
                     </Tooltip>
@@ -269,4 +284,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(App)
+export default withStyles(styles)(withRouter(App))

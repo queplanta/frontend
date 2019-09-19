@@ -7,10 +7,16 @@ import PlantList from './PlantList.js';
 import { TabsRoute, TabRoute } from '../lib/Tabs.js';
 
 function PlantsHome(props) {
-  const {classes, viewer} = props;
+  const {classes, viewer, relay} = props;
+
+  let title = relay.variables.edibles ? `Plantas Comestíveis` : `Plantas`;
+
+  if (relay.variables.search) {
+    title = `Busca de plantas por: ${relay.variables.search}`
+  }
 
   return <Width>
-    <Helmet title="Plantas" />
+    <Helmet title={title} />
     <Paper className={classes.paper}>
       <TabsRoute
         indicatorColor="primary"
@@ -20,7 +26,7 @@ function PlantsHome(props) {
         <TabRoute label="Comestíveis" wrapped value="/plantas/comestiveis" />
       </TabsRoute>
     </Paper>
-    <PageTitle>Plantas</PageTitle>
+    <PageTitle>{title}</PageTitle>
     <PlantList viewer={viewer} count={30} />
   </Width>
 }
