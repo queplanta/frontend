@@ -7,6 +7,7 @@ import makeRouteConfig from 'found/lib/makeRouteConfig';
 import App from './App.js';
 import AppQuery from './App.query.js';
 import {homeRoute} from './Home.js';
+import {accountsRoutes} from './accounts/routes.js';
 import {blogRoutes} from './blog/routes.js';
 import {pagesRoutes} from './pages/routes.js';
 import {plantsRoutes} from './plants/routes.js';
@@ -24,6 +25,7 @@ export const routeConfig = makeRouteConfig(<Route
   {blogRoutes}
   {occurrencesRoutes}
   {pagesRoutes}
+  {accountsRoutes}
 </Route>);
 
 export const render = createRender({});
