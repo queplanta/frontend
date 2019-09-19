@@ -27,6 +27,10 @@ export const fragmentQuery = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  user: fragmentQuery
+}
+
 export const query = graphql`
   query UserActivityListQuery(
     $count: Int,

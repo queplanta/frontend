@@ -25,6 +25,10 @@ export const fragmentQuery = graphql`
   }
 `
 
+export const fragmentSpec = {
+  viewer: fragmentQuery
+}
+
 export const query = graphql`
   query PostListQuery(
     $count: Int!

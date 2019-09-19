@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import CommentsItem from './CommentsItem.js';
-import { fragmentQuery, query } from './CommentsList.query.js';
+import { fragmentSpec, query } from './CommentsList.query.js';
 
 function CommentsReplies(props) {
   const {relay, commenting: {comments}} = props
@@ -41,7 +41,7 @@ const styles = {}
 
 export default createPaginationContainer(
   withStyles(styles)(CommentsReplies),
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

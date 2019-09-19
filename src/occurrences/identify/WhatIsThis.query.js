@@ -35,4 +35,4 @@ const query = graphql`
     ...SuggestionsList_occurrence
   }
 `;
-export default query
+export default {occurrence: query}

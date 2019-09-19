@@ -26,6 +26,10 @@ export const fragmentQuery = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  lifeNode: fragmentQuery
+}
+
 export const query = graphql`
   query TaxoClimbQuery(
     $count: Int!,

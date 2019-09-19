@@ -7,7 +7,7 @@ import { TextField, List, ListItem, ListItemText, ListItemAvatar,
 import DeleteIcon from '@material-ui/icons/Delete';
 import _ from 'lodash';
 import { useFormInput, clearFormInput } from '../lib/forms.js';
-import { query, refetchQuery, renderQuery } from './PlantSelectField.query.js';
+import { fragmentSpec, refetchQuery, renderQuery } from './PlantSelectField.query.js';
 import ImgDefault from './PlantImgDefault.js';
 
 function PlantSelectField(props) {
@@ -137,7 +137,7 @@ const styles = (theme) => ({
 
 const PlantSelectFieldContainer = createRefetchContainer(
   withStyles(styles)(PlantSelectField),
-  query,
+  fragmentSpec,
   refetchQuery
 );
 

@@ -34,6 +34,10 @@ export const query = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  comment: query
+}
+
 export const refetchQuery = graphql`
   query CommentsItemQuery($id: ID!, $isRepliesExpanded: Boolean!) {
     comment(id: $id) {

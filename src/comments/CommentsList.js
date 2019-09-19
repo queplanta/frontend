@@ -4,7 +4,7 @@ import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import CommentsItem from './CommentsItem.js';
 import CommentCreate from './CommentCreate.js';
-import { fragmentQuery, query } from './CommentsList.query.js';
+import { fragmentSpec, query } from './CommentsList.query.js';
 
 function CommentsList(props) {
   const {relay, commenting: {id: parentId, comments: {edges: comments}}} = props
@@ -37,7 +37,7 @@ const styles = {}
 
 export default createPaginationContainer(
   withStyles(styles)(CommentsList),
-  fragmentQuery,
+  fragmentSpec,
   {
     direction: 'forward',
     query: query,

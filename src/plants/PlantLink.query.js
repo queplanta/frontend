@@ -8,4 +8,4 @@ const query = graphql `
     slug
   }
 `;
-export default query
+export default {plant: query}

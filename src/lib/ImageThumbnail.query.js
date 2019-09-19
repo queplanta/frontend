@@ -29,6 +29,10 @@ export const query = graphql`
   }
 `;
 
+export const fragmentSpec = {
+  image: query
+}
+
 export const refetchQuery = graphql`
   query ImageThumbnailQuery($id: ID!, $isOpen: Boolean!) {
     image(id: $id) {

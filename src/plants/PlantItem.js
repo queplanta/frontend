@@ -3,7 +3,7 @@ import { Card, CardContent, CardMedia, Typography, Link, withStyles } from '@mat
 import { createFragmentContainer } from 'react-relay';
 import { Link as RouterLink } from 'found';
 import _ from 'lodash';
-import query from './PlantItem.query.js';
+import fragmentSpec from './PlantItem.query.js';
 import imgDefault from '../assets/plant-default.svg';
 
 function PlantItem(props) {
@@ -55,5 +55,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(PlantItem),
-  query
+  fragmentSpec
 )

@@ -4,7 +4,7 @@ import { createFragmentContainer } from 'react-relay';
 import { Link as RouterLink } from 'found';
 import { RelativeDate } from '../ui';
 import ProfileLink from '../accounts/ProfileLink.js';
-import query from './PostItem.query.js';
+import fragmentSpec from './PostItem.query.js';
 
 function PostItem(props) {
   const {classes, post} = props;
@@ -33,5 +33,5 @@ const styles = (theme) => ({
 
 export default createFragmentContainer(
   withStyles(styles)(PostItem),
-  query
+  fragmentSpec
 )

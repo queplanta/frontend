@@ -5,7 +5,8 @@ import {
   withStyles
 } from '@material-ui/core';
 import { createFragmentContainer } from 'react-relay';
-import query from './WhatIsThis.query.js';
+import { Link as RouterLink } from 'found';
+import fragmentSpec from './WhatIsThis.query.js';
 import { RelativeDate } from '../../ui';
 import ProfileLink from '../../accounts/ProfileLink.js';
 import SuggestionsList from './SuggestionsList.js';
@@ -36,7 +37,7 @@ function WhatIsThis(props) {
         </MenuButton>
       }
       title={<ProfileLink user={occurrence.revisionCreated.author} hideAvatar={true} />}
-      subheader={<RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />}
+      subheader={<RouterLink to={`/ocorrencias/${occurrence.id}`} className={classes.relativeDateLink}><RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} /></RouterLink>}
     />
     <div className={classes.imagesWrapper}>
       {occurrence.images.edges.map((edge) => {
@@ -92,9 +93,16 @@ const styles = (theme) => ({
     minWidth: '100%',
     transform: 'translate(-50%, -50%)',
   },
+  relativeDateLink: {
+    color: theme.palette.text.secondary,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  }
 })
 
 export default createFragmentContainer(
   withStyles(styles)(WhatIsThis),
-  query
+  fragmentSpec
 )

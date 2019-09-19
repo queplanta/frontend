@@ -10,4 +10,4 @@ const query = graphql`
     isAuthenticated
   }
 `;
-export default query
+export default {me: query}

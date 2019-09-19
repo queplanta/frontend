@@ -9,7 +9,7 @@ import { createRefetchContainer } from 'react-relay';
 import { RelativeDate } from '../ui';
 import VotingButtons from '../voting/VotingButtons.js';
 import ProfileLink from '../accounts/ProfileLink';
-import { query, refetchQuery } from './CommentsItem.query.js';
+import { fragmentSpec, refetchQuery } from './CommentsItem.query.js';
 import CommentCreate from './CommentCreate.js';
 import CommentEdit from './CommentEdit.js';
 import CommentsReplies from './CommentsReplies.js';
@@ -130,6 +130,6 @@ const styles = (theme) => ({
 
 export default createRefetchContainer(
   withStyles(styles)(CommentItem),
-  query,
+  fragmentSpec,
   refetchQuery
 );

@@ -20,4 +20,4 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default {revision: query}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'found';
 import {
   TextField, Button,
   IconButton,
@@ -17,6 +18,7 @@ import AddIdentifyMutation from './AddIdentify.mutation.js';
 import { useLoginRequired } from '../../accounts/LoginRequired.js';
 
 function AddIdentify({classes, environment, setFormErrors}) {
+  const { router } = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const { isAuthenticated } = useLoginRequired();
   const when = useFormInput('')
@@ -44,13 +46,14 @@ function AddIdentify({classes, environment, setFormErrors}) {
     })
   }
 
-  function onSuccess() {
+  function onSuccess(response) {
     clearFormInput(when)
     clearFormInput(where)
     clearFormInput(notes)
     setImages([])
     setIsSaving(false)
     enqueueSnackbar('Requisição de identificação adicionada com sucesso', {variant: "success"})
+    router.push(`/ocorrencias/${response.whatIsThisCreate.occurrence.node.id}`)
   }
 
   function handleSubmit(e) {
