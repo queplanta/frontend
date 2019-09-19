@@ -20,6 +20,11 @@ export const plantsRoutes = <React.Fragment>
     Component={HomePlants}
   />
   <Route
+    path="/plantas/comestiveis"
+    query={HomePlantsQuery}
+    Component={HomePlants}
+  />
+  <Route
     path="/:plantSlug-p:plantID(\d+)"
     query={PlantQuery}
     Component={Plant}
