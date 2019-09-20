@@ -1,4 +1,7 @@
+import 'regenerator-runtime/runtime';
+
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-modern/es';
 
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
   let requestVariables = {
@@ -31,11 +34,14 @@ function fetchQuery(operation, variables, cacheConfig, uploadables) {
 }
 
 // Create a network layer from the fetch function
-const network = Network.create(fetchQuery);
+// const network = Network.create(fetchQuery);
 
 export default function createRelayEnvironment(relaySsr, url) {
   return new Environment({
-    network,
+    network: new RelayNetworkLayer([
+      relaySsr.getMiddleware(),
+      urlMiddleware({ url }),
+    ]),
     store: new Store(new RecordSource()),
   });
 }

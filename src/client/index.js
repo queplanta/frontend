@@ -7,10 +7,12 @@ import createFarceRouter from 'found/lib/createFarceRouter';
 import { Resolver } from 'found-relay';
 // import * as serviceWorker from './serviceWorker.js';
 
-import createRelayEnvironment from './relay/createRelayEnvironment.js';
-import { historyMiddlewares, render, routeConfig } from './router.js';
+import createRelayEnvironment from '../relay/createRelayEnvironment.js';
+import { historyMiddlewares, render, routeConfig } from '../router.js';
 
-import './index.css';
+import '../index.css';
+
+import { IntlProvider } from 'react-intl';
 
 (async () => {
   const resolver = new Resolver(
@@ -30,7 +32,9 @@ import './index.css';
   });
 
   ReactDOM.hydrate(
-    <Router resolver={resolver} />,
+    <IntlProvider locale="pt-BR">
+      <Router resolver={resolver} />
+    </IntlProvider>,
     document.getElementById('root'),
   );
 

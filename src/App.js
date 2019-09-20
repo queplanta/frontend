@@ -13,6 +13,7 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link  as RouterLink, withRouter } from 'found';
 import { SnackbarProvider } from 'notistack';
+import { IntlProvider } from 'react-intl';
 import theme from './theme.js';
 import logoImg from './assets/queplanta-icon.svg';
 import logoTextImg from './assets/queplanta-text-light.svg';
@@ -52,14 +53,15 @@ export class App extends Component {
     const {drawerOpen} = this.state;
 
     let isPlantsRoute = null;
-    if (window) {
+    if (typeof window !== 'undefined') {
       const urlTest = /^\/[-\w]+-p\d+\/?/;
       if (urlTest.test(window.location.pathname)) {
         isPlantsRoute = true;
       }
     }
 
-    return (<ThemeProvider theme={theme}>
+    return (<IntlProvider locale="pt-BR">
+      <ThemeProvider theme={theme}>
       <LoginRequiredProvider viewer={viewer}>
         <SnackbarProvider maxSnack={3}>
           <React.Fragment>
@@ -166,7 +168,8 @@ export class App extends Component {
           </React.Fragment>
         </SnackbarProvider>
       </LoginRequiredProvider>
-    </ThemeProvider>);
+    </ThemeProvider>
+    </IntlProvider>);
   }
 }
 

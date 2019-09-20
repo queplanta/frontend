@@ -6,10 +6,10 @@ import PlantLink from '../plants/PlantLink.js';
 import { fragmentSpec, query } from './TaxoClimb.query.js'
 
 function TaxoClimbing({lifeNode, relay}) {
+  const [isLoading, setLoading] = useState(false)
   if (lifeNode.children.edges.length === 0) {
     return null;
   }
-  const [isLoading, setLoading] = useState(false)
   const hasMore = relay.hasMore()
 
   function handleLoadMore() {
