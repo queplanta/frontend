@@ -13,10 +13,27 @@ const query = graphql`
               idInt
               ...PlantLink_plant
               rankDisplay
+              images(first: 1) {
+                edges {
+                  node {
+                    id
+                    smallImage: image(width: 440, height: 520) {
+                      url
+                    }
+                  }
+                }
+              }
             }
             location {
               type
               coordinates
+            }
+            author {
+              id
+              ...ProfileLink_user
+            }
+            revisionCreated {
+              createdAt
             }
           }
         }
