@@ -1,7 +1,8 @@
 import 'regenerator-runtime/runtime';
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
-import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-modern/es';
+import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-modern';
+// import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-modern/es';
 
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
   let requestVariables = {

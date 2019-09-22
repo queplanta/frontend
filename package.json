@@ -72,10 +72,5 @@
     "relay-compiler": "^6.0.0",
     "relay-config": "^6.0.0"
   },
-  "babel": {
-    "plugins": [
-      "relay"
-    ]
-  },
   "proxy": "http://queplanta.com"
 }
