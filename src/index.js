@@ -1,45 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import RelayClientSSR from 'react-relay-network-modern-ssr/lib/client';
-import BrowserProtocol from 'farce/lib/BrowserProtocol';
-// import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
-import createFarceRouter from 'found/lib/createFarceRouter';
-import { Resolver } from 'found-relay';
-import * as serviceWorker from './serviceWorker.js';
+import http from 'http';
 
-import createRelayEnvironment from './relay/createRelayEnvironment.js';
-import { historyMiddlewares, render, routeConfig } from './router.js';
+let app = require('./server').default;
 
-import './index.css';
+const server = http.createServer(app);
 
-import { IntlProvider } from 'react-intl';
+let currentApp = app;
 
-(async () => {
-  const resolver = new Resolver(
-    createRelayEnvironment(
-      // eslint-disable-next-line no-underscore-dangle
-      new RelayClientSSR(window.__RELAY_PAYLOADS__),
-      '/graphql',
-    ),
-  );
+server.listen(process.env.PORT || 3000, error => {
+  if (error) {
+    console.log(error);
+  }
 
-  const Router = createFarceRouter({
-    historyProtocol: new BrowserProtocol(),
-    historyMiddlewares,
-    routeConfig,
-    resolver,
-    render,
+  console.log('🚀 started');
+});
+
+if (module.hot) {
+  console.log('✅  Server-side HMR Enabled!');
+
+  module.hot.accept('./server', () => {
+    console.log('🔁  HMR Reloading `./server`...');
+
+    try {
+      app = require('./server').default;
+      server.removeListener('request', currentApp);
+      server.on('request', app);
+      currentApp = app;
+    } catch (error) {
+      console.error(error);
+    }
   });
-
-  ReactDOM.hydrate(
-    <IntlProvider locale="pt-BR">
-      <Router resolver={resolver} />
-    </IntlProvider>,
-    document.getElementById('root'),
-  );
-
-  // If you want your app to work offline and load faster, you can change
-  // unregister() to register() below. Note this comes with some pitfalls.
-  // Learn more about service workers: https://bit.ly/CRA-PWA
-  serviceWorker.unregister();
-})();
+}

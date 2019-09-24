@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from 'react-relay';
 
 const query = graphql`
   fragment VotingButtons_voting on Voting  {

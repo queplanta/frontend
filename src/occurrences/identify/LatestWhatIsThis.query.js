@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from 'react-relay';
 
 export const fragmentQuery = graphql`
   fragment LatestWhatIsThis_viewer on Query

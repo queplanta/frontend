@@ -33,7 +33,7 @@ export function a11yProps(index) {
 }
 
 export function TabsRoute(props) {
-  return <Tabs value={window ? window.location.pathname : null} {...props} />
+  return <Tabs value={typeof window !== 'undefined' ? window.location.pathname : null} {...props} />
 }
 
 export function TabRoute(props) {

@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from 'react-relay';
 import { commitMutation } from 'react-relay';
 
 const mutation = graphql`

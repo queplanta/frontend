@@ -1,5 +1,8 @@
 {
-  "plugins": [
-    "relay"
-  ]
+  "presets": [
+    "razzle/babel"
+   ],
+   "plugins": [
+     "relay"
+   ]
 }
