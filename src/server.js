@@ -11,8 +11,6 @@ server
   }))
   .use('/public', proxy('http://queplanta.com', {
     proxyReqPathResolver: (req) => {
-      console.log('req')
-      console.log(req)
       return `/public${req.url}`
     }
   }))

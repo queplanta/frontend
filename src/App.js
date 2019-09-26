@@ -24,6 +24,11 @@ import { LoginRequiredProvider } from './accounts/LoginRequired.js';
 
 import './index.css';
 
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  // require('@formatjs/intl-relativetimeformat/dist/locale-data/pt');
+}
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +75,9 @@ export class App extends Component {
               <Helmet
                 titleTemplate="%s | Que Planta"
                 defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-              />
+              >
+                <html lang="pt-BR" amp />
+              </Helmet>
               <AppBar position="static" className={classes.appbar}>            
                 <Toolbar className={classes.toolbar}>
                   <Drawer

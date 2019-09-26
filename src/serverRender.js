@@ -34,7 +34,7 @@ const injectHTML = ({ html, title, meta, body, relayData }) => {
         ${meta}
       </head>
       <body>
-        <div id="root">${body}</div>
+        <section id="root">${body}</section>
         <script>window.__RELAY_PAYLOADS__ = ${serialize(relayData, { isJSON: true })};</script>
       </body>
     </html>`;
