@@ -6,6 +6,7 @@ const query = graphql`
       id,
       me {
         ...Navbar_me
+        isAuthenticated
       }
       ...Auth_viewer
     }

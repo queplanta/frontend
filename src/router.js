@@ -24,8 +24,10 @@ export const routeConfig = makeRouteConfig(<Route
   {plantsRoutes}
   {blogRoutes}
   {occurrencesRoutes}
-  {pagesRoutes}
   {accountsRoutes}
+
+  {/*needs to be last one*/}
+  {pagesRoutes}
 </Route>);
 
 export const render = createRender({});

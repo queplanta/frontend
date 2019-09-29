@@ -5,7 +5,7 @@ import PageQuery from './Page.query.js';
 
 export const pagesRoutes = <React.Fragment>
   <Route
-    path="/:url"
+    path="/:url(.+)"
     query={PageQuery}
     Component={Page}
   />

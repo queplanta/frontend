@@ -22,7 +22,9 @@ import Footer from './Footer.js';
 import headerNavBackground from './assets/background.jpg';
 import { LoginRequiredProvider } from './accounts/LoginRequired.js';
 import { isBrowser } from './lib/helpers.js';
+import Jumbotron from './Jumbotron.js';
 
+import './index.css';
 
 export class App extends Component {
   constructor(props) {
@@ -133,6 +135,9 @@ export class App extends Component {
                     <div className={classes.grow} />
                     <AccountNavbar me={viewer.me} />
                   </Toolbar>
+
+                  {(!viewer.me || !viewer.me.isAuthenticated) && <Jumbotron />}
+
                   <Hidden smDown implementation="css">
                     <nav className={classes.subnav}>      
                       <Toolbar className={classes.toolbar}>
