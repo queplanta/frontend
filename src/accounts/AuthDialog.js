@@ -112,6 +112,7 @@ class AuthDialog extends Component {
       open={open}
       onClose={this.onClose}
       aria-labelledby="auth-dialog-title"
+      scroll="body"
       PaperProps={{
         component: "form",
         onSubmit: isAuthScreen ? this.handleAuthSubmit : this.handleRegisterSubmit

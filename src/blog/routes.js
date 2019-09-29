@@ -6,6 +6,8 @@ import Post from './Post.js';
 import PostQuery from './Post.query.js';
 import PostCreate from './PostCreate.js';
 import PostCreateQuery from './PostCreate.query.js';
+import PostEdit from './PostEdit.js';
+import PostEditQuery from './PostEdit.query.js';
 
 export const blogRoutes = <React.Fragment>
   <Route
@@ -15,7 +17,7 @@ export const blogRoutes = <React.Fragment>
     prepareVariables={(params) => ({...params, count: 30})}
   />
   <Route
-    path="/blog/new"
+    path="/blog/novo"
     query={PostCreateQuery}
     render={(props) => <PostCreate {...props} />}
   />
@@ -24,4 +26,7 @@ export const blogRoutes = <React.Fragment>
     query={PostQuery}
     Component={Post}
   />
+  <Route path="/blog/:id/editar" query={PostEditQuery} render={(args) => {
+    return <PostEdit {...args.props} environment={args.environment} />
+  }} />
 </React.Fragment>
