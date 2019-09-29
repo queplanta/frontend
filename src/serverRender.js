@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import '@formatjs/intl-relativetimeformat/polyfill-locales';
 import fs from 'fs';
 import path from 'path';
 import { getFarceResult } from 'found/lib/server';

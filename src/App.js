@@ -4,14 +4,15 @@ import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { 
   AppBar, Toolbar, Typography, Chip, Button, Tooltip,
-  Divider, Link, InputBase, Drawer, IconButton,
+  Divider, Link, InputBase, Drawer, IconButton, Container,
+  List, ListItem, ListItemIcon, Grid,
   MenuList, MenuItem, ListItemText, Hidden, withStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link  as RouterLink, withRouter } from 'found';
+import { Link as RouterLink, withRouter } from 'found';
 import { SnackbarProvider } from 'notistack';
 import { IntlProvider } from 'react-intl';
 import theme from './theme.js';
@@ -21,7 +22,7 @@ import AccountNavbar from './accounts/Navbar.js';
 import Footer from './Footer.js';
 import headerNavBackground from './assets/background.jpg';
 import { LoginRequiredProvider } from './accounts/LoginRequired.js';
-
+import Jumbotron from './Jumbotron.js';
 import './index.css';
 
 if (!Intl.RelativeTimeFormat) {
@@ -75,11 +76,9 @@ export class App extends Component {
               <Helmet
                 titleTemplate="%s | Que Planta"
                 defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-              >
-                <html lang="pt-BR" amp />
-              </Helmet>
+              />
               <AppBar position="static" className={classes.appbar}>            
-                <Toolbar className={classes.toolbar}>
+                <Container component={Toolbar} className={classes.toolbar}>
                   <Drawer
                     className={classes.drawer}
                     variant="temporary"
@@ -138,10 +137,13 @@ export class App extends Component {
                   </Hidden>
                   <div className={classes.grow} />
                   <AccountNavbar me={viewer.me} />
-                </Toolbar>
+                </Container>
+
+                <Jumbotron />
+
                 <Hidden smDown implementation="css">
                   <nav className={classes.subnav}>      
-                    <Toolbar className={classes.toolbar}>
+                    <Container component={Toolbar} className={classes.toolbar}>
                       <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/" component={RouterLink} exact={true}>Início</Link>
                       <Link activeClassName={classes.navlinkActive} className={clsx(classes.navlink, {[classes.navlinkActive]: isPlantsRoute})} to="/plantas" component={RouterLink}>Plantas</Link>
                       <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
@@ -165,7 +167,7 @@ export class App extends Component {
                       <Tooltip title="Identificar por foto" placement="top">
                         <Button className={classes.btn} component={RouterLink} to="/identificacao/pedido"><CameraAltIcon /></Button>
                       </Tooltip>
-                    </Toolbar>
+                    </Container>
                   </nav>
                 </Hidden>
               </AppBar>
@@ -228,8 +230,6 @@ const styles = theme => ({
     backgroundColor: 'rgba(0,80,39,0.5)',
   },
   toolbar: {
-    maxWidth: 1140,
-    width: '100%',
     margin: '0 auto',
   },
   container: {
@@ -292,7 +292,7 @@ const styles = theme => ({
   },
   drawerListItemActive: {
     background: theme.palette.action.selected
-  }
+  },
 });
 
 export default withStyles(styles)(withRouter(App))
