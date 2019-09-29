@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'found';
 import { Typography, Tabs, Tab, Box } from '@material-ui/core';
+import { isBrowser } from './helpers.js';
 
 export function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,7 +34,7 @@ export function a11yProps(index) {
 }
 
 export function TabsRoute(props) {
-  return <Tabs value={window ? window.location.pathname : null} {...props} />
+  return <Tabs value={isBrowser() ? window.location.pathname : null} {...props} />
 }
 
 export function TabRoute(props) {

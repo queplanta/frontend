@@ -12,8 +12,6 @@ import { historyMiddlewares, render, routeConfig } from './router.js';
 
 import './index.css';
 
-import { IntlProvider } from 'react-intl';
-
 (async () => {
   const resolver = new Resolver(
     createRelayEnvironment(
@@ -32,9 +30,7 @@ import { IntlProvider } from 'react-intl';
   });
 
   ReactDOM.hydrate(
-    <IntlProvider locale="pt-BR">
-      <Router resolver={resolver} />
-    </IntlProvider>,
+    <Router resolver={resolver} />,
     document.getElementById('root'),
   );
 
