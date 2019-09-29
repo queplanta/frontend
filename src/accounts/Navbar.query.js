@@ -7,7 +7,8 @@ const query = graphql`
     avatar(width: 40, height: 40) {
       url
     },
-    isAuthenticated
+    isAuthenticated,
+    myPerms
   }
 `;
 export default {me: query}

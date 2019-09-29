@@ -1,13 +1,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Markdown from 'react-remarkable';
-import { Link, Grid, withStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'found';
+import { Grid, withStyles } from '@material-ui/core';
 import { RelativeDate, Width } from '../ui';
 import PageTitle from '../lib/PageTitle.js';
 import ProfileLink from '../accounts/ProfileLink';
 import VotingButtons from '../voting/VotingButtons.js';
 import CommentsList from '../comments/CommentsList.js';
+import { hasPerm } from '../lib/perms.js';
+import Link from '../lib/Link.js';
 
 function Post(props) {
   const {post} = props;
@@ -25,7 +26,11 @@ function Post(props) {
       </Grid>
       <Grid item xs={12}>
         Enviada por <ProfileLink user={post.revisionCreated.author} /> <RelativeDate date={post.publishedAt} /><span>. </span>
-        <Link to={`/revisions/${post.id}`} component={RouterLink}>{post.document.revisionsCount} alterações</Link>.
+        <Link to={`/revisions/${post.id}`}>{post.document.revisionsCount} alterações</Link>
+        {hasPerm(post, 'edit') && <React.Fragment>
+          <span> . </span>
+          <Link to={`/blog/${post.id}/editar`}>editar</Link>
+        </React.Fragment>}
       </Grid>
       <Grid item xs={12}>
         <Markdown options={markdownOptions} container="div">{post.body}</Markdown>

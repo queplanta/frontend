@@ -67,6 +67,12 @@ class AccountNavbar extends Component {
             horizontal: 'right',
           }}
         >
+          <MenuItem to={`/blog/novo`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
+            <ListItemText primary="Nova Post no Blog"/>
+          </MenuItem>
+          <MenuItem to={`/paginas/nova`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
+            <ListItemText primary="Nova Página"/>
+          </MenuItem>
           <MenuItem to={`/u/${me.username}`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
             <ListItemText primary="Meu perfil"/>
           </MenuItem>   

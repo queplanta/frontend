@@ -6,40 +6,40 @@ import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
 import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
-import PostCreateMutation from './PostCreate.mutation.js';
+import PageEditMutation from './PageEdit.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
-function PostCreate({environment, setFormErrors}) {
+function PageEdit({environment, setFormErrors, page}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
 
-  const url = useFormInput('')
-  const title = useFormInput('')
-  const publishedAt = useFormInput(moment().format('YYYY-MM-DDTHH:mm:ss'))
-  const body = useFormInput('')
-  const tags = useFormInput('')
+  const url = useFormInput(page.url)
+  const title = useFormInput(page.title)
+  const publishedAt = useFormInput(moment(page.publishedAt).format('YYYY-MM-DDTHH:mm:ss'))
+  const body = useFormInput(page.body)
 
   const [isSaving, setIsSaving] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault()
-    PostCreateMutation.commit(
+    setIsSaving(true)
+    PageEditMutation.commit(
       environment,
       {
+        id: page.id,
         url: url.value,
         title: title.value,
         publishedAt: publishedAt.value,
         body: body.value,
-        tags: tags.value,
       },
       {
         setFormErrors,
         onSuccess: () => {
-          enqueueSnackbar('Criado com sucesso', {variant: "success"})
+          enqueueSnackbar('Editada com sucesso', {variant: "success"})
           setIsSaving(false)
-          router.push(`/blog/${url.value}`)
+          router.push(`/${url.value}`)
         },
         onError: () => {
           enqueueSnackbar('Ocorreu um erro', {variant: "error"})
@@ -51,11 +51,11 @@ function PostCreate({environment, setFormErrors}) {
 
   return <Width>
     <Helmet
-      title="Escrever novo Post"
+      title={`Editando Página: ${page.title}`}
     />
     <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
       <Grid item xs={12}>
-        <PageTitle>Escrever novo Post</PageTitle>
+        <PageTitle>{`Editando Página: ${page.title}`}</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
       </Grid>
       <Grid item xs={12}>
@@ -92,17 +92,10 @@ function PostCreate({environment, setFormErrors}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          label="Tags"
-          fullWidth
-          {...tags}
-        />
-      </Grid>
-      <Grid item xs={12}>
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
   </Width>
 }
 
-export default withStyles({})(hasFormErrors(PostCreate))
+export default withStyles({})(hasFormErrors(PageEdit))

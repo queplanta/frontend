@@ -6,12 +6,12 @@ import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
 import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
-import PostCreateMutation from './PostCreate.mutation.js';
+import PageCreateMutation from './PageCreate.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
-function PostCreate({environment, setFormErrors}) {
+function PageCreate({environment, setFormErrors}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
 
@@ -19,27 +19,25 @@ function PostCreate({environment, setFormErrors}) {
   const title = useFormInput('')
   const publishedAt = useFormInput(moment().format('YYYY-MM-DDTHH:mm:ss'))
   const body = useFormInput('')
-  const tags = useFormInput('')
 
   const [isSaving, setIsSaving] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault()
-    PostCreateMutation.commit(
+    PageCreateMutation.commit(
       environment,
       {
         url: url.value,
         title: title.value,
         publishedAt: publishedAt.value,
         body: body.value,
-        tags: tags.value,
       },
       {
         setFormErrors,
         onSuccess: () => {
-          enqueueSnackbar('Criado com sucesso', {variant: "success"})
+          enqueueSnackbar('Criada com sucesso', {variant: "success"})
           setIsSaving(false)
-          router.push(`/blog/${url.value}`)
+          router.push(`/${url.value}`)
         },
         onError: () => {
           enqueueSnackbar('Ocorreu um erro', {variant: "error"})
@@ -51,11 +49,11 @@ function PostCreate({environment, setFormErrors}) {
 
   return <Width>
     <Helmet
-      title="Escrever novo Post"
+      title="Escrever nova Página"
     />
     <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
       <Grid item xs={12}>
-        <PageTitle>Escrever novo Post</PageTitle>
+        <PageTitle>Escrever nova Página</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
       </Grid>
       <Grid item xs={12}>
@@ -92,17 +90,10 @@ function PostCreate({environment, setFormErrors}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          label="Tags"
-          fullWidth
-          {...tags}
-        />
-      </Grid>
-      <Grid item xs={12}>
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
   </Width>
 }
 
-export default withStyles({})(hasFormErrors(PostCreate))
+export default withStyles({})(hasFormErrors(PageCreate))

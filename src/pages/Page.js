@@ -1,12 +1,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Paper, Link, withStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'found';
+import { Paper, withStyles } from '@material-ui/core';
 import Markdown from 'react-remarkable';
 import { RelativeDate, Width } from '../ui';
 import PageTitle from '../lib/PageTitle.js';
+import Link from '../lib/Link.js';
 import ProfileLink from '../accounts/ProfileLink.js';
 import NotFound from './NotFound.js'
+import { hasPerm } from '../lib/perms.js';
 
 const markdownOptions = {
   html: true,
@@ -32,7 +33,11 @@ function Page(props) {
         {` `}
         <RelativeDate date={page.publishedAt} />
         <span> . </span>
-        <Link component={RouterLink} to={`/revisions/${page.id}`}>{page.document.revisionsCount} alterações</Link>
+        <Link to={`/revisions/${page.id}`}>{page.document.revisionsCount} alterações</Link>
+        {hasPerm(page, 'edit') && <React.Fragment>
+          <span> . </span>
+          <Link to={`/paginas/${page.id}/editar`}>editar</Link>
+        </React.Fragment>}
       </div>
       <div>
         <Markdown options={markdownOptions} container="div">{page.body}</Markdown>

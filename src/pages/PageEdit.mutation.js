@@ -2,9 +2,9 @@ import graphql from 'babel-plugin-relay/macro';
 import { commitMutation } from '../relay';
 
 const mutation = graphql`
-  mutation PostCreateMutation($input: PostCreateInput!) {
-    postCreate(input: $input) {
-      post {
+  mutation PageEditMutation($input: PageEditInput!) {
+    pageEdit(input: $input) {
+      page {
         id
         title
         url
@@ -20,7 +20,7 @@ const mutation = graphql`
 
 function commit(environment, input, callbacks) {
   return commitMutation({
-    mutationName: 'postCreate',
+    mutationName: 'pageEdit',
     environment,
     mutation,
     input,
@@ -29,4 +29,3 @@ function commit(environment, input, callbacks) {
 }
 
 export default { commit };
-

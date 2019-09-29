@@ -6,28 +6,31 @@ import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
 import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
-import PostCreateMutation from './PostCreate.mutation.js';
+import PostEditMutation from './PostEdit.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
-function PostCreate({environment, setFormErrors}) {
+function PostEdit({environment, setFormErrors, post}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
 
-  const url = useFormInput('')
-  const title = useFormInput('')
-  const publishedAt = useFormInput(moment().format('YYYY-MM-DDTHH:mm:ss'))
-  const body = useFormInput('')
-  const tags = useFormInput('')
+  console.log(post)
+
+  const url = useFormInput(post.url)
+  const title = useFormInput(post.title)
+  const publishedAt = useFormInput(moment(post.publishedAt).format('YYYY-MM-DDTHH:mm:ss'))
+  const body = useFormInput(post.body)
+  const tags = useFormInput(post.tags.edges.map(edge => edge.node.title).join(', '))
 
   const [isSaving, setIsSaving] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault()
-    PostCreateMutation.commit(
+    PostEditMutation.commit(
       environment,
       {
+        id: post.id,
         url: url.value,
         title: title.value,
         publishedAt: publishedAt.value,
@@ -37,7 +40,7 @@ function PostCreate({environment, setFormErrors}) {
       {
         setFormErrors,
         onSuccess: () => {
-          enqueueSnackbar('Criado com sucesso', {variant: "success"})
+          enqueueSnackbar('Editado com sucesso', {variant: "success"})
           setIsSaving(false)
           router.push(`/blog/${url.value}`)
         },
@@ -51,11 +54,11 @@ function PostCreate({environment, setFormErrors}) {
 
   return <Width>
     <Helmet
-      title="Escrever novo Post"
+      title={`Editando Post: ${post.title}`}
     />
     <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
       <Grid item xs={12}>
-        <PageTitle>Escrever novo Post</PageTitle>
+        <PageTitle>{`Editando Post: ${post.title}`}</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
       </Grid>
       <Grid item xs={12}>
@@ -105,4 +108,4 @@ function PostCreate({environment, setFormErrors}) {
   </Width>
 }
 
-export default withStyles({})(hasFormErrors(PostCreate))
+export default withStyles({})(hasFormErrors(PostEdit))
