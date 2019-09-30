@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Markdown from 'react-remarkable';
 import { Grid, withStyles } from '@material-ui/core';
 import { RelativeDate, Width } from '../ui';
 import PageTitle from '../lib/PageTitle.js';
@@ -9,12 +8,10 @@ import VotingButtons from '../voting/VotingButtons.js';
 import CommentsList from '../comments/CommentsList.js';
 import { hasPerm } from '../lib/perms.js';
 import Link from '../lib/Link.js';
+import JsxParser from '../lib/JsxParser.js';
 
 function Post(props) {
   const {post} = props;
-  const markdownOptions = {
-    html: true,
-  };
 
   return <Width>
     <Helmet
@@ -33,7 +30,9 @@ function Post(props) {
         </React.Fragment>}
       </Grid>
       <Grid item xs={12}>
-        <Markdown options={markdownOptions} container="div">{post.body}</Markdown>
+        <JsxParser
+          jsx={post.body}
+        />
       </Grid>
       <Grid item xs={12}>
         <VotingButtons voting={post.voting} parentId={post.id} />

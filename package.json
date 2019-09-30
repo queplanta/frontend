@@ -21,6 +21,7 @@
     "react-helmet": "^5.2.0",
     "react-html5-camera-photo": "^1.4.3",
     "react-intl": "^3.3.2",
+    "react-jsx-parser": "^1.19.1",
     "react-leaflet": "^2.4.0",
     "react-media": "^1.9.2",
     "react-relay": "^6.0.0",
