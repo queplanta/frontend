@@ -20,10 +20,18 @@ function WhatIsThis(props) {
   const {classes, occurrence, environment} = props;
   const menuRef = React.useRef()
   const numImages = occurrence.images.edges.length;
-  let imgPercentWidth = 100.0 / numImages;
+  const numImagesIsEven = numImages % 2 === 0;
+
+  let numImagesColumns = numImages
+  if (!numImagesIsEven) {
+    numImagesColumns = numImages - 1
+  }
+
+  let imgPercentWidth = 100.0 / numImagesColumns;
   if (imgPercentWidth < 33) {
     imgPercentWidth = 33.3;
   }
+
   return <Card classes={{root: classes.root}} elevation={3}>
     <CardHeader
       avatar={<Avatar
@@ -40,20 +48,17 @@ function WhatIsThis(props) {
       subheader={<RouterLink to={`/ocorrencias/${occurrence.id}`} className={classes.relativeDateLink}><RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} /></RouterLink>}
     />
     <div className={classes.imagesWrapper}>
-      {occurrence.images.edges.map((edge) => {
+      {occurrence.images.edges.map((edge, i) => {
+        const isFirst = i === 0
         const image = edge.node
-        return <div
+        return <ImageThumbnail
           key={image.id}
-          className={classes.imageContainer}
-          style={{width: `${imgPercentWidth}%`}}
-        >
-          <ImageThumbnail
-            alt="foto de planta para ser identificada"
-            image={image}
-            className={classes.media}
-            src={image.smallImage.url}
-          />
-        </div>
+          alt="foto de planta para ser identificada"
+          image={image}
+          className={classes.media}
+          src={image.smallImage.url}
+          style={{width: `${!numImagesIsEven && isFirst ? 100 : imgPercentWidth}%`}}
+        />
       })}
     </div>
     <CardContent>
@@ -73,25 +78,8 @@ const styles = (theme) => ({
   imagesWrapper: {
     lineHeight: '0',
   },
-  imageContainer: {
-    width: '100%',
-    height: 200,
-    position: 'relative',
-    display: 'inline-block',
-    overflow: 'hidden',
-    margin: 0,
-    [theme.breakpoints.up('sm')]: {
-      height: 300,
-    }
-  },
   media: {
-    display: 'block',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    minHeight: '100%',
-    minWidth: '100%',
-    transform: 'translate(-50%, -50%)',
+    border: '3px solid transparent',
   },
   relativeDateLink: {
     color: theme.palette.text.secondary,

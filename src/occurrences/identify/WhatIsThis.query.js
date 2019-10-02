@@ -15,7 +15,7 @@ const query = graphql`
       edges {
         node {
           id
-          smallImage: image(width: 400, height: 300) {
+          smallImage: image(width: 860, height: 645) {
             url
           }
           ...ImageThumbnail_image
