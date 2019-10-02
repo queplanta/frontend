@@ -45,5 +45,4 @@ function Post(props) {
 }
 
 const styles = {}
-
 export default withStyles(styles)(Post)

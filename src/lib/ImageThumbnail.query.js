@@ -7,7 +7,7 @@ export const query = graphql`
   )
   {
     id
-    bigImage: image(width: 800, height: 600) @include(if: $isOpen) {
+    bigImage: image(width: 1200, height: 825) @include(if: $isOpen) {
       url
     }
     myPerms @include(if: $isOpen)

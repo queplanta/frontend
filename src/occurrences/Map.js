@@ -1,8 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
-import { geolocated } from "react-geolocated";
+import React, { Component, useState, useEffect, useRef } from 'react';
+import { Button, Tooltip, withStyles } from '@material-ui/core';
+import MyLocationIcon from '@material-ui/icons/MyLocation';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { geolocated } from '../lib/geolocated.js';
 import 'leaflet/dist/leaflet.css';
 
 let reactLeaflet, LeafletMap, LeafletMarker, TileLayer, leaflet, LeafletPopup, defaultMarkerIcon;
@@ -71,9 +73,10 @@ export const MapGeolocated = geolocated({
   userDecisionTimeout: 20000,
   suppressLocationOnMount: true,
   isOptimisticGeolocationEnabled: false,
-})(React.forwardRef((props, ref) => {
-  const {coords, onPositionChange, ...mapProps} = props;
+})((props) => {
+  const {coords, onPositionChange, children, ...mapProps} = props;
   const [position, setPosition] = useState(defaultPosition);
+	const ref = useRef();
 
   useEffect(() => {
     if(coords) {
@@ -87,8 +90,19 @@ export const MapGeolocated = geolocated({
     }, [position]);
   }
 
-  return <Map ref={ref} center={position} {...mapProps} />;
-}))
+  function toGoMyLocation(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    ref.current.props.getLocation()
+  }
+
+  return <Map ref={ref} center={position} {...mapProps}>
+    {children}
+    <Tooltip title="Minha localização atual" placement="top">
+      <MapButton variant="outlined" style={{position: 'absolute', top: 80, left: 10, zIndex: 1000}} onClick={toGoMyLocation}><MyLocationIcon /></MapButton>
+    </Tooltip>
+  </Map>;
+})
 
 
 export class Popup extends Component {
@@ -108,3 +122,14 @@ export class Popup extends Component {
     return <LeafletPopup {...this.props} />
   }
 }
+
+export const MapButton = withStyles({
+  root: {
+    background: 'white',
+    minWidth: 0,
+  },
+  outlined: {
+    padding: '3px 3px',
+    borderWidth: '2px',
+  }
+})(Button)
