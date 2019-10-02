@@ -11,7 +11,6 @@ import { Link as RouterLink } from 'found';
 import { RelativeDate, Width } from '../ui';
 import ProfileLink from '../accounts/ProfileLink.js';
 
-
 function RevisionItem
 (props) {
   const {classes, revision} = props;

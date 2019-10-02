@@ -14,6 +14,7 @@ import {pagesRoutes} from './pages/routes.js';
 import {plantsRoutes} from './plants/routes.js';
 import {occurrencesRoutes} from './occurrences/routes.js';
 import {revisionsRoutes} from './revisions/routes.js';
+<<<<<<< HEAD
 
 import OccurrenceQuery from './occurrences/Occurrence.query.js';
 import OccurrencePlate from './occurrences/OccurrencePlate.js';
@@ -42,5 +43,23 @@ export const routeConfig = makeRouteConfig(<React.Fragment>
     {pagesRoutes}
   </Route>
 </React.Fragment>);
+=======
+
+export const historyMiddlewares = [queryMiddleware];
+
+export const routeConfig = makeRouteConfig(<Route
+  path="/"
+  Component={App}
+  query={AppQuery}
+>
+  {homeRoute}
+  {plantsRoutes}
+  {blogRoutes}
+  {occurrencesRoutes}
+  {pagesRoutes}
+  {accountsRoutes}
+  {revisionsRoutes}
+</Route>);
+>>>>>>> fc7cb50... Revisions pages
 
 export const render = createRender({});

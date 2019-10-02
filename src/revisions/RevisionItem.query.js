@@ -55,7 +55,6 @@ const query = graphql`
         ... on Comment {
           body
         }
-
         ... on Post {
           title,
           body,
