@@ -6,8 +6,8 @@ import { Card, CardHeader, CardActionArea, CardContent,
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import DoneIcon from '@material-ui/icons/Done';
-import PageTitle from '../lib/PageTitle.js';
 import { Link as RouterLink } from 'found';
+import PageTitle from '../lib/PageTitle.js';
 import { RelativeDate, Width } from '../ui';
 import ProfileLink from '../accounts/ProfileLink.js';
 
