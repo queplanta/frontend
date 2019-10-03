@@ -7,6 +7,10 @@ const query = graphql`
       idInt
       type
       typeDisplay
+      isTip
+      author {
+        ...ProfileLink_user
+      }
       createdAt
       after(first: 50) {
         edges {
@@ -50,6 +54,26 @@ const query = graphql`
         
         ... on Comment {
           body
+        }
+
+        ... on Post {
+          title,
+          body,
+          publishedAt,
+          tags(first: 50) {
+            edges {
+              node {
+                slug,
+                title,
+              }
+            }
+          }
+        }
+
+        ... on Page {
+          title,
+          body,
+          publishedAt
         }
       }
     }

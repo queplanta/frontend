@@ -1,9 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import Markdown from 'react-remarkable';
 import { Card, CardHeader, CardActionArea, CardContent,
-  Grid, Paper, SnackbarContent, Typography, withStyles } from '@material-ui/core';
+  Chip, Grid, Paper, Typography, withStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import DoneIcon from '@material-ui/icons/Done';
 import PageTitle from '../lib/PageTitle.js';
 import { Link as RouterLink } from 'found';
 import { RelativeDate, Width } from '../ui';
@@ -17,14 +19,64 @@ function RevisionItem
   let revision_body = '';
   let before, after;
 
+  const markdownOptions = {
+    html: true,
+  };
+
+  const revision_pretty_text = [];
+  revision_pretty_text['LifeNode'] = "Planta";
+  revision_pretty_text['CommonName'] = "Nome em comum";
+  revision_pretty_text['Tag'] = "Tag";
+  revision_pretty_text['Post'] = "Postagem";
+  revision_pretty_text['Comment'] = "Comentário";
+  revision_pretty_text['Vote'] = "Voto";
+  revision_pretty_text['User'] = "Usuário";
+  revision_pretty_text['Image'] = "Foto";
+  revision_pretty_text['Occurrence'] = "Ocorrência";
+  revision_pretty_text['Page'] = "Página";
+  revision_pretty_text['Suggestion'] = "Sugestão";
+  revision_pretty_text['SuggestionID'] = "Sugestão";
+
   if(object.__typename === 'Comment') {
     var comment = object;
 
     revision_body = (<div>
-      <p>
-        <b>Comentário: {comment.id}</b>
-      </p>
-      {comment.body}
+      <Markdown options={markdownOptions} container="div">{comment.body}</Markdown>
+    </div>);
+  }
+
+  if(object.__typename === 'Post') {
+    var post = object;
+
+    revision_body = (<div>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <PageTitle>{post.title}</PageTitle>
+        </Grid>
+        <Grid item xs={12}>
+          Enviada por <ProfileLink user={post.revisionCreated.author} /> <RelativeDate date={post.publishedAt} /><span>. </span>
+        </Grid>
+        <Grid item xs={12}>
+          <Markdown options={markdownOptions} container="div">{post.body}</Markdown>
+        </Grid>
+      </Grid>
+    </div>);
+  }
+
+  if(object.__typename === 'Page') {
+    var page = object;
+
+    revision_body = (<div>
+      <PageTitle>{page.title}</PageTitle>
+      <div className={classes.actions}>
+        Enviada por <ProfileLink user={page.revisionCreated.author} />
+        {` `}
+        <RelativeDate date={page.publishedAt} />
+        <span>. </span>
+      </div>
+      <div>
+        <Markdown options={markdownOptions} container="div">{page.body}</Markdown>
+      </div>
     </div>);
   }
 
@@ -72,19 +124,39 @@ function RevisionItem
     })}</div>);
   }
 
+  let current, not_current_alert;
+  if(revision.isTip) {
+    current = (<p>
+      <Chip
+        icon={<DoneIcon />}
+        label="Atual"
+        size="small"
+        className={classes.isCurrent}
+      />
+    </p>);
+  } else {
+    current = (<p>
+      reverter
+    </p>);
+    not_current_alert = (<Paper className={classes.alert}>
+          Você está visualizando a {revision.typeDisplay.toLowerCase()} <b>{revision.idInt}</b> feita por <ProfileLink user={revision.author} /> <RelativeDate date={revision.createdAt} />. 
+          Esta revisão pode ser muito diferente da última feita na página.
+        </Paper>)
+  }
+
   return <Width>
     <Helmet title={`Revisão: ${revision.id}`} />
-
-    <Paper className={classes.alert}>
-      Você está visualizando a alteração <b>{revision.idInt}</b> feita por <ProfileLink user={comment.revisionCreated.author} /> <RelativeDate date={comment.revisionCreated.createdAt} />. 
-      Esta edição pode ser muito diferente da última edição feita na página.
-    </Paper>
-    <Card>
+    {not_current_alert}
+    <Card className={classes.cardRoot}>
       <CardHeader
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        disableTypography={true}
+        className={classes.cardHeader}
+        title={`${revision_pretty_text[revision.object.__typename]}: ${revision.id}`}
       />
-      {revision_body}
+      <CardContent>
+        {current}
+        {revision_body}
+      </CardContent>
     </Card>
     <Grid container spacing={10}>
       <Grid item xs={6}>
@@ -102,6 +174,17 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  cardRoot: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  cardHeader: {
+    borderBottom: 'solid 1px #d6d6d6',
+  },
+  isCurrent: {
+    background: '#4caf50',
+    color: '#FFF',
   },
   alert: {
     background: '#fff3cd',
