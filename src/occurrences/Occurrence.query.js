@@ -8,6 +8,9 @@ const query = graphql`
       identity {
         id
         title
+        commonName {
+          name
+        }
       }
       isRequest
       ...WhatIsThis_occurrence

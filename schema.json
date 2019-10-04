@@ -6123,6 +6123,18 @@
                 "name": "CharacteristicConnection",
                 "ofType": null
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "commonName",
+              "type": {
+                "kind": "OBJECT",
+                "name": "CommonName",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
@@ -6428,6 +6440,30 @@
               "description": "",
               "isDeprecated": false,
               "name": "language",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "country",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "region",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

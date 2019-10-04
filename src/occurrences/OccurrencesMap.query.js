@@ -11,6 +11,10 @@ const query = graphql`
             identity {
               id
               idInt
+              title
+              commonName {
+                name
+              }
               ...PlantLink_plant
               rankDisplay
               images(first: 1) {

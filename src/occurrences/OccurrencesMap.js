@@ -1,6 +1,7 @@
 import React from 'react';
 import { QueryRenderer } from 'react-relay';
 import { CardMedia, CardContent, Link, withStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'found';
 import _ from 'lodash';
 import ProfileLink from '../accounts/ProfileLink.js';
 import { MapGeolocated, Marker, Popup } from './Map.js';
@@ -44,6 +45,8 @@ function OccurrencesMap(props) {
                   <CardMedia
                     className={classes.cover}
                     image={mainImage}
+                    component={RouterLink}
+                    to={`/ocorrencias/${occurrence.id}`}
                   />
                   <div className={classes.details}>
                     <CardContent className={classes.content}>

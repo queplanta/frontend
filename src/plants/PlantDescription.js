@@ -4,6 +4,8 @@ import { Typography, withStyles } from '@material-ui/core';
 // import _ from 'lodash';
 import TaxoClimb from './TaxoClimb.js';
 import CommentsList from '../comments/CommentsList.js';
+import VotingButtons from '../voting/VotingButtons.js';
+
 
 function PlantDescription(props) {
   const {classes, plant} = props
@@ -17,7 +19,7 @@ function PlantDescription(props) {
         {plant.commonNames.edges.map((edge) => {
           const commonName = edge.node
           return <li key={commonName.id}>
-            { commonName.name} {commonName.language ? `(${commonName.language})` : ''}
+            { commonName.name} {commonName.language ? `(${commonName.language})` : ''} <VotingButtons voting={commonName.voting} parentId={commonName.id} />
           </li>
         })}
       </ol>

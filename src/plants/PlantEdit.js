@@ -78,7 +78,6 @@ function Plant(props) {
             margin="dense"
             label="Descrição"
             errorFilter={{location: "description"}}
-            required
             fullWidth
             multiline
             {...descriptionField}

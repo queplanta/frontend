@@ -25,11 +25,20 @@ function Plant(props) {
   const baseUrl = `/${plant.slug}-p${plant.idInt}`;
   const mainImage = _.get(plant, 'mainImage.edges[0].node');
 
+  const commonName = _.get(plant, 'commonName.name');
+
+  let pageTitle = plant.title;
+  if (commonName) {
+    pageTitle = `${pageTitle} (${commonName})`
+  }
+
   return <Width>
     <Helmet
-      title={plant.title}
+      title={pageTitle}
     />
-    <PageTitle>{plant.title}</PageTitle>
+    {commonName ?
+      <PageTitle className={classes.pageTitle}>{commonName} <small className={classes.binomialTitle}>{plant.title}</small></PageTitle>
+    : <PageTitle className={classes.pageTitle}>{plant.title}</PageTitle>}
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
         <Paper className={classes.root}>
@@ -96,6 +105,12 @@ const styles = (theme) => ({
   root: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  pageTitle: {
+    textTransform: 'capitalize',
+  },
+  binomialTitle: {
+    color: '#797979',
   },
   mainImage: {
     width: '100%',

@@ -13,6 +13,9 @@ const query = graphql`
             id
             name
             language
+            voting {
+              ...VotingButtons_voting
+            }
           }
         }
       }

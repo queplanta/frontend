@@ -6,9 +6,11 @@ import fragmentSpec from './PlantLink.query.js';
 
 class PlantLink extends React.Component {
   render() {
-    const {plant, classes} = this.props;
+    const {plant, classes, children} = this.props;
     return <Tooltip interactive title={plant.title} classes={{ tooltip: classes.tooltip }}>
-      <Link to={`/${plant.slug}-p${plant.idInt}`} component={RouterLink}>{plant.title}</Link>
+      <Link to={`/${plant.slug}-p${plant.idInt}`} component={RouterLink}>
+        {children ? children : plant.title}
+      </Link>
     </Tooltip>;
   }
 }

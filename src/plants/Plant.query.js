@@ -6,6 +6,9 @@ const query = graphql`
       id
       idInt
       title
+      commonName {
+        name
+      }
       slug
       edibility
       edibilityDisplay
