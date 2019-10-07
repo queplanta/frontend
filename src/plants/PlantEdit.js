@@ -28,10 +28,6 @@ function Plant(props) {
   function handleSubmit(e) {
     e.preventDefault()
     setIsSaving(true)
-    // const formData = new FormData()
-    // images.forEach(image => {
-    //   formData.append('images', image.file)
-    // })
     setIsSaving(true)
     PlantEditMutation.commit(
       environment,
@@ -42,7 +38,6 @@ function Plant(props) {
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
       },
-      // formData,
       {
         setFormErrors,
         onSuccess: () => {
