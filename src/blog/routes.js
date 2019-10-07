@@ -24,7 +24,9 @@ export const blogRoutes = <React.Fragment>
   <Route
     path="/blog/:url"
     query={PostQuery}
-    Component={Post}
+    render={(args) => {
+      return <Post {...args.props} environment={args.environment} />
+    }}
   />
   <Route path="/blog/:id/editar" query={PostEditQuery} render={(args) => {
     return <PostEdit {...args.props} environment={args.environment} />

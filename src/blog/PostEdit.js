@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import moment from 'moment'
-import { Grid, TextField, withStyles } from '@material-ui/core';
+import { Grid, TextField, IconButton, withStyles } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
+import _ from 'lodash';
 import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import PostEditMutation from './PostEdit.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
+import AddImage from '../images/AddImage.js';
+import ImageThumbnail from '../lib/ImageThumbnail.js';
 
-function PostEdit({environment, setFormErrors, post}) {
+function PostEdit({classes, environment, setFormErrors, post}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
-
-  console.log(post)
 
   const url = useFormInput(post.url)
   const title = useFormInput(post.title)
@@ -50,6 +53,17 @@ function PostEdit({environment, setFormErrors, post}) {
         }
       }
     )
+  }
+
+  function onAddImageSuccess(response) {
+    const imageId = _.get(response, 'imageCreate.image.node.id');
+    appendImage(imageId);
+  }
+
+  function appendImage(imageId) {
+    if (imageId) {
+      body.onChange({target: {value: `${body.value}\n<Image id="${imageId}" width="200" height="200" />`}})
+    }
   }
 
   return <Width>
@@ -102,10 +116,53 @@ function PostEdit({environment, setFormErrors, post}) {
         />
       </Grid>
       <Grid item xs={12}>
+        {post.imaging.images.edges.map(({node}) => {
+          return <span key={node.id} className={classes.imageThumb}>
+            <ImageThumbnail
+              alt={node.description}
+              image={node}
+              src={node.smallImage.url}
+            />
+            <IconButton aria-label="delete" color="secondary" className={classes.imgDeleteButton}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton color="primary" className={classes.imgAddButton} onClick={() => appendImage(node.id)}>
+              <AddPhotoAlternateIcon />
+            </IconButton>
+          </span>
+        })}
+      </Grid>
+      <Grid item xs={12}>
+        <AddImage parentId={post.id} imaging={post.imaging} environment={environment} onSuccess={onAddImageSuccess} />
+      </Grid>
+      <Grid item xs={12}>
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
   </Width>
 }
 
-export default withStyles({})(hasFormErrors(PostEdit))
+export default withStyles((theme) => ({
+  imageThumb: {
+    margin: theme.spacing(0, 1, 1, 0),
+    display: 'inline-block',
+    position: 'relative',
+    height: 100,
+    '& img': {
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      objectFit: 'cover',
+      height: 100,
+    }
+  },
+  imgDeleteButton: {
+    position: 'absolute',
+    top: -10,
+    right: -10,
+  },
+  imgAddButton: {
+    position: 'absolute',
+    top: -10,
+    left: -10, 
+  }
+}))(hasFormErrors(PostEdit))

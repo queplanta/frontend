@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 let nextClientMutationId = 0;
 
-export function commitMutation({environment, mutation, input, config, callbacks, mutationName}) {
+export function commitMutation({environment, mutation, input, uploadables, config, callbacks, mutationName}) {
   const clientMutationId = (nextClientMutationId++).toString();
 
   return relayCommitMutation(environment, {
@@ -11,6 +11,7 @@ export function commitMutation({environment, mutation, input, config, callbacks,
     variables: {
       input: { clientMutationId, ...input },
     },
+    uploadables,
     onCompleted(response, errors) {
       const errorsFromResponse = _.get(response, `${mutationName}.errors`, []);
       if (errors && errors.length > 0) {

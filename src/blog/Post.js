@@ -11,7 +11,7 @@ import Link from '../lib/Link.js';
 import JsxParser from '../lib/JsxParser.js';
 
 function Post(props) {
-  const {post} = props;
+  const {post, environment} = props;
 
   return <Width>
     <Helmet
@@ -32,6 +32,7 @@ function Post(props) {
       <Grid item xs={12}>
         <JsxParser
           jsx={post.body}
+          environment={environment}
         />
       </Grid>
       <Grid item xs={12}>

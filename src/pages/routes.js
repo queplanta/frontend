@@ -19,6 +19,8 @@ export const pagesRoutes = <React.Fragment>
   <Route
     path="/:url(.+)"
     query={PageQuery}
-    Component={Page}
+    render={(args) => {
+      return <Page {...args.props} environment={args.environment} />
+    }}
   />
 </React.Fragment>

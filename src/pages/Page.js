@@ -10,7 +10,7 @@ import { hasPerm } from '../lib/perms.js';
 import JsxParser from '../lib/JsxParser.js';
 
 function Page(props) {
-  const {classes, page} = props
+  const {classes, page, environment} = props
 
   if (!page) {
     return <NotFound />
@@ -24,6 +24,7 @@ function Page(props) {
       <PageTitle>{page.title}</PageTitle>
       <JsxParser
         jsx={page.body}
+        environment={environment}
       />
       <div className={classes.actions}>
         Enviada por <ProfileLink user={page.revisionCreated.author} />
