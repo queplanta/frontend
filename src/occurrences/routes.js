@@ -14,14 +14,14 @@ import OccurrenceQuery from './Occurrence.query.js';
 
 export const occurrencesRoutes = <React.Fragment>
   <Route
-    path="/ocorrencias"
+    path="/mapa"
     query={HomeQuery}
     render={(args) => {
       return <Home {...args.props} environment={args.environment} />
     }}
   />
   <Route
-    path="/ocorrencias/adicionar"
+    path="/mapa/adicionar"
     query={OccurrenceAddQuery}
     render={(args) => {
       return <OccurrenceAdd {...args.props} environment={args.environment} />
@@ -49,7 +49,7 @@ export const occurrencesRoutes = <React.Fragment>
     }}
   />
   <Route
-    path="/ocorrencias/:id"
+    path="/observacoes/:id"
     query={OccurrenceQuery}
     render={(args) => {
       return <Occurrence {...args.props} environment={args.environment} />

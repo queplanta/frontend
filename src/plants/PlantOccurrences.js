@@ -8,7 +8,7 @@ function PlantOccurrences(props) {
 
   return <React.Fragment>
     <Helmet
-      title={`Ocorrências de ${plant.title}`}
+      title={`Mapa de ${plant.title}`}
     />
     <OccurrencesMap
       className={classes.map}

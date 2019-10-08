@@ -45,7 +45,7 @@ function WhatIsThis(props) {
         </MenuButton>
       }
       title={<ProfileLink user={occurrence.revisionCreated.author} hideAvatar={true} />}
-      subheader={<RouterLink to={`/ocorrencias/${occurrence.id}`} className={classes.relativeDateLink}><RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} /></RouterLink>}
+      subheader={<RouterLink to={`/observacoes/${occurrence.id}`} className={classes.relativeDateLink}><RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} /></RouterLink>}
     />
     <div className={classes.imagesWrapper}>
       {occurrence.images.edges.map((edge, i) => {

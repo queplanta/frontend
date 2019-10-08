@@ -53,7 +53,7 @@ function AddIdentify({classes, environment, setFormErrors}) {
     setImages([])
     setIsSaving(false)
     enqueueSnackbar('Requisição de identificação adicionada com sucesso', {variant: "success"})
-    router.push(`/ocorrencias/${response.whatIsThisCreate.occurrence.node.id}`)
+    router.push(`/observacoes/${response.whatIsThisCreate.occurrence.node.id}`)
   }
 
   function handleSubmit(e) {

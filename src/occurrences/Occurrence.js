@@ -13,7 +13,7 @@ function OccurrencePage(props) {
     return <NotFound />
   }
 
-  const title = occurrence.isRequest ? `Pedido de identificação: ${occurrence.idInt}` : `Ocorrência de ${occurrence.identity.title}`
+  const title = occurrence.isRequest ? `Pedido de identificação: ${occurrence.idInt}` : `Observação de ${occurrence.identity.title}`
 
   return <Width>
     <Helmet

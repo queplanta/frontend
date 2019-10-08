@@ -35,7 +35,7 @@ function UserActivityListItem(props) {
   revision_pretty_text['Vote'] = "um voto";
   revision_pretty_text['User'] = "um usuário";
   revision_pretty_text['Image'] = "uma foto";
-  revision_pretty_text['Occurrence'] = "uma ocorrência";
+  revision_pretty_text['Occurrence'] = "uma observação";
   revision_pretty_text['Page'] = "uma página";
   revision_pretty_text['Suggestion'] = "uma sugestão";
   revision_pretty_text['SuggestionID'] = "uma sugestão";

@@ -46,7 +46,7 @@ function OccurrencesMap(props) {
                     className={classes.cover}
                     image={mainImage}
                     component={RouterLink}
-                    to={`/ocorrencias/${occurrence.id}`}
+                    to={`/observacoes/${occurrence.id}`}
                   />
                   <div className={classes.details}>
                     <CardContent className={classes.content}>
