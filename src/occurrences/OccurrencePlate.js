@@ -19,7 +19,7 @@ function OccurrencePlatePage(props) {
 
   const title = `Placa para corrência de ${occurrence.identity.title}`
   const commonName = _.get(occurrence.identity, 'commonName.name');
-  const url = `https://queplanta.com/ocorrencias/${occurrence.id}`;
+  const url = `https://queplanta.com/observacoes/${occurrence.id}`;
 
   return <div>
     <Helmet

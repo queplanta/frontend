@@ -93,11 +93,11 @@ export class App extends Component {
                         <MenuItem to="/plantas" selected={isPlantsRoute} component={RouterLink} activeClassName={classes.drawerListItemActive}>
                           <ListItemText primary="Plantas"/>
                         </MenuItem>
+                        <MenuItem to="/mapa" component={RouterLink} activeClassName={classes.drawerListItemActive}>
+                          <ListItemText primary="Mapa"/>
+                        </MenuItem>
                         <MenuItem to="/identificacao" component={RouterLink} activeClassName={classes.drawerListItemActive}>
                           <ListItemText primary="Identificação"/>
-                        </MenuItem>
-                        <MenuItem to="/ocorrencias" component={RouterLink} activeClassName={classes.drawerListItemActive}>
-                          <ListItemText primary="Ocorrências"/>
                         </MenuItem>
                         <Divider />
                         <MenuItem to="/o-que-e" component={RouterLink} activeClassName={classes.drawerListItemActive}>
@@ -143,8 +143,8 @@ export class App extends Component {
                       <Toolbar className={classes.toolbar}>
                         <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/" component={RouterLink} exact={true}>Início</Link>
                         <Link activeClassName={classes.navlinkActive} className={clsx(classes.navlink, {[classes.navlinkActive]: isPlantsRoute})} to="/plantas" component={RouterLink}>Plantas</Link>
+                        <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/mapa" component={RouterLink}>Mapa</Link>
                         <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/identificacao" component={RouterLink}>Identificação</Link>
-                        <Link activeClassName={classes.navlinkActive} className={classes.navlink} to="/ocorrencias" component={RouterLink}>Ocorrências</Link>
                         <div className={classes.grow} />
                         <form className={classes.search} onSubmit={this.handleSearch}>
                           <div className={classes.searchIcon}>

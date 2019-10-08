@@ -62,7 +62,7 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
 
   function onSuccess() {
     setIsSaving(false)
-    enqueueSnackbar('Ocorrência adicionada com sucesso', {variant: "success"})
+    enqueueSnackbar('Observação adicionada com sucesso', {variant: "success"})
   }
 
   function handleSubmit(e) {
@@ -98,8 +98,8 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
   }
     
   return <Width component="div">
-    <Helmet title="Adicionar Ocorrência" />
-    <PageTitle>Adicionar Ocorrência</PageTitle>
+    <Helmet title="Adicionar planta no mapa" />
+    <PageTitle>Adicionar planta no mapa</PageTitle>
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit}>
         <PlantSelectField environment={environment} onChange={setLifeNode} value={lifeNode} />

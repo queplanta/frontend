@@ -21,7 +21,7 @@ export const historyMiddlewares = [queryMiddleware];
 
 export const routeConfig = makeRouteConfig(<React.Fragment>
   <RouteWithLoading
-    path="/ocorrencias/:id/placa"
+    path="/observacoes/:id/placa"
     query={OccurrenceQuery}
     Component={OccurrencePlate}
   />

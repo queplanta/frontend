@@ -58,7 +58,7 @@ function Plant(props) {
             </Button>
             <Button variant="contained" color="primary" className={classes.customBtn} fullWidth={true}>
               <AddIcon className={classes.leftIcon} />
-              Ocorrência
+              Mapa
             </Button>
             <Button variant="contained" color="secondary" className={classes.customBtn} fullWidth={true}>
               <AddIcon className={classes.leftIcon} />
@@ -83,7 +83,7 @@ function Plant(props) {
             className={classes.tabs}
           >
             <TabRoute label="Descrição" wrapped value={baseUrl} />
-            <TabRoute label="Ocorrências" wrapped value={`${baseUrl}/ocorrencias`} />
+            <TabRoute label="Mapa" wrapped value={`${baseUrl}/mapa`} />
             <TabRoute label="Fotos" wrapped value={`${baseUrl}/fotos`} />
             {/*<TabRoute label="Usos" wrapped />
             <TabRoute label="Listas" wrapped />

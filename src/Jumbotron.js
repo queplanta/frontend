@@ -22,7 +22,7 @@ function Jumbotron({classes}) {
           <ListItemIcon component="span"><img src={cameraFlatIcon} alt="" className={classes.jumbotronListIcon} /></ListItemIcon>
           <ListItemText component="span" primary="Identifique plantas por fotos de forma colaborativa." />
         </ListItem>
-        <ListItem component={Link} to="/ocorrencias" className={classes.link}>
+        <ListItem component={Link} to="/mapa" className={classes.link}>
           <ListItemIcon component="span"><img src={locationFlatIcon} alt="" className={classes.jumbotronListIcon} /></ListItemIcon>
           <ListItemText component="span" primary="Encontre arvores em sua cidade." />
         </ListItem>

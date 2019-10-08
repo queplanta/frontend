@@ -18,13 +18,13 @@ function Home(props) {
   // console.log('bounds', bounds);
 
   return <Width>
-    <Helmet title="Ocorrências" />
+    <Helmet title="Mapa de Árvores" />
     <Grid container>
       <Grid item xs={12} sm={6}>
-        <PageTitle>Ocorrências</PageTitle>
+        <PageTitle>Mapa de Árvores</PageTitle>
       </Grid>
       <Grid item xs={12} sm={6} className={classes.buttonWraper}>
-        <Button variant="contained" color="primary" component={RouterLink} to={`/ocorrencias/adicionar`}>Adicionar no mapa</Button>
+        <Button variant="contained" color="primary" component={RouterLink} to={`/mapa/adicionar`}>Adicionar no mapa</Button>
       </Grid>
     </Grid>
     <OccurrencesMap className={classes.map} environment={environment} />
