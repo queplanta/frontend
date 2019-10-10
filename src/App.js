@@ -7,8 +7,7 @@ import {
   AppBar, Toolbar, Typography, Chip, Button, Tooltip,
   Divider, Link, InputBase, Drawer, IconButton,
   MenuList, MenuItem, ListItemText, Hidden, withStyles } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
-import { fade } from '@material-ui/core/styles';
+import { ThemeProvider, fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -175,7 +174,6 @@ export class App extends Component {
                   <Hidden mdUp implementation="css">
                     {((!viewer.me || !viewer.me.isAuthenticated) && isHomeRoute) && <Jumbotron className={clsx(classes.bgNv, classes.jumbotron)} />}
                   </Hidden>
-
                   {this.props.children}
                 </div>
 

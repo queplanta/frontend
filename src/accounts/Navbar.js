@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { createFragmentContainer } from 'react-relay';
-import { Avatar, Button, IconButton, Menu, MenuItem, ListItemText, Tooltip, withStyles } from '@material-ui/core';
+import { Avatar, Button, Divider, IconButton, Menu, MenuItem, ListItemText, Tooltip, withStyles } from '@material-ui/core';
 import { Link  as RouterLink } from 'found';
 import _ from 'lodash';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Media from 'react-media';
+import { hasPerm } from '../lib/perms.js';
 import fragmentSpec from './Navbar.query.js';
 import DeauthMutation from './Deauth.mutation.js';
 import { withLoginRequired } from './LoginRequired.js';
@@ -67,15 +68,20 @@ class AccountNavbar extends Component {
             horizontal: 'right',
           }}
         >
-          <MenuItem to={`/blog/novo`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
+          {hasPerm(me, 'add_post') && <MenuItem to={`/blog/novo`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
             <ListItemText primary="Nova Post no Blog"/>
-          </MenuItem>
-          <MenuItem to={`/paginas/nova`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
+          </MenuItem>}
+          {hasPerm(me, 'add_page') && <MenuItem to={`/paginas/nova`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
             <ListItemText primary="Nova Página"/>
-          </MenuItem>
+          </MenuItem>}
+          {(hasPerm(me, 'add_page') || hasPerm(me, 'add_post')) &&<Divider />}
           <MenuItem to={`/u/${me.username}`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
             <ListItemText primary="Meu perfil"/>
-          </MenuItem>   
+          </MenuItem>
+          <MenuItem to={`/conta/editar`} component={RouterLink} activeClassName={classes.drawerListItemActive}>
+            <ListItemText primary="Editar perfil"/>
+          </MenuItem>
+          <Divider />
           <MenuItem onClick={this.handleLogout}>Sair</MenuItem>
         </Menu>
       </div>

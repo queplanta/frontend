@@ -11,6 +11,9 @@ const query = graphql `
       }
       ...UserActivityList_user
     }
+    me {
+      id
+    }
   }
 `;
 export default query
