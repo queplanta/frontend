@@ -10,8 +10,8 @@ import locationFlatIcon from './assets/jumbotron/location-map-flat.svg';
 import clipboardFlatIcon from './assets/jumbotron/clipboard-list-flat.svg';
 import shuffleFlatIcon from './assets/jumbotron/shuffle-flat.svg';
 
-function Jumbotron({classes}) {
-  return <Container className={classes.jumbotron}>
+function Jumbotron({classes, ...otherProps}) {
+  return <Container className={classes.jumbotron} {...otherProps}>
     <Typography align="center" variant="h4">
       Rede social colaborativa que conecta pessoas e plantas.
     </Typography>

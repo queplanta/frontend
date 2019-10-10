@@ -36,6 +36,7 @@ const styles = (theme) => ({
     height: 500,
   },
   buttonWraper: {
+    marginBottom: '20px',
     [theme.breakpoints.up('sm')]: {
       textAlign: 'right',
     },

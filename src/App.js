@@ -19,6 +19,7 @@ import logoImg from './assets/queplanta-icon.svg';
 import logoTextImg from './assets/queplanta-text-light.svg';
 import AccountNavbar from './accounts/Navbar.js';
 import Footer from './Footer.js';
+import BottomNavbar from './BottomNavbar.js';
 import headerNavBackground from './assets/background.jpg';
 import { LoginRequiredProvider } from './accounts/LoginRequired.js';
 import { isBrowser } from './lib/helpers.js';
@@ -31,11 +32,13 @@ export class App extends Component {
     super(props);
     this.state = {
       drawerOpen: false,
-      searchBy: ''
+      searchBy: '',
+      appbarPosition: 'static',
     }
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.onChangeSearch = this.onChangeSearch.bind(this)
+    this.updateDimensions = this.updateDimensions.bind(this)
   }
 
   handleDrawerToggle() {
@@ -53,7 +56,7 @@ export class App extends Component {
 
   render() {
     const {classes, viewer} = this.props;
-    const {drawerOpen} = this.state;
+    const {drawerOpen, appbarPosition} = this.state;
 
     let isPlantsRoute = null;
     if (isBrowser()) {
@@ -62,6 +65,7 @@ export class App extends Component {
         isPlantsRoute = true;
       }
     }
+    let isHomeRoute = window.location.pathname === '/';
 
     return (
       <IntlProvider locale="pt-BR">
@@ -74,7 +78,7 @@ export class App extends Component {
                   titleTemplate="%s | Que Planta"
                   defaultTitle="Que Planta - Conectando Pessoas e Plantas"
                 />
-                <AppBar position="static" className={classes.appbar}>            
+                <AppBar position={appbarPosition} className={clsx(classes.bgNv, classes.appbar)}>
                   <Toolbar className={classes.toolbar}>
                     <Drawer
                       className={classes.drawer}
@@ -136,7 +140,9 @@ export class App extends Component {
                     <AccountNavbar me={viewer.me} />
                   </Toolbar>
 
-                  {(!viewer.me || !viewer.me.isAuthenticated) && <Jumbotron />}
+                  <Hidden smDown implementation="css">
+                    {((!viewer.me || !viewer.me.isAuthenticated) && isHomeRoute) && <Jumbotron />}
+                  </Hidden>
 
                   <Hidden smDown implementation="css">
                     <nav className={classes.subnav}>      
@@ -169,15 +175,40 @@ export class App extends Component {
                   </Hidden>
                 </AppBar>
 
-                {this.props.children}
+                <div className={classes.pagelet}>
+                  <Hidden mdUp implementation="css">
+                    {((!viewer.me || !viewer.me.isAuthenticated) && isHomeRoute) && <Jumbotron className={clsx(classes.bgNv, classes.jumbotron)} />}
+                  </Hidden>
+
+                  {this.props.children}
+                </div>
 
                 <Footer />
+                <Hidden mdUp implementation="css">
+                  <BottomNavbar />
+                </Hidden>
               </React.Fragment>
             </SnackbarProvider>
           </LoginRequiredProvider>
         </ThemeProvider>
       </IntlProvider>
     );
+  }
+
+  updateDimensions() {
+    this.setState({
+      appbarPosition: window.innerWidth <= 600 ? 'fixed' : 'static'
+    });
+  };
+
+  componentDidMount() {
+    if(window.innerWidth <= 600) {
+      this.setState({ appbarPosition: 'fixed' });
+    }
+    window.addEventListener('resize', this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
   }
 }
 
@@ -209,6 +240,11 @@ const styles = theme => ({
       verticalAlign: 'middle',
     },
   },
+  pagelet: {
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: 56
+    },
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -217,12 +253,20 @@ const styles = theme => ({
     width: drawerWidth,
   },
   appbar: {
+
+  },
+  bgNv: {
     color: '#FFFFFF',
     backgroundColor: '#047c4d',
-    background: `url(${headerNavBackground})`,
+    backgroundImage: `url(${headerNavBackground})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'auto',
-    boxShadow: 'none',
+    backgroundPosition: '0 0',
+    boxShadow: '0 1px rgba(255,255,255,0.1)',
+  },
+  jumbotron: {
+    paddingTop: 32, 
+    paddingBottom: 32,
+    backgroundPosition: '0 -56px !important',
   },
   subnav: {
     backgroundColor: 'rgba(0,80,39,0.5)',
@@ -231,6 +275,7 @@ const styles = theme => ({
     maxWidth: 1140,
     width: '100%',
     margin: '0 auto',
+    height: 56,
   },
   container: {
     padding: '60px 0',
@@ -292,7 +337,7 @@ const styles = theme => ({
   },
   drawerListItemActive: {
     background: theme.palette.action.selected
-  }
+  },
 });
 
 export default withStyles(styles)(withRouter(App))
