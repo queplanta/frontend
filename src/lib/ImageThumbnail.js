@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CircularProgress, Button, Dialog, DialogContent, DialogActions, useMediaQuery, withStyles } from '@material-ui/core';
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { createRefetchContainer } from 'react-relay';
 import { fragmentSpec, refetchQuery } from './ImageThumbnail.query.js';
