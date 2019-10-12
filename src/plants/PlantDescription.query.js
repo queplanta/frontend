@@ -6,6 +6,7 @@ const query = graphql`
       id
       idInt
       description
+      myPerms
       ...TaxoClimb_lifeNode
       commonNames(first: 20) {
         edges {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryRenderer } from 'react-relay';
-import { CardMedia, CardContent, Link, withStyles } from '@material-ui/core';
+import { CardMedia, CardContent, Typography, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import _ from 'lodash';
 import ProfileLink from '../accounts/ProfileLink.js';
@@ -50,7 +50,16 @@ function OccurrencesMap(props) {
                   />
                   <div className={classes.details}>
                     <CardContent className={classes.content}>
-                      <PlantLink plant={occurrence.identity} />
+                      <PlantLink plant={occurrence.identity}>
+                        {occurrence.identity.commonName ?
+                          <React.Fragment>
+                            <Typography variant="body1" component="span" className={classes.commonName}>{occurrence.identity.commonName.name}</Typography><br />
+                            <Typography variant="body2" component="span">{occurrence.identity.title}</Typography>
+                          </React.Fragment>
+                        :
+                          <Typography variant="body1" component="span">{occurrence.identity.title}</Typography>
+                        }
+                      </PlantLink>
                       <br /><br />
                       <Link href={`http://maps.google.com/?cbll=${occurrence.location.coordinates[0]},${occurrence.location.coordinates[1]}&cbp=12,90,0,0,5&layer=c`} target="_blank" rel="noopener noreferrer">Abrir no Google Street View</Link>
                       <br/><br/>Adicionada por: <ProfileLink user={occurrence.author} />
@@ -82,6 +91,9 @@ const styles = (theme) => ({
   },
   content: {
     flex: '1 0 auto',
+  },
+  commonName: {
+    textTransform: 'capitalize',
   },
   cover: {
     width: 100,

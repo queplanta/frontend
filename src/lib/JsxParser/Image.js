@@ -1,11 +1,12 @@
 import React from 'react';
 import { QueryRenderer } from 'react-relay';
-import { CircularProgress, Typography, withStyles } from '@material-ui/core';
+import { CircularProgress, Typography, Card, CardContent, withStyles } from '@material-ui/core';
 import ImageThumbnail from '../../lib/ImageThumbnail.js';
 import { query } from './Image.query.js';
 
 const Image = ({classes, environment, id, width, height}) => {
-  return <span className={classes.root}>
+  return <Card className={classes.root}>
+    <CardContent className={classes.content}>
     <QueryRenderer
       environment={environment}
       query={query}
@@ -38,16 +39,20 @@ const Image = ({classes, environment, id, width, height}) => {
         return <span className={classes.fakeImg} style={style}><CircularProgress /></span>
       }}
     />
-  </span>
+    </CardContent>
+  </Card>
 }
 
 export default withStyles((theme) => ({
   root: {
-    padding: theme.spacing(1),
-    border: '1px solid #ccc',
     display: 'inline-block',
-    lineHeight: '0px',
     verticalAlign: 'top',
+  },
+  content: {
+    lineHeight: '0px',
+    '&:last-child': {
+      paddingBottom: theme.spacing(2),
+    },
   },
   img: {
     maxWidth: '100%',
@@ -60,5 +65,6 @@ export default withStyles((theme) => ({
     whiteSpace: 'pre-wrap',
     marginTop: theme.spacing(1),
     maxWidth: '100%',
+    lineHeight: 1.5,
   },
 }))(Image)
