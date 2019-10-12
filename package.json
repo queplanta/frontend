@@ -53,5 +53,5 @@
     "graphql": "^14.2.1",
     "relay-compiler": "^6.0.0"
   },
-  "proxy": "http://localhost:5001"
+  "proxy": "https://queplanta.com"
 }
