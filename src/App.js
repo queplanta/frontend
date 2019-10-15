@@ -22,7 +22,6 @@ import Footer from './Footer.js';
 import BottomNavbar from './BottomNavbar.js';
 import headerNavBackground from './assets/background.jpg';
 import { LoginRequiredProvider } from './accounts/LoginRequired.js';
-import { isBrowser } from './lib/helpers.js';
 import Jumbotron from './Jumbotron.js';
 
 import './index.css';
@@ -57,15 +56,12 @@ export class App extends Component {
   render() {
     const {classes, viewer} = this.props;
     const {drawerOpen, appbarPosition} = this.state;
+    const {pathname} = this.props.match.location;
 
-    let isPlantsRoute = null;
-    if (isBrowser()) {
-      const urlTest = /^\/[-\w]+-p\d+\/?/;
-      if (urlTest.test(window.location.pathname)) {
-        isPlantsRoute = true;
-      }
-    }
-    let isHomeRoute = window.location.pathname === '/';
+    const plantUrlTest = /^\/[-\w]+-p\d+\/?/;
+
+    const isPlantsRoute = plantUrlTest.test(pathname);
+    const isHomeRoute = pathname === '/';
 
     return (
       <IntlProvider locale="pt-BR">
