@@ -4,8 +4,9 @@ import { commitMutation } from '../relay';
 const mutation = graphql`
   mutation RevisionRevertMutation($input: RevisionRevertInput!) {
     revisionRevert(input: $input) {
-      viewer {
+      node {
         id
+        Page
       }
       errors {
         code,

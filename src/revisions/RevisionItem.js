@@ -1,22 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { Card, CardHeader, CardActionArea, CardContent,
   Chip, Grid, Paper, Typography, withStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import DoneIcon from '@material-ui/icons/Done';
+import HistoryIcon from '@material-ui/icons/History';
+import { useSnackbar } from 'notistack';
+import { useRouter } from 'found';
 import { Link as RouterLink } from 'found';
 import PageTitle from '../lib/PageTitle.js';
 import { RelativeDate, Width } from '../ui';
 import ProfileLink from '../accounts/ProfileLink.js';
+import ButtonWithProgress from '../lib/ButtonWithProgress.js';
+import { useLoginRequired } from '../accounts/LoginRequired.js';
+import RevisionRevertMutation from './RevisionRevert.mutation.js';
 
 function RevisionItem
 (props) {
-  const {classes, revision} = props;
+  const {environment, classes, revision} = props;
   const object = revision.object;
+  const { isAuthenticated } = useLoginRequired();
+  const { enqueueSnackbar } = useSnackbar();
+  const [isSaving, setIsSaving] = useState(false)
+  const { router } = useRouter();
+
+  function handleRevisionRevert(e) {
+    e.preventDefault()
+    setIsSaving(true)
+    if (isAuthenticated()) {
+      RevisionRevertMutation.commit(
+        environment,
+        {
+          id: revision.id,
+        },
+        {
+          onSuccess: () => {
+            enqueueSnackbar('Revisão revertida com sucesso', {variant: "success"})
+            setIsSaving(false)
+            router.push(`/revisions/revision/${revision.id}`)
+          },
+          onError: () => {
+            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
+            setIsSaving(false)
+          }
+        }
+      )
+    }
+  }
+
   let revision_body = '';
   let before, after;
-
   const revision_pretty_text = [];
   revision_pretty_text['LifeNode'] = "Planta";
   revision_pretty_text['CommonName'] = "Nome em comum";
@@ -85,7 +119,7 @@ function RevisionItem
               Alteração anterior
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              feita por <ProfileLink user={revision.before.author} /> <RelativeDate date={revision.before.createdAt} />
+              {revision.before.author && <span>feita por <ProfileLink user={revision.before.author} /></span>} <RelativeDate date={revision.before.createdAt} />
             </Typography>
           </div>
         </CardContent>
@@ -104,7 +138,7 @@ function RevisionItem
                   Próxima alteração
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  feita por <ProfileLink user={after_rev.author} /> <RelativeDate date={after_rev.createdAt} />
+                  {after_rev.author && <span>feita por <ProfileLink user={after_rev.author} /></span>} <RelativeDate date={after_rev.createdAt} />
                 </Typography>
               </div>
               <div className={classes.arrowNext}>
@@ -128,7 +162,15 @@ function RevisionItem
     </p>);
   } else {
     current = (<p>
-      reverter
+      <ButtonWithProgress
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={handleRevisionRevert}
+        isLoading={isSaving}
+      >
+         <HistoryIcon className={classes.leftIcon} /> reverter para esta versão
+      </ButtonWithProgress>
     </p>);
     not_current_alert = (<Paper className={classes.alert}>
           Você está visualizando a {revision.typeDisplay.toLowerCase()} <b>{revision.idInt}</b> feita por <ProfileLink user={revision.author} /> <RelativeDate date={revision.createdAt} />. 
@@ -195,7 +237,10 @@ const styles = (theme) => ({
     display: 'inline-block',
     padding: '0 5px',
     verticalAlign: 'middle'
-  }
+  },
+  leftIcon: {
+    marginRight: theme.spacing(1),
+  },
 })
 
 export default withStyles(styles)(RevisionItem

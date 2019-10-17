@@ -6,6 +6,8 @@ import RevisionItemQuery from './RevisionItem.query.js';
 export const revisionsRoutes = <React.Fragment>
   <Route
     path="revisions/revision/:revisionID"
-    Component={RevisionItem}
-    query={RevisionItemQuery} />
+    query={RevisionItemQuery}
+    render={(args) => {
+      return <RevisionItem {...args.props} environment={args.environment} />
+    }} />
 </React.Fragment>
