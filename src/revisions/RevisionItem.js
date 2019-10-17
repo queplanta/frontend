@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Markdown from 'react-remarkable';
 import { Card, CardHeader, CardActionArea, CardContent,
   Chip, Grid, Paper, Typography, withStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -17,10 +16,6 @@ function RevisionItem
   const object = revision.object;
   let revision_body = '';
   let before, after;
-
-  const markdownOptions = {
-    html: true,
-  };
 
   const revision_pretty_text = [];
   revision_pretty_text['LifeNode'] = "Planta";
@@ -39,9 +34,7 @@ function RevisionItem
   if(object.__typename === 'Comment') {
     var comment = object;
 
-    revision_body = (<div>
-      <Markdown options={markdownOptions} container="div">{comment.body}</Markdown>
-    </div>);
+    revision_body = (<Typography variant="body2" component="p">{comment.body}</Typography>);
   }
 
   if(object.__typename === 'Post') {
@@ -56,7 +49,7 @@ function RevisionItem
           Enviada por <ProfileLink user={post.revisionCreated.author} /> <RelativeDate date={post.publishedAt} /><span>. </span>
         </Grid>
         <Grid item xs={12}>
-          <Markdown options={markdownOptions} container="div">{post.body}</Markdown>
+          <Typography variant="body2" component="p">{post.body}</Typography>
         </Grid>
       </Grid>
     </div>);
@@ -74,7 +67,7 @@ function RevisionItem
         <span>. </span>
       </div>
       <div>
-        <Markdown options={markdownOptions} container="div">{page.body}</Markdown>
+        <Typography variant="body2" component="p">{page.body}</Typography>
       </div>
     </div>);
   }
