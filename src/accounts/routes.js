@@ -8,6 +8,8 @@ import ProfileChangePassword from './ProfileChangePassword.js'
 import ProfileChangePasswordQuery from './ProfileChangePassword.query.js'
 import ProfileChangeAvatar from './ProfileChangeAvatar.js'
 import ProfileChangeAvatarQuery from './ProfileChangeAvatar.query.js'
+import ResetPasswordComplete from './ResetPasswordComplete.js'
+import ResetPasswordCompleteQuery from './ResetPasswordComplete.query.js'
 import ProfileSettings from './ProfileSettings.js'
 import UserActivityList from './UserActivityList.js';
 import UserActivityListQuery from './UserActivityList.query.js';
@@ -52,5 +54,11 @@ export const accountsRoutes = <React.Fragment>
         return <ProfileChangeAvatar {...args.props} environment={args.environment} />
       }} />
   </Route>
+  <Route
+    path="conta/resetar-senha/:uidb64/:token"
+    query={ResetPasswordCompleteQuery}
+    render={(args) => {
+      return <ResetPasswordComplete {...args.props} environment={args.environment} />
+    }} />
 </React.Fragment>
 

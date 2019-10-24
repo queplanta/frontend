@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { Grid, TextField, Hidden, withStyles } from '@material-ui/core';
+import slugify from 'slugify';
 import Link from '../lib/Link.js';
 import { useSnackbar } from 'notistack';
 import NotFound from '../pages/NotFound.js'
-import { hasFormErrors, FormErrors } from '../FormErrors.js';
+import { hasFormErrors, FormErrors, TextFieldWithError } from '../FormErrors.js';
 import ProfileEditMutation from './ProfileEdit.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
@@ -15,7 +16,7 @@ function ProfileEdit({environment, setFormErrors, me, classes}) {
     return <NotFound />
   }
   const { enqueueSnackbar } = useSnackbar();
-  const username = useFormInput(me.username)
+  const [username, setUsername] = useState(me.username)
   const firstName = useFormInput(me.firstName)
   const email = useFormInput(me.email)
 
@@ -28,7 +29,7 @@ function ProfileEdit({environment, setFormErrors, me, classes}) {
       environment,
       {
         firstName: firstName.value,
-        username: username.value,        
+        username: username,        
         email: email.value,
       },
       {
@@ -43,6 +44,15 @@ function ProfileEdit({environment, setFormErrors, me, classes}) {
         }
       }
     )
+  }
+
+  function handleUsernameInput(e) {
+    let username = slugify(e.target.value, {
+      replacement: '-',
+      remove: /[*+~.(){}[\]'"!:@/\\;,´`^#=]/g,
+      lower: true,
+    })
+    setUsername(username)
   }
 
   return <React.Fragment>
@@ -63,11 +73,14 @@ function ProfileEdit({environment, setFormErrors, me, classes}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          label="Nome de usuário"
+        <TextFieldWithError
+          label="URL"
+          placeholder="URL única na rede, será sua identificação principal"
           fullWidth
           required
-          {...username}
+          onChange={handleUsernameInput}
+          value={username}
+          errorFilter={{location: "username"}}
         />
       </Grid>
       <Grid item xs={12}>
