@@ -65,8 +65,8 @@ export class App extends Component {
     return (
       <IntlProvider locale="pt-BR">
         <ThemeProvider theme={theme}>
-          <LoginRequiredProvider viewer={viewer}>
-            <SnackbarProvider maxSnack={3}>
+          <SnackbarProvider maxSnack={3}>
+            <LoginRequiredProvider viewer={viewer}>
               <React.Fragment>
                 <CssBaseline />
                 <Helmet
@@ -182,8 +182,8 @@ export class App extends Component {
                   <BottomNavbar />
                 </Hidden>
               </React.Fragment>
-            </SnackbarProvider>
-          </LoginRequiredProvider>
+            </LoginRequiredProvider>
+          </SnackbarProvider>
         </ThemeProvider>
       </IntlProvider>
     );

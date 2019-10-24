@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, withStyles } from '@material-ui/core';
+import slugify from 'slugify';
+import clsx from 'clsx';
+import { Dialog, DialogContent, DialogActions, Button,
+  TextField, Typography, withStyles } from '@material-ui/core';
+import { isWidthDown } from '@material-ui/core/withWidth';
 import AuthMutation from './Auth.mutation.js';
 import RegisterMutation from './Register.mutation.js';
+import ResetPasswordEmailMutation from './ResetPasswordEmail.mutation.js';
 import { hasFormErrors, FormErrors, TextFieldWithError, SnackbarErrorContent } from '../FormErrors.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
+import withWidth from '../lib/withWidth.js';
+import { withSnackbar } from 'notistack';
+import DialogTitle from '../lib/DialogTitle.js';
+import logoImg from '../assets/queplanta-icon.svg';
+import logoTextImg from '../assets/queplanta-text-dark.svg';
 
 class AuthDialog extends Component {
   constructor(props) {
@@ -12,9 +22,13 @@ class AuthDialog extends Component {
     this.onClose = this.onClose.bind(this)
     this.handleAuthSubmit = this.handleAuthSubmit.bind(this)
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
+    this.handleResetPasswordSubmit = this.handleResetPasswordSubmit.bind(this)
+    this.handleUsernameInput = this.handleUsernameInput.bind(this)
     this.renderLogin = this.renderLogin.bind(this)
     this.changeToRegister = this.changeToRegister.bind(this)
     this.changeToAuth = this.changeToAuth.bind(this)
+    this.changeToForgotPassword = this.changeToForgotPassword.bind(this)
+    this.handleChangeEmailInput = this.handleChangeEmailInput.bind(this)
     this.state = {
       isLoading: false,
       open: false,
@@ -32,6 +46,11 @@ class AuthDialog extends Component {
   handleChangeInput(fieldName, e) {
     e.preventDefault()
     this.setState({[fieldName]: e.target.value})
+  }
+
+  handleUsernameInput(e) {
+    let username = this.toSlugify(e.target.value)
+    this.setState({username: username})
   }
 
   handleAuthSubmit(e) {
@@ -85,6 +104,30 @@ class AuthDialog extends Component {
     })
   }
 
+  handleResetPasswordSubmit(e) {
+    e.preventDefault()
+    const { environment, setFormErrors } = this.props;
+    this.setState({isLoading: true}, () => {
+      ResetPasswordEmailMutation.commit(
+        environment,
+        {
+          email: this.state.email,
+        },
+        {
+          onSuccess: () => {
+            this.onClose()
+            this.props.enqueueSnackbar('Pedido de redefinição de senha enviado com sucesso, verifique seu e-mail.', {variant: "success"});
+            this.setState({isLoading: false})
+          },
+          onError: () => {
+            this.setState({isLoading: false})
+          },
+          setFormErrors
+        }
+      )
+    })
+  }
+
   toggleAuthDialog() {
     this.setState(state => ({open: !state.open}))
   }
@@ -105,32 +148,69 @@ class AuthDialog extends Component {
     this.setState({tab: 'auth'})
   }
 
+  changeToForgotPassword() {
+    this.setState({tab: 'forgotpswd'})
+  }
+
+  handleChangeEmailInput(e) {
+    e.preventDefault()
+    let currentEmailAddress = e.target.value;
+    let emailAddressWithOutProvider = currentEmailAddress.split('@')[0];
+    let username = this.toSlugify(emailAddressWithOutProvider)
+    this.setState({username: username, email: currentEmailAddress})
+  }
+
+  toSlugify(fieldStr) {
+    return slugify(fieldStr, {
+      replacement: '-',
+      remove: /[*+~.(){}[\]'"!:@/\\;,´`^#=]/g,
+      lower: true,
+    })
+  }
+
   render() {
     const { open, tab } = this.state
-    const isAuthScreen = tab === 'auth'
+    const fullScreen = isWidthDown('sm', this.props.width);
+    let handleSubmit = this.handleAuthSubmit;
+    if(tab === 'register'){
+      handleSubmit = this.handleRegisterSubmit
+    }
+    if(tab === 'forgotpswd') {
+      handleSubmit = this.handleResetPasswordSubmit
+    }
     return <Dialog
       open={open}
+      fullScreen={fullScreen}
       onClose={this.onClose}
       aria-labelledby="auth-dialog-title"
       scroll="body"
       PaperProps={{
         component: "form",
-        onSubmit: isAuthScreen ? this.handleAuthSubmit : this.handleRegisterSubmit
+        onSubmit: handleSubmit
       }}
     >
-      {isAuthScreen ? this.renderLogin() : this.renderRegister()}
+      {tab === 'auth' && this.renderLogin()}
+      {tab === 'register' && this.renderRegister()}
+      {tab === 'forgotpswd' && this.renderForgotPassword()}
     </Dialog>
   }
 
   renderLogin() {
-    const {classes} = this.props
+    const {classes} = this.props;
+    const fullScreen = isWidthDown('sm', this.props.width);
     return <React.Fragment>
-      <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
+      <DialogTitle id="auth-dialog-title" onClose={this.onClose}>Entrar</DialogTitle>
       <DialogContent>
+        {fullScreen && <div className={classes.dialogLogo}>
+          <Typography noWrap>
+            <img src={logoImg} alt="Que Planta" width="32" height="32" />
+            <img src={logoTextImg} alt="Que Planta" height="22" />
+          </Typography>
+        </div>}
         {this.state.showLoginRequired  && <SnackbarErrorContent message="Você precisa estar autenticado para executar essa ação." />}
         <FormErrors filter={{location: "__all__"}} />
         <TextField
-          autoFocus
+          autoFocus={!fullScreen}
           margin="dense"
           label="Usuário"
           onChange={this.handleChangeInput.bind(this, 'username')}
@@ -149,33 +229,33 @@ class AuthDialog extends Component {
           required
           fullWidth
         />
+        <div className={classes.wrapButton}>
+          <ButtonWithProgress fullWidth={true} variant="contained" color="primary" type="submit" isLoading={this.state.isLoading}>Entrar</ButtonWithProgress> 
+          <Button className={classes.marginTop} onClick={this.changeToForgotPassword}>Esqueceu a senha?</Button>
+        </div>
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
-        <ButtonWithProgress variant="contained" color="primary" type="submit" isLoading={this.state.isLoading}>Entrar</ButtonWithProgress>
-        <Button disabled>Ou</Button>
-        <Button onClick={this.changeToRegister}>Cadastrar</Button>
+        <Typography color="textSecondary" className={classes.textSmall}>Não tem uma conta?</Typography>
+        <Button onClick={this.changeToRegister}>Cadastre-se</Button>
       </DialogActions>
     </React.Fragment>
   }
 
   renderRegister() {
-    const {classes} = this.props
+    const {classes} = this.props;
+    const fullScreen = isWidthDown('sm', this.props.width);
     return <React.Fragment>
-      <DialogTitle id="auth-dialog-title">Entrar</DialogTitle>
+      <DialogTitle id="auth-dialog-title" onClose={this.onClose}>Cadastre-se</DialogTitle>
       <DialogContent>
+        {fullScreen && <div className={classes.dialogLogo}>
+          <Typography noWrap>
+            <img src={logoImg} alt="Que Planta" width="32" height="32" />
+            <img src={logoTextImg} alt="Que Planta" height="22" />
+          </Typography>
+        </div>}
         <FormErrors filter={{location: "__all__"}} />
         <TextFieldWithError
-          autoFocus
-          margin="dense"
-          label="Usuário"
-          placeholder="Nome de usuário unico na rede, será sua identificação principal"
-          onChange={this.handleChangeInput.bind(this, 'username')}
-          value={this.state.username}
-          errorFilter={{location: "username"}}
-          required
-          fullWidth
-        />
-        <TextFieldWithError
+          autoFocus={!fullScreen}
           margin="dense"
           label="Nome e Sobrenome"
           onChange={this.handleChangeInput.bind(this, 'firstName')}
@@ -188,9 +268,19 @@ class AuthDialog extends Component {
           margin="dense"
           label="E-mail"
           type="email"
-          onChange={this.handleChangeInput.bind(this, 'email')}
+          onChange={this.handleChangeEmailInput}
           value={this.state.email}
           errorFilter={{location: "email"}}
+          required
+          fullWidth
+        />
+        <TextFieldWithError
+          margin="dense"
+          label="URL"
+          placeholder="URL única na rede, será sua identificação principal"
+          onChange={this.handleUsernameInput}
+          value={this.state.username}
+          errorFilter={{location: "username"}}
           required
           fullWidth
         />
@@ -215,11 +305,50 @@ class AuthDialog extends Component {
           required
           fullWidth
         />
+      <div className={classes.wrapButton}>
+          <ButtonWithProgress fullWidth={true} variant="contained" color="primary" type="submit" isLoading={this.state.isLoading}>Cadastre-se</ButtonWithProgress> 
+        </div>
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
-        <ButtonWithProgress variant="contained" color="primary" type="submit" isLoading={this.state.isLoading}>Criar conta</ButtonWithProgress>
-        <Button disabled>Ou se já tiver um cadastro</Button>
-        <Button onClick={this.changeToAuth}>Entrar</Button>
+        <Typography color="textSecondary" className={classes.textSmall}>Tem uma conta?</Typography>
+        <Button onClick={this.changeToAuth}>Conecte-se</Button>
+      </DialogActions>
+    </React.Fragment>
+  }
+
+  renderForgotPassword() {
+    const {classes} = this.props;
+    const fullScreen = isWidthDown('sm', this.props.width);
+    return <React.Fragment>
+      <DialogTitle id="auth-dialog-title" onClose={this.onClose}>Problemas para entrar?</DialogTitle>
+      <DialogContent>
+        {fullScreen && <div className={classes.dialogLogo}>
+          <Typography noWrap>
+            <img src={logoImg} alt="Que Planta" width="32" height="32" />
+            <img src={logoTextImg} alt="Que Planta" height="22" />
+          </Typography>
+        </div>}
+        <FormErrors filter={{location: "__all__"}} />
+        <Typography color="textSecondary" className={clsx(classes.textSmall, classes.marginTop)}>
+          Insira o endereço de e-mail associado à sua conta <strong>Que Planta</strong>, 
+          você receberá uma confirmação por e-mail para alterar sua senha.
+        </Typography>
+        <TextFieldWithError
+          margin="dense"
+          label="E-mail"
+          type="email"
+          onChange={this.handleChangeInput.bind(this, 'email')}
+          value={this.state.email}
+          errorFilter={{location: "email"}}
+          required
+          fullWidth
+        />
+      <div className={classes.wrapButton}>
+          <ButtonWithProgress fullWidth={true} variant="contained" color="primary" type="submit" isLoading={this.state.isLoading}>Enviar</ButtonWithProgress> 
+        </div>
+      </DialogContent>
+      <DialogActions className={classes.dialogActions}>
+        <Button onClick={this.changeToAuth}>Voltar ao login</Button>
       </DialogActions>
     </React.Fragment>
   }
@@ -232,6 +361,19 @@ const styles = theme => ({
     marginBottom: theme.spacing(3),
     justifyContent: "flex-start",
   },
+  dialogLogo: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(1),
+  },
+  wrapButton: {
+    marginTop: theme.spacing(2),
+  },
+  textSmall: {
+    fontSize: '14px'
+  },
+  marginTop: {
+    marginTop: theme.spacing(2),
+  }
 });
 
-export default withStyles(styles)(hasFormErrors(AuthDialog));
+export default withStyles(styles)(withWidth()(withSnackbar(hasFormErrors(AuthDialog))));
