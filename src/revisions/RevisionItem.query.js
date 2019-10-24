@@ -74,6 +74,48 @@ const query = graphql`
           body,
           publishedAt
         }
+
+        ... on LifeNode {
+          title,
+          description,
+          edibility
+          edibilityDisplay
+          ...RankDisplay_plant
+          commonNames(first: 20) {
+            edges {
+              node {
+                id
+                name
+                language
+                voting {
+                  ...VotingButtons_voting
+                }
+              }
+            }
+          }
+          mainImage: images(first: 1) {
+            edges {
+              node {
+                id
+                smallImage: image(width: 225, height: 300) {
+                  url
+                }
+                ...ImageThumbnail_image
+              }
+            }
+          }
+          images(first: 20) {
+            edges {
+              node {
+                id
+                smallImage: image(width: 200, height: 200) {
+                  url
+                }
+                ...ImageThumbnail_image
+              }
+            }
+          }
+        }
       }
     }
   }

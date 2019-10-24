@@ -6,7 +6,30 @@ const mutation = graphql`
     revisionRevert(input: $input) {
       node {
         id
-        Page
+        ... on LifeNode {
+          revision {
+            id
+            isTip
+          }
+        }
+        ... on Page {
+          revision {
+            id
+            isTip
+          }
+        }
+        ... on Post {
+          revision {
+            id
+            isTip
+          }
+        }
+        ... on Comment {
+          revision {
+            id
+            isTip
+          }
+        }
       }
       errors {
         code,
