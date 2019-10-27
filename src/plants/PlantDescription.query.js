@@ -8,15 +8,11 @@ const query = graphql`
       description
       myPerms
       ...TaxoClimb_lifeNode
-      commonNames(first: 20) {
+      commonNames(first: 20) @connection(key: "lifeNode__commonNames") {
         edges {
           node {
             id
-            name
-            language
-            voting {
-              ...VotingButtons_voting
-            }
+            ...CommonNameItem_commonName
           }
         }
       }

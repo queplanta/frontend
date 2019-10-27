@@ -22,7 +22,7 @@ export default class Route {
           if (typeof render === 'function' ) {
             return render(args)
           }
-          return <Component {...args.props} />
+          return <Component environment={args.environment} {...args.props} />
         }
         return <Loading />
       },
