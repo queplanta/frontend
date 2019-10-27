@@ -43,14 +43,8 @@ export const plantsRoutes = <React.Fragment>
     Component={Plant}
   >
     <Route Component={PlantDescription} query={PlantDescriptionQuery} />
-    <Route path="mapa" query={PlantOccurrencesQuery} render={(args) => {
-      return <PlantOccurrences {...args.props} environment={args.environment} />
-    }} />
-    <Route path="fotos" query={PlantPhotosQuery} render={(args) => {
-      return <PlantPhotos {...args.props} environment={args.environment} />
-    }} />
+    <Route path="mapa" Component={PlantOccurrences}  query={PlantOccurrencesQuery} />
+    <Route path="fotos" Component={PlantPhotos} query={PlantPhotosQuery} />
   </Route>
-  <Route path="/:plantSlug-p:plantID(\d+)/editar" query={PlantEditQuery} render={(args) => {
-    return <PlantEdit {...args.props} environment={args.environment} />
-  }} />
+  <Route path="/:plantSlug-p:plantID(\d+)/editar" Component={PlantEdit} query={PlantEditQuery} />
 </React.Fragment>

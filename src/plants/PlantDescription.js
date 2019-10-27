@@ -2,12 +2,12 @@ import React from 'react';
 import { Typography, withStyles } from '@material-ui/core';
 import TaxoClimb from './TaxoClimb.js';
 import CommentsList from '../comments/CommentsList.js';
-import VotingButtons from '../voting/VotingButtons.js';
 import { hasPerm } from '../lib/perms.js';
-// import PlantEditAddName from './PlantEditAddName.js';
+import CommonNameItem from './commonNames/CommonNameItem.js';
+import CommonNameAdd from './commonNames/Add.js';
 
 function PlantDescription(props) {
-  const {classes, plant} = props
+  const {classes, plant, environment} = props
 
   return <React.Fragment>
     <Typography variant="body1" className={classes.marginBottom}>{plant.description}</Typography>
@@ -17,11 +17,9 @@ function PlantDescription(props) {
       <ul>
         {plant.commonNames.edges.map((edge) => {
           const commonName = edge.node
-          return <li key={commonName.id}>
-            { commonName.name} {commonName.language ? `(${commonName.language})` : ''} {hasPerm(plant, 'edit') && <VotingButtons voting={commonName.voting} parentId={commonName.id} />}
-          </li>
+          return <CommonNameItem key={commonName.id} commonName={commonName} plant={plant} />;
         })}
-        {/*hasPerm(plant, 'edit') && <li><PlantEditAddName plant={plant} /></li>*/}
+        {hasPerm(plant, 'edit') && <li><CommonNameAdd plant={plant} environment={environment} /></li>}
       </ul>
     </div>}
     <TaxoClimb lifeNode={plant} />
