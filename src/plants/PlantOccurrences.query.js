@@ -5,6 +5,7 @@ const query = graphql`
     plant: lifeNodeByIntID(documentId: $plantID) {
       id
       idInt
+      title
     }
   }
 `;
