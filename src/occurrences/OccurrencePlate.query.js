@@ -1,22 +1,24 @@
 import graphql from 'babel-plugin-relay/macro';
 
 const query = graphql`
-  query OccurrenceQuery($id: ID!) {
+  query OccurrencePlateQuery($id: ID!, $url: String!) {
+    urlShortner(url: $url)
     occurrence(id: $id) {
       id,
       idInt,
       identity {
         id
-        idInt
         title
-        slug
         commonName {
           name
+        }
+        parents {
+          title
+          rank
         }
       }
       isRequest
       ...WhatIsThis_occurrence
-      ...OccurrenceDetails_occurrence
     }
   }
 `;

@@ -15,44 +15,32 @@ import OccurrenceQuery from './Occurrence.query.js';
 export const occurrencesRoutes = <React.Fragment>
   <Route
     path="/mapa"
+    Component={Home}
     query={HomeQuery}
-    render={(args) => {
-      return <Home {...args.props} environment={args.environment} />
-    }}
   />
   <Route
     path="/mapa/adicionar"
+    Component={OccurrenceAdd}
     query={OccurrenceAddQuery}
-    render={(args) => {
-      return <OccurrenceAdd {...args.props} environment={args.environment} />
-    }}
   />
   <Route
     path="/identificacao"
+    Component={HomeIdentify}
     query={HomeIdentifyQuery}
-    render={(args) => {
-      return <HomeIdentify {...args.props} environment={args.environment} />
-    }}
   />
   <Route
     path="/identificacao/identificadas"
+    Component={HomeIdentified}
     query={HomeIdentifyQuery}
-    render={(args) => {
-      return <HomeIdentified {...args.props} environment={args.environment} />
-    }}
   />
   <Route
     path="/identificacao/pedido"
+    Component={IdentifyPage}
     query={IdentifyPageQuery}
-    render={(args) => {
-      return <IdentifyPage {...args.props} environment={args.environment} />
-    }}
   />
   <Route
     path="/observacoes/:id"
+    Component={Occurrence}
     query={OccurrenceQuery}
-    render={(args) => {
-      return <Occurrence {...args.props} environment={args.environment} />
-    }}
   />
 </React.Fragment>
