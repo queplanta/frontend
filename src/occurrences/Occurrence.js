@@ -15,14 +15,18 @@ function OccurrencePage(props) {
     return <NotFound />
   }
 
-  const plant = occurrence.identity;
-  const plantTitle = plant.commonName ? `${plant.commonName.name} (${plant.title})` : plant.title;
+  let headerTitle = `Pedido de identificação: ${occurrence.idInt}`;
+  let title = `Pedido de identificação: ${occurrence.idInt}`;
 
-  const headerTitle = occurrence.isRequest ? `Pedido de identificação: ${occurrence.idInt}` : `Observação de ${plantTitle}`;
+  if (!occurrence.isRequest) {
+    const plant = occurrence.identity;
+    const plantTitle = plant.commonName ? `${plant.commonName.name} (${plant.title})` : plant.title;
 
-  const title = occurrence.isRequest ? `Pedido de identificação: ${occurrence.idInt}` : <React.Fragment>
-    Observação de <Link to={`/${plant.slug}-p${plant.idInt}`}>{plantTitle}</Link>
-  </React.Fragment>;
+    headerTitle = `Observação de ${plantTitle}`;
+    title = <React.Fragment>
+      Observação de <Link to={`/${plant.slug}-p${plant.idInt}`}>{plantTitle}</Link>
+    </React.Fragment>;
+  }
 
   return <Width>
     <Helmet
