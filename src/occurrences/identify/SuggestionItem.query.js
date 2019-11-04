@@ -14,6 +14,8 @@ const query = graphql`
     }
     identity {
       id
+      rankDisplay
+      description
       ...PlantLink_plant
     }
     voting {
