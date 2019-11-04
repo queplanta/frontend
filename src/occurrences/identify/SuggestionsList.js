@@ -22,6 +22,7 @@ function SuggestionsList(props) {
   const [isSaving, setIsSaving] = useState(false)
   const {classes, environment, setFormErrors, occurrence} = props;
   const edges = occurrence.suggestions.edges;
+  const suggestionsTotalCount = occurrence.suggestions.totalCount;
   const [selectedPlant, setPlant] = useState(null);
   const notes = useFormInput('')
 
@@ -57,8 +58,16 @@ function SuggestionsList(props) {
 
   const items = _.filter(edges, function(edge) { return !!edge.node});
 
+  let suggestionsTotalCountText = suggestionsTotalCount + " sugestão";
+  if(suggestionsTotalCount > 1) {
+    suggestionsTotalCountText = suggestionsTotalCount + " sugestões";
+  } 
+
   return <div>
     <Typography component="h4" variant="h6" className={classes.title}>Que espécie é esta?</Typography>
+    {(suggestionsTotalCount > 0) && <Typography component="h5" variant="subtitle1" className={classes.title}>
+      {suggestionsTotalCountText}
+    </Typography>}
 
     <List>
       {items.map((edge, i) => {
@@ -76,7 +85,7 @@ function SuggestionsList(props) {
         onChange={setPlant}
         value={selectedPlant}
         textFieldProps={{
-          label: "Sugerir espécie",
+          label: "Sugerir espécie...",
           fullWidth: true,
         }}
       />

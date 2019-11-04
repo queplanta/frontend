@@ -9,6 +9,8 @@ const query = graphql`
       ...PlantLink_plant
     }
     suggestions(first: 100) @connection(key: "Occurrence_suggestions") {
+      totalCount
+      edgeCount
       edges {
         node {
           id
