@@ -18,6 +18,8 @@ function Footer(props) {
 				{` . `}
 				<Link to={`/contribua`} component={RouterLink}>Contribua</Link>
 				{` . `}
+        <Link to={`/diretorio/membros/a`} component={RouterLink}>Membros</Link>
+        {` . `}
 				<Link to={`/termos-de-uso`} component={RouterLink}>Termos de Uso</Link>
 			</Grid>
 			<Grid item xs={12} md={7}>
