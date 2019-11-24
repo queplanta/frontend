@@ -1,7 +1,7 @@
 import graphql from 'babel-plugin-relay/macro';
 
 const query = graphql`
-  query PlantQuery($plantID: Int!) {
+  query PlantUserListQuery($plantID: Int!) {
     plant: lifeNodeByIntID(documentId: $plantID) {
       id
       idInt
@@ -28,14 +28,6 @@ const query = graphql`
         ...RevisionBox_document
       }
       myPerms
-      myCollectionItem {
-        id
-        isTip
-      }
-      myWishItem {
-        id
-        isTip
-      }
     }
   }
 `;

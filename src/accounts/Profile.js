@@ -95,8 +95,11 @@ function Profile(props) {
             indicatorColor="primary"
             textColor="primary"
             className={classes.tabs}
+            centered={true}
           >
             <TabRoute label="Atividades" wrapped value={baseUrl} />
+            <TabRoute label="Tenho" wrapped value={`${baseUrl}/tenho`} />
+            <TabRoute label="Quero ter" wrapped value={`${baseUrl}/quero-ter`} />
           </TabsRoute>
           <Typography
             component="div"
