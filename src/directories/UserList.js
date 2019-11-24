@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import { Grid, Typography, withStyles } from '@material-ui/core';

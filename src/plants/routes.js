@@ -12,6 +12,8 @@ import PlantEdit from './PlantEdit.js';
 import PlantEditQuery from './PlantEdit.query.js';
 import HomePlants from './Home.js';
 import HomePlantsQuery from './Home.query.js';
+import PlantUserList from './PlantUserList.js';
+import PlantUserListQuery from './PlantUserList.query.js';
 
 export const plantsRoutes = <React.Fragment>
   <Route
@@ -47,4 +49,5 @@ export const plantsRoutes = <React.Fragment>
     <Route path="fotos" Component={PlantPhotos} query={PlantPhotosQuery} />
   </Route>
   <Route path="/:plantSlug-p:plantID(\d+)/editar" Component={PlantEdit} query={PlantEditQuery} />
+  <Route path="/:plantSlug-p:plantID(\d+)/listas/quero-ter" Component={PlantUserList} query={PlantUserListQuery} />
 </React.Fragment>

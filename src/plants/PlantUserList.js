@@ -1,12 +1,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import clsx from 'clsx';
-import { Avatar, Paper, Grid, Card, CardActions, CardContent,
-  Button, Hidden, Box, Link, Typography, withStyles } from '@material-ui/core';
+import { Avatar, Dialog, Paper, Grid, Card, CardActions, CardContent,
+  Button, Hidden, Box, Link, Slide, useMediaQuery, Typography, withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import CheckIcon from '@material-ui/icons/Check';
 import WebIcon from '@material-ui/icons/Web';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import { useTheme } from '@material-ui/core/styles';
 import { Link as RouterLink } from 'found';
 import { Width } from '../ui';
 import _ from 'lodash';
@@ -16,17 +17,27 @@ import RankDisplay from './RankDisplay.js'
 import RevisionBox from '../revisions/RevisionBox.js'
 import NotFound from '../pages/NotFound.js'
 import ImgDefault from './PlantImgDefault.js';
+import DialogTitle from '../lib/DialogTitle.js';
 import { TabsRoute, TabRoute } from '../lib/Tabs.js';
 import ImageThumbnail from '../lib/ImageThumbnail.js';
 import { hasPerm } from '../lib/perms.js';
-import  WishItem from './buttons/WishItem.js';
 
 function Plant(props) {
   const {classes, plant, children} = props
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   if (!plant) {
@@ -88,86 +99,8 @@ function Plant(props) {
         </Paper>
       </Grid>  
       <Grid item xs={12} md={9}>
-        <Paper>
-          <div className={classes.plantActionBar}>
-            <Button variant="contained"
-              color="primary"
-              size="small"
-              className={clsx(classes.plantActionBtn, classes.haveBtn)}>
-              <CheckIcon className={classes.leftIcon} />
-              Tenho
-            </Button>
-            <WishItem plant={plant} />
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              className={clsx(classes.plantActionBtn, classes.createAdBtn)}
-              onClick={handleClickOpen}>
-              <WebIcon className={classes.leftIcon} />
-              Criar anúncio
-            </Button>
-          </div>   
-        </Paper>
-        <Grid container spacing={3}>
-          <Grid item md={6}>
-            <Card>
-              <CardContent className={classes.haveListContent}>
-                <Typography variant="h6">
-                  Tem
-                </Typography>
-                <div className={classes.inlineAvatarList}>
-                  <Avatar>A</Avatar>
-                  <Avatar>C</Avatar>
-                  <Avatar>G</Avatar>
-                  <Avatar>M</Avatar>
-                </div>
-              </CardContent>
-              <CardActions className={classes.haveListAction}>
-                <Button size="small" to={`${baseUrl}/listas/quero-ter`} component={RouterLink}>ver mais</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item md={6}>
-            <Card>
-              <CardContent className={classes.haveListContent}>
-                <div className={classes.inlineAvatarList}>
-                  <Avatar>A</Avatar>
-                  <Avatar>C</Avatar>
-                  <Avatar>G</Avatar>
-                  <Avatar>M</Avatar>
-                  <Avatar>Z</Avatar>
-                  <Avatar>M</Avatar>
-                </div>               
-              </CardContent>
-              <CardActions className={classes.haveListAction}>
-                <Typography variant="body2" component="p" color="textSecondary">
-                  234 pessoas tem essa planta. <Button size="small" to={`${baseUrl}/listas/quero-ter`} component={RouterLink}>ver mais</Button>
-                </Typography>
-              </CardActions>
-            </Card>
-          </Grid>
-        </Grid>
-
-        <Paper className={classes.marginBottom}>
-          <TabsRoute
-            indicatorColor="primary"
-            textColor="primary"
-            className={classes.tabs}
-          >
-            <TabRoute label="Descrição" wrapped value={baseUrl} />
-            <TabRoute label="Mapa" wrapped value={`${baseUrl}/mapa`} />
-            <TabRoute label="Fotos" wrapped value={`${baseUrl}/fotos`} />
-            {/*<TabRoute label="Usos" wrapped />
-            <TabRoute label="Listas" wrapped />
-            <TabRoute label="Trocas e Vendas" wrapped />*/}
-          </TabsRoute>
-          <Typography
-            component="div"
-            role="tabpanel"
-          >
-            <Box p={3}>{children}</Box>
-          </Typography>
+        <Paper className={classes.paper}>
+          lista de users igual diretorios
         </Paper>
       </Grid>  
     </Grid>  
@@ -194,19 +127,18 @@ const styles = (theme) => ({
   marginBottom: {
     marginBottom: theme.spacing(2),
   },
-  plantActionBar: {
-    marginBottom: theme.spacing(2),
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-    }
-  },
   plantActionBtn: {
     margin: theme.spacing(1,0,1,1),
   },
   haveBtn: {
     color: '#FFF',
+  },
+  wantToHaveBtn: {
+    backgroundColor: '#1976d2',
+    color: '#FFF',
+    '&:hover': {
+      backgroundColor: '#0f5192',
+    },
   },
   createAdBtn: {
     color: '#FFF',
@@ -224,20 +156,6 @@ const styles = (theme) => ({
   dialogContent: {
     padding: theme.spacing(1,3,3,3)
   },
-  inlineAvatarList:{
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-    }
-  },
-  haveListContent: {
-    padding: theme.spacing(1),
-  },
-  haveListAction: {
-    textAlign: 'right',
-    fontSize: '12px'
-  }
 })
 
 export default withStyles(styles)(Plant)

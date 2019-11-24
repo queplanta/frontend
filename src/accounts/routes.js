@@ -13,6 +13,8 @@ import ResetPasswordCompleteQuery from './ResetPasswordComplete.query.js'
 import ProfileSettings from './ProfileSettings.js'
 import UserActivityList from './UserActivityList.js';
 import UserActivityListQuery from './UserActivityList.query.js';
+import UserPlantList from './UserPlantList.js';
+import UserPlantListQuery from './UserPlantList.query.js';
 
 export const accountsRoutes = <React.Fragment>
   <Route
@@ -24,6 +26,17 @@ export const accountsRoutes = <React.Fragment>
       query={UserActivityListQuery}
       render={(args) => {
         return <UserActivityList {...args.props} environment={args.environment} />
+      }}
+      prepareVariables={(params) => ({
+        ...params,
+        count: 30,
+      })}
+    />
+    <Route
+      path="quero-ter"
+      query={UserPlantListQuery}
+      render={(args) => {
+        return <UserPlantList {...args.props} environment={args.environment} />
       }}
       prepareVariables={(params) => ({
         ...params,
