@@ -7,6 +7,23 @@ const mutation = graphql`
       wishItem {
         node {
           id
+          user {
+            id
+            username
+            avatar(width: 40, height: 40) {
+              url
+            }
+            ...ProfileLink_user
+          }
+          plant {
+            id
+            wishList {
+             totalCount
+            }
+            myWishItem {
+              id
+            }
+          }
         }
       }
       errors {
@@ -26,6 +43,19 @@ function commit(environment, input, callbacks) {
     mutation,
     input,
     callbacks,
+    config: {
+      configs: [
+        {
+          type: 'RANGE_ADD',
+          parentID: input.plantId,
+          connectionInfo: [{
+            key: 'Plant_wishList',
+            rangeBehavior: 'append'
+          }],
+          edgeName: 'wishItem',
+        }
+      ]
+    }
   });
 }
 

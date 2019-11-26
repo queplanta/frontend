@@ -6,14 +6,16 @@ import fragmentSpec from './ProfileLink.query.js';
 
 class ProfileLink extends React.Component {
   render() {
-    const {user, classes} = this.props;
+    const {user, classes, children} = this.props;
     const title = <div>
       <img src={user.avatar.url} className={classes.avatar} alt={user.username} />
       <strong>{user.firstName}</strong><br/>
       Reputação: {user.reputation}
     </div>;
     return <Tooltip interactive title={title} classes={{ tooltip: classes.tooltip }}>
-      <Link to={`/u/${user.username}`} component={RouterLink}>{user.username}</Link>
+      <Link to={`/u/${user.username}`} component={RouterLink}>
+        {children ? children : user.username}
+      </Link>
     </Tooltip>;
   }
 }

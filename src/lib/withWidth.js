@@ -32,7 +32,7 @@ const withWidth = (options = {}) => Component => {
     initialWidth: initialWidthOption,
   } = options;
 
-  function WithWidth(props, ref) {
+  let WithWidth = function(props, ref) {
     const contextTheme = useTheme();
     const theme = props.theme || contextTheme;
     const { initialWidth, width, ...other } = getThemeProps({
@@ -81,6 +81,8 @@ const withWidth = (options = {}) => Component => {
     return <Component ref={ref} {...more} />;
   }
 
+  WithWidth = React.forwardRef(WithWidth);
+
   WithWidth.propTypes = {
     /**
      * As `window.innerWidth` is unavailable on the server,
@@ -108,7 +110,7 @@ const withWidth = (options = {}) => Component => {
 
   hoistNonReactStatics(WithWidth, Component);
 
-  return React.forwardRef(WithWidth)
+  return WithWidth
 };
 
 export default withWidth;

@@ -28,14 +28,13 @@ const query = graphql`
         ...RevisionBox_document
       }
       myPerms
-      myCollectionItem {
-        id
-        isTip
+      collectionList {
+       totalCount
       }
-      myWishItem {
-        id
-        isTip
+      wishList {
+       totalCount
       }
+      ...WishItemToggle_plant
     }
   }
 `;
