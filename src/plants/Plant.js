@@ -1,12 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import clsx from 'clsx';
-import { Avatar, Paper, Grid, Card, CardActions, CardContent,
-  Button, Hidden, Box, Link, Typography, withStyles } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { Paper, Grid, Button, Hidden, Box, Link, Typography, Badge, withStyles } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
-import WebIcon from '@material-ui/icons/Web';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+// import WebIcon from '@material-ui/icons/Web';
+// import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { Link as RouterLink } from 'found';
 import { Width } from '../ui';
 import _ from 'lodash';
@@ -23,11 +21,6 @@ import  WishItem from './buttons/WishItem.js';
 
 function Plant(props) {
   const {classes, plant, children} = props
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   if (!plant) {
     return <NotFound />
@@ -63,11 +56,11 @@ function Plant(props) {
           </div>
           <EdibilityBadge plant={plant} />
             <Hidden smUp>
-              <Button variant="contained" color="primary" className={classes.sidebarBtn} fullWidth={true}>
+              {/*<Button variant="contained" color="primary" className={classes.sidebarBtn} fullWidth={true}>
                 <PlaylistAddIcon className={classes.leftIcon} />
                 Adicionar à lista
-              </Button>
-              <Button
+              </Button>/*}
+              {/*<Button
                 variant="contained"
                 color="secondary"
                 className={classes.sidebarBtn}
@@ -75,7 +68,7 @@ function Plant(props) {
                 onClick={handleClickOpen}>
                 <AddIcon className={classes.leftIcon} />
                 Tenho semente
-              </Button>
+              </Button>*/}
             </Hidden>
         </Paper>
         <Paper className={classes.marginBottom}>
@@ -88,67 +81,25 @@ function Plant(props) {
         </Paper>
       </Grid>  
       <Grid item xs={12} md={9}>
-        <Paper>
-          <div className={classes.plantActionBar}>
-            <Button variant="contained"
-              color="primary"
-              size="small"
-              className={clsx(classes.plantActionBtn, classes.haveBtn)}>
-              <CheckIcon className={classes.leftIcon} />
-              Tenho
-            </Button>
-            <WishItem plant={plant} />
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              className={clsx(classes.plantActionBtn, classes.createAdBtn)}
-              onClick={handleClickOpen}>
-              <WebIcon className={classes.leftIcon} />
-              Criar anúncio
-            </Button>
-          </div>   
-        </Paper>
-        <Grid container spacing={3}>
-          <Grid item md={6}>
-            <Card>
-              <CardContent className={classes.haveListContent}>
-                <Typography variant="h6">
-                  Tem
-                </Typography>
-                <div className={classes.inlineAvatarList}>
-                  <Avatar>A</Avatar>
-                  <Avatar>C</Avatar>
-                  <Avatar>G</Avatar>
-                  <Avatar>M</Avatar>
-                </div>
-              </CardContent>
-              <CardActions className={classes.haveListAction}>
-                <Button size="small" to={`${baseUrl}/listas/quero-ter`} component={RouterLink}>ver mais</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item md={6}>
-            <Card>
-              <CardContent className={classes.haveListContent}>
-                <div className={classes.inlineAvatarList}>
-                  <Avatar>A</Avatar>
-                  <Avatar>C</Avatar>
-                  <Avatar>G</Avatar>
-                  <Avatar>M</Avatar>
-                  <Avatar>Z</Avatar>
-                  <Avatar>M</Avatar>
-                </div>               
-              </CardContent>
-              <CardActions className={classes.haveListAction}>
-                <Typography variant="body2" component="p" color="textSecondary">
-                  234 pessoas tem essa planta. <Button size="small" to={`${baseUrl}/listas/quero-ter`} component={RouterLink}>ver mais</Button>
-                </Typography>
-              </CardActions>
-            </Card>
-          </Grid>
-        </Grid>
-
+        <div className={classes.plantActionBar}>
+          <Button variant="contained"
+            color="primary"
+            size="small"
+            className={clsx(classes.plantActionBtn, classes.haveBtn)}>
+            <CheckIcon className={classes.leftIcon} />
+            Tenho
+          </Button>
+          <WishItem plant={plant} />
+          {/*<Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            className={clsx(classes.plantActionBtn, classes.createAdBtn)}
+            onClick={handleClickOpen}>
+            <WebIcon className={classes.leftIcon} />
+            Criar anúncio
+          </Button>*/}
+        </div>   
         <Paper className={classes.marginBottom}>
           <TabsRoute
             indicatorColor="primary"
@@ -158,9 +109,8 @@ function Plant(props) {
             <TabRoute label="Descrição" wrapped value={baseUrl} />
             <TabRoute label="Mapa" wrapped value={`${baseUrl}/mapa`} />
             <TabRoute label="Fotos" wrapped value={`${baseUrl}/fotos`} />
-            {/*<TabRoute label="Usos" wrapped />
-            <TabRoute label="Listas" wrapped />
-            <TabRoute label="Trocas e Vendas" wrapped />*/}
+            <TabRoute label={<Badge color="primary" badgeContent={plant.collectionList.totalCount} classes={{badge: classes.tabBadge}}>Quem Tem</Badge>} wrapped value={`${baseUrl}/quem-tem`} />
+            <TabRoute label={<Badge color="primary" badgeContent={plant.wishList.totalCount} classes={{badge: classes.tabBadge}}>Quer ter</Badge>} wrapped value={`${baseUrl}/quem-quer-ter`} />
           </TabsRoute>
           <Typography
             component="div"
@@ -203,7 +153,7 @@ const styles = (theme) => ({
     }
   },
   plantActionBtn: {
-    margin: theme.spacing(1,0,1,1),
+    margin: theme.spacing(1,2,1,0),
   },
   haveBtn: {
     color: '#FFF',
@@ -237,7 +187,10 @@ const styles = (theme) => ({
   haveListAction: {
     textAlign: 'right',
     fontSize: '12px'
-  }
+  },
+  tabBadge: {
+    right: '-10px',
+  },
 })
 
 export default withStyles(styles)(Plant)

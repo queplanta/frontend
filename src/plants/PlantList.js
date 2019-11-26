@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 import { createPaginationContainer } from 'react-relay';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import PlantItem from './PlantItem.js';
 import { fragmentSpec, query } from './PlantList.query.js';
 
 function PlantList(props) {
-  const {classes, relay, viewer: {allLifeNode: {edges: plants}}} = props
+  const {relay, viewer: {allLifeNode: {edges: plants}}} = props
   const [isLoading, setLoading] = React.useState(false)
   const hasMore = relay.hasMore()
 
@@ -22,14 +22,16 @@ function PlantList(props) {
     })
   }  
 
-  return <React.Fragment>
+  return <Grid container spacing={3}>
     {plants.map(({node: plant}) => {
-      return <PlantItem key={plant.id} lifeNode={plant} />
+      return <Grid item xs={12} md={4} key={plant.id}>
+        <PlantItem lifeNode={plant} />
+      </Grid>
     })}
-    <div className={classes.wrapBtn}>
+    <Grid item xs={12}>
       <ButtonWithProgress disabled={!hasMore} fullWidth={true} variant="outlined" isLoading={isLoading} onClick={handleLoadMore}>{(!hasMore) ? 'Fim das plantas' : 'Carregar mais plantas'}</ButtonWithProgress>
-    </div>
-  </React.Fragment>
+    </Grid>
+  </Grid>
 }
 
 const styles = (theme) => ({

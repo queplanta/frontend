@@ -1,12 +1,13 @@
 import graphql from 'babel-plugin-relay/macro';
 
 export const fragmentQuery = graphql`
-  fragment UserPlantList_viewer on Query
+  fragment UserPlantList_viewer on User
   @argumentDefinitions(
     count: {type: "Int", defaultValue: 30}
     cursor: {type: "String"}
   )
   {
+    id
     wishList(
       first: $count
       after: $cursor
@@ -18,6 +19,10 @@ export const fragmentQuery = graphql`
       edges {
         node {
           id
+          plant {
+            id
+            ...PlantItem_lifeNode
+          }
         }
       }
     }
@@ -25,15 +30,17 @@ export const fragmentQuery = graphql`
 `
 
 export const fragmentSpec = {
-  viewer: fragmentQuery
+  user: fragmentQuery
 }
 
 export const query = graphql`
   query UserPlantListQuery(
     $count: Int!
-    $cursor: String
+    $cursor: String,
+    $username: String!,
   ) {
-    viewer {
+    user: userByUsername(username: $username) {
+      id
       ...UserPlantList_viewer @arguments(count: $count, cursor: $cursor)
     }
   }
