@@ -9,6 +9,12 @@ const query = graphql `
       avatar(width: 80, height: 80) {
         url
       }
+      collectionList {
+       totalCount
+      }
+      wishList {
+       totalCount
+      }
       ...UserActivityList_user
     }
     me {
