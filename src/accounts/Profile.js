@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { IconButton, Paper, Dialog, 
+import { IconButton, Paper, Dialog, Badge,
   List, ListItem, ListItemText, Typography, Grid,
   Chip, Box, Slide, useMediaQuery, withStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -98,8 +98,8 @@ function Profile(props) {
             centered={true}
           >
             <TabRoute label="Atividades" wrapped value={baseUrl} />
-            <TabRoute label="Tenho" wrapped value={`${baseUrl}/tenho`} />
-            <TabRoute label="Quero ter" wrapped value={`${baseUrl}/quero-ter`} />
+            <TabRoute label={<Badge color="primary" badgeContent={profile.collectionList.totalCount} classes={{badge: classes.tabBadge}}>Tenho</Badge>} wrapped value={`${baseUrl}/tenho`} />
+            <TabRoute label={<Badge color="primary" badgeContent={profile.wishList.totalCount} classes={{badge: classes.tabBadge}}>Quero Ter</Badge>} wrapped value={`${baseUrl}/quero-ter`} />
           </TabsRoute>
           <Typography
             component="div"
@@ -138,7 +138,10 @@ const styles = (theme) => ({
   },
   editMdButton: {
     float: 'right'
-  }
+  },
+  tabBadge: {
+    right: '-10px',
+  },
 })
 
 export default withStyles(styles)(Profile)

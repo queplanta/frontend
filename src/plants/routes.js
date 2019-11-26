@@ -14,6 +14,8 @@ import HomePlants from './Home.js';
 import HomePlantsQuery from './Home.query.js';
 import PlantWishList from './PlantWishList.js';
 import PlantWishListQuery from './PlantWishList.query.js';
+import PlantCollectionList from './PlantCollectionList.js';
+import PlantCollectionListQuery from './PlantCollectionList.query.js';
 
 export const plantsRoutes = <React.Fragment>
   <Route
@@ -48,6 +50,7 @@ export const plantsRoutes = <React.Fragment>
     <Route path="mapa" Component={PlantOccurrences}  query={PlantOccurrencesQuery} />
     <Route path="fotos" Component={PlantPhotos} query={PlantPhotosQuery} />
     <Route path="quem-quer-ter" Component={PlantWishList} query={PlantWishListQuery} />
+    <Route path="quem-tem" Component={PlantCollectionList} query={PlantCollectionListQuery} />
   </Route>
   <Route path="/:plantSlug-p:plantID(\d+)/editar" Component={PlantEdit} query={PlantEditQuery} />
 </React.Fragment>

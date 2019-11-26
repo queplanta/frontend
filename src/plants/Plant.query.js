@@ -34,6 +34,7 @@ const query = graphql`
       wishList {
        totalCount
       }
+      ...CollectionItemToggle_plant
       ...WishItemToggle_plant
     }
   }

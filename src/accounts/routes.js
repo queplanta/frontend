@@ -15,6 +15,8 @@ import UserActivityList from './UserActivityList.js';
 import UserActivityListQuery from './UserActivityList.query.js';
 import UserPlantList from './UserPlantList.js';
 import UserPlantListQuery from './UserPlantList.query.js';
+import UserCollectionList from './UserCollectionList.js';
+import UserCollectionListQuery from './UserCollectionList.query.js';
 
 export const accountsRoutes = <React.Fragment>
   <Route
@@ -37,6 +39,17 @@ export const accountsRoutes = <React.Fragment>
       query={UserPlantListQuery}
       render={(args) => {
         return <UserPlantList {...args.props} environment={args.environment} />
+      }}
+      prepareVariables={(params) => ({
+        ...params,
+        count: 30,
+      })}
+    />
+    <Route
+      path="tenho"
+      query={UserCollectionListQuery}
+      render={(args) => {
+        return <UserCollectionList {...args.props} environment={args.environment} />
       }}
       prepareVariables={(params) => ({
         ...params,

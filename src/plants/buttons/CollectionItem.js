@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { createFragmentContainer } from 'react-relay';
 import { withStyles } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import CheckIcon from '@material-ui/icons/Check';
 import { useSnackbar } from 'notistack';
 import ButtonWithProgress from '../../lib/ButtonWithProgress.js';
 import { useLoginRequired } from '../../accounts/LoginRequired.js';
-import WishItemAddMutation from './WishItemAdd.mutation.js';
-import WishItemDeleteMutation from './WishItemDelete.mutation.js';
-import fragmentSpec from './WishItemToggle.query.js';
+import CollectionItemAddMutation from './CollectionItemAdd.mutation.js';
+import CollectionItemDeleteMutation from './CollectionItemDelete.mutation.js';
+import fragmentSpec from './CollectionItemToggle.query.js';
 
-function WishItem(props) {
+function CollectionItem(props) {
   const {relay: {environment}, classes, plant} = props;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
   const [isSaving, setIsSaving] = useState(false);
-  const isSelected = plant.myWishItem !== null;
+  const isSelected = plant.myCollectionItem !== null;
 
   function handleAdd(e) {
     e.preventDefault()
     setIsSaving(true)
     if (isAuthenticated()) {
       if (!isSelected) {
-        WishItemAddMutation.commit(
+        CollectionItemAddMutation.commit(
           environment,
           {
             plantId: plant.id,
@@ -38,10 +38,10 @@ function WishItem(props) {
           }
         )
       } else {
-        WishItemDeleteMutation.commit(
+        CollectionItemDeleteMutation.commit(
           environment,
           {
-            id: plant.myWishItem.id,
+            id: plant.myCollectionItem.id,
           },
           {
             onSuccess: () => {
@@ -60,28 +60,28 @@ function WishItem(props) {
 
   return <ButtonWithProgress
     variant="contained"
-    color="secondary"
+    color="primary"
     size="small"
     className={isSelected ? classes.active : classes.root}
     isLoading={isSaving}
     onClick={handleAdd}>
-    <AddIcon className={classes.leftIcon} /> Quero ter
+    <CheckIcon className={classes.leftIcon} /> Tenho
   </ButtonWithProgress>
 }
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: '#b6c6d6',
+    backgroundColor: '#a6b7a7',
     color: '#FFF',
     '&:hover': {
-      backgroundColor: '#6197ce',
+      backgroundColor: '#689a6a',
     },
   },
   active: {
-    backgroundColor: '#1976d2',
+    backgroundColor: '#4caf50',
     color: '#FFF',
     '&:hover': {
-      backgroundColor: '#0f5192',
+      backgroundColor: '#388e3c',
     },
   },
   leftIcon: {
@@ -90,6 +90,6 @@ const styles = (theme) => ({
 })
 
 export default createFragmentContainer(
-  withStyles(styles)(WishItem),
+  withStyles(styles)(CollectionItem),
   fragmentSpec
 );

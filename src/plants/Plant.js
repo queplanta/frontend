@@ -1,8 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import clsx from 'clsx';
-import { Paper, Grid, Button, Hidden, Box, Link, Typography, Badge, withStyles } from '@material-ui/core';
-import CheckIcon from '@material-ui/icons/Check';
+import { Paper, Grid, Hidden, Box, Link, Typography, Badge, withStyles } from '@material-ui/core';
 // import WebIcon from '@material-ui/icons/Web';
 // import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { Link as RouterLink } from 'found';
@@ -17,7 +15,8 @@ import ImgDefault from './PlantImgDefault.js';
 import { TabsRoute, TabRoute } from '../lib/Tabs.js';
 import ImageThumbnail from '../lib/ImageThumbnail.js';
 import { hasPerm } from '../lib/perms.js';
-import  WishItem from './buttons/WishItem.js';
+import WishItem from './buttons/WishItem.js';
+import CollectionItem from './buttons/CollectionItem.js';
 
 function Plant(props) {
   const {classes, plant, children} = props
@@ -82,13 +81,7 @@ function Plant(props) {
       </Grid>  
       <Grid item xs={12} md={9}>
         <div className={classes.plantActionBar}>
-          <Button variant="contained"
-            color="primary"
-            size="small"
-            className={clsx(classes.plantActionBtn, classes.haveBtn)}>
-            <CheckIcon className={classes.leftIcon} />
-            Tenho
-          </Button>
+          <CollectionItem plant={plant} />
           <WishItem plant={plant} />
           {/*<Button
             variant="contained"
@@ -164,9 +157,6 @@ const styles = (theme) => ({
   sidebarBtn: {
     marginBottom: theme.spacing(1),
     textAlign: "left",
-  },
-  leftIcon: {
-    marginRight: theme.spacing(1),
   },
   dialog: {
     overflow: 'hidden !important',
