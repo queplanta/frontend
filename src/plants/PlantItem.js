@@ -9,6 +9,7 @@ import imgDefault from '../assets/plant-default.svg';
 function PlantItem(props) {
   const {classes, lifeNode: plant} = props;
   const mainImage = _.get(plant, 'images.edges[0].node.bigImage.url', imgDefault);
+  const commonName = _.get(plant, 'commonName.name');
   return <Card>
     <CardActionArea>
       <CardMedia
@@ -21,7 +22,9 @@ function PlantItem(props) {
       <CardContent>
         <Link to={`/${plant.slug}-p${plant.idInt}`} component={RouterLink}>
           <Typography component="h6" variant="h6">
-            {plant.title}
+            {commonName ?
+              <React.Fragment>{commonName} <small className={classes.binomialTitle}>{plant.title}</small></React.Fragment>
+            : plant.title}
           </Typography>
         </Link>
         <Typography variant="subtitle1" color="textSecondary">
@@ -35,6 +38,10 @@ function PlantItem(props) {
 const styles = (theme) => ({
   cover: {
     height: 160,
+  },
+  binomialTitle: {
+    color: '#797979',
+    display: 'block',
   },
 })
 
