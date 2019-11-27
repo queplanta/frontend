@@ -7,6 +7,9 @@ const query = graphql`
     title
     slug
     rankDisplay
+    commonName {
+      name
+    }
     images(first: 1) {
       edges {
         node {
