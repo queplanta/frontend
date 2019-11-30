@@ -1,8 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Paper, Grid, Hidden, Box, Link, Typography, Badge, withStyles } from '@material-ui/core';
-// import WebIcon from '@material-ui/icons/Web';
-// import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { Link as RouterLink } from 'found';
 import { Width } from '../ui';
 import _ from 'lodash';
@@ -43,6 +41,12 @@ function Plant(props) {
       <PageTitle className={classes.pageTitle}>{commonName} <small className={classes.binomialTitle}>{plant.title}</small></PageTitle>
     : <PageTitle className={classes.pageTitle}>{plant.title}</PageTitle>}
     <Grid container spacing={3}>
+      <Hidden smUp>
+        <Grid item xs={12} className={classes.plantActionBar}>
+          <CollectionItem plant={plant} />
+          <WishItem plant={plant} />
+        </Grid>
+      </Hidden>
       <Grid item xs={12} md={3}>
         <Paper className={classes.root}>
           <div>
@@ -54,45 +58,23 @@ function Plant(props) {
             /> : <ImgDefault alt={plant.title} className={classes.mainImage} />}
           </div>
           <EdibilityBadge plant={plant} />
-            <Hidden smUp>
-              {/*<Button variant="contained" color="primary" className={classes.sidebarBtn} fullWidth={true}>
-                <PlaylistAddIcon className={classes.leftIcon} />
-                Adicionar à lista
-              </Button>/*}
-              {/*<Button
-                variant="contained"
-                color="secondary"
-                className={classes.sidebarBtn}
-                fullWidth={true}
-                onClick={handleClickOpen}>
-                <AddIcon className={classes.leftIcon} />
-                Tenho semente
-              </Button>*/}
-            </Hidden>
         </Paper>
         <Paper className={classes.marginBottom}>
           <RankDisplay plant={plant} />
         </Paper>
-        <Paper className={classes.root}>
+        <Paper className={classes.revisionBox}>
           <RevisionBox document={plant.document}>
             {hasPerm(plant, 'edit') && <Link to={`${baseUrl}/editar`} component={RouterLink}>editar</Link>}
           </RevisionBox>   
         </Paper>
       </Grid>  
       <Grid item xs={12} md={9}>
-        <div className={classes.plantActionBar}>
-          <CollectionItem plant={plant} />
-          <WishItem plant={plant} />
-          {/*<Button
-            variant="contained"
-            color="secondary"
-            size="small"
-            className={clsx(classes.plantActionBtn, classes.createAdBtn)}
-            onClick={handleClickOpen}>
-            <WebIcon className={classes.leftIcon} />
-            Criar anúncio
-          </Button>*/}
-        </div>   
+        <Hidden xsDown>
+          <div className={classes.plantActionBar}>
+            <CollectionItem plant={plant} />
+            <WishItem plant={plant} />
+          </div>
+        </Hidden>
         <Paper className={classes.marginBottom}>
           <TabsRoute
             indicatorColor="primary"
@@ -122,6 +104,9 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
+  revisionBox: {
+    padding: theme.spacing(2),
+  },
   pageTitle: {
     textTransform: 'capitalize',
   },
@@ -138,12 +123,14 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(2),
   },
   plantActionBar: {
-    marginBottom: theme.spacing(2),
     display: 'flex',
     flexWrap: 'wrap',
     '& > *': {
       margin: theme.spacing(1),
-    }
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: theme.spacing(2),
+    },
   },
   plantActionBtn: {
     margin: theme.spacing(1,2,1,0),

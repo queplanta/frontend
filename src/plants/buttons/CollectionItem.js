@@ -10,7 +10,7 @@ import CollectionItemDeleteMutation from './CollectionItemDelete.mutation.js';
 import fragmentSpec from './CollectionItemToggle.query.js';
 
 function CollectionItem(props) {
-  const {relay: {environment}, classes, plant} = props;
+  const {relay: {environment}, classes, plant, ...otherProps} = props;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
   const [isSaving, setIsSaving] = useState(false);
@@ -64,7 +64,8 @@ function CollectionItem(props) {
     size="small"
     className={isSelected ? classes.active : classes.root}
     isLoading={isSaving}
-    onClick={handleAdd}>
+    onClick={handleAdd}
+    {...otherProps}>
     <CheckIcon className={classes.leftIcon} /> Tenho
   </ButtonWithProgress>
 }

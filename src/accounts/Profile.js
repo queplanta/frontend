@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { IconButton, Paper, Dialog, Badge,
-  List, ListItem, ListItemText, Typography, Grid,
+import { IconButton, Paper, Dialog,
+  List, ListItem, ListItemText, Typography, Grid, Avatar,
   Chip, Box, Slide, useMediaQuery, withStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useTheme } from '@material-ui/core/styles';
@@ -32,25 +32,25 @@ function Profile(props) {
   if (!profile) {
     return <NotFound />
   }
-  const baseUrl = `/u/${profile.username}`;
 
+  const baseUrl = `/u/${profile.username}`;
+  const isMe = me !== null && me.id === profile.id;
 
   return <Width>
     <Helmet
-      title={profile.username}
+      title={`${profile.firstName} (${profile.username}) | Membros`}
     />
     <Grid container spacing={3}>
       <Grid className={classes.textAlignCenter} item xs={4} md={2}>
-        <img
+        <Avatar
           alt={profile.username}
-          image={profile.avatar}
           src={profile.avatar.url}
           className={classes.profileImage}
         />
-        {(me !== null && me.id === profile.id) && <div><Link className={classes.smallLink} to={`/conta/editar/avatar`}>Alterar foto</Link></div>}
+        {isMe && <div><Link className={classes.smallLink} to={`/conta/editar/avatar`}>Alterar foto</Link></div>}
       </Grid>
-      <Grid item xs={8} md={10}>
-        {(me !== null && me.id === profile.id) && <div>
+      <Grid item xs={8} md={7}>
+        {isMe && <div>
           <IconButton
             className={classes.editMdButton}
             onClick={handleClickOpen}
@@ -78,16 +78,30 @@ function Profile(props) {
           variant="h6"
           className={classes.username}
         >
-          <span style={{marginRight: 10}}>{profile.username}</span>
-          <Chip
-            size="small"
-            label={`Reputação: ${profile.reputation}`}
-            className={classes.chip}
-            color="primary"
-            variant="outlined"
-          />
+          <span style={{marginRight: 10}}>{profile.firstName || profile.username}</span>
         </Typography>
-        {(me !== null && me.id === profile.id) && <Link className={classes.smallLink} to={`/conta/editar`}>Editar perfil</Link>}
+        <Typography variant="caption" component="div">queplanta.com/u/{profile.username}</Typography>
+        <Chip
+          size="small"
+          label={`Reputação: ${profile.reputation}`}
+          className={classes.chip}
+          color="primary"
+          variant="outlined"
+        />
+        {isMe && <div><Link className={classes.smallLink} to={`/conta/editar`}>Editar perfil</Link></div>}
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <div className={classes.myPlantsWrapper}>
+          <div className={classes.myPlantsTitle}>Minhas Plantas</div>
+          <Link to={`${baseUrl}/tenho`} className={classes.myPlantsColumn}>
+            <span>{profile.collectionList.totalCount}</span>
+            <small>Tenho</small>
+          </Link>
+          <Link to={`${baseUrl}/quero-ter`} className={classes.myPlantsColumn}>
+            <span>{profile.wishList.totalCount}</span>
+            <small>Quero Ter</small>
+          </Link>
+        </div>
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.marginBottom}>
@@ -98,8 +112,8 @@ function Profile(props) {
             centered={true}
           >
             <TabRoute label="Atividades" wrapped value={baseUrl} />
-            <TabRoute label={<Badge color="primary" badgeContent={profile.collectionList.totalCount} classes={{badge: classes.tabBadge}}>Tenho</Badge>} wrapped value={`${baseUrl}/tenho`} />
-            <TabRoute label={<Badge color="primary" badgeContent={profile.wishList.totalCount} classes={{badge: classes.tabBadge}}>Quero Ter</Badge>} wrapped value={`${baseUrl}/quero-ter`} />
+            <TabRoute label="Tenho" wrapped value={`${baseUrl}/tenho`} />
+            <TabRoute label="Quero Ter" wrapped value={`${baseUrl}/quero-ter`} />
           </TabsRoute>
           <Typography
             component="div"
@@ -121,26 +135,56 @@ const styles = (theme) => ({
     fontSize: 12,
   },
   profileImage: {
-    // margin: 10,
-    width: 80,
-    height: 80,
-  },
-  bigProfileImage: {
-    width: 80,
-    height: 80,
-  },
-  username: {
-    marginBottom: theme.spacing(1)
+    width: 163,
+    height: 'auto',
+    maxWidth: '100%',
   },
   chip: {
     fontSize: 11,
-    marginBottom: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   editMdButton: {
-    float: 'right'
+    float: 'right',
   },
-  tabBadge: {
-    right: '-10px',
+  myPlantsWrapper: {
+    border: '1px solid green',
+    borderRadius: '10px',
+    textAlign: 'center',
+    padding: '10px 10px 20px 10px',
+  },
+  myPlantsTitle: {
+    background: 'green',
+    color: 'white',
+    margin: '-10px -10px 10px -10px',
+    borderTopLeftRadius: '10px',
+    borderTopRightRadius: '10px',
+    padding: 5,
+  },
+  myPlantsColumn: {
+    width: '50%',
+    display: 'inline-block',
+    color: '#252525',
+    '&:hover': {
+      textDecoration: 'none',
+    },
+    '& > span': {
+      display: 'block',
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      textShadow: '2px 2px 2px rgba(121, 185, 124, .9)',
+    },
+    '& > small': {
+      background: '#79b97c',
+      padding: '5px 6px',
+      borderRadius: '5px',
+      fontWeight: 'bold',
+      fontSize: 16,
+    },
+    '&:hover > small': {
+      background: 'rgba(121, 185, 124, 0.6)',
+    },
   },
 })
 
