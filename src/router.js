@@ -14,6 +14,7 @@ import {pagesRoutes} from './pages/routes.js';
 import {plantsRoutes} from './plants/routes.js';
 import {directoriesRoutes} from './directories/routes.js';
 import {occurrencesRoutes} from './occurrences/routes.js';
+import {marketPlaceRoutes} from './marketplace/routes.js';
 
 import OccurrencePlate from './occurrences/OccurrencePlate.js';
 import OccurrencePlateQuery from './occurrences/OccurrencePlate.query.js';
@@ -45,6 +46,7 @@ export const routeConfig = makeRouteConfig(<React.Fragment>
     {occurrencesRoutes}
     {accountsRoutes}
     {directoriesRoutes}
+    {marketPlaceRoutes}
 
     {/*needs to be last one*/}
     {pagesRoutes}
