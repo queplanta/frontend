@@ -10,7 +10,7 @@ import WishItemDeleteMutation from './WishItemDelete.mutation.js';
 import fragmentSpec from './WishItemToggle.query.js';
 
 function WishItem(props) {
-  const {relay: {environment}, classes, plant} = props;
+  const {relay: {environment}, classes, plant, ...otherProps} = props;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
   const [isSaving, setIsSaving] = useState(false);
@@ -64,7 +64,8 @@ function WishItem(props) {
     size="small"
     className={isSelected ? classes.active : classes.root}
     isLoading={isSaving}
-    onClick={handleAdd}>
+    onClick={handleAdd}
+    {...otherProps}>
     <AddIcon className={classes.leftIcon} /> Quero ter
   </ButtonWithProgress>
 }

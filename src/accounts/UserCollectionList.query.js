@@ -8,6 +8,8 @@ export const fragmentQuery = graphql`
   )
   {
     id
+    username
+    firstName
     collectionList(
       first: $count
       after: $cursor

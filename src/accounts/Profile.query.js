@@ -5,8 +5,9 @@ const query = graphql `
     user: userByUsername(username: $username) {
       id
       username
+      firstName
       reputation
-      avatar(width: 80, height: 80) {
+      avatar(width: 180, height: 180) {
         url
       }
       collectionList {
