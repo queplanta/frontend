@@ -7,7 +7,6 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
 import _ from 'lodash';
-import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import PageEditMutation from './PageEdit.mutation.js';
 import { useFormInput } from '../lib/forms.js';
@@ -15,6 +14,7 @@ import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 import AddImage from '../images/AddImage.js';
 import ImageThumbnail from '../lib/ImageThumbnail.js';
+import JsxPreviewField from '../lib/JsxPreviewField.js';
 
 
 function PageEdit({classes, environment, setFormErrors, page}) {
@@ -67,12 +67,12 @@ function PageEdit({classes, environment, setFormErrors, page}) {
     }
   }
 
-  return <Width>
+  return <React.Fragment>
     <Helmet
       title={`Editando Página: ${page.title}`}
     />
-    <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
-      <Grid item xs={12}>
+    <Grid container spacing={3} component="form" onSubmit={handleSubmit} className={classes.pageRoot}>
+    <Grid item xs={12}>
         <PageTitle>{`Editando Página: ${page.title}`}</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
       </Grid>
@@ -101,7 +101,8 @@ function PageEdit({classes, environment, setFormErrors, page}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
+        <JsxPreviewField
+          environment={environment}
           label="Body"
           fullWidth
           multiline
@@ -133,10 +134,13 @@ function PageEdit({classes, environment, setFormErrors, page}) {
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
-  </Width>
+  </React.Fragment>
 }
 
 export default withStyles((theme) => ({
+  pageRoot: {
+    padding: theme.spacing(2),
+  },
   imageThumb: {
     margin: theme.spacing(0, 1, 1, 0),
     display: 'inline-block',

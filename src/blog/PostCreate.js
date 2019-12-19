@@ -4,14 +4,14 @@ import moment from 'moment'
 import { Grid, TextField, withStyles } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
-import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import PostCreateMutation from './PostCreate.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
+import JsxPreviewField from '../lib/JsxPreviewField.js';
 
-function PostCreate({environment, setFormErrors}) {
+function PostCreate({environment, classes, setFormErrors}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
 
@@ -49,11 +49,11 @@ function PostCreate({environment, setFormErrors}) {
     )
   }
 
-  return <Width>
+  return <React.Fragment>
     <Helmet
       title="Escrever novo Post"
     />
-    <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
+    <Grid container spacing={3} component="form" onSubmit={handleSubmit} className={classes.pageRoot}>
       <Grid item xs={12}>
         <PageTitle>Escrever novo Post</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
@@ -83,7 +83,8 @@ function PostCreate({environment, setFormErrors}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
+        <JsxPreviewField
+          environment={environment}
           label="Body"
           fullWidth
           multiline
@@ -102,7 +103,11 @@ function PostCreate({environment, setFormErrors}) {
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
-  </Width>
+  </React.Fragment>
 }
 
-export default withStyles({})(hasFormErrors(PostCreate))
+export default withStyles((theme) => ({
+  pageRoot: {
+    padding: theme.spacing(2),
+  },
+}))(hasFormErrors(PostCreate))

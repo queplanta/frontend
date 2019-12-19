@@ -4,14 +4,14 @@ import moment from 'moment'
 import { Grid, TextField, withStyles } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'found';
-import { Width } from '../ui';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import PageCreateMutation from './PageCreate.mutation.js';
 import { useFormInput } from '../lib/forms.js';
 import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
+import JsxPreviewField from '../lib/JsxPreviewField.js';
 
-function PageCreate({environment, setFormErrors}) {
+function PageCreate({classes, environment, setFormErrors}) {
   const { enqueueSnackbar } = useSnackbar();
   const { router } = useRouter();
 
@@ -47,11 +47,11 @@ function PageCreate({environment, setFormErrors}) {
     )
   }
 
-  return <Width>
+  return <React.Fragment>
     <Helmet
       title="Escrever nova Página"
     />
-    <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
+    <Grid container spacing={3} component="form" onSubmit={handleSubmit} className={classes.pageRoot}>
       <Grid item xs={12}>
         <PageTitle>Escrever nova Página</PageTitle>
         <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
@@ -81,7 +81,8 @@ function PageCreate({environment, setFormErrors}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <TextField
+        <JsxPreviewField
+          environment={environment}
           label="Body"
           fullWidth
           multiline
@@ -93,7 +94,11 @@ function PageCreate({environment, setFormErrors}) {
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
       </Grid>
     </Grid>
-  </Width>
+  </React.Fragment>
 }
 
-export default withStyles({})(hasFormErrors(PageCreate))
+export default withStyles((theme) => ({
+  pageRoot: {
+    padding: theme.spacing(2),
+  },
+}))(hasFormErrors(PageCreate))
