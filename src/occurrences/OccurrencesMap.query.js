@@ -46,4 +46,14 @@ const query = graphql`
   }
 `;
 
+export const clusterQuery = graphql`
+  query OccurrencesMapClusterQuery($bbox: String!)
+  {
+    allOccurrencesCluster(withinBbox: $bbox) {
+      count
+      polygon
+    }
+  }
+`;
+
 export default query

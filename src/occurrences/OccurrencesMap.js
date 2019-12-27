@@ -1,25 +1,61 @@
-import React from 'react';
-import { QueryRenderer } from 'react-relay';
-import { CardMedia, CardContent, Typography, Link, withStyles } from '@material-ui/core';
+import React, { useState, useRef } from 'react';
+import { fetchQuery, QueryRenderer } from 'react-relay';
+import { LinearProgress, CardMedia, CardContent, Typography, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import _ from 'lodash';
 import ProfileLink from '../accounts/ProfileLink.js';
-import { MapGeolocated, Marker, Popup } from './Map.js';
-import query from './OccurrencesMap.query.js';
+import { MapGeolocated, Marker, Popup, Polygon, MapTooltip, defaultBbox } from './Map.js';
+import query, { clusterQuery } from './OccurrencesMap.query.js';
 import PlantLink from '../plants/PlantLink.js';
 // import { RelativeDate } from '../ui';
 import imgDefault from '../assets/plant-default.svg';
 
 function OccurrencesMap(props) {
   const {classes, environment, plantId, ...otherProps} = props;
+  let [bbox, setBbox] = useState(defaultBbox);
+  let [zoom, setZoom] = useState(null);
+  let [isLoading, setLoading] = useState(true);
+  let [items, setItems] = useState([]);
+  const ref = useRef();
 
-  return <MapGeolocated {...otherProps}>
-    <QueryRenderer
+  function onBoundsChanged() {
+    setZoom(ref.current.leafletElement.getZoom());
+    const bounds = ref.current.leafletElement.getBounds();
+    const southWest = bounds.getSouthWest();
+    const northEast = bounds.getNorthEast();
+    const newBbox = [southWest.lat, southWest.lng, northEast.lat, northEast.lng].join(',')
+
+    setBbox(newBbox);
+
+    console.log(newBbox);
+
+    setLoading(true);
+    fetchQuery(environment, clusterQuery, {
+      identity: plantId ? plantId : null,
+      bbox: newBbox,
+    }).then(data => {
+      setItems(data.allOccurrencesCluster);
+      setLoading(false);
+    }).catch(error => {
+      console.error(error);
+      setLoading(false);
+    });
+  }
+
+  return <MapGeolocated {...otherProps} mapRef={ref} onViewportChanged={onBoundsChanged} whenReady={onBoundsChanged}>
+    {isLoading && <LinearProgress className={classes.loading} />}
+    {(bbox && zoom < 16) && items.map((item, i) => {
+      return <Polygon key={i} positions={item.polygon.coordinates}>
+        <MapTooltip permanent direction="center" className={classes.polyLabel}>{item.count}</MapTooltip>
+      </Polygon>
+    })}
+    {(bbox && zoom >= 16) && <QueryRenderer
       environment={environment}
       query={query}
       variables={{
         count: 500,
-        identity: plantId ? plantId : null
+        identity: plantId ? plantId : null,
+        bounds: bbox
       }}
       render={({error, props}) => {
         if (!props) {
@@ -36,6 +72,7 @@ function OccurrencesMap(props) {
         // }
 
         // return <div className={classes.loading}><CircularProgress /></div>
+
         return <React.Fragment>
           {occurrences.map(({node: occurrence}) => {
             const mainImage = _.get(occurrence.identity, 'images.edges[0].node.smallImage.url', imgDefault);
@@ -73,13 +110,16 @@ function OccurrencesMap(props) {
           })}
         </React.Fragment>
       }}
-    />
+    />}
   </MapGeolocated>
 }
 
 const styles = (theme) => ({
   popup: {
     width: 300,
+  },
+  loading: {
+    zIndex: 400,
   },
   card: {
     display: 'flex',
@@ -97,6 +137,11 @@ const styles = (theme) => ({
   },
   cover: {
     width: 100,
+  },
+  polyLabel: {
+    background: 'none',
+    border: 'none',
+    boxShadow: 'none',
   },
 });
 export default withStyles(styles)(OccurrencesMap);

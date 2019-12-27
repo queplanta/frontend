@@ -7,10 +7,11 @@ import markerIconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { geolocated } from '../lib/geolocated.js';
 import 'leaflet/dist/leaflet.css';
 
-let reactLeaflet, LeafletMap, LeafletMarker, TileLayer, leaflet, LeafletPopup, defaultMarkerIcon;
+let reactLeaflet, LeafletMap, LeafletMarker, TileLayer, leaflet, LeafletPopup, defaultMarkerIcon, LeafletPolygon, LeafletTooltip;
 
 // // export const defaultPosition = [-19.964222, -43.407032];
 export const defaultPosition = [-19.923105, -43.933799];
+export const defaultBbox = '-19.943256710511875,-43.98101806640625,-19.90290981124127,-43.88660430908203';
 
 export class Marker extends Component {
   constructor(props) {
@@ -41,6 +42,52 @@ export class Marker extends Component {
   }
 }
 
+export class MapTooltip extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isLoading: true};
+  }
+
+  componentDidMount() {
+    if (!reactLeaflet) reactLeaflet = require('react-leaflet');
+    LeafletTooltip = reactLeaflet.Tooltip;
+    this.setState({isLoading: false})
+  }
+
+  render() {
+    if (!reactLeaflet || !LeafletTooltip) return null;
+    return <LeafletTooltip {...this.props} />
+  }
+}
+
+export class Polygon extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isLoading: true};
+    this.ref = React.createRef();
+  }
+
+  componentDidMount() {
+    if (!reactLeaflet) reactLeaflet = require('react-leaflet');
+    LeafletPolygon = reactLeaflet.Polygon;
+    // const { label } = this.props;
+    this.setState({isLoading: false}, () => {
+      // if (label) {
+      //   console.log(this.ref.current.leafletElement);
+      //   this.ref.current.leafletElement.bindLabel(label);
+      //   console.log(label)
+      // }
+    })
+  }
+
+  render() {
+    if (!reactLeaflet || !LeafletPolygon) return null;
+    const {label, ...props} = this.props;
+    return <LeafletPolygon {...props} ref={this.ref} />
+  }
+}
+
+
 export class Map extends Component {
   constructor(props) {
     super(props);
@@ -57,9 +104,9 @@ export class Map extends Component {
   render() {
     if (!LeafletMap || !LeafletMap | !TileLayer) return null;
 
-    const {children, ...mapProps} = this.props
+    const {children, mapRef, ...mapProps} = this.props
 
-    return <LeafletMap zoom={14} {...mapProps}>
+    return <LeafletMap zoom={14} ref={mapRef} {...mapProps}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -74,9 +121,12 @@ export const MapGeolocated = geolocated({
   suppressLocationOnMount: true,
   isOptimisticGeolocationEnabled: false,
 })((props) => {
-  const {coords, onPositionChange, children, ...mapProps} = props;
+  let {coords, onPositionChange, children, mapRef, ...mapProps} = props;
   const [position, setPosition] = useState(defaultPosition);
-	const ref = useRef();
+
+  if (!mapRef) {
+    mapRef = useRef();
+  }
 
   useEffect(() => {
     if(coords) {
@@ -93,10 +143,10 @@ export const MapGeolocated = geolocated({
   function toGoMyLocation(e) {
     e.preventDefault()
     e.stopPropagation()
-    ref.current.props.getLocation()
+    mapRef.current.props.getLocation()
   }
 
-  return <Map ref={ref} center={position} {...mapProps}>
+  return <Map mapRef={mapRef} center={position} {...mapProps}>
     {children}
     <Tooltip title="Minha localização atual" placement="top">
       <MapButton variant="outlined" style={{position: 'absolute', top: 80, left: 10, zIndex: 1000}} onClick={toGoMyLocation}><MyLocationIcon /></MapButton>
