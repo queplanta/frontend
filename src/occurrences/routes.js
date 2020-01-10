@@ -11,12 +11,16 @@ import IdentifyPage from './identify/IdentifyPage.js';
 import IdentifyPageQuery from './identify/IdentifyPage.query.js';
 import Occurrence from './Occurrence.js';
 import OccurrenceQuery from './Occurrence.query.js';
+import { defaultBbox } from './Map.js';
 
 export const occurrencesRoutes = <React.Fragment>
   <Route
     path="/mapa"
     Component={Home}
     query={HomeQuery}
+    prepareVariables={() => ({
+      bbox: defaultBbox,
+    })}
   />
   <Route
     path="/mapa/adicionar"

@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect, useRef } from 'react';
-import { Button, Tooltip, withStyles } from '@material-ui/core';
+import { Button, Tooltip, LinearProgress, withStyles } from '@material-ui/core';
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIconRetina from 'leaflet/dist/images/marker-icon-2x.png';
@@ -11,6 +11,7 @@ let reactLeaflet, LeafletMap, LeafletMarker, TileLayer, leaflet, LeafletPopup, d
 
 // // export const defaultPosition = [-19.964222, -43.407032];
 export const defaultPosition = [-19.923105, -43.933799];
+export const defaultBbox = '-19.943256710511875,-43.98101806640625,-19.90290981124127,-43.88660430908203';
 
 export class Marker extends Component {
   constructor(props) {
@@ -57,9 +58,10 @@ export class Map extends Component {
   render() {
     if (!LeafletMap || !LeafletMap | !TileLayer) return null;
 
-    const {children, ...mapProps} = this.props
+    const {children, mapRef, isLoading, ...mapProps} = this.props
 
-    return <LeafletMap zoom={14} {...mapProps}>
+    return <LeafletMap zoom={14} ref={mapRef} {...mapProps}>
+      {isLoading && <LinearProgress style={{zIndex: 400}} />}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -74,9 +76,12 @@ export const MapGeolocated = geolocated({
   suppressLocationOnMount: true,
   isOptimisticGeolocationEnabled: false,
 })((props) => {
-  const {coords, onPositionChange, children, ...mapProps} = props;
+  let {coords, onPositionChange, children, mapRef, ...mapProps} = props;
   const [position, setPosition] = useState(defaultPosition);
-	const ref = useRef();
+
+  if (!mapRef) {
+  	mapRef = useRef();
+  }
 
   useEffect(() => {
     if(coords) {
@@ -93,10 +98,10 @@ export const MapGeolocated = geolocated({
   function toGoMyLocation(e) {
     e.preventDefault()
     e.stopPropagation()
-    ref.current.props.getLocation()
+    mapRef.current.props.getLocation()
   }
 
-  return <Map ref={ref} center={position} {...mapProps}>
+  return <Map mapRef={mapRef} center={position} {...mapProps}>
     {children}
     <Tooltip title="Minha localização atual" placement="top">
       <MapButton variant="outlined" style={{position: 'absolute', top: 80, left: 10, zIndex: 1000}} onClick={toGoMyLocation}><MyLocationIcon /></MapButton>

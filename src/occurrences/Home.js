@@ -7,7 +7,7 @@ import { Width } from '../ui';
 import OccurrencesMap from './OccurrencesMap.js';
 
 function Home(props) {
-  const {classes, environment} = props;
+  const {classes, environment, viewer} = props;
 
   // const [bounds, setBounds] = useState(null);
   // onViewportChanged={onViewportChanged}
@@ -27,7 +27,7 @@ function Home(props) {
         <Button variant="contained" color="primary" component={RouterLink} to={`/mapa/adicionar`}>Adicionar no mapa</Button>
       </Grid>
     </Grid>
-    <OccurrencesMap className={classes.map} environment={environment} />
+    <OccurrencesMap className={classes.map} environment={environment} viewer={viewer} />
   </Width>
 }
 
