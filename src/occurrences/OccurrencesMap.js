@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryRenderer } from 'react-relay';
-import { CardMedia, CardContent, Typography, Link, withStyles } from '@material-ui/core';
+import { CardMedia, CardContent, Typography, LinearProgress, Link, withStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'found';
 import _ from 'lodash';
 import ProfileLink from '../accounts/ProfileLink.js';
@@ -23,7 +23,7 @@ function OccurrencesMap(props) {
       }}
       render={({error, props}) => {
         if (!props) {
-          return null;
+          return <LinearProgress style={{zIndex: 400}} />;
         }
 
         const {viewer: {allOccurrences: {edges: occurrences}}} = props;
