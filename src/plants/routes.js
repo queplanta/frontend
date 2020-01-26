@@ -8,6 +8,8 @@ import PlantOccurrences from './PlantOccurrences.js';
 import PlantOccurrencesQuery from './PlantOccurrences.query.js';
 import PlantPhotos from './PlantPhotos.js';
 import PlantPhotosQuery from './PlantPhotos.query.js';
+import PlantAdd from './PlantAdd.js';
+import PlantAddQuery from './PlantAdd.query.js';
 import PlantEdit from './PlantEdit.js';
 import PlantEditQuery from './PlantEdit.query.js';
 import HomePlants from './Home.js';
@@ -52,5 +54,6 @@ export const plantsRoutes = <React.Fragment>
     <Route path="quem-quer-ter" Component={PlantWishList} query={PlantWishListQuery} />
     <Route path="quem-tem" Component={PlantCollectionList} query={PlantCollectionListQuery} />
   </Route>
+  <Route path="/plantas/adicionar" Component={PlantAdd} query={PlantAddQuery} />
   <Route path="/:plantSlug-p:plantID(\d+)/editar" Component={PlantEdit} query={PlantEditQuery} />
 </React.Fragment>
