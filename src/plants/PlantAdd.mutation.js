@@ -47,6 +47,9 @@ function commit(environment, input, config) {
     },
     onError(error) {
       console.log('onError', error)
+      if (typeof config.onError === 'function') {
+        config.onError(error)
+      }
     }
   });
 }

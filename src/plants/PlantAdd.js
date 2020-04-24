@@ -86,6 +86,7 @@ function PlantAdd(props) {
             errorFilter={{location: "edibility"}}
             fullWidth
             select
+            required
             {...edibilityField}
           >
             {edibilities.enumValues.map((e, i) => {

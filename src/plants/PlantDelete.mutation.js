@@ -24,12 +24,6 @@ function commit(environment, input, config) {
     variables: {
       input: { clientMutationId, ...input },
     },
-    configs: [
-      {
-        type: 'NODE_DELETE',
-        deletedIDFieldName: 'lifeNodeDeletedID',
-      }
-    ],
     onCompleted(response, errors) {
       if (response.lifeNodeDelete.errors && response.lifeNodeDelete.errors.length > 0) {
         if (typeof config.onError === 'function') {
@@ -39,10 +33,14 @@ function commit(environment, input, config) {
         if (typeof config.onSuccess === 'function') {
           config.onSuccess(response)
         }
+        config.router.push('/plantas')
       }
     },
     onError(error) {
-      console.log('onError', error)
+      console.error(error)
+      if (typeof config.onError === 'function') {
+        config.onError(error)
+      }
     }
   });
 }

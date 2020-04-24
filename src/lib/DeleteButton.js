@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useSnackbar } from 'notistack';
+import { useRouter } from 'found';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
 function DeleteButton(props, ref) {
   const { enqueueSnackbar } = useSnackbar();
   const [isLoading, setLoading] = useState(false);
+  const { match, router } = useRouter();
   const {children, mutation, environment, node, classes, appendNotifications, setNotifications, ...otherProps} = props
 
   function onDelete() {
@@ -16,6 +18,8 @@ function DeleteButton(props, ref) {
         id: node.id,
       },
       {
+        match,
+        router,
         onSuccess: () => {
           enqueueSnackbar('Excluído com sucesso', {variant: "success"})
         },
