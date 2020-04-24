@@ -15,9 +15,11 @@ import ImageThumbnail from '../lib/ImageThumbnail.js';
 import { hasPerm } from '../lib/perms.js';
 import WishItem from './buttons/WishItem.js';
 import CollectionItem from './buttons/CollectionItem.js';
+import DeleteButton from '../lib/DeleteButton.js';
+import PlantDeleteMutation from './PlantDelete.mutation.js';
 
 function Plant(props) {
-  const {classes, plant, children} = props
+  const {classes, plant, relay, children} = props
 
   if (!plant) {
     return <NotFound />
@@ -67,6 +69,7 @@ function Plant(props) {
             {hasPerm(plant, 'edit') && <Link to={`${baseUrl}/editar`} component={RouterLink}>editar</Link>}
           </RevisionBox>   
         </Paper>
+        {hasPerm(plant, 'delete') && <DeleteButton environment={relay.environment} node={plant} mutation={PlantDeleteMutation} />}
       </Grid>  
       <Grid item xs={12} md={9}>
         <Hidden xsDown>

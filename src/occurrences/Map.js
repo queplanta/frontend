@@ -59,10 +59,13 @@ export class Map extends Component {
 
     const {children, ...mapProps} = this.props
 
-    return <LeafletMap zoom={14} {...mapProps}>
-      <TileLayer
+    return <LeafletMap zoom={14} attributionControl={false} {...mapProps}>
+        {/*<TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+      />*/}
+      <TileLayer
+        url="https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicXVlcGxhbnRhIiwiYSI6ImNrOWRqemM2MzAycHQzaGxsd2RjMm02eGEifQ.hWRMUFwqlSf8nbEiJIE5BQ"
       />
       {children}
     </LeafletMap>
