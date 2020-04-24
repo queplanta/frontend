@@ -46,7 +46,10 @@ export const plantsRoutes = <React.Fragment>
   <Route
     path="/:plantSlug-p:plantID(\d+)"
     query={PlantQuery}
-    Component={Plant}
+    render={(args) => {
+      const {props, ...otherProps} = args
+      return <Plant {...props} relay={otherProps} />
+    }}
   >
     <Route Component={PlantDescription} query={PlantDescriptionQuery} />
     <Route path="mapa" Component={PlantOccurrences}  query={PlantOccurrencesQuery} />
