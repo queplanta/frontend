@@ -7,6 +7,7 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import _ from 'lodash';
+import { useRouter } from 'found';
 import { useSnackbar } from 'notistack';
 import { hasFormErrors, FormErrors } from '../FormErrors.js';
 import ImgWithLocation from '../lib/ImgWithLocation.js';
@@ -23,6 +24,7 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
   const { enqueueSnackbar } = useSnackbar()
   const { isAuthenticated } = useLoginRequired()
   const [lifeNode, setLifeNode] = useState(null)
+  const { router } = useRouter();
   const when = useFormInput('')
   const notes = useFormInput('')
   const [images, setImages] = useState([])
@@ -60,9 +62,10 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
     }
   }
 
-  function onSuccess() {
+  function onSuccess(response) {
     setIsSaving(false)
     enqueueSnackbar('Observação adicionada com sucesso', {variant: "success"})
+    router.push(`/observacoes/${response.occurrenceCreate.occurrence.node.id}`)
   }
 
   function handleSubmit(e) {
