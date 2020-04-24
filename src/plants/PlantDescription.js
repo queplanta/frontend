@@ -15,6 +15,18 @@ function PlantDescription(props) {
         {plant.description}
       </Typography>
 
+          <strong>Usos populares por categoria:</strong>
+          {` `}
+          <Badge badgeContent={4} color="primary">
+          <Button variant="outlined">Medicinal</Button>
+          </Badge>
+          {` `}
+          <Badge badgeContent={4} color="primary">
+          <Button variant="outlined">Alimenticio</Button>
+          </Badge>
+          
+          <Button variant="outlined">Adicionar Uso</Button>
+
       {(plant.commonNames.edges.length > 0 || hasPerm(plant, "edit")) && (
         <div>
           <Typography variant="h6">Nomes comuns</Typography>

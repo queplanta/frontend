@@ -13,6 +13,7 @@ import { plantsRoutes } from "./plants/routes.js";
 import { directoriesRoutes } from "./directories/routes.js";
 import { occurrencesRoutes } from "./occurrences/routes.js";
 import { revisionsRoutes } from "./revisions/routes.js";
+import {usagesRoutes} from './usages/routes.js';
 
 import OccurrencePlate from "./occurrences/OccurrencePlate.js";
 import OccurrencePlateQuery from "./occurrences/OccurrencePlate.query.js";
@@ -42,6 +43,7 @@ export const routeConfig = makeRouteConfig(
       {accountsRoutes}
       {directoriesRoutes}
       {revisionsRoutes}
+      {usagesRoutes}
 
       {/*needs to be last one*/}
       {pagesRoutes}
