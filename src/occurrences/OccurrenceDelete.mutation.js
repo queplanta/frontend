@@ -40,9 +40,13 @@ function commit(environment, input, config) {
           config.onSuccess(response)
         }
       }
+      config.router.push('/mapa')
     },
     onError(error) {
-      console.log('onError', error)
+      console.log(error)
+      if (typeof config.onError === 'function') {
+        config.onError(error)
+      }
     }
   });
 }

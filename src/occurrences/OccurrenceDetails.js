@@ -8,9 +8,12 @@ import ImageThumbnail from '../lib/ImageThumbnail.js';
 import ImgDefault from '../plants/PlantImgDefault.js';
 import CommentsList from '../comments/CommentsList.js';
 import RevisionBox from '../revisions/RevisionBox.js'
+import DeleteButton from '../lib/DeleteButton.js'
+import OccurrenceDeleteMutation from './OccurrenceDelete.mutation.js'
+import { hasPerm } from '../lib/perms.js';
 
 function OccurrenceDetails(props) {
-  const {occurrence, classes} = props;
+  const {occurrence, classes, relay} = props;
   const plant = occurrence.identity;
   const mainImage = _.get(plant, 'mainImage.edges[0].node');
 
@@ -29,6 +32,7 @@ function OccurrenceDetails(props) {
       <Paper className={classes.root}>
         <RevisionBox document={occurrence.document} />
       </Paper>
+      {hasPerm(occurrence, 'delete') && <DeleteButton environment={relay.environment} node={occurrence} mutation={OccurrenceDeleteMutation} />}
     </Grid>
     <Grid item xs={12} md={9}>
       <Grid container spacing={2}>
