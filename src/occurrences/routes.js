@@ -40,7 +40,10 @@ export const occurrencesRoutes = <React.Fragment>
   />
   <Route
     path="/observacoes/:id"
-    Component={Occurrence}
     query={OccurrenceQuery}
+    render={(args) => {
+      const {props, ...otherProps} = args
+      return <Occurrence {...props} relay={otherProps} />
+    }}
   />
 </React.Fragment>
