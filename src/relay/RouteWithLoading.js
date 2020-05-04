@@ -1,5 +1,6 @@
 import React from "react";
 import { CircularProgress, withStyles } from "@material-ui/core";
+import ErrorPage from '../pages/ErrorPage.js';
 
 const Loading = withStyles((theme) => ({
   wrapper: {
@@ -26,7 +27,10 @@ export default class Route {
           }
           return <Component environment={args.environment} {...args.props} />;
         }
-        return <Loading />;
+        if (args.error) {
+          return <ErrorPage />
+        }
+        return <Loading />
       },
       ...others,
     };

@@ -69,5 +69,5 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "proxy": "https://queplanta.com"
+  "proxy": "http://localhost:5000"
 }
