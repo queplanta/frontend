@@ -11,6 +11,7 @@ export function TabPanel(props) {
     <Typography
       component="div"
       role="tabpanel"
+      hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
