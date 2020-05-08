@@ -1,15 +1,17 @@
 import React from 'react'
 import ReactJsxParser from 'react-jsx-parser'
-import { Typography, Grid, Paper } from '@material-ui/core';
+import { Typography, Grid, Paper, withStyles } from '@material-ui/core';
 import Link from './Link.js'
 import Image from './JsxParser/Image.js'
 
-export default (props) => {
-  const {environment, ...otherProps} = props;
-  return <ReactJsxParser
+const JsxParser = (props) => {
+  const {environment, classes, ...otherProps} = props;
+  return <div className={classes.root}><ReactJsxParser
     bindings={{
       environment,
     }}
+    showWarnings={true}
+    renderInWrapper={false}
     components={{
       Link,
       Image: (imgProps) => <Image environment={environment} {...imgProps} />,
@@ -18,5 +20,13 @@ export default (props) => {
       Paper,
     }}
     {...otherProps}
-  />
+  /></div>
 }
+
+export default withStyles((theme) => ({
+  root: {
+    "& ol, & ul": {
+      listStylePosition: 'inside',
+    }
+  }
+}))(JsxParser)

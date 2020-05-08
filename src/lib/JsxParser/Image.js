@@ -1,10 +1,11 @@
 import React from 'react';
 import { QueryRenderer } from 'react-relay';
 import { CircularProgress, Typography, Card, CardContent, withStyles } from '@material-ui/core';
+import clsx from 'clsx';
 import ImageThumbnail from '../../lib/ImageThumbnail.js';
 import { query } from './Image.query.js';
 
-const Image = ({classes, environment, id, width, height, noCard}) => {
+const Image = ({classes, environment, id, width, height, noCard, noDescription, float, ...props}) => {
   const content = <QueryRenderer
     environment={environment}
     query={query}
@@ -28,13 +29,25 @@ const Image = ({classes, environment, id, width, height, noCard}) => {
             alt={props.image.description}
             image={props.image}
             src={props.image.smallImage.url}
-            className={classes.img}
+            width={width}
+            height={height}
+            className={clsx(classes.img, {
+              [classes.imgLeft]: float === 'left' && noCard,
+              [classes.imgRight]: float === 'right' && noCard,
+            })}
+            {...props}
           />
-          {props.image.description && <Typography component="p" className={classes.description} style={{maxWidth: `${width}px`}}>{props.image.description}</Typography>}
+          {(!noDescription && props.image.description) && <Typography component="p" className={classes.description} style={{maxWidth: `${width}px`}}>{props.image.description}</Typography>}
         </React.Fragment>
       }
 
-      return <span className={classes.fakeImg} style={style}><CircularProgress /></span>
+      return <span
+        className={clsx(classes.fakeImg, {
+          [classes.imgLeft]: float === 'left',
+          [classes.imgRight]: float === 'right',
+        })}
+        style={style}
+      ><CircularProgress /></span>
     }}
   />;
 
@@ -42,7 +55,12 @@ const Image = ({classes, environment, id, width, height, noCard}) => {
     return content;
   }
 
-  return <Card className={classes.root}>
+  return <Card
+    className={clsx(classes.root, {
+      [classes.cardLeft]: float === 'left',
+      [classes.cardRight]: float === 'right',
+    })}
+  >
     <CardContent className={classes.content}>
       {content}
     </CardContent>
@@ -54,6 +72,14 @@ export default withStyles((theme) => ({
     display: 'inline-block',
     verticalAlign: 'top',
   },
+  cardLeft: {
+    float: 'left',
+    margin: theme.spacing(3, 3, 3, 0),
+  },
+  cardRight: {
+    float: 'right',
+    margin: theme.spacing(3, 0, 3, 3),
+  },
   content: {
     lineHeight: '0px',
     '&:last-child': {
@@ -62,6 +88,14 @@ export default withStyles((theme) => ({
   },
   img: {
     maxWidth: '100%',
+  },
+  imgLeft: {
+    float: 'left',
+    margin: theme.spacing(3, 3, 3, 0),
+  },
+  imgRight: {
+    float: 'right',
+    margin: theme.spacing(3, 0, 3, 3),
   },
   fakeImg: {
     display: 'inline-block',
