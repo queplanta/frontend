@@ -1,19 +1,19 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation RegisterMutation($input: RegisterAndAuthenticateInput!) {
     registerAndAuthenticate(input: $input) {
       viewer {
-        id,
+        id
         me {
-          id,
-          username,
+          id
+          username
           isAuthenticated
         }
-      },
+      }
       errors {
-        code,
+        code
         location
         message
       }
@@ -33,28 +33,31 @@ function commit(environment, input, config) {
     },
     updater(store) {
       const rootViewer = store.getRoot();
-      const me = store.getRootField('registerAndAuthenticate').getLinkedRecord('viewer').getLinkedRecord('me');
+      const me = store
+        .getRootField("registerAndAuthenticate")
+        .getLinkedRecord("viewer")
+        .getLinkedRecord("me");
       if (me) {
-        rootViewer.setLinkedRecord(me, 'me')
+        rootViewer.setLinkedRecord(me, "me");
       }
     },
     onCompleted(response, errors) {
       if (response.registerAndAuthenticate.errors.length > 0) {
-        if (typeof config.setFormErrors === 'function') {
-          config.setFormErrors(response.registerAndAuthenticate.errors)
+        if (typeof config.setFormErrors === "function") {
+          config.setFormErrors(response.registerAndAuthenticate.errors);
         }
-        if (typeof config.onError === 'function') {
-          config.onError(response)
+        if (typeof config.onError === "function") {
+          config.onError(response);
         }
       } else {
-        if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.error(error)
-    }
+      console.error(error);
+    },
   });
 }
 

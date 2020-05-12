@@ -1,11 +1,8 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 export const query = graphql`
   fragment ImageThumbnail_image on Image
-  @argumentDefinitions( 
-    isOpen: {type:"Boolean!", defaultValue: false}
-  )
-  {
+    @argumentDefinitions(isOpen: { type: "Boolean!", defaultValue: false }) {
     id
     bigImage: image(width: 1200, height: 825) @include(if: $isOpen) {
       url
@@ -30,8 +27,8 @@ export const query = graphql`
 `;
 
 export const fragmentSpec = {
-  image: query
-}
+  image: query,
+};
 
 export const refetchQuery = graphql`
   query ImageThumbnailQuery($id: ID!, $isOpen: Boolean!) {
@@ -40,4 +37,4 @@ export const refetchQuery = graphql`
       ...ImageThumbnail_image @arguments(isOpen: $isOpen)
     }
   }
-`
+`;

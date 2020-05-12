@@ -1,16 +1,15 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
-  fragment VotingButtons_voting on Voting  {
-    id,
-    countUps,
-    countDowns,
-    sumValues,
+  fragment VotingButtons_voting on Voting {
+    id
+    countUps
+    countDowns
+    sumValues
     mine {
-      id,
+      id
       value
     }
   }
 `;
-export default {voting: query}
-
+export default { voting: query };

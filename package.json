@@ -37,7 +37,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "relay-compiler --src ./src --schema ./schema.json"
+    "relay": "relay-compiler --src ./src --schema ./schema.json",
+    "prettier": "prettier --write ./"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,7 +53,15 @@
     "babel-plugin-relay": "^6.0.0",
     "eslint-plugin-react-hooks": "^1.6.0",
     "graphql": "^14.2.1",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "relay-compiler": "^6.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "proxy": "https://queplanta.com"
 }

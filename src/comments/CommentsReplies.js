@@ -1,49 +1,62 @@
-import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core';
-import { createPaginationContainer } from 'react-relay';
-import ButtonWithProgress from '../lib/ButtonWithProgress.js';
-import CommentsItem from './CommentsItem.js';
-import { fragmentSpec, query } from './CommentsList.query.js';
+import React, { useState } from "react";
+import { withStyles } from "@material-ui/core";
+import { createPaginationContainer } from "react-relay";
+import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import CommentsItem from "./CommentsItem.js";
+import { fragmentSpec, query } from "./CommentsList.query.js";
 
 function CommentsReplies(props) {
-  const {relay, commenting: {comments}} = props
+  const {
+    relay,
+    commenting: { comments },
+  } = props;
 
-  const [isLoading, setLoading] = useState(false)
-  const hasMore = relay.hasMore()
+  const [isLoading, setLoading] = useState(false);
+  const hasMore = relay.hasMore();
 
   function handleLoadMore() {
     if (!hasMore || relay.isLoading()) {
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     relay.loadMore(30, (error) => {
       if (error) console.error(error);
-      setLoading(false)
-    })
+      setLoading(false);
+    });
   }
 
   function renderList() {
-    return <React.Fragment>
-      {comments.edges.map(({node: comment}) => {
-        return comment ? <CommentsItem key={comment.id} comment={comment} /> : null
-      })}
-      {hasMore && <ButtonWithProgress variant="outlined" isLoading={isLoading} onClick={handleLoadMore}>... mais comentários</ButtonWithProgress>}
-    </React.Fragment>
+    return (
+      <React.Fragment>
+        {comments.edges.map(({ node: comment }) => {
+          return comment ? (
+            <CommentsItem key={comment.id} comment={comment} />
+          ) : null;
+        })}
+        {hasMore && (
+          <ButtonWithProgress
+            variant="outlined"
+            isLoading={isLoading}
+            onClick={handleLoadMore}
+          >
+            ... mais comentários
+          </ButtonWithProgress>
+        )}
+      </React.Fragment>
+    );
   }
 
-  return <div>
-    {(comments && comments.edges.length > 0) && renderList()}
-  </div>
+  return <div>{comments && comments.edges.length > 0 && renderList()}</div>;
 }
 
-const styles = {}
+const styles = {};
 
 export default createPaginationContainer(
   withStyles(styles)(CommentsReplies),
   fragmentSpec,
   {
-    direction: 'forward',
+    direction: "forward",
     query: query,
     getConnectionFromProps(props) {
       return props.commenting.comments;
@@ -52,8 +65,7 @@ export default createPaginationContainer(
       return {
         ...paginationInfo,
         nodeID: props.commenting.id,
-      }
-    }
+      };
+    },
   }
-
-)
+);

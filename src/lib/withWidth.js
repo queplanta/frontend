@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getDisplayName } from '@material-ui/utils';
-import { getThemeProps } from '@material-ui/styles';
-import hoistNonReactStatics from 'hoist-non-react-statics';
-import { useTheme } from '@material-ui/core/styles';
-import { keys as breakpointKeys } from '@material-ui/core/styles/createBreakpoints'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import React from "react";
+import PropTypes from "prop-types";
+import { getDisplayName } from "@material-ui/utils";
+import { getThemeProps } from "@material-ui/styles";
+import hoistNonReactStatics from "hoist-non-react-statics";
+import { useTheme } from "@material-ui/core/styles";
+import { keys as breakpointKeys } from "@material-ui/core/styles/createBreakpoints";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
 export const isWidthUp = (breakpoint, width, inclusive = true) => {
@@ -23,21 +23,22 @@ export const isWidthDown = (breakpoint, width, inclusive = true) => {
   return breakpointKeys.indexOf(width) < breakpointKeys.indexOf(breakpoint);
 };
 
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+const useEnhancedEffect =
+  typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
 
-const withWidth = (options = {}) => Component => {
+const withWidth = (options = {}) => (Component) => {
   const {
     withTheme: withThemeOption = false,
     noSSR = false,
     initialWidth: initialWidthOption,
   } = options;
 
-  let WithWidth = function(props, ref) {
+  let WithWidth = function (props, ref) {
     const contextTheme = useTheme();
     const theme = props.theme || contextTheme;
     const { initialWidth, width, ...other } = getThemeProps({
       theme,
-      name: 'MuiWithWidth',
+      name: "MuiWithWidth",
       props: { ...props },
     });
 
@@ -79,7 +80,7 @@ const withWidth = (options = {}) => Component => {
     }
 
     return <Component ref={ref} {...more} />;
-  }
+  };
 
   WithWidth = React.forwardRef(WithWidth);
 
@@ -93,7 +94,7 @@ const withWidth = (options = {}) => Component => {
      * For instance, you could be using the user-agent or the client-hints.
      * https://caniuse.com/#search=client%20hint
      */
-    initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    initialWidth: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
     /**
      * @ignore
      */
@@ -101,16 +102,16 @@ const withWidth = (options = {}) => Component => {
     /**
      * Bypass the width calculation logic.
      */
-    width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    width: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithWidth, Component);
 
-  return WithWidth
+  return WithWidth;
 };
 
 export default withWidth;

@@ -1,14 +1,14 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment Navbar_me on User {
-    id,
-    username,
+    id
+    username
     avatar(width: 40, height: 40) {
       url
-    },
-    isAuthenticated,
+    }
+    isAuthenticated
     myPerms
   }
 `;
-export default {me: query}
+export default { me: query };

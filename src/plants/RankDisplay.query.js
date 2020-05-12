@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro'
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment RankDisplay_plant on LifeNode {
@@ -14,4 +14,4 @@ const query = graphql`
     }
   }
 `;
-export default {plant: query}
+export default { plant: query };

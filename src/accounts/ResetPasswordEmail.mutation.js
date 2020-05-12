@@ -1,17 +1,17 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from '../relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "../relay";
 
 const mutation = graphql`
   mutation ResetPasswordEmailMutation($input: PasswordResetEmailInput!) {
     mePasswordResetEmail(input: $input) {
       viewer {
-        id,
+        id
         me {
           isAuthenticated
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -21,7 +21,7 @@ const mutation = graphql`
 
 function commit(environment, input, callbacks) {
   return commitMutation({
-    mutationName: 'mePasswordResetEmail',
+    mutationName: "mePasswordResetEmail",
     environment,
     mutation,
     input,

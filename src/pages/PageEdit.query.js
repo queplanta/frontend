@@ -1,13 +1,13 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query PageEditQuery($id: ID!) {
     page: page(id: $id) {
-      id,
-      url,
-      title,
-      body,
-      publishedAt,
+      id
+      url
+      title
+      body
+      publishedAt
       imaging {
         id
         images(first: 100) @connection(key: "List_images") {
@@ -25,4 +25,4 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default query;

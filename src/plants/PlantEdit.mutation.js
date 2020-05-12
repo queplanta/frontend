@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation PlantEditMutation($input: LifeNodeEditInput!) {
@@ -8,7 +8,7 @@ const mutation = graphql`
         id
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -28,24 +28,28 @@ function commit(environment, input, config) {
     },
     onCompleted(response, errors) {
       if (response.lifeNodeEdit) {
-        if (response.lifeNodeEdit.errors && response.lifeNodeEdit.errors.length > 0) {
-          if (typeof config.setFormErrors === 'function') {
-            config.setFormErrors(response.lifeNodeEdit.errors)
+        if (
+          response.lifeNodeEdit.errors &&
+          response.lifeNodeEdit.errors.length > 0
+        ) {
+          if (typeof config.setFormErrors === "function") {
+            config.setFormErrors(response.lifeNodeEdit.errors);
           }
-        } if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        }
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
       if (errors && errors.length > 0) {
-        console.error(errors)
-        if (typeof config.onError === 'function') {
-          config.onError(errors)
+        console.error(errors);
+        if (typeof config.onError === "function") {
+          config.onError(errors);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

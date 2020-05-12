@@ -1,18 +1,18 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query ProfileEditQuery {
     me {
-      id,
-      username,
-      firstName,
-      email,
+      id
+      username
+      firstName
+      email
       avatar(width: 40, height: 40) {
         url
-      },
-      isAuthenticated,
+      }
+      isAuthenticated
       myPerms
     }
   }
 `;
-export default query
+export default query;

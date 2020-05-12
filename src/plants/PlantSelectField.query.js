@@ -1,12 +1,11 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 export const query = graphql`
   fragment PlantSelectField_viewer on Query
     @argumentDefinitions(
-      count: {type: "Int", defaultValue: 0}
-      search: {type: "String"}
-    )
-  {
+      count: { type: "Int", defaultValue: 0 }
+      search: { type: "String" }
+    ) {
     id
     allLifeNode(first: $count, search: $search) {
       edges {
@@ -31,8 +30,8 @@ export const query = graphql`
 `;
 
 export const fragmentSpec = {
-  viewer: query
-}
+  viewer: query,
+};
 
 export const refetchQuery = graphql`
   query PlantSelectFieldQuery($count: Int!, $search: String!) {
@@ -41,7 +40,7 @@ export const refetchQuery = graphql`
       ...PlantSelectField_viewer @arguments(count: $count, search: $search)
     }
   }
-`
+`;
 
 export const renderQuery = graphql`
   query PlantSelectFieldRenderQuery {
@@ -50,4 +49,4 @@ export const renderQuery = graphql`
       ...PlantSelectField_viewer
     }
   }
-`
+`;

@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment SuggestionItem_suggestionID on SuggestionID {
@@ -26,4 +26,4 @@ const query = graphql`
     }
   }
 `;
-export default {suggestionID: query}
+export default { suggestionID: query };

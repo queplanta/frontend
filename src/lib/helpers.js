@@ -1,7 +1,7 @@
 export function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
 export function isBrowser() {
-  return typeof window !== 'undefined'
+  return typeof window !== "undefined";
 }

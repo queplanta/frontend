@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation OccurrenceAddMutation($input: OccurrenceCreateInput!) {
@@ -11,7 +11,7 @@ const mutation = graphql`
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -32,26 +32,29 @@ function commit(environment, input, uploadables, config) {
     uploadables,
     onCompleted(response, errors) {
       if (errors && errors.length > 0) {
-          console.error(errors)
-          if (typeof config.onError === 'function') {
-            config.onError(errors)
-          }
-      } else if (response.occurrenceCreate.errors && response.occurrenceCreate.errors.length > 0) {
-				if (typeof config.onError === 'function') {
-          config.onError(response)
+        console.error(errors);
+        if (typeof config.onError === "function") {
+          config.onError(errors);
         }
-				if (typeof config.setFormErrors === 'function') {
-					config.setFormErrors(response.occurrenceCreate.errors)
-				}
+      } else if (
+        response.occurrenceCreate.errors &&
+        response.occurrenceCreate.errors.length > 0
+      ) {
+        if (typeof config.onError === "function") {
+          config.onError(response);
+        }
+        if (typeof config.setFormErrors === "function") {
+          config.setFormErrors(response.occurrenceCreate.errors);
+        }
       } else {
-				if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

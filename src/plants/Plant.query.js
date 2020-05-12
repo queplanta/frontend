@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query PlantQuery($plantID: Int!) {
@@ -29,14 +29,14 @@ const query = graphql`
       }
       myPerms
       collectionList {
-       totalCount
+        totalCount
       }
       wishList {
-       totalCount
+        totalCount
       }
       ...CollectionItemToggle_plant
       ...WishItemToggle_plant
     }
   }
 `;
-export default query
+export default query;

@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export function useFormInput(initialValue) {
-  const [value, setValue] = useState(initialValue)
+  const [value, setValue] = useState(initialValue);
 
   function handleChange(e) {
-    setValue(e.target.value)
+    setValue(e.target.value);
   }
 
   return {
     value,
-    onChange: handleChange
-  }
+    onChange: handleChange,
+  };
 }
 
 export function clearFormInput(input) {
-  input.onChange({target: {value: ''}})
+  input.onChange({ target: { value: "" } });
 }

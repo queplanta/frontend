@@ -1,6 +1,6 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
-const query = graphql `
+const query = graphql`
   query ProfileQuery($username: String!) {
     user: userByUsername(username: $username) {
       id
@@ -11,10 +11,10 @@ const query = graphql `
         url
       }
       collectionList {
-       totalCount
+        totalCount
       }
       wishList {
-       totalCount
+        totalCount
       }
       ...UserActivityList_user
     }
@@ -23,4 +23,4 @@ const query = graphql `
     }
   }
 `;
-export default query
+export default query;

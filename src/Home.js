@@ -1,15 +1,17 @@
-import React from 'react';
-import Route from './relay/RouteWithLoading';
-import { withStyles } from '@material-ui/core';
-import { Width } from './ui'
-import HomeQuery from './Home.query.js';
-import OccurrencesMap from './occurrences/OccurrencesMap.js';
+import React from "react";
+import Route from "./relay/RouteWithLoading";
+import { withStyles } from "@material-ui/core";
+import { Width } from "./ui";
+import HomeQuery from "./Home.query.js";
+import OccurrencesMap from "./occurrences/OccurrencesMap.js";
 
 function Home(props) {
-	const {classes, environment} = props;
-  return <Width component="div">
-    <OccurrencesMap className={classes.map} environment={environment} />
-	</Width>
+  const { classes, environment } = props;
+  return (
+    <Width component="div">
+      <OccurrencesMap className={classes.map} environment={environment} />
+    </Width>
+  );
 }
 
 const styles = (theme) => ({
@@ -25,11 +27,15 @@ const styles = (theme) => ({
   map: {
     height: 500,
   },
-})
+});
 
-const HomeStyled = withStyles(styles)(Home)
+const HomeStyled = withStyles(styles)(Home);
 
-export const homeRoute = <Route
-	query={HomeQuery}
-  render={(args) => <HomeStyled {...args.props} environment={args.environment} />}
-/>
+export const homeRoute = (
+  <Route
+    query={HomeQuery}
+    render={(args) => (
+      <HomeStyled {...args.props} environment={args.environment} />
+    )}
+  />
+);

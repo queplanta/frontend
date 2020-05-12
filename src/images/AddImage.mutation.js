@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from '../relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "../relay";
 
 const mutation = graphql`
   mutation AddImageMutation($input: ImageCreateInput!) {
@@ -14,7 +14,7 @@ const mutation = graphql`
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -22,27 +22,30 @@ const mutation = graphql`
   }
 `;
 
-
 function commit(environment, input, uploadables, callbacks) {
-  const {imagingId, ...otherInputs} = input;
+  const { imagingId, ...otherInputs } = input;
   return commitMutation({
-    mutationName: 'imageCreate',
+    mutationName: "imageCreate",
     environment,
     mutation,
     input: otherInputs,
     uploadables,
     callbacks,
     config: {
-      configs: [{
-        type: 'RANGE_ADD',
-        parentID: imagingId,
-        connectionInfo: [{
-          key: 'List_images',
-          rangeBehavior: 'append'
-        }],
-        edgeName: 'image',
-      }]
-    }
+      configs: [
+        {
+          type: "RANGE_ADD",
+          parentID: imagingId,
+          connectionInfo: [
+            {
+              key: "List_images",
+              rangeBehavior: "append",
+            },
+          ],
+          edgeName: "image",
+        },
+      ],
+    },
   });
 }
 

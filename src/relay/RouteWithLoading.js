@@ -1,33 +1,35 @@
-import React from 'react';
-import { CircularProgress, withStyles } from '@material-ui/core'
+import React from "react";
+import { CircularProgress, withStyles } from "@material-ui/core";
 
 const Loading = withStyles((theme) => ({
   wrapper: {
     margin: theme.spacing(3, 0, 0, 0),
-    textAlign: 'center',
+    textAlign: "center",
   },
-}))(({classes, ...others}) => {
-  const {wrapper, ...otherClasses} = classes
-  return <div className={wrapper}>
-    <CircularProgress classes={otherClasses} {...others} />
-  </div>
-})
+}))(({ classes, ...others }) => {
+  const { wrapper, ...otherClasses } = classes;
+  return (
+    <div className={wrapper}>
+      <CircularProgress classes={otherClasses} {...others} />
+    </div>
+  );
+});
 
 export default class Route {
-  constructor({Component, render, ...others}) {
+  constructor({ Component, render, ...others }) {
     const props = {
       Component,
       render: (args) => {
         if (args.props) {
-          if (typeof render === 'function' ) {
-            return render(args)
+          if (typeof render === "function") {
+            return render(args);
           }
-          return <Component environment={args.environment} {...args.props} />
+          return <Component environment={args.environment} {...args.props} />;
         }
-        return <Loading />
+        return <Loading />;
       },
-      ...others
-    }
+      ...others,
+    };
     Object.assign(this, props);
   }
 }

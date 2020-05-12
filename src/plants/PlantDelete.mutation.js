@@ -1,12 +1,12 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation PlantDeleteMutation($input: LifeNodeDeleteInput!) {
     lifeNodeDelete(input: $input) {
       lifeNodeDeletedID
       errors {
-        code,
+        code
         location
         message
       }
@@ -25,23 +25,26 @@ function commit(environment, input, config) {
       input: { clientMutationId, ...input },
     },
     onCompleted(response, errors) {
-      if (response.lifeNodeDelete.errors && response.lifeNodeDelete.errors.length > 0) {
-        if (typeof config.onError === 'function') {
-          config.onError(response)
+      if (
+        response.lifeNodeDelete.errors &&
+        response.lifeNodeDelete.errors.length > 0
+      ) {
+        if (typeof config.onError === "function") {
+          config.onError(response);
         }
       } else {
-        if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
-        config.router.push('/plantas')
+        config.router.push("/plantas");
       }
     },
     onError(error) {
-      console.error(error)
-      if (typeof config.onError === 'function') {
-        config.onError(error)
+      console.error(error);
+      if (typeof config.onError === "function") {
+        config.onError(error);
       }
-    }
+    },
   });
 }
 

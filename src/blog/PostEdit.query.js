@@ -1,19 +1,19 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query PostEditQuery($id: ID!) {
     post: post(id: $id) {
-      id,
-      url,
-      title,
-      body,
-      publishedAt,
+      id
+      url
+      title
+      body
+      publishedAt
       tags(first: 50) {
         edges {
           node {
-            id,
-            slug,
-            title,
+            id
+            slug
+            title
           }
         }
       }
@@ -34,4 +34,4 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default query;

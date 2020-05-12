@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query PlantDescriptionQuery($plantID: Int!) {
@@ -18,8 +18,8 @@ const query = graphql`
       }
       commenting {
         ...CommentsList_commenting
-      }  
+      }
     }
   }
 `;
-export default query
+export default query;

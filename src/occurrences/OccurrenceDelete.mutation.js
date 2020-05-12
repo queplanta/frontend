@@ -1,12 +1,12 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation OccurrenceDeleteMutation($input: OccurrenceDeleteInput!) {
     occurrenceDelete(input: $input) {
       occurenceDeletedID
       errors {
-        code,
+        code
         location
         message
       }
@@ -26,28 +26,31 @@ function commit(environment, input, config) {
     },
     configs: [
       {
-        type: 'NODE_DELETE',
-        deletedIDFieldName: 'occurenceDeletedID',
-      }
+        type: "NODE_DELETE",
+        deletedIDFieldName: "occurenceDeletedID",
+      },
     ],
     onCompleted(response, errors) {
-			if (response.occurrenceDelete.errors && response.occurrenceDelete.errors.length > 0) {
-				if (typeof config.onError === 'function') {
-          config.onError(response)
+      if (
+        response.occurrenceDelete.errors &&
+        response.occurrenceDelete.errors.length > 0
+      ) {
+        if (typeof config.onError === "function") {
+          config.onError(response);
         }
       } else {
-				if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
-      config.router.push('/mapa')
+      config.router.push("/mapa");
     },
     onError(error) {
-      console.log(error)
-      if (typeof config.onError === 'function') {
-        config.onError(error)
+      console.log(error);
+      if (typeof config.onError === "function") {
+        config.onError(error);
       }
-    }
+    },
   });
 }
 

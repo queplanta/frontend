@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'found';
-import { Typography, Tabs, Tab, Box } from '@material-ui/core';
-import { isBrowser } from './helpers.js';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link as RouterLink } from "found";
+import { Typography, Tabs, Tab, Box } from "@material-ui/core";
+import { isBrowser } from "./helpers.js";
 
 export function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,15 +30,19 @@ TabPanel.propTypes = {
 export function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
 export function TabsRoute(props) {
-  return <Tabs value={isBrowser() ? window.location.pathname : null} {...props} />
+  return (
+    <Tabs value={isBrowser() ? window.location.pathname : null} {...props} />
+  );
 }
 
 export function TabRoute(props) {
-  const {value, ...otherProps} = props
-  return <Tab value={value} to={value} component={RouterLink} {...otherProps} />
+  const { value, ...otherProps } = props;
+  return (
+    <Tab value={value} to={value} component={RouterLink} {...otherProps} />
+  );
 }

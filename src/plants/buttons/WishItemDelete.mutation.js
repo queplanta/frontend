@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from '../../relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "../../relay";
 
 const mutation = graphql`
   mutation WishItemDeleteMutation($input: WishItemDeleteInput!) {
@@ -8,14 +8,14 @@ const mutation = graphql`
       lifeNode {
         id
         wishList {
-         totalCount
+          totalCount
         }
         myWishItem {
           id
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -23,10 +23,9 @@ const mutation = graphql`
   }
 `;
 
-
 function commit(environment, input, callbacks) {
   return commitMutation({
-    mutationName: 'wishItemDelete',
+    mutationName: "wishItemDelete",
     environment,
     mutation,
     input,
@@ -34,11 +33,11 @@ function commit(environment, input, callbacks) {
     config: {
       configs: [
         {
-          type: 'NODE_DELETE',
-          deletedIDFieldName: 'deletedId',
-        }
-      ]
-    }
+          type: "NODE_DELETE",
+          deletedIDFieldName: "deletedId",
+        },
+      ],
+    },
   });
 }
 

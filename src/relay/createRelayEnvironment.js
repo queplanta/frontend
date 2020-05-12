@@ -1,31 +1,31 @@
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { Environment, Network, RecordSource, Store } from "relay-runtime";
 
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
   let requestVariables = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Accept': "application/json",
-    }
-  }
+      Accept: "application/json",
+    },
+  };
 
-  let body
+  let body;
 
   if (uploadables instanceof FormData) {
-    uploadables.append('query', operation.text)
-    uploadables.append('variables', JSON.stringify(variables))
-    body = uploadables
+    uploadables.append("query", operation.text);
+    uploadables.append("variables", JSON.stringify(variables));
+    body = uploadables;
   } else {
-    requestVariables.headers['Content-Type'] = 'application/json'
+    requestVariables.headers["Content-Type"] = "application/json";
     body = JSON.stringify({
       query: operation.text,
       variables,
-    })
+    });
   }
 
-  return fetch("/graphql" , {
+  return fetch("/graphql", {
     ...requestVariables,
-    body
-  }).then(response => {
+    body,
+  }).then((response) => {
     return response.json();
   });
 }

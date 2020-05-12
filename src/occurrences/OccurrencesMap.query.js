@@ -1,10 +1,13 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
-  query OccurrencesMapQuery($count: Int!, $identity: ID)
-  {
+  query OccurrencesMapQuery($count: Int!, $identity: ID) {
     viewer {
-      allOccurrences(first: $count, identity: $identity, isIdentityNull: false) {
+      allOccurrences(
+        first: $count
+        identity: $identity
+        isIdentityNull: false
+      ) {
         edges {
           node {
             id
@@ -46,4 +49,4 @@ const query = graphql`
   }
 `;
 
-export default query
+export default query;

@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from '../../relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "../../relay";
 
 const mutation = graphql`
   mutation AddCommonNameMutation($input: CommonNameAddInput!) {
@@ -11,7 +11,7 @@ const mutation = graphql`
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -19,10 +19,9 @@ const mutation = graphql`
   }
 `;
 
-
 function commit(environment, input, callbacks) {
   return commitMutation({
-    mutationName: 'lifeNodeCommonNameAdd',
+    mutationName: "lifeNodeCommonNameAdd",
     environment,
     mutation,
     input,
@@ -30,14 +29,16 @@ function commit(environment, input, callbacks) {
     config: {
       configs: [
         {
-          type: 'RANGE_ADD',
+          type: "RANGE_ADD",
           parentID: input.lifeNode,
-          connectionInfo: [{
-            key: 'lifeNode__commonNames',
-            rangeBehavior: 'append'
-          }],
-          edgeName: 'commonName',
-        }
+          connectionInfo: [
+            {
+              key: "lifeNode__commonNames",
+              rangeBehavior: "append",
+            },
+          ],
+          edgeName: "commonName",
+        },
       ],
     },
   });

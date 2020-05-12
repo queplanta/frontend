@@ -1,12 +1,12 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation CommentDeleteMutation($input: CommentDeleteInput!) {
     commentDelete(input: $input) {
       commentDeletedID
       errors {
-        code,
+        code
         location
         message
       }
@@ -26,24 +26,27 @@ function commit(environment, input, config) {
     },
     configs: [
       {
-        type: 'NODE_DELETE',
-        deletedIDFieldName: 'commentDeletedID',
-      }
+        type: "NODE_DELETE",
+        deletedIDFieldName: "commentDeletedID",
+      },
     ],
     onCompleted(response, errors) {
-      if (response.commentDelete.errors && response.commentDelete.errors.length > 0) {
-        if (typeof config.onError === 'function') {
-          config.onError(response)
+      if (
+        response.commentDelete.errors &&
+        response.commentDelete.errors.length > 0
+      ) {
+        if (typeof config.onError === "function") {
+          config.onError(response);
         }
       } else {
-        if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

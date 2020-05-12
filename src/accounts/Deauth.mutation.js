@@ -1,11 +1,11 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation DeauthMutation($input: DeauthenticateInput!) {
     deauthenticate(input: $input) {
       viewer {
-        id,
+        id
         me {
           isAuthenticated
         }
@@ -26,7 +26,7 @@ function commit(environment) {
     },
     updater(store) {
       const rootViewer = store.getRoot();
-      rootViewer.setValue(null, 'me')
+      rootViewer.setValue(null, "me");
     },
   });
 }

@@ -1,11 +1,11 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment PostItem_post on Post {
-    id,
-    url,
-    title,
-    publishedAt,
+    id
+    url
+    title
+    publishedAt
     commenting {
       count
     }
@@ -28,4 +28,4 @@ const query = graphql`
     }
   }
 `;
-export default {post: query}
+export default { post: query };

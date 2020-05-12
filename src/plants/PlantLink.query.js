@@ -1,6 +1,6 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
-const query = graphql `
+const query = graphql`
   fragment PlantLink_plant on LifeNode {
     id
     idInt
@@ -8,4 +8,4 @@ const query = graphql `
     slug
   }
 `;
-export default {plant: query}
+export default { plant: query };

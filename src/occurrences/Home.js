@@ -1,13 +1,13 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { Button, Grid, withStyles } from '@material-ui/core';
-import { Link as RouterLink } from 'found';
-import PageTitle from '../lib/PageTitle.js';
-import { Width } from '../ui';
-import OccurrencesMap from './OccurrencesMap.js';
+import React from "react";
+import Helmet from "react-helmet";
+import { Button, Grid, withStyles } from "@material-ui/core";
+import { Link as RouterLink } from "found";
+import PageTitle from "../lib/PageTitle.js";
+import { Width } from "../ui";
+import OccurrencesMap from "./OccurrencesMap.js";
 
 function Home(props) {
-  const {classes, environment} = props;
+  const { classes, environment } = props;
 
   // const [bounds, setBounds] = useState(null);
   // onViewportChanged={onViewportChanged}
@@ -17,18 +17,27 @@ function Home(props) {
   // }
   // console.log('bounds', bounds);
 
-  return <Width>
-    <Helmet title="Mapa de Árvores" />
-    <Grid container>
-      <Grid item xs={12} sm={6}>
-        <PageTitle>Mapa de Árvores</PageTitle>
+  return (
+    <Width>
+      <Helmet title="Mapa de Árvores" />
+      <Grid container>
+        <Grid item xs={12} sm={6}>
+          <PageTitle>Mapa de Árvores</PageTitle>
+        </Grid>
+        <Grid item xs={12} sm={6} className={classes.buttonWraper}>
+          <Button
+            variant="contained"
+            color="primary"
+            component={RouterLink}
+            to={`/mapa/adicionar`}
+          >
+            Adicionar no mapa
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={6} className={classes.buttonWraper}>
-        <Button variant="contained" color="primary" component={RouterLink} to={`/mapa/adicionar`}>Adicionar no mapa</Button>
-      </Grid>
-    </Grid>
-    <OccurrencesMap className={classes.map} environment={environment} />
-  </Width>
+      <OccurrencesMap className={classes.map} environment={environment} />
+    </Width>
+  );
 }
 
 const styles = (theme) => ({
@@ -36,9 +45,9 @@ const styles = (theme) => ({
     height: 500,
   },
   buttonWraper: {
-    marginBottom: '20px',
-    [theme.breakpoints.up('sm')]: {
-      textAlign: 'right',
+    marginBottom: "20px",
+    [theme.breakpoints.up("sm")]: {
+      textAlign: "right",
     },
   },
 });

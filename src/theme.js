@@ -1,10 +1,10 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import green from "@material-ui/core/colors/green";
 
 const theme = createMuiTheme({
   palette: {
-    primary: green
-  }
+    primary: green,
+  },
 });
 
-export default responsiveFontSizes(theme)
+export default responsiveFontSizes(theme);

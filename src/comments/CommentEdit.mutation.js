@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation CommentEditMutation($input: CommentEditInput!) {
@@ -9,7 +9,7 @@ const mutation = graphql`
         ...CommentsItem_comment
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -28,19 +28,23 @@ function commit(environment, input, config) {
       input: { clientMutationId, ...input },
     },
     onCompleted(response, errors) {
-      if (response.commentEdit && response.commentEdit.errors && response.commentEdit.errors.length > 0) {
-        if (typeof config.setFormErrors === 'function') {
-          config.setFormErrors(response.commentEdit.errors)
+      if (
+        response.commentEdit &&
+        response.commentEdit.errors &&
+        response.commentEdit.errors.length > 0
+      ) {
+        if (typeof config.setFormErrors === "function") {
+          config.setFormErrors(response.commentEdit.errors);
         }
       } else {
-        if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

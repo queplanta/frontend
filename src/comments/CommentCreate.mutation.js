@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation CommentCreateMutation($input: CommentCreateInput!) {
@@ -11,7 +11,7 @@ const mutation = graphql`
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -31,29 +31,35 @@ function commit(environment, input, config) {
     },
     configs: [
       {
-        type: 'RANGE_ADD',
+        type: "RANGE_ADD",
         parentID: input.parent,
-        connectionInfo: [{
-          key: 'CommentsList_comments',
-          rangeBehavior: 'prepend'
-        }],
-        edgeName: 'comment',
-      }
+        connectionInfo: [
+          {
+            key: "CommentsList_comments",
+            rangeBehavior: "prepend",
+          },
+        ],
+        edgeName: "comment",
+      },
     ],
     onCompleted(response, errors) {
-      if (response.commentCreate && response.commentCreate.errors && response.commentCreate.errors.length > 0) {
-        if (typeof config.setFormErrors === 'function') {
-          config.setFormErrors(response.commentCreate.errors)
+      if (
+        response.commentCreate &&
+        response.commentCreate.errors &&
+        response.commentCreate.errors.length > 0
+      ) {
+        if (typeof config.setFormErrors === "function") {
+          config.setFormErrors(response.commentCreate.errors);
         }
       } else {
-        if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

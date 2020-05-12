@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment OccurrenceDetails_occurrence on Occurrence {
@@ -20,7 +20,7 @@ const query = graphql`
     }
     commenting {
       ...CommentsList_commenting
-    }  
+    }
     document {
       ...RevisionBox_document
     }
@@ -48,4 +48,4 @@ const query = graphql`
     }
   }
 `;
-export default {occurrence: query}
+export default { occurrence: query };

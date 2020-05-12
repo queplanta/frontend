@@ -1,9 +1,9 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query AppQuery {
     viewer {
-      id,
+      id
       me {
         ...Navbar_me
         isAuthenticated
@@ -12,4 +12,4 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default query;

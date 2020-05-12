@@ -1,45 +1,63 @@
-import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core';
-import { createPaginationContainer } from 'react-relay';
-import ButtonWithProgress from '../lib/ButtonWithProgress.js';
-import CommentsItem from './CommentsItem.js';
-import CommentCreate from './CommentCreate.js';
-import { fragmentSpec, query } from './CommentsList.query.js';
+import React, { useState } from "react";
+import { withStyles } from "@material-ui/core";
+import { createPaginationContainer } from "react-relay";
+import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import CommentsItem from "./CommentsItem.js";
+import CommentCreate from "./CommentCreate.js";
+import { fragmentSpec, query } from "./CommentsList.query.js";
 
 function CommentsList(props) {
-  const {relay, commenting: {id: parentId, comments: {edges: comments}}} = props
+  const {
+    relay,
+    commenting: {
+      id: parentId,
+      comments: { edges: comments },
+    },
+  } = props;
 
-  const [isLoading, setLoading] = useState(false)
-  const hasMore = relay.hasMore()
+  const [isLoading, setLoading] = useState(false);
+  const hasMore = relay.hasMore();
 
   function handleLoadMore() {
     if (!hasMore || relay.isLoading()) {
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     relay.loadMore(30, (error) => {
       if (error) console.error(error);
-      setLoading(false)
-    })
+      setLoading(false);
+    });
   }
 
-  return <div>
-    <CommentCreate parentId={parentId} environment={relay.environment} />
-    {comments.map(({node: comment}) => {
-      return comment ? <CommentsItem key={comment.id} comment={comment} /> : null
-    })}
-    {hasMore && <ButtonWithProgress variant="outlined" isLoading={isLoading} onClick={handleLoadMore}>... mais comentários</ButtonWithProgress>}
-  </div>
+  return (
+    <div>
+      <CommentCreate parentId={parentId} environment={relay.environment} />
+      {comments.map(({ node: comment }) => {
+        return comment ? (
+          <CommentsItem key={comment.id} comment={comment} />
+        ) : null;
+      })}
+      {hasMore && (
+        <ButtonWithProgress
+          variant="outlined"
+          isLoading={isLoading}
+          onClick={handleLoadMore}
+        >
+          ... mais comentários
+        </ButtonWithProgress>
+      )}
+    </div>
+  );
 }
 
-const styles = {}
+const styles = {};
 
 export default createPaginationContainer(
   withStyles(styles)(CommentsList),
   fragmentSpec,
   {
-    direction: 'forward',
+    direction: "forward",
     query: query,
     getConnectionFromProps(props) {
       return props.commenting.comments;
@@ -48,8 +66,7 @@ export default createPaginationContainer(
       return {
         ...paginationInfo,
         nodeID: props.commenting.id,
-      }
-    }
+      };
+    },
   }
-
-)
+);

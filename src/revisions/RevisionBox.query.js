@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro'
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment RevisionBox_document on Document {
@@ -20,4 +20,4 @@ const query = graphql`
     }
   }
 `;
-export default {document: query}
+export default { document: query };

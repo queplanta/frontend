@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from '../relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "../relay";
 
 const mutation = graphql`
   mutation ProfileEditMutation($input: ProfileEditInput!) {
@@ -9,9 +9,9 @@ const mutation = graphql`
         firstName
         username
         email
-      },
+      }
       errors {
-        code,
+        code
         location
         message
       }
@@ -21,7 +21,7 @@ const mutation = graphql`
 
 function commit(environment, input, callbacks) {
   return commitMutation({
-    mutationName: 'meProfileEdit',
+    mutationName: "meProfileEdit",
     environment,
     mutation,
     input,

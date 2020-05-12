@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation VotingButtonsDeleteMutation($input: VoteDeleteInput!) {
@@ -8,7 +8,7 @@ const mutation = graphql`
         ...VotingButtons_voting
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -28,23 +28,27 @@ function commit(environment, input, config) {
     },
     onCompleted(response, errors) {
       if (response.voteDelete) {
-        if (response.voteDelete.errors && response.voteDelete.errors.length > 0 && typeof config.onError === 'function') {
-          config.onError(response.voteDelete.errors)
-        } else if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
-          config.stateVoteSet(null)
+        if (
+          response.voteDelete.errors &&
+          response.voteDelete.errors.length > 0 &&
+          typeof config.onError === "function"
+        ) {
+          config.onError(response.voteDelete.errors);
+        } else if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
+          config.stateVoteSet(null);
         }
       }
-      if (errors && typeof config.onError === 'function') {
-        config.onError(errors)
+      if (errors && typeof config.onError === "function") {
+        config.onError(errors);
       }
     },
     onError(error) {
-      console.error(error)
-      if (typeof config.onError === 'function') {
-        config.onError(error)
+      console.error(error);
+      if (typeof config.onError === "function") {
+        config.onError(error);
       }
-    }
+    },
   });
 }
 

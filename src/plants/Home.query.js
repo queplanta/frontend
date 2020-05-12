@@ -1,11 +1,7 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
-  query HomePlantQuery(
-    $search: String,
-    $edibles: Boolean
-  )
-  {
+  query HomePlantQuery($search: String, $edibles: Boolean) {
     viewer {
       id
       ...PlantList_viewer @arguments(edibles: $edibles, search: $search)
@@ -13,4 +9,4 @@ const query = graphql`
   }
 `;
 
-export default query
+export default query;

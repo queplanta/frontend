@@ -1,87 +1,97 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
+import React, { useState } from "react";
+import Helmet from "react-helmet";
 import {
-  TextField, Button, IconButton, Paper, FormLabel,
-  withStyles
-} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import _ from 'lodash';
-import { useRouter } from 'found';
-import { useSnackbar } from 'notistack';
-import { hasFormErrors, FormErrors } from '../FormErrors.js';
-import ImgWithLocation from '../lib/ImgWithLocation.js';
-import { useFormInput } from '../lib/forms.js';
-import ButtonWithProgress from '../lib/ButtonWithProgress.js';
-import OccurrenceAddMutation from './OccurrenceAdd.mutation.js';
-import { Width } from '../ui';
-import PageTitle from '../lib/PageTitle.js';
-import { MapGeolocated, Marker, defaultPosition } from './Map.js';
-import PlantSelectField from '../plants/PlantSelectField.js';
-import { useLoginRequired } from '../accounts/LoginRequired.js';
+  TextField,
+  Button,
+  IconButton,
+  Paper,
+  FormLabel,
+  withStyles,
+} from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import _ from "lodash";
+import { useRouter } from "found";
+import { useSnackbar } from "notistack";
+import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import ImgWithLocation from "../lib/ImgWithLocation.js";
+import { useFormInput } from "../lib/forms.js";
+import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import OccurrenceAddMutation from "./OccurrenceAdd.mutation.js";
+import { Width } from "../ui";
+import PageTitle from "../lib/PageTitle.js";
+import { MapGeolocated, Marker, defaultPosition } from "./Map.js";
+import PlantSelectField from "../plants/PlantSelectField.js";
+import { useLoginRequired } from "../accounts/LoginRequired.js";
 
-function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
-  const { enqueueSnackbar } = useSnackbar()
-  const { isAuthenticated } = useLoginRequired()
-  const [lifeNode, setLifeNode] = useState(null)
+function OccurrenceAdd({ classes, environment, setFormErrors, viewer }) {
+  const { enqueueSnackbar } = useSnackbar();
+  const { isAuthenticated } = useLoginRequired();
+  const [lifeNode, setLifeNode] = useState(null);
   const { router } = useRouter();
-  const when = useFormInput('')
-  const notes = useFormInput('')
-  const [images, setImages] = useState([])
-  const [isSaving, setIsSaving] = useState(false)
-  const [markerPosition, setMarkerPosition] = useState(defaultPosition)
+  const when = useFormInput("");
+  const notes = useFormInput("");
+  const [images, setImages] = useState([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const [markerPosition, setMarkerPosition] = useState(defaultPosition);
 
   function onChange(e) {
-    for ( var i = 0 ; i < e.target.files.length ; i++) {
+    for (var i = 0; i < e.target.files.length; i++) {
       const file = e.target.files[i];
       const fileReader = new FileReader();
       fileReader.onload = (ee) => {
-        const location = null
-        setImages(prevImages => ([...prevImages, {file: file, imagePreviewUrl: fileReader.result, location}]))
-      }
+        const location = null;
+        setImages((prevImages) => [
+          ...prevImages,
+          { file: file, imagePreviewUrl: fileReader.result, location },
+        ]);
+      };
       fileReader.readAsDataURL(file);
     }
   }
 
   function removeImage(index) {
-    setImages(prevImages => {
-      prevImages.splice(index, 1)
-      return [...prevImages]
-    })
+    setImages((prevImages) => {
+      prevImages.splice(index, 1);
+      return [...prevImages];
+    });
   }
 
   function onPositionChange(position) {
-    setMarkerPosition([position[0], position[1]])
+    setMarkerPosition([position[0], position[1]]);
   }
 
   function onMoveMarker(e) {
-    const position = [e.latlng.lat, e.latlng.lng]
-    const isEqual = markerPosition[0] === position[0] && markerPosition[1] === position[1]
+    const position = [e.latlng.lat, e.latlng.lng];
+    const isEqual =
+      markerPosition[0] === position[0] && markerPosition[1] === position[1];
     if (!isEqual) {
-      setMarkerPosition(position)
+      setMarkerPosition(position);
     }
   }
 
   function onSuccess(response) {
-    setIsSaving(false)
-    enqueueSnackbar('Observação adicionada com sucesso', {variant: "success"})
-    router.push(`/observacoes/${response.occurrenceCreate.occurrence.node.id}`)
+    setIsSaving(false);
+    enqueueSnackbar("Observação adicionada com sucesso", {
+      variant: "success",
+    });
+    router.push(`/observacoes/${response.occurrenceCreate.occurrence.node.id}`);
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     if (isAuthenticated()) {
-      const formData = new FormData()
-      images.forEach(image => {
-        formData.append('images', image.file)
-      })
-      setIsSaving(true)
+      const formData = new FormData();
+      images.forEach((image) => {
+        formData.append("images", image.file);
+      });
+      setIsSaving(true);
       OccurrenceAddMutation.commit(
         environment,
         {
           location: {
-            "type": "Point",
-            "coordinates": markerPosition
+            type: "Point",
+            coordinates: markerPosition,
           },
           lifeId: lifeNode.id,
           when: when.value,
@@ -92,73 +102,120 @@ function OccurrenceAdd({classes, environment, setFormErrors, viewer}) {
           setFormErrors,
           onSuccess,
           onError: () => {
-            enqueueSnackbar('Ocorreu um erro', {variant: "error"})
-            setIsSaving(false)
-          }
+            enqueueSnackbar("Ocorreu um erro", { variant: "error" });
+            setIsSaving(false);
+          },
         }
-      )
+      );
     }
   }
-    
-  return <Width component="div">
-    <Helmet title="Adicionar planta no mapa" />
-    <PageTitle>Adicionar planta no mapa</PageTitle>
-    <Paper className={classes.paper}>
-      <form onSubmit={handleSubmit}>
-        <PlantSelectField environment={environment} onChange={setLifeNode} value={lifeNode} />
 
-        <div className={classes.where}>
-          <FormLabel>Onde?</FormLabel>
-          <MapGeolocated className={classes.map} onPositionChange={onPositionChange}>
-            <Marker position={markerPosition} draggable={true} onMove={onMoveMarker} />
-          </MapGeolocated>
-        </div>
+  return (
+    <Width component="div">
+      <Helmet title="Adicionar planta no mapa" />
+      <PageTitle>Adicionar planta no mapa</PageTitle>
+      <Paper className={classes.paper}>
+        <form onSubmit={handleSubmit}>
+          <PlantSelectField
+            environment={environment}
+            onChange={setLifeNode}
+            value={lifeNode}
+          />
 
-        <div className={classes.imgsList}>
-          {images.map((image, i) => {
-            return <span key={i} className={classes.img}>
-              <ImgWithLocation src={image.imagePreviewUrl} onLocation={(location) => {
-                const updatedImages = _.set(images, [i, 'location'], location);
-                setImages(updatedImages)
-              }} />
-              <IconButton aria-label="delete" color="secondary" className={classes.imgDelete} onClick={() => removeImage(i)}>
-                <DeleteIcon />
-              </IconButton>
-            </span>
-          })}
-        </div>
+          <div className={classes.where}>
+            <FormLabel>Onde?</FormLabel>
+            <MapGeolocated
+              className={classes.map}
+              onPositionChange={onPositionChange}
+            >
+              <Marker
+                position={markerPosition}
+                draggable={true}
+                onMove={onMoveMarker}
+              />
+            </MapGeolocated>
+          </div>
 
-        <Button component="label" htmlFor="photosInput"><AddPhotoAlternateIcon className={classes.buttonIcon} /> Adicionar Foto</Button>
+          <div className={classes.imgsList}>
+            {images.map((image, i) => {
+              return (
+                <span key={i} className={classes.img}>
+                  <ImgWithLocation
+                    src={image.imagePreviewUrl}
+                    onLocation={(location) => {
+                      const updatedImages = _.set(
+                        images,
+                        [i, "location"],
+                        location
+                      );
+                      setImages(updatedImages);
+                    }}
+                  />
+                  <IconButton
+                    aria-label="delete"
+                    color="secondary"
+                    className={classes.imgDelete}
+                    onClick={() => removeImage(i)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </span>
+              );
+            })}
+          </div>
 
-        <input id="photosInput" type="file" multiple accept="image/*" onChange={onChange} style={{display: 'none'}} />
+          <Button component="label" htmlFor="photosInput">
+            <AddPhotoAlternateIcon className={classes.buttonIcon} /> Adicionar
+            Foto
+          </Button>
 
-        <TextField
-          label="Quando?"
-          placeholder="agora, hoje, ontem, 21/06/2010..."
-          type="text"
-          margin="normal"
-          variant="outlined"
-          fullWidth
-          {...when}
-        />
+          <input
+            id="photosInput"
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={onChange}
+            style={{ display: "none" }}
+          />
 
-        <TextField
-          label="Informações adicinais"
-          placeholder="O que mais você pode dizer sobre essa planta?"
-          type="text"
-          margin="normal"
-          variant="outlined"
-          fullWidth
-          multiline
-          {...notes}
-        />
+          <TextField
+            label="Quando?"
+            placeholder="agora, hoje, ontem, 21/06/2010..."
+            type="text"
+            margin="normal"
+            variant="outlined"
+            fullWidth
+            {...when}
+          />
 
-        <FormErrors filter={(error) => ["__all__", null].indexOf(error.location) >= 0} />
+          <TextField
+            label="Informações adicinais"
+            placeholder="O que mais você pode dizer sobre essa planta?"
+            type="text"
+            margin="normal"
+            variant="outlined"
+            fullWidth
+            multiline
+            {...notes}
+          />
 
-        <ButtonWithProgress type="submit" variant="contained" color="primary" className={classes.submitButton} isLoading={isSaving}>enviar</ButtonWithProgress>
-      </form>
-    </Paper>
-  </Width>
+          <FormErrors
+            filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
+          />
+
+          <ButtonWithProgress
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submitButton}
+            isLoading={isSaving}
+          >
+            enviar
+          </ButtonWithProgress>
+        </form>
+      </Paper>
+    </Width>
+  );
 }
 
 const styles = (theme) => ({
@@ -171,18 +228,18 @@ const styles = (theme) => ({
   img: {
     marginRight: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    display: 'inline-block',
-    position: 'relative',
+    display: "inline-block",
+    position: "relative",
     height: 100,
-    '& img': {
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      objectFit: 'cover',
+    "& img": {
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      objectFit: "cover",
       height: 100,
-    }
+    },
   },
   imgDelete: {
-    position: 'absolute',
+    position: "absolute",
     top: -12,
     right: -12,
   },
@@ -199,6 +256,6 @@ const styles = (theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
-})
+});
 
-export default withStyles(styles)(hasFormErrors(OccurrenceAdd))
+export default withStyles(styles)(hasFormErrors(OccurrenceAdd));

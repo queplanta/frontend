@@ -1,31 +1,31 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   query PostQuery($url: String!) {
     post: postByUrl(url: $url) {
-      id,
-      url,
-      title,
-      body,
-      publishedAt,
-      myPerms,
+      id
+      url
+      title
+      body
+      publishedAt
+      myPerms
       document {
         revisionsCount
-      },
+      }
       tags(first: 50) {
         edges {
           node {
-            id,
-            slug,
-            title,
+            id
+            slug
+            title
           }
         }
-      },
+      }
       revisionCreated {
         author {
           ...ProfileLink_user
         }
-      },
+      }
       voting {
         ...VotingButtons_voting
       }
@@ -35,4 +35,4 @@ const query = graphql`
     }
   }
 `;
-export default query
+export default query;

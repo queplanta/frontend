@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation PlantAddMutation($input: LifeNodeCreateInput!) {
@@ -10,7 +10,7 @@ const mutation = graphql`
         slug
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -30,27 +30,31 @@ function commit(environment, input, config) {
     },
     onCompleted(response, errors) {
       if (response.lifeNodeCreate) {
-        if (response.lifeNodeCreate.errors && response.lifeNodeCreate.errors.length > 0) {
-          if (typeof config.setFormErrors === 'function') {
-            config.setFormErrors(response.lifeNodeCreate.errors)
+        if (
+          response.lifeNodeCreate.errors &&
+          response.lifeNodeCreate.errors.length > 0
+        ) {
+          if (typeof config.setFormErrors === "function") {
+            config.setFormErrors(response.lifeNodeCreate.errors);
           }
-        } if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        }
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
       if (errors && errors.length > 0) {
-        console.error(errors)
-        if (typeof config.onError === 'function') {
-          config.onError(errors)
+        console.error(errors);
+        if (typeof config.onError === "function") {
+          config.onError(errors);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-      if (typeof config.onError === 'function') {
-        config.onError(error)
+      console.log("onError", error);
+      if (typeof config.onError === "function") {
+        config.onError(error);
       }
-    }
+    },
   });
 }
 

@@ -1,5 +1,5 @@
-import graphql from 'babel-plugin-relay/macro';
-import { commitMutation } from 'react-relay';
+import graphql from "babel-plugin-relay/macro";
+import { commitMutation } from "react-relay";
 
 const mutation = graphql`
   mutation AddIdentifyMutation($input: WhatIsThisCreateInput!) {
@@ -11,7 +11,7 @@ const mutation = graphql`
         }
       }
       errors {
-        code,
+        code
         location
         message
       }
@@ -32,37 +32,42 @@ function commit(environment, input, uploadables, config) {
     uploadables,
     configs: [
       {
-        type: 'RANGE_ADD',
-        parentID: 'viewer',
-        connectionInfo: [{
-          key: 'List_allWhatIsThis',
-          rangeBehavior: 'prepend'
-        }],
-        edgeName: 'occurrence',
-      }
+        type: "RANGE_ADD",
+        parentID: "viewer",
+        connectionInfo: [
+          {
+            key: "List_allWhatIsThis",
+            rangeBehavior: "prepend",
+          },
+        ],
+        edgeName: "occurrence",
+      },
     ],
     onCompleted(response, errors) {
       if (errors && errors.length > 0) {
-          console.error(errors)
-          if (typeof config.onError === 'function') {
-            config.onError(errors)
-          }
-      } else if (response.whatIsThisCreate.errors && response.whatIsThisCreate.errors.length > 0) {
-				if (typeof config.onError === 'function') {
-          config.onError(response)
+        console.error(errors);
+        if (typeof config.onError === "function") {
+          config.onError(errors);
         }
-				if (typeof config.setFormErrors === 'function') {
-					config.setFormErrors(response.whatIsThisCreate.errors)
-				}
+      } else if (
+        response.whatIsThisCreate.errors &&
+        response.whatIsThisCreate.errors.length > 0
+      ) {
+        if (typeof config.onError === "function") {
+          config.onError(response);
+        }
+        if (typeof config.setFormErrors === "function") {
+          config.setFormErrors(response.whatIsThisCreate.errors);
+        }
       } else {
-				if (typeof config.onSuccess === 'function') {
-          config.onSuccess(response)
+        if (typeof config.onSuccess === "function") {
+          config.onSuccess(response);
         }
       }
     },
     onError(error) {
-      console.log('onError', error)
-    }
+      console.log("onError", error);
+    },
   });
 }
 

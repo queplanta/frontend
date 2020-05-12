@@ -1,9 +1,9 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment ProfileLink_user on User {
-    id,
-    username,
+    id
+    username
     firstName
     reputation
     avatar(width: 40, height: 40) {
@@ -11,4 +11,4 @@ const query = graphql`
     }
   }
 `;
-export default {user: query}
+export default { user: query };

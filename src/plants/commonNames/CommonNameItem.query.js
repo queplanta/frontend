@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment CommonNameItem_commonName on CommonName {
@@ -12,5 +12,5 @@ const query = graphql`
 `;
 
 export default {
-  commonName: query
-}
+  commonName: query,
+};

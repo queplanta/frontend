@@ -1,4 +1,4 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
   fragment UserActivityListItem_revision on Revision {
@@ -9,15 +9,15 @@ const query = graphql`
     object {
       id
       __typename
-      
+
       ... on Vote {
         value
       }
-      
+
       ... on Comment {
         body
       }
     }
   }
 `;
-export default {revision: query}
+export default { revision: query };

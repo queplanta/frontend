@@ -1,9 +1,9 @@
-import graphql from 'babel-plugin-relay/macro';
+import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
-  fragment SuggestionsList_occurrence on Occurrence  {
-    id,
-    myPerms,
+  fragment SuggestionsList_occurrence on Occurrence {
+    id
+    myPerms
     identity {
       id
       ...PlantLink_plant
@@ -20,4 +20,4 @@ const query = graphql`
     }
   }
 `;
-export default {occurrence: query}
+export default { occurrence: query };
