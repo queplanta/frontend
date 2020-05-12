@@ -1,4 +1,4 @@
-FROM node:dubnium-buster
+FROM node:erbium-buster
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

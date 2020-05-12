@@ -11,9 +11,6 @@ import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
 function ProfileChangePassword({environment, setFormErrors, me, classes}) {
-  if (!me) {
-    return <NotFound />
-  }
   const { enqueueSnackbar } = useSnackbar();
   const old_password = useFormInput()
   const new_password1 = useFormInput()
@@ -43,6 +40,10 @@ function ProfileChangePassword({environment, setFormErrors, me, classes}) {
         }
       }
     )
+  }
+
+  if (!me) {
+    return <NotFound />
   }
 
   return <React.Fragment>

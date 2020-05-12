@@ -11,9 +11,6 @@ import Link from '../lib/Link.js';
 
 function ProfileChangeAvatar(props) {
   const {environment, setFormErrors, me, classes} = props;
-  if (!me) {
-    return <NotFound />
-  }
 
   const { enqueueSnackbar } = useSnackbar();
   const [image, setImage] = useState(null)
@@ -49,6 +46,10 @@ function ProfileChangeAvatar(props) {
       setImage({file: file, imagePreviewUrl: fileReader.result});
     }
     fileReader.readAsDataURL(file);
+  }
+
+  if (!me) {
+    return <NotFound />
   }
 
   return <React.Fragment>

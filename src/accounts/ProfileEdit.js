@@ -12,9 +12,6 @@ import PageTitle from '../lib/PageTitle.js';
 import ButtonWithProgress from '../lib/ButtonWithProgress.js';
 
 function ProfileEdit({environment, setFormErrors, me, classes}) {
-  if (!me) {
-    return <NotFound />
-  }
   const { enqueueSnackbar } = useSnackbar();
   const [username, setUsername] = useState(me.username)
   const firstName = useFormInput(me.firstName)
@@ -53,6 +50,10 @@ function ProfileEdit({environment, setFormErrors, me, classes}) {
       lower: true,
     })
     setUsername(username)
+  }
+
+  if (!me) {
+    return <NotFound />
   }
 
   return <React.Fragment>
