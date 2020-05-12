@@ -101,16 +101,6 @@ function PageEdit({classes, environment, setFormErrors, page}) {
         />
       </Grid>
       <Grid item xs={12}>
-        <JsxPreviewField
-          environment={environment}
-          label="Body"
-          fullWidth
-          multiline
-          required
-          {...body}
-        />
-      </Grid>
-      <Grid item xs={12}>
         {page.imaging.images.edges.map(({node}) => {
           return <span key={node.id} className={classes.imageThumb}>
             <ImageThumbnail
@@ -129,6 +119,16 @@ function PageEdit({classes, environment, setFormErrors, page}) {
       </Grid>
       <Grid item xs={12}>
         <AddImage parentId={page.id} imaging={page.imaging} environment={environment} onSuccess={onAddImageSuccess} />
+      </Grid>
+      <Grid item xs={12}>
+        <JsxPreviewField
+          environment={environment}
+          label="Body"
+          fullWidth
+          multiline
+          required
+          {...body}
+        />
       </Grid>
       <Grid item xs={12}>
         <ButtonWithProgress type="submit" variant="contained" color="primary" isLoading={isSaving}>Salvar</ButtonWithProgress>
