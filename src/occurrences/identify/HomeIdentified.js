@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { withStyles } from "@material-ui/core";
 import HomeTabs from "./HomeTabs.js";
 import PageTitle from "../../lib/PageTitle.js";

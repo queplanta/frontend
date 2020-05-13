@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import moment from "moment";
 import { Grid, TextField, IconButton, withStyles } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";

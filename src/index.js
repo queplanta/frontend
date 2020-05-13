@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import RelayClientSSR from "react-relay-network-modern-ssr/lib/client";
-import BrowserProtocol from "farce/lib/BrowserProtocol";
+import { BrowserProtocol } from "farce";
 // import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
-import createFarceRouter from "found/lib/createFarceRouter";
+import { createFarceRouter } from "found";
 import { Resolver } from "found-relay";
 import * as Sentry from "@sentry/browser";
 import * as serviceWorker from "./serviceWorker.js";

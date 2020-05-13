@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Button, Grid, withStyles } from "@material-ui/core";
 import { Link as RouterLink } from "found";
 import PageTitle from "../lib/PageTitle.js";

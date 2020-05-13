@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Grid, MenuItem, withStyles } from "@material-ui/core";
 import { useRouter } from "found";
 import { useSnackbar } from "notistack";

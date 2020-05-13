@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { IntlProvider } from "react-intl";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";

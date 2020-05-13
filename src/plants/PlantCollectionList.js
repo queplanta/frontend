@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Grid, Avatar, withStyles } from "@material-ui/core";
 import ProfileLink from "../accounts/ProfileLink.js";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Grid, withStyles } from "@material-ui/core";
 import ImageThumbnail from "../lib/ImageThumbnail.js";
 

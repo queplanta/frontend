@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { InputBase, Paper, Hidden, withStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import PageTitle from "../lib/PageTitle.js";

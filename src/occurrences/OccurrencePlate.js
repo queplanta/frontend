@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Grid, withStyles } from "@material-ui/core";
 import QRCode from "qrcode.react";
 import _ from "lodash";

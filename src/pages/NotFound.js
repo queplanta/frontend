@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, withStyles } from "@material-ui/core";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Width } from "../ui";
 
 function NotFound(props) {

@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Grid, withStyles } from "@material-ui/core";
 import { RelativeDate, Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";

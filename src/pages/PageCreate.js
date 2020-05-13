@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import moment from "moment";
 import { Grid, TextField, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";

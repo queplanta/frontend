@@ -1,5 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Box, Paper, Typography, withStyles } from "@material-ui/core";
 import { Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";

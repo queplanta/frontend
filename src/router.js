@@ -1,8 +1,6 @@
 import React from "react";
-import Route from "found/lib/Route";
-import queryMiddleware from "farce/lib/queryMiddleware";
-import createRender from "found/lib/createRender";
-import makeRouteConfig from "found/lib/makeRouteConfig";
+import { Route, createRender, makeRouteConfig } from "found";
+import { queryMiddleware } from "farce";
 
 import App from "./App.js";
 import AppQuery from "./App.query.js";
