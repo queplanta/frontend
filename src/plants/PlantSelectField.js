@@ -72,7 +72,7 @@ function PlantSelectField(props) {
         }, 1000)
       );
     }
-  }, [searchField.value]);
+  }, [searchField.value, disposable, relay, typingTimeout]);
 
   function closeResults() {
     setShowResults(false);

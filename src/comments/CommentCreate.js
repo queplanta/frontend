@@ -52,7 +52,7 @@ function CommentCreate({
     if (focusInput && bodyEl) {
       bodyEl.current.focus();
     }
-  }, []);
+  }, [focusInput]);
 
   return (
     <Card component="form" onSubmit={handleSubmit} className={classes.form}>

@@ -44,7 +44,7 @@ export default function ImgWithLocation({ onLocation, ...props }) {
         }
       });
     }
-  }, [props.src]);
+  }, [props.src, onLocation]);
 
   return <img ref={imgEl} alt="" {...props} />;
 }

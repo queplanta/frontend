@@ -96,7 +96,7 @@ export const MapGeolocated = geolocated({
   if (typeof onPositionChange === "function") {
     useEffect(() => {
       onPositionChange(position);
-    }, [position]);
+    }, [position, onPositionChange]);
   }
 
   function toGoMyLocation(e) {
