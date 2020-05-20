@@ -24,6 +24,7 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import withWidth from "../lib/withWidth.js";
 import { withSnackbar } from "notistack";
 import DialogTitle from "../lib/DialogTitle.js";
+import SocialButton from "../lib/SocialButton.js";
 import logoImg from "../assets/queplanta-icon.svg";
 import logoTextImg from "../assets/queplanta-text-dark.svg";
 
@@ -270,6 +271,22 @@ class AuthDialog extends Component {
               Esqueceu a senha?
             </Button>
           </div>
+          <div>
+            <div className={classes.orAuthSeparator}>ou</div>
+            <SocialButton
+              provider="facebook"
+              appId="1466951393477250"
+              className={classes.fbBtn}
+            >
+              Entrar com Facebook
+            </SocialButton>
+            <SocialButton
+              provider="google"
+              appId="996273967165-led1pns5infqevhec6mm8obf0b2cmsd5.apps.googleusercontent.com"
+            >
+              Entrar com Google
+            </SocialButton>
+          </div>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
           <Typography color="textSecondary" className={classes.textSmall}>
@@ -361,6 +378,27 @@ class AuthDialog extends Component {
               Cadastre-se
             </ButtonWithProgress>
           </div>
+          <div>
+            <div
+              className={classes.orAuthSeparator}
+              style={{ marginTop: "15px" }}
+            >
+              ou
+            </div>
+            <SocialButton
+              provider="facebook"
+              appId="1466951393477250"
+              className={classes.fbBtn}
+            >
+              Entrar com Facebook
+            </SocialButton>
+            <SocialButton
+              provider="google"
+              appId="996273967165-led1pns5infqevhec6mm8obf0b2cmsd5.apps.googleusercontent.com"
+            >
+              Entrar com Google
+            </SocialButton>
+          </div>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
           <Typography color="textSecondary" className={classes.textSmall}>
@@ -447,6 +485,41 @@ const styles = (theme) => ({
   },
   marginTop: {
     marginTop: theme.spacing(2),
+  },
+  orAuthSeparator: {
+    color: "#757575",
+    textAlign: "center",
+    "&::before": {
+      backgroundColor: "#CCC",
+      content: '""',
+      display: "inline-block",
+      height: "2px",
+      position: "relative",
+      verticalAlign: "middle",
+      width: "30%",
+      right: "10px",
+      marginLeft: "-30%",
+    },
+    "&::after": {
+      backgroundColor: "#CCC",
+      content: '""',
+      display: "inline-block",
+      height: "2px",
+      position: "relative",
+      verticalAlign: "middle",
+      width: "30%",
+      left: "10px",
+      marginRight: "-30%",
+    },
+  },
+  fbBtn: {
+    backgroundColor: "#1877f2",
+    color: "#FFF",
+    marginTop: "15px",
+    marginBottom: "20px",
+    "&:hover": {
+      backgroundColor: "#1877f2",
+    },
   },
 });
 
