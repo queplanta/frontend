@@ -42,6 +42,10 @@ class AuthDialog extends Component {
     this.changeToAuth = this.changeToAuth.bind(this);
     this.changeToForgotPassword = this.changeToForgotPassword.bind(this);
     this.handleChangeEmailInput = this.handleChangeEmailInput.bind(this);
+
+    this.handleSocialLogin = this.handleSocialLogin.bind(this);
+    this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
+
     this.state = {
       isLoading: false,
       open: false,
@@ -184,10 +188,19 @@ class AuthDialog extends Component {
     });
   }
 
+  handleSocialLogin(user) {
+    console.log(user);
+  }
+
+  handleSocialLoginFailure(err) {
+    console.error(err);
+  }
+
   render() {
     const { open, tab } = this.state;
     const fullScreen = isWidthDown("sm", this.props.width);
     let handleSubmit = this.handleAuthSubmit;
+
     if (tab === "register") {
       handleSubmit = this.handleRegisterSubmit;
     }
@@ -277,12 +290,18 @@ class AuthDialog extends Component {
               provider="facebook"
               appId="1466951393477250"
               className={classes.fbBtn}
+              onLoginSuccess={this.handleSocialLogin}
+              onLoginFailure={this.handleSocialLoginFailure}
+              key={"facebook"}
             >
               Entrar com Facebook
             </SocialButton>
             <SocialButton
               provider="google"
               appId="996273967165-led1pns5infqevhec6mm8obf0b2cmsd5.apps.googleusercontent.com"
+              onLoginSuccess={this.handleSocialLogin}
+              onLoginFailure={this.handleSocialLoginFailure}
+              key={"google"}
             >
               Entrar com Google
             </SocialButton>
@@ -377,27 +396,6 @@ class AuthDialog extends Component {
             >
               Cadastre-se
             </ButtonWithProgress>
-          </div>
-          <div>
-            <div
-              className={classes.orAuthSeparator}
-              style={{ marginTop: "15px" }}
-            >
-              ou
-            </div>
-            <SocialButton
-              provider="facebook"
-              appId="1466951393477250"
-              className={classes.fbBtn}
-            >
-              Entrar com Facebook
-            </SocialButton>
-            <SocialButton
-              provider="google"
-              appId="996273967165-led1pns5infqevhec6mm8obf0b2cmsd5.apps.googleusercontent.com"
-            >
-              Entrar com Google
-            </SocialButton>
           </div>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
