@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { isWidthDown } from "@material-ui/core/withWidth";
 import AuthMutation from "./Auth.mutation.js";
+import AuthSocialMutation from "./AuthSocial.mutation.js";
 import RegisterMutation from "./Register.mutation.js";
 import ResetPasswordEmailMutation from "./ResetPasswordEmail.mutation.js";
 import {
@@ -43,7 +44,6 @@ class AuthDialog extends Component {
     this.changeToForgotPassword = this.changeToForgotPassword.bind(this);
     this.handleChangeEmailInput = this.handleChangeEmailInput.bind(this);
 
-    this.handleSocialLogin = this.handleSocialLogin.bind(this);
     this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
 
     this.state = {
@@ -188,12 +188,31 @@ class AuthDialog extends Component {
     });
   }
 
-  handleSocialLogin(user) {
-    console.log(user);
+  handleSocialLogin(provider, user) {
+    const { environment } = this.props;
+    const {
+      _token: { accessToken },
+    } = user;
+
+    AuthSocialMutation.commit(
+      environment,
+      {
+        provider,
+        accessToken,
+      },
+      {
+        onSuccess: () => {
+          window.location.reload();
+        },
+      }
+    );
   }
 
   handleSocialLoginFailure(err) {
     console.error(err);
+    this.props.enqueueSnackbar("Não foi possivel entrar...", {
+      variant: "success",
+    });
   }
 
   render() {
@@ -288,9 +307,9 @@ class AuthDialog extends Component {
             <div className={classes.orAuthSeparator}>ou</div>
             <SocialButton
               provider="facebook"
-              appId="1466951393477250"
+              appId={process.env.REACT_APP_VERSION}
               className={classes.fbBtn}
-              onLoginSuccess={this.handleSocialLogin}
+              onLoginSuccess={this.handleSocialLogin.bind(this, "facebook")}
               onLoginFailure={this.handleSocialLoginFailure}
               key={"facebook"}
             >
@@ -298,8 +317,11 @@ class AuthDialog extends Component {
             </SocialButton>
             <SocialButton
               provider="google"
-              appId="996273967165-led1pns5infqevhec6mm8obf0b2cmsd5.apps.googleusercontent.com"
-              onLoginSuccess={this.handleSocialLogin}
+              appId={process.env.REACT_APP_GOOGLE_APP_ID}
+              onLoginSuccess={this.handleSocialLogin.bind(
+                this,
+                "google-oauth2"
+              )}
               onLoginFailure={this.handleSocialLoginFailure}
               key={"google"}
             >

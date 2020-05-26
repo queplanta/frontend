@@ -4,15 +4,14 @@ import { Button } from "@material-ui/core";
 
 class SocialButton extends React.Component {
   render() {
+    const { triggerLogin, ...props } = this.props;
     return (
       <Button
         fullWidth={true}
         variant="contained"
-        onClick={this.props.triggerLogin}
-        {...this.props}
-      >
-        {this.props.children}
-      </Button>
+        onClick={triggerLogin}
+        {...props}
+      />
     );
   }
 }
