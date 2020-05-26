@@ -307,7 +307,7 @@ class AuthDialog extends Component {
             <div className={classes.orAuthSeparator}>ou</div>
             <SocialButton
               provider="facebook"
-              appId={process.env.REACT_APP_VERSION}
+              appId={process.env.REACT_APP_FACEBOOK_APP_ID}
               className={classes.fbBtn}
               onLoginSuccess={this.handleSocialLogin.bind(this, "facebook")}
               onLoginFailure={this.handleSocialLoginFailure}
