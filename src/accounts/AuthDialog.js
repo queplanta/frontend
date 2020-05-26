@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { isWidthDown } from "@material-ui/core/withWidth";
 import AuthMutation from "./Auth.mutation.js";
+import AuthSocialMutation from "./AuthSocial.mutation.js";
 import RegisterMutation from "./Register.mutation.js";
 import ResetPasswordEmailMutation from "./ResetPasswordEmail.mutation.js";
 import {
@@ -24,6 +25,7 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import withWidth from "../lib/withWidth.js";
 import { withSnackbar } from "notistack";
 import DialogTitle from "../lib/DialogTitle.js";
+import SocialButton from "../lib/SocialButton.js";
 import logoImg from "../assets/queplanta-icon.svg";
 import logoTextImg from "../assets/queplanta-text-dark.svg";
 
@@ -41,6 +43,9 @@ class AuthDialog extends Component {
     this.changeToAuth = this.changeToAuth.bind(this);
     this.changeToForgotPassword = this.changeToForgotPassword.bind(this);
     this.handleChangeEmailInput = this.handleChangeEmailInput.bind(this);
+
+    this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
+
     this.state = {
       isLoading: false,
       open: false,
@@ -183,10 +188,38 @@ class AuthDialog extends Component {
     });
   }
 
+  handleSocialLogin(provider, user) {
+    const { environment } = this.props;
+    const {
+      _token: { accessToken },
+    } = user;
+
+    AuthSocialMutation.commit(
+      environment,
+      {
+        provider,
+        accessToken,
+      },
+      {
+        onSuccess: () => {
+          window.location.reload();
+        },
+      }
+    );
+  }
+
+  handleSocialLoginFailure(err) {
+    console.error(err);
+    this.props.enqueueSnackbar("Não foi possivel entrar...", {
+      variant: "success",
+    });
+  }
+
   render() {
     const { open, tab } = this.state;
     const fullScreen = isWidthDown("sm", this.props.width);
     let handleSubmit = this.handleAuthSubmit;
+
     if (tab === "register") {
       handleSubmit = this.handleRegisterSubmit;
     }
@@ -269,6 +302,31 @@ class AuthDialog extends Component {
             >
               Esqueceu a senha?
             </Button>
+          </div>
+          <div>
+            <div className={classes.orAuthSeparator}>ou</div>
+            <SocialButton
+              provider="facebook"
+              appId={process.env.REACT_APP_VERSION}
+              className={classes.fbBtn}
+              onLoginSuccess={this.handleSocialLogin.bind(this, "facebook")}
+              onLoginFailure={this.handleSocialLoginFailure}
+              key={"facebook"}
+            >
+              Entrar com Facebook
+            </SocialButton>
+            <SocialButton
+              provider="google"
+              appId={process.env.REACT_APP_GOOGLE_APP_ID}
+              onLoginSuccess={this.handleSocialLogin.bind(
+                this,
+                "google-oauth2"
+              )}
+              onLoginFailure={this.handleSocialLoginFailure}
+              key={"google"}
+            >
+              Entrar com Google
+            </SocialButton>
           </div>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
@@ -447,6 +505,41 @@ const styles = (theme) => ({
   },
   marginTop: {
     marginTop: theme.spacing(2),
+  },
+  orAuthSeparator: {
+    color: "#757575",
+    textAlign: "center",
+    "&::before": {
+      backgroundColor: "#CCC",
+      content: '""',
+      display: "inline-block",
+      height: "2px",
+      position: "relative",
+      verticalAlign: "middle",
+      width: "30%",
+      right: "10px",
+      marginLeft: "-30%",
+    },
+    "&::after": {
+      backgroundColor: "#CCC",
+      content: '""',
+      display: "inline-block",
+      height: "2px",
+      position: "relative",
+      verticalAlign: "middle",
+      width: "30%",
+      left: "10px",
+      marginRight: "-30%",
+    },
+  },
+  fbBtn: {
+    backgroundColor: "#1877f2",
+    color: "#FFF",
+    marginTop: "15px",
+    marginBottom: "20px",
+    "&:hover": {
+      backgroundColor: "#1877f2",
+    },
   },
 });
 
