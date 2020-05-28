@@ -211,7 +211,7 @@ class AuthDialog extends Component {
   handleSocialLoginFailure(err) {
     console.error(err);
     this.props.enqueueSnackbar("Não foi possivel entrar...", {
-      variant: "success",
+      variant: "error",
     });
   }
 
