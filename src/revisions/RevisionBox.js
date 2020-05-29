@@ -13,6 +13,7 @@ import fragmentSpec from "./RevisionBox.query.js";
 import { createFragmentContainer } from "react-relay";
 
 function RevisionBox(props) {
+  console.log(props);
   const { classes, children, document: node } = props;
 
   return (

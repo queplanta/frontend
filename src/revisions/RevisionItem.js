@@ -33,7 +33,6 @@ import RevisionRevertMutation from "./RevisionRevert.mutation.js";
 
 function RevisionItem(props) {
   const { environment, classes, revision } = props;
-  console.log(props);
   const object = revision.object;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
@@ -94,7 +93,6 @@ function RevisionItem(props) {
 
   if (object.__typename === "LifeNode") {
     var plant = object;
-    console.log(object);
     const mainImage = _.get(plant, "mainImage.edges[0].node");
 
     revision_body = (
