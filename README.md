@@ -1,15 +1,26 @@
-# Que Planta Frontend
+# Que Planta
 
-To run this project make sure you have [nvm](https://github.com/nvm-sh/nvm) or [Node.JS](https://nodejs.org/en/) version 10.
+## Frontend
 
-### `nvm use` if you have nvm installed run if not skip this.
+To run this project make sure you have [nvm](https://github.com/nvm-sh/nvm) or [Node.JS](https://nodejs.org/en/) version 12+ and follow these steps:
 
-### `npm install -g yarn` kake sure you have yarn installed globaly
+### `nvm use`
 
-### `yarn install` to install project's dependencies 
+If you have nvm installed run if not skip this.
 
+### `npm install -g yarn`
 
-### `npm start`
+Make sure you have yarn installed globaly
+
+### `yarn install`
+
+To install project's dependencies
+
+### `yarn relay`
+
+Necessary step to compile query in GraphQL
+
+### `yarn start` / `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -32,7 +43,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### npm run relay
+### `npm run relay`
 
 Make all new updates on graphql
 
