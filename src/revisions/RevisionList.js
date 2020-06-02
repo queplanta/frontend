@@ -39,7 +39,7 @@ function RevisionList(props) {
   };
 
   var title;
-  console.log(node.__typename);
+
   if (node.__typename === "Post") {
     title = node.title;
   } else if (node.__typename === "Page") {
@@ -47,7 +47,7 @@ function RevisionList(props) {
   } else if (node.__typename === "Comment") {
     title = "Comentário " + node.id;
   } else if (node.__typename === "LifeNode") {
-    title = "Vida " + node.title;
+    title = "Planta " + node.title;
   } else {
     title = node.__typename + " " + node.id;
   }

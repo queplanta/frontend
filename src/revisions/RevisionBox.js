@@ -6,6 +6,7 @@ import {
   Badge,
   withStyles,
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 import ProfileLink from "../accounts/ProfileLink.js";
 import { Link as RouterLink } from "found";
 import { RelativeDate } from "../ui";
@@ -13,7 +14,6 @@ import fragmentSpec from "./RevisionBox.query.js";
 import { createFragmentContainer } from "react-relay";
 
 function RevisionBox(props) {
-  console.log(props);
   const { classes, children, document: node, objectId } = props;
 
   return (
@@ -82,3 +82,8 @@ export default createFragmentContainer(
   withStyles(styles)(RevisionBox),
   fragmentSpec
 );
+
+RevisionBox.propTypes = {
+  document: PropTypes.object.isRequired,
+  objectId: PropTypes.string.isRequired,
+};

@@ -35,7 +35,10 @@ function OccurrenceDetails(props) {
           </div>
         </Paper>
         <Paper className={classes.root}>
-          <RevisionBox document={occurrence.document} />
+          <RevisionBox
+            document={occurrence.document}
+            objectId={occurrence.id}
+          />
         </Paper>
         {hasPerm(occurrence, "delete") && (
           <DeleteButton
