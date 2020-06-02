@@ -1,81 +1,158 @@
 import React from "react";
-import { Table, Link, withStyles } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Chip,
+  IconButton,
+  Link,
+  Paper,
+  Popper,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
+import DoneIcon from "@material-ui/icons/Done";
+import MessageIcon from "@material-ui/icons/Message";
 import { Helmet } from "react-helmet";
+import PageTitle from "../lib/PageTitle.js";
+import { Link as RouterLink } from "found";
 import ProfileLink from "../accounts/ProfileLink.js";
-import { RelativeDate } from "../ui";
+import { RelativeDate, Width } from "../ui";
 
 function RevisionList(props) {
-  const { node } = props;
+  const { classes, node } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState(null);
+
+  const handleClick = (openState, message) => (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(openState);
+    setMessage(message);
+  };
+
+  var title;
 
   if (node.__typename === "Post") {
-    var title = node.title;
+    title = node.title;
   } else if (node.__typename === "Page") {
-    var title = node.title;
+    title = node.title;
   } else if (node.__typename === "Comment") {
-    var title = "Comentário " + node.id;
+    title = "Comentário " + node.id;
   } else if (node.__typename === "LifeNode") {
-    var title = "Vida " + node.title;
+    title = "Vida " + node.title;
   } else {
-    var title = node.__typename + " " + node.id;
+    title = node.__typename + " " + node.id;
   }
 
   return (
-    <div className="col-xs-12">
+    <Width>
       <Helmet
         title={`Historico de alterações: ${title}`}
         meta={[{ name: "robots", content: "noindex, nofollow" }]}
       />
-      <h1>{`Historico de alterações: ${title}`}</h1>
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>Indice</th>
-            <th>Autor</th>
-            <th>Quando</th>
-            <th>Tipo</th>
-            <th>Mensagem</th>
-          </tr>
-        </thead>
-        <tbody>
-          {node.revisions.edges.map(function (edge, i) {
-            var revision = edge.node;
+      <PageTitle>{`Historico de alterações: ${title}`}</PageTitle>
+      <Popper
+        open={open}
+        anchorEl={anchorEl}
+        placement="top"
+        disablePortal={false}
+        modifiers={{
+          flip: {
+            enabled: true,
+          },
+          preventOverflow: {
+            enabled: true,
+            boundariesElement: "scrollParent",
+          },
+          arrow: {
+            enabled: true,
+          },
+        }}
+      >
+        <Card variant="outlined">
+          <CardContent>
+            <Typography variant="body2" component="p">
+              {message}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" onClick={handleClick(false)}>
+              Fechar
+            </Button>
+          </CardActions>
+        </Card>
+      </Popper>
+      <Paper>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Indice</TableCell>
+              <TableCell>Autor</TableCell>
+              <TableCell>Quando</TableCell>
+              <TableCell>Tipo</TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {node.revisions &&
+              node.revisions.edges.map(function (edge, i) {
+                var revision = edge.node;
 
-            var current;
-            if (revision.isTip) {
-              current = (
-                <span className="label label-success">
-                  <i className="fa fa-check" aria-hidden="true"></i> atual
-                </span>
-              );
-            }
+                var current;
+                if (revision.isTip) {
+                  current = (
+                    <Chip
+                      icon={<DoneIcon />}
+                      label="Atual"
+                      size="small"
+                      className={classes.isCurrent}
+                    />
+                  );
+                }
 
-            return (
-              <tr key={i}>
-                <td>
-                  {revision.index}ª:{" "}
-                  <Link to={`/revisions/revision/${revision.id}`}>
-                    {revision.idInt}
-                  </Link>{" "}
-                  {current}
-                </td>
-                <td>
-                  <ProfileLink user={revision.author} />
-                </td>
-                <td>
-                  <RelativeDate date={revision.createdAt} />
-                </td>
-                <td>{revision.typeDisplay}</td>
-                <td>
-                  <Link to={`/revisions/revision/${revision.id}`}>
-                    {revision.message}
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </div>
+                return (
+                  <TableRow key={i}>
+                    <TableCell>
+                      {revision.index}ª:{" "}
+                      <Link
+                        to={`/revisions/revision/${revision.id}`}
+                        component={RouterLink}
+                      >
+                        {revision.idInt}
+                      </Link>{" "}
+                      {current}
+                    </TableCell>
+                    <TableCell>
+                      <ProfileLink user={revision.author} />
+                    </TableCell>
+                    <TableCell>
+                      <RelativeDate date={revision.createdAt} />
+                    </TableCell>
+                    <TableCell>{revision.typeDisplay}</TableCell>
+                    <TableCell>
+                      {revision.message && (
+                        <IconButton
+                          color="primary"
+                          onClick={handleClick(true, `${revision.message}`)}
+                        >
+                          <MessageIcon />
+                        </IconButton>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </Paper>
+    </Width>
   );
 }
 
@@ -85,6 +162,10 @@ const styles = (theme) => ({
   },
   actionRoot: {
     right: theme.spacing(2),
+  },
+  isCurrent: {
+    background: "#4caf50",
+    color: "#FFF",
   },
 });
 

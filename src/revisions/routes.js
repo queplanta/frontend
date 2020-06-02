@@ -9,7 +9,7 @@ export const revisionsRoutes = (
   <React.Fragment>
     <Route
       path="revisions/:nodeID"
-      component={RevisionList}
+      Component={RevisionList}
       query={RevisionListQuery}
     />
     <Route
