@@ -14,6 +14,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Tooltip,
   Typography,
   withStyles,
 } from "@material-ui/core";
@@ -38,7 +39,7 @@ function RevisionList(props) {
   };
 
   var title;
-
+  console.log(node.__typename);
   if (node.__typename === "Post") {
     title = node.title;
   } else if (node.__typename === "Page") {
@@ -138,12 +139,14 @@ function RevisionList(props) {
                     <TableCell>{revision.typeDisplay}</TableCell>
                     <TableCell>
                       {revision.message && (
-                        <IconButton
-                          color="primary"
-                          onClick={handleClick(true, `${revision.message}`)}
-                        >
-                          <MessageIcon />
-                        </IconButton>
+                        <Tooltip title="Mensagem" placement="top">
+                          <IconButton
+                            color="primary"
+                            onClick={handleClick(true, `${revision.message}`)}
+                          >
+                            <MessageIcon />
+                          </IconButton>
+                        </Tooltip>
                       )}
                     </TableCell>
                   </TableRow>

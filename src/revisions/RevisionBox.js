@@ -14,7 +14,7 @@ import { createFragmentContainer } from "react-relay";
 
 function RevisionBox(props) {
   console.log(props);
-  const { classes, children, document: node } = props;
+  const { classes, children, document: node, objectId } = props;
 
   return (
     <div>
@@ -53,7 +53,7 @@ function RevisionBox(props) {
           color="primary"
         >
           <Link
-            to={`/revisions/${node.id}`}
+            to={`/revisions/${objectId}`}
             className={classes.padding}
             component={RouterLink}
           >
