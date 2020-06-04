@@ -216,7 +216,7 @@ function RevisionItem(props) {
               <Typography variant="body2" color="textSecondary" component="p">
                 {revision.before.author && (
                   <span>
-                    feita por <ProfileLink user={revision.before.author} />
+                    feita por <strong>{revision.before.author.username}</strong>
                   </span>
                 )}{" "}
                 <RelativeDate date={revision.before.createdAt} />
@@ -251,7 +251,7 @@ function RevisionItem(props) {
                     >
                       {after_rev.author && (
                         <span>
-                          feita por <ProfileLink user={after_rev.author} />
+                          feita por <strong>{after_rev.author.username}</strong>
                         </span>
                       )}{" "}
                       <RelativeDate date={after_rev.createdAt} />

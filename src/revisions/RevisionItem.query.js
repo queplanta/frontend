@@ -19,7 +19,7 @@ const query = graphql`
             idInt
             createdAt
             author {
-              ...ProfileLink_user
+              username
             }
           }
         }
@@ -29,7 +29,7 @@ const query = graphql`
         idInt
         createdAt
         author {
-          ...ProfileLink_user
+          username
         }
       }
       object {
@@ -39,10 +39,8 @@ const query = graphql`
         ... on DocumentNode {
           revisionCreated {
             author {
+              ...ProfileLink_user
               username
-              avatar(width: 60, height: 60) {
-                url
-              }
             }
             createdAt
           }
