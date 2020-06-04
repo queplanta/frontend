@@ -6,6 +6,7 @@ import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import markerIconShadow from "leaflet/dist/images/marker-shadow.png";
 import { geolocated } from "../lib/geolocated.js";
 import "leaflet/dist/leaflet.css";
+import plantMarker from "../assets/plant-marker.svg";
 
 let reactLeaflet,
   LeafletMap,
@@ -29,8 +30,8 @@ export class Marker extends Component {
     if (!reactLeaflet) reactLeaflet = require("react-leaflet");
     LeafletMarker = reactLeaflet.Marker;
     defaultMarkerIcon = new leaflet.Icon({
-      iconUrl: markerIcon,
-      iconRetinaUrl: markerIconRetina,
+      iconUrl: plantMarker,
+      iconRetinaUrl: plantMarker,
       shadowUrl: markerIconShadow,
       iconSize: [25, 41],
       iconAnchor: [12, 41],
