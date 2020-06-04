@@ -122,7 +122,7 @@ function Plant(props) {
             <RankDisplay plant={plant} />
           </Paper>
           <Paper className={classes.root}>
-            <RevisionBox document={plant.document}>
+            <RevisionBox document={plant.document} objectId={plant.id}>
               {hasPerm(plant, "edit") && (
                 <Link to={`${baseUrl}/editar`} component={RouterLink}>
                   editar

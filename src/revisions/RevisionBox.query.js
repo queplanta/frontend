@@ -5,6 +5,7 @@ const query = graphql`
     id
     revisionsCount
     revisionTip {
+      id
       createdAt
       author {
         username
