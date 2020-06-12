@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { QueryRenderer, createRefetchContainer } from "react-relay";
 import {
   TextField,
@@ -15,7 +15,6 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import _ from "lodash";
-import { useFormInput, clearFormInput } from "../lib/forms.js";
 import {
   fragmentSpec,
   refetchQuery,
@@ -23,132 +22,151 @@ import {
 } from "./PlantSelectField.query.js";
 import ImgDefault from "./PlantImgDefault.js";
 
-function PlantSelectField(props) {
-  const {
-    value: selectedPlant,
-    classes,
-    relay,
-    onChange,
-    textFieldProps,
-    viewer: {
-      allLifeNode: { edges: plants },
-    },
-  } = props;
-  const searchField = useFormInput("");
-  const [showResults, setShowResults] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [disposable, setDisposable] = useState(null);
-  const [typingTimeout, setTypingTimeout] = useState(null);
+class PlantSelectField extends React.Component {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    if (typingTimeout) {
-      clearTimeout(typingTimeout);
-    }
+    this.state = {
+      searchTerm: "",
+      showResults: false,
+      isLoading: false,
+      disposable: null,
+    };
 
-    if (disposable) {
-      disposable.dispose(); // TO DO: this is not canceling the request, just ignoring server's response
-    }
+    this.handleChangeSearchTerm = this.handleChangeSearchTerm.bind(this);
+    this.closeResults = this.closeResults.bind(this);
+    this.deselectPlant = this.deselectPlant.bind(this);
+    this.searchPlants = _.debounce(this.searchPlants, 300);
+  }
 
-    if (searchField.value.length > 5) {
-      setLoading(true);
-      setTypingTimeout(
-        setTimeout(() => {
-          setDisposable(
-            relay.refetch(
-              (fragmentVariables) => ({
-                count: 10,
-                search: searchField.value,
-              }),
-              null,
-              (error, se) => {
-                if (error) {
-                  console.error(error);
-                }
-                setShowResults(true);
-                setLoading(false);
-              }
-            )
-          );
-        }, 1000)
+  searchPlants(value) {
+    const { relay } = this.props;
+
+    this.setState((state) => {
+      if (state.disposable) {
+        state.disposable.dispose(); // TO DO: this is not canceling the request, just ignoring server's response
+      }
+
+      const disposable = relay.refetch(
+        (fragmentVariables) => ({
+          count: 10,
+          search: value,
+        }),
+        null,
+        (error, se) => {
+          if (error) {
+            console.error(error);
+          }
+          this.setState({ isLoading: false, showResults: true });
+        }
       );
+
+      return { isLoading: true, disposable };
+    });
+  }
+
+  handleChangeSearchTerm(e) {
+    const { value } = e.target;
+    this.setState((state) => ({ searchTerm: value }));
+
+    if (value.length > 4) {
+      this.searchPlants(value);
     }
-  }, [searchField.value, disposable, relay, typingTimeout]);
-
-  function closeResults() {
-    setShowResults(false);
   }
 
-  function selectPlant(plant) {
-    clearFormInput(searchField);
-    setShowResults(false);
-    onChange(plant);
+  closeResults() {
+    this.setState({
+      showResults: false,
+    });
   }
 
-  function deselectPlant() {
-    onChange(null);
+  selectPlant(plant) {
+    this.setState({
+      searchTerm: "",
+      showResults: false,
+    });
+    this.props.onChange(plant);
   }
 
-  return (
-    <ClickAwayListener onClickAway={closeResults}>
-      <div className={classes.selectWraper}>
-        {selectedPlant && (
-          <List component={Paper}>
-            <PlantItem
-              plant={selectedPlant}
-              classes={classes}
-              deselectPlant={deselectPlant}
+  deselectPlant() {
+    this.props.onChange(null);
+  }
+
+  render() {
+    const {
+      value: selectedPlant,
+      classes,
+      textFieldProps,
+      viewer: {
+        allLifeNode: { edges: plants },
+      },
+    } = this.props;
+
+    const { searchTerm, showResults, isLoading } = this.state;
+
+    return (
+      <ClickAwayListener onClickAway={this.closeResults}>
+        <div className={classes.selectWraper}>
+          {selectedPlant && (
+            <List component={Paper}>
+              <PlantItem
+                plant={selectedPlant}
+                classes={classes}
+                deselectPlant={this.deselectPlant}
+              />
+            </List>
+          )}
+
+          {!selectedPlant && (
+            <TextField
+              label="Espécie"
+              placeholder="mangifera indica, plinia cauliflora, plinia cauliflora..."
+              type="text"
+              margin="normal"
+              variant="outlined"
+              fullWidth
+              className={classes.searchField}
+              value={searchTerm}
+              onChange={this.handleChangeSearchTerm}
+              {...textFieldProps}
             />
-          </List>
-        )}
+          )}
 
-        {!selectedPlant && (
-          <TextField
-            label="Espécie"
-            placeholder="mangifera indica, plinia cauliflora, plinia cauliflora..."
-            type="text"
-            margin="normal"
-            variant="outlined"
-            fullWidth
-            className={classes.searchField}
-            {...searchField}
-            {...textFieldProps}
-          />
-        )}
-
-        {(showResults || isLoading) && !selectedPlant && (
-          <List
-            component={Paper}
-            className={classes.results}
-            onClick={closeResults}
-          >
-            {plants.map(({ node: plant }) => {
-              return (
-                <PlantItem
-                  key={plant.id}
-                  plant={plant}
-                  classes={classes}
-                  button
-                  onClick={() => selectPlant(plant)}
-                />
-              );
-            })}
-            {!isLoading && plants.length === 0 && (
-              <ListItem>
-                <ListItemText>Nada encontrado com esse nome.</ListItemText>
-              </ListItem>
-            )}
-            {isLoading && (
-              <ListItem>
-                <ListItemText>
-                  <LinearProgress />
-                </ListItemText>
-              </ListItem>
-            )}
-          </List>
-        )}
-      </div>
-    </ClickAwayListener>
-  );
+          {(showResults || isLoading) && !selectedPlant && (
+            <List
+              component={Paper}
+              className={classes.results}
+              onClick={this.closeResults}
+            >
+              {plants.map(({ node: plant }) => {
+                return (
+                  <PlantItem
+                    key={plant.id}
+                    plant={plant}
+                    classes={classes}
+                    button
+                    onClick={this.selectPlant.bind(this, plant)}
+                  />
+                );
+              })}
+              {!isLoading && plants.length === 0 && (
+                <ListItem>
+                  <ListItemText>Nada encontrado com esse nome.</ListItemText>
+                </ListItem>
+              )}
+              {isLoading && (
+                <ListItem>
+                  <ListItemText>
+                    <LinearProgress />
+                  </ListItemText>
+                </ListItem>
+              )}
+            </List>
+          )}
+        </div>
+      </ClickAwayListener>
+    );
+  }
 }
 
 function PlantItem(props) {
