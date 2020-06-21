@@ -242,7 +242,7 @@ export default function ({ environment, ...otherProps }) {
         } else if (props) {
           return <PlantSelectFieldContainer {...props} {...otherProps} />;
         }
-        return null;
+        return <LinearProgress />;
       }}
     />
   );

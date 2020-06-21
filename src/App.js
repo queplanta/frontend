@@ -274,7 +274,7 @@ export class App extends Component {
                           <Button
                             className={classes.btn}
                             component={RouterLink}
-                            to="/identificacao/pedido"
+                            to="/adicionar-fotos"
                           >
                             <CameraAltIcon />
                           </Button>
@@ -295,8 +295,9 @@ export class App extends Component {
                   </Hidden>
                   {this.props.children}
                 </div>
-
-                <Footer />
+                <Hidden mdDown implementation="css">
+                  <Footer />
+                </Hidden>
                 <Hidden mdUp implementation="css">
                   <BottomNavbar />
                 </Hidden>

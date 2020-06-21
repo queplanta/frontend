@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Paper, Typography, withStyles } from "@material-ui/core";
+import { Grid, Paper, Typography, Button, withStyles } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import _ from "lodash";
 import { createFragmentContainer } from "react-relay";
 import { Map, Marker } from "./Map.js";
@@ -50,7 +51,17 @@ function OccurrenceDetails(props) {
       </Grid>
       <Grid item xs={12} md={9}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={5}>
+            {occurrence.notes && (
+              <>
+                <Typography variant="h6" gutterBottom>
+                  Informações adicionais:
+                </Typography>
+                <Typography variant="body1">{occurrence.notes}</Typography>
+              </>
+            )}
+          </Grid>
+          <Grid item xs={12} md={7}>
             <Map
               className={classes.map}
               center={occurrence.location.coordinates}
@@ -58,6 +69,16 @@ function OccurrenceDetails(props) {
               <Marker position={occurrence.location.coordinates} />
             </Map>
           </Grid>
+          {/*<Grid item xs={12}>
+            <Button variant="outlined">Pedir cuidado</Button>
+          </Grid>
+          <Grid item xs={12}>
+            <MuiAlert elevation={3} variant="filled" severity="warning">
+              <strong>Pedido aberto:</strong> poda, adicionado por{" "}
+              <strong style={{ textDecoration: "underline" }}>alisson</strong>{" "}
+              há 1 dia.
+            </MuiAlert>
+          </Grid>*/}
           {occurrence.images.edges.map((edge) => {
             const image = edge.node;
             return (
@@ -71,14 +92,6 @@ function OccurrenceDetails(props) {
               </Grid>
             );
           })}
-          {occurrence.notes && (
-            <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom>
-                Informações adicionais:
-              </Typography>
-              <Typography variant="body1">{occurrence.notes}</Typography>
-            </Grid>
-          )}
           <Grid item xs={12}>
             <CommentsList commenting={occurrence.commenting} />
           </Grid>

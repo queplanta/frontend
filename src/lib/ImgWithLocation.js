@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import exif from "exif-js";
+import exifr from "exifr";
 
 export function ConvertDMSToDD(degrees, minutes, seconds, direction) {
   var dd = degrees + minutes / 60 + seconds / 3600;
@@ -31,18 +31,22 @@ export function getLatLong(exifdata) {
   return { lat, long };
 }
 
+export function getImageLocation(img) {
+  return exifr.gps(img);
+}
+
 export default function ImgWithLocation({ onLocation, ...props }) {
   const imgEl = useRef(null);
 
   useEffect(() => {
     if (imgEl.current) {
-      exif.getData(imgEl.current, function () {
-        const exifdata = this.exifdata;
-        const location = getLatLong(exifdata);
-        if (location) {
-          onLocation(location);
-        }
-      });
+      // exif.getData(imgEl.current, function () {
+      //   const exifdata = this.exifdata;
+      //   const location = getLatLong(exifdata);
+      //   if (location) {
+      //     onLocation(location);
+      //   }
+      // });
     }
   }, [props.src, onLocation]);
 
