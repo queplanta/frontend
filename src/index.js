@@ -5,6 +5,7 @@ import { BrowserProtocol } from "farce";
 // import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
 import { createFarceRouter } from "found";
 import { Resolver } from "found-relay";
+import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import * as Sentry from "@sentry/browser";
 import * as serviceWorker from "./serviceWorker.js";
 
@@ -16,6 +17,11 @@ if (process.env.NODE_ENV === "production") {
     dsn: "https://63e4553adb1448d5a0c5cb871e539640@sentry.io/1797427",
   });
 }
+
+const instance = createInstance({
+  urlBase: "https://stats.levitar.net",
+  siteId: 1,
+});
 
 (async () => {
   const resolver = new Resolver(
@@ -35,7 +41,9 @@ if (process.env.NODE_ENV === "production") {
   });
 
   ReactDOM.hydrate(
-    <Router resolver={resolver} />,
+    <MatomoProvider value={instance}>
+      <Router resolver={resolver} />
+    </MatomoProvider>,
     document.getElementById("root")
   );
 

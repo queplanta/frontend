@@ -3,6 +3,7 @@ import { createFragmentContainer } from "react-relay";
 import { withStyles } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 import { useSnackbar } from "notistack";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 import ButtonWithProgress from "../../lib/ButtonWithProgress.js";
 import { useLoginRequired } from "../../accounts/LoginRequired.js";
 import CollectionItemAddMutation from "./CollectionItemAdd.mutation.js";
@@ -18,6 +19,7 @@ function CollectionItem(props) {
   } = props;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
+  const { trackEvent } = useMatomo();
   const [isSaving, setIsSaving] = useState(false);
   const isSelected = plant.myCollectionItem !== null;
 
@@ -38,6 +40,11 @@ function CollectionItem(props) {
                 { variant: "success" }
               );
               setIsSaving(false);
+              trackEvent({
+                category: "my-plants",
+                action: "my-collection",
+                name: "add",
+              });
             },
             onError: () => {
               enqueueSnackbar("Ocorreu um erro", { variant: "error" });
@@ -58,6 +65,11 @@ function CollectionItem(props) {
                 { variant: "success" }
               );
               setIsSaving(false);
+              trackEvent({
+                category: "my-plants",
+                action: "my-collection",
+                name: "remove",
+              });
             },
             onError: () => {
               enqueueSnackbar("Ocorreu um erro", { variant: "error" });

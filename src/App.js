@@ -27,6 +27,7 @@ import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link as RouterLink, withRouter } from "found";
 import { SnackbarProvider } from "notistack";
+import PageviewTracking from "./lib/PageviewTracking";
 import theme from "./theme.js";
 import logoImg from "./assets/queplanta-icon.svg";
 import logoTextImg from "./assets/queplanta-text-light.svg";
@@ -81,7 +82,7 @@ export class App extends Component {
         <ThemeProvider theme={theme}>
           <SnackbarProvider maxSnack={3}>
             <LoginRequiredProvider viewer={viewer}>
-              <React.Fragment>
+              <PageviewTracking>
                 <CssBaseline />
                 <Helmet
                   titleTemplate="%s | Que Planta"
@@ -299,7 +300,7 @@ export class App extends Component {
                 <Hidden mdUp implementation="css">
                   <BottomNavbar />
                 </Hidden>
-              </React.Fragment>
+              </PageviewTracking>
             </LoginRequiredProvider>
           </SnackbarProvider>
         </ThemeProvider>
