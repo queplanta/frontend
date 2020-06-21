@@ -20,8 +20,8 @@ function BottomNavbar(props) {
         icon={<SearchIcon />}
       />
       <BottomNavigationActionRoute
-        value="/identificacao/pedido"
-        label="Identificar"
+        value="/adicionar-fotos"
+        label="Foto"
         activeClassName="Mui-selected"
         icon={<CameraAltIcon />}
       />

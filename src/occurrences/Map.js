@@ -1,8 +1,8 @@
-import React, { Component, useState, useEffect, useRef } from "react";
+import React, { Component } from "react";
 import { Button, Tooltip, withStyles } from "@material-ui/core";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+// import markerIcon from "leaflet/dist/images/marker-icon.png";
+// import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import markerIconShadow from "leaflet/dist/images/marker-shadow.png";
 import { geolocated } from "../lib/geolocated.js";
 import "leaflet/dist/leaflet.css";
@@ -51,7 +51,11 @@ export class Marker extends Component {
 export class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = {
+      isLoading: true,
+      zoom: 14,
+    };
+    this.onZoom = this.onZoom.bind(this);
   }
 
   componentDidMount() {
@@ -61,13 +65,24 @@ export class Map extends Component {
     this.setState({ isLoading: false });
   }
 
+  onZoom(e) {
+    const { _zoom: zoom } = e.target;
+    this.setState({ zoom });
+  }
+
   render() {
     if (!LeafletMap || !LeafletMap | !TileLayer) return null;
 
     const { children, ...mapProps } = this.props;
+    const { zoom } = this.state;
 
     return (
-      <LeafletMap zoom={14} attributionControl={false} {...mapProps}>
+      <LeafletMap
+        zoom={zoom}
+        onZoom={this.onZoom}
+        attributionControl={false}
+        {...mapProps}
+      >
         {/*<TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -83,44 +98,60 @@ export const MapGeolocated = geolocated({
   userDecisionTimeout: 20000,
   suppressLocationOnMount: true,
   isOptimisticGeolocationEnabled: false,
-})((props) => {
-  const { coords, onPositionChange, children, ...mapProps } = props;
-  const [position, setPosition] = useState(defaultPosition);
-  const ref = useRef();
+})(
+  class extends Component {
+    constructor(props) {
+      super(props);
 
-  useEffect(() => {
-    if (coords) {
-      setPosition([coords.latitude, coords.longitude]);
+      this.state = {
+        position: defaultPosition,
+      };
+
+      this.ref = React.createRef();
+      this.toGoMyLocation = this.toGoMyLocation.bind(this);
     }
-  }, [coords]);
 
-  if (typeof onPositionChange === "function") {
-    useEffect(() => {
-      onPositionChange(position);
-    }, [position, onPositionChange]);
+    componentDidUpdate(prevProps) {
+      const { position, coords, onPositionChange } = this.props;
+      if (
+        position !== prevProps.position &&
+        typeof onPositionChange === "function"
+      ) {
+        onPositionChange(position);
+      }
+
+      if (coords !== prevProps.coords) {
+        this.setState({ position: [coords.latitude, coords.longitude] });
+      }
+    }
+
+    toGoMyLocation(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.ref.current.props.getLocation();
+    }
+
+    render() {
+      const { children, ...mapProps } = this.props;
+      const { position } = this.state;
+
+      return (
+        <Map ref={this.ref} center={position} {...mapProps}>
+          {children}
+          <Tooltip title="Minha localização atual" placement="top">
+            <MapButton
+              variant="outlined"
+              style={{ position: "absolute", top: 80, left: 10, zIndex: 1000 }}
+              onClick={this.toGoMyLocation}
+            >
+              <MyLocationIcon />
+            </MapButton>
+          </Tooltip>
+        </Map>
+      );
+    }
   }
-
-  function toGoMyLocation(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    ref.current.props.getLocation();
-  }
-
-  return (
-    <Map ref={ref} center={position} {...mapProps}>
-      {children}
-      <Tooltip title="Minha localização atual" placement="top">
-        <MapButton
-          variant="outlined"
-          style={{ position: "absolute", top: 80, left: 10, zIndex: 1000 }}
-          onClick={toGoMyLocation}
-        >
-          <MyLocationIcon />
-        </MapButton>
-      </Tooltip>
-    </Map>
-  );
-});
+);
 
 export class Popup extends Component {
   constructor(props) {

@@ -24,10 +24,10 @@ function OccurrencePage(props) {
       ? `${plant.commonName.name} (${plant.title})`
       : plant.title;
 
-    headerTitle = `Observação de ${plantTitle}`;
+    headerTitle = `Individuo da espécie ${plantTitle}`;
     title = (
       <React.Fragment>
-        Observação de{" "}
+        Individuo da espécie{" "}
         <Link to={`/${plant.slug}-p${plant.idInt}`}>{plantTitle}</Link>
       </React.Fragment>
     );

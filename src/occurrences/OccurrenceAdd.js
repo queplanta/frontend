@@ -1,82 +1,116 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import {
-  TextField,
+  AppBar,
   Button,
+  Dialog,
   IconButton,
   Paper,
-  FormLabel,
+  MobileStepper,
+  Stepper,
+  Step,
+  StepLabel,
+  StepContent,
+  Typography,
+  Toolbar,
+  useTheme,
+  isWidthDown,
   withStyles,
 } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import _ from "lodash";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { useRouter } from "found";
 import { useSnackbar } from "notistack";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
-import ImgWithLocation from "../lib/ImgWithLocation.js";
+import { hasFormErrors } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
-import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import OccurrenceAddMutation from "./OccurrenceAdd.mutation.js";
+import AddIdentifyMutation from "./identify/AddIdentify.mutation.js";
 import { Width } from "../ui";
+import withWidth from "../lib/withWidth.js";
 import PageTitle from "../lib/PageTitle.js";
-import { MapGeolocated, Marker, defaultPosition } from "./Map.js";
-import PlantSelectField from "../plants/PlantSelectField.js";
+import { defaultPosition } from "./Map.js";
 import { useLoginRequired } from "../accounts/LoginRequired.js";
+import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 
-function OccurrenceAdd({ classes, environment, setFormErrors, viewer }) {
+import StepOne from "./OccurrenceAdd.1.js";
+import StepTwo from "./OccurrenceAdd.2.js";
+import StepThree from "./OccurrenceAdd.3.js";
+import StepFour from "./OccurrenceAdd.4.js";
+
+function OccurrenceAdd({
+  classes,
+  environment,
+  setFormErrors,
+  viewer,
+  width: currentWidth,
+}) {
   const { enqueueSnackbar } = useSnackbar();
   const { isAuthenticated } = useLoginRequired();
   const [lifeNode, setLifeNode] = useState(null);
   const { router } = useRouter();
+  const theme = useTheme();
   const when = useFormInput("");
   const notes = useFormInput("");
   const [images, setImages] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
   const [markerPosition, setMarkerPosition] = useState(defaultPosition);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [occurrenceType, setOccurrenceType] = useState(null);
+  const steps = getSteps();
+  const maxSteps = steps.length;
+  const fullScreen = isWidthDown("sm", currentWidth);
 
-  function onChange(e) {
-    for (var i = 0; i < e.target.files.length; i++) {
-      const file = e.target.files[i];
-      const fileReader = new FileReader();
-      fileReader.onload = (ee) => {
-        const location = null;
-        setImages((prevImages) => [
-          ...prevImages,
-          { file: file, imagePreviewUrl: fileReader.result, location },
-        ]);
-      };
-      fileReader.readAsDataURL(file);
-    }
-  }
+  useEffect(
+    () =>
+      router.addNavigationListener(() =>
+        images.length > 0
+          ? "Você começou a preencher o formulário. Tem certeza que deseja descartar as alterações?"
+          : true
+      ),
+    []
+  );
 
-  function removeImage(index) {
-    setImages((prevImages) => {
-      prevImages.splice(index, 1);
-      return [...prevImages];
-    });
-  }
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
 
-  function onPositionChange(position) {
-    setMarkerPosition([position[0], position[1]]);
-  }
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
 
-  function onMoveMarker(e) {
-    const position = [e.latlng.lat, e.latlng.lng];
-    const isEqual =
-      markerPosition[0] === position[0] && markerPosition[1] === position[1];
-    if (!isEqual) {
-      setMarkerPosition(position);
-    }
-  }
+  const handleBackHistory = () => {
+    window.history.length ? window.history.go(-1) : router.push("/");
+  };
 
   function onSuccess(response) {
     setIsSaving(false);
-    enqueueSnackbar("Observação adicionada com sucesso", {
-      variant: "success",
-    });
-    router.push(`/observacoes/${response.occurrenceCreate.occurrence.node.id}`);
+
+    if (lifeNode) {
+      enqueueSnackbar("Observação adicionada com sucesso", {
+        variant: "success",
+      });
+      router.push(
+        `/observacoes/${response.occurrenceCreate.occurrence.node.id}`
+      );
+    } else {
+      enqueueSnackbar("Requisição de identificação adicionada com sucesso", {
+        variant: "success",
+      });
+      router.push(
+        `/observacoes/${response.whatIsThisCreate.occurrence.node.id}`
+      );
+    }
   }
+
+  const mutationConfig = {
+    setFormErrors,
+    onSuccess,
+    onError: () => {
+      enqueueSnackbar("Ocorreu um erro", { variant: "error" });
+      setIsSaving(false);
+    },
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -86,133 +120,245 @@ function OccurrenceAdd({ classes, environment, setFormErrors, viewer }) {
         formData.append("images", image.file);
       });
       setIsSaving(true);
-      OccurrenceAddMutation.commit(
-        environment,
-        {
-          location: {
-            type: "Point",
-            coordinates: markerPosition,
+
+      if (lifeNode) {
+        OccurrenceAddMutation.commit(
+          environment,
+          {
+            location: markerPosition
+              ? {
+                  type: "Point",
+                  coordinates: markerPosition,
+                }
+              : null,
+            lifeId: lifeNode.id,
+            when: when.value,
+            notes: notes.value,
           },
-          lifeId: lifeNode.id,
-          when: when.value,
-          notes: notes.value,
-        },
-        formData,
-        {
-          setFormErrors,
-          onSuccess,
-          onError: () => {
-            enqueueSnackbar("Ocorreu um erro", { variant: "error" });
-            setIsSaving(false);
+          formData,
+          mutationConfig
+        );
+      } else {
+        AddIdentifyMutation.commit(
+          environment,
+          {
+            location: markerPosition
+              ? {
+                  type: "Point",
+                  coordinates: markerPosition,
+                }
+              : null,
+            when: when.value,
+            notes: notes.value,
           },
-        }
-      );
+          formData,
+          mutationConfig
+        );
+      }
     }
+  }
+
+  function getSteps() {
+    return [
+      "Adicionar Fotos",
+      "Localização",
+      "Que planta é essa?",
+      "Mais detalhes",
+    ];
+  }
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <StepOne
+            images={images}
+            setImages={setImages}
+            setMarkerPosition={setMarkerPosition}
+            fullScreen={fullScreen}
+          />
+        );
+      case 1:
+        return (
+          <StepTwo
+            markerPosition={markerPosition}
+            setMarkerPosition={setMarkerPosition}
+          />
+        );
+      case 2:
+        return (
+          <StepThree
+            lifeNode={lifeNode}
+            setLifeNode={setLifeNode}
+            environment={environment}
+            occurrenceType={occurrenceType}
+            setOccurrenceType={setOccurrenceType}
+          />
+        );
+      case 3:
+        return <StepFour when={when} notes={notes} isSaving={isSaving} />;
+      default:
+        return "Unknown step";
+    }
+  }
+
+  function getStepsNextValidation(step) {
+    switch (step) {
+      case 0:
+        return images.length === 0;
+      case 1:
+        return false;
+      case 2:
+        return (
+          occurrenceType === null ||
+          (occurrenceType === "occurrence" && lifeNode === null)
+        );
+      case 3:
+        return false;
+      default:
+        return true;
+    }
+  }
+
+  const continueButton = (
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleNext}
+      disabled={getStepsNextValidation(activeStep)}
+    >
+      Continuar
+    </Button>
+  );
+
+  const saveButton = (
+    <ButtonWithProgress
+      variant="contained"
+      color="primary"
+      onClick={handleSubmit}
+      disabled={getStepsNextValidation(activeStep)}
+      isLoading={isSaving}
+    >
+      Salvar
+    </ButtonWithProgress>
+  );
+
+  const continueMobileButton = (
+    <Button
+      size="small"
+      onClick={handleNext}
+      disabled={getStepsNextValidation(activeStep)}
+    >
+      Continuar
+      {theme.direction === "rtl" ? (
+        <KeyboardArrowLeft />
+      ) : (
+        <KeyboardArrowRight />
+      )}
+    </Button>
+  );
+
+  const saveMobileButton = (
+    <ButtonWithProgress
+      size="small"
+      onClick={handleSubmit}
+      disabled={getStepsNextValidation(activeStep)}
+      isLoading={isSaving}
+    >
+      Salvar
+    </ButtonWithProgress>
+  );
+
+  var stepContent = (
+    <Stepper
+      className={classes.paper}
+      activeStep={activeStep}
+      orientation="vertical"
+    >
+      {steps.map((label, index) => (
+        <Step key={label}>
+          <StepLabel>{label}</StepLabel>
+          <StepContent>
+            {getStepContent(index)}
+            <div className={classes.actionsContainer}>
+              <div className={classes.wrapButton}>
+                {activeStep !== 0 && (
+                  <Button
+                    variant="contained"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    className={classes.button}
+                  >
+                    Voltar
+                  </Button>
+                )}
+                {activeStep === steps.length - 1 ? saveButton : continueButton}
+              </div>
+            </div>
+          </StepContent>
+        </Step>
+      ))}
+    </Stepper>
+  );
+
+  if (fullScreen) {
+    stepContent = (
+      <Dialog open={true} fullScreen={true}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleBackHistory}
+              aria-label="Voltar"
+            >
+              <ArrowBack />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Adicionar localização de espécie
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.dialogContent}>
+          {getStepContent(activeStep)}
+        </div>
+        <MobileStepper
+          steps={maxSteps}
+          position="bottom"
+          variant="text"
+          activeStep={activeStep}
+          nextButton={
+            activeStep === steps.length - 1
+              ? saveMobileButton
+              : continueMobileButton
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={handleBack}
+              disabled={activeStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              Voltar
+            </Button>
+          }
+        />
+      </Dialog>
+    );
   }
 
   return (
     <Width component="div">
-      <Helmet title="Adicionar planta no mapa" />
-      <PageTitle>Adicionar planta no mapa</PageTitle>
+      <Helmet title="Adicionar localização de uma espécie ou pedido de identificação por foto" />
+      <PageTitle>
+        Adicionar localização de espécie ou pedir identificação por foto
+      </PageTitle>
       <Paper className={classes.paper}>
-        <form onSubmit={handleSubmit}>
-          <PlantSelectField
-            environment={environment}
-            onChange={setLifeNode}
-            value={lifeNode}
-          />
-
-          <div className={classes.where}>
-            <FormLabel>Onde?</FormLabel>
-            <MapGeolocated
-              className={classes.map}
-              onPositionChange={onPositionChange}
-            >
-              <Marker
-                position={markerPosition}
-                draggable={true}
-                onMove={onMoveMarker}
-              />
-            </MapGeolocated>
-          </div>
-
-          <div className={classes.imgsList}>
-            {images.map((image, i) => {
-              return (
-                <span key={i} className={classes.img}>
-                  <ImgWithLocation
-                    src={image.imagePreviewUrl}
-                    onLocation={(location) => {
-                      const updatedImages = _.set(
-                        images,
-                        [i, "location"],
-                        location
-                      );
-                      setImages(updatedImages);
-                    }}
-                  />
-                  <IconButton
-                    aria-label="delete"
-                    color="secondary"
-                    className={classes.imgDelete}
-                    onClick={() => removeImage(i)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </span>
-              );
-            })}
-          </div>
-
-          <Button component="label" htmlFor="photosInput">
-            <AddPhotoAlternateIcon className={classes.buttonIcon} /> Adicionar
-            Foto
-          </Button>
-
-          <input
-            id="photosInput"
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={onChange}
-            style={{ display: "none" }}
-          />
-
-          <TextField
-            label="Quando?"
-            placeholder="agora, hoje, ontem, 21/06/2010..."
-            type="text"
-            margin="normal"
-            variant="outlined"
-            fullWidth
-            {...when}
-          />
-
-          <TextField
-            label="Informações adicinais"
-            placeholder="O que mais você pode dizer sobre essa planta?"
-            type="text"
-            margin="normal"
-            variant="outlined"
-            fullWidth
-            multiline
-            {...notes}
-          />
-
-          <FormErrors
-            filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
-          />
-
-          <ButtonWithProgress
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submitButton}
-            isLoading={isSaving}
-          >
-            enviar
-          </ButtonWithProgress>
-        </form>
+        <form onSubmit={handleSubmit}>{stepContent}</form>
       </Paper>
     </Width>
   );
@@ -220,42 +366,18 @@ function OccurrenceAdd({ classes, environment, setFormErrors, viewer }) {
 
 const styles = (theme) => ({
   paper: {
-    padding: theme.spacing(2),
+    marginBottom: theme.spacing(8),
   },
-  imgsList: {
-    marginBottom: theme.spacing(1),
+  button: {
+    marginRight: theme.spacing(3),
   },
-  img: {
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    display: "inline-block",
-    position: "relative",
-    height: 100,
-    "& img": {
-      border: "1px solid #ccc",
-      borderRadius: "4px",
-      objectFit: "cover",
-      height: 100,
-    },
+  dialogContent: {
+    paddingTop: theme.spacing(7),
   },
-  imgDelete: {
-    position: "absolute",
-    top: -12,
-    right: -12,
-  },
-  submitButton: {
-    marginTop: theme.spacing(1),
-  },
-  buttonIcon: {
-    marginRight: theme.spacing(1),
-  },
-  map: {
-    height: 500,
-  },
-  where: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+  wrapButton: {
+    margin: theme.spacing(3, 0, 0, 0),
+    textAlign: "text-right",
   },
 });
 
-export default withStyles(styles)(hasFormErrors(OccurrenceAdd));
+export default withStyles(styles)(hasFormErrors(withWidth()(OccurrenceAdd)));
