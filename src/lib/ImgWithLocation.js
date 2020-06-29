@@ -37,18 +37,5 @@ export function getImageLocation(img) {
 
 export default function ImgWithLocation({ onLocation, ...props }) {
   const imgEl = useRef(null);
-
-  useEffect(() => {
-    if (imgEl.current) {
-      // exif.getData(imgEl.current, function () {
-      //   const exifdata = this.exifdata;
-      //   const location = getLatLong(exifdata);
-      //   if (location) {
-      //     onLocation(location);
-      //   }
-      // });
-    }
-  }, [props.src, onLocation]);
-
   return <img ref={imgEl} alt="" {...props} />;
 }
