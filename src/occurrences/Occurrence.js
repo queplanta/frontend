@@ -9,7 +9,10 @@ import WhatIsThis from "./identify/WhatIsThis.js";
 import OccurrenceDetails from "./OccurrenceDetails.js";
 
 function OccurrencePage(props) {
-  const { occurrence, environment } = props;
+  const {
+    occurrence,
+    relay: { environment },
+  } = props;
 
   if (!occurrence) {
     return <NotFound />;
