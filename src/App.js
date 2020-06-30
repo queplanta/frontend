@@ -274,7 +274,7 @@ export class App extends Component {
                           <Button
                             className={classes.btn}
                             component={RouterLink}
-                            to="/adicionar-fotos"
+                            to="/adicionar"
                           >
                             <CameraAltIcon />
                           </Button>

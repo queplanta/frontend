@@ -1,6 +1,15 @@
 import React from "react";
 import ReactJsxParser from "react-jsx-parser";
 import { Typography, Grid, Paper, withStyles } from "@material-ui/core";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineOppositeContent,
+} from "@material-ui/lab";
 import Link from "./Link.js";
 import Image from "./JsxParser/Image.js";
 
@@ -22,6 +31,13 @@ const JsxParser = (props) => {
           Typography,
           Grid,
           Paper,
+          Timeline,
+          TimelineItem,
+          TimelineSeparator,
+          TimelineConnector,
+          TimelineContent,
+          TimelineDot,
+          TimelineOppositeContent,
         }}
         {...otherProps}
       />

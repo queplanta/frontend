@@ -14,7 +14,7 @@ export const occurrencesRoutes = (
   <React.Fragment>
     <Route path="/mapa" Component={Home} query={HomeQuery} />
     <Route
-      path="/adicionar-fotos"
+      path="/adicionar"
       Component={OccurrenceAdd}
       query={OccurrenceAddQuery}
     />

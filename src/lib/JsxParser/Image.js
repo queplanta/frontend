@@ -19,6 +19,7 @@ const Image = ({
   height,
   noCard,
   noDescription,
+  responsive,
   float,
   ...props
 }) => {
@@ -54,6 +55,7 @@ const Image = ({
                 className={clsx(classes.img, {
                   [classes.imgLeft]: float === "left" && noCard,
                   [classes.imgRight]: float === "right" && noCard,
+                  [classes.imgResponsive]: responsive,
                 })}
                 {...props}
               />
@@ -122,6 +124,11 @@ export default withStyles((theme) => ({
   },
   img: {
     maxWidth: "100%",
+    objectFit: "scale-down",
+  },
+  imgResponsive: {
+    width: "100%",
+    objectFit: "cover",
   },
   imgLeft: {
     float: "left",
