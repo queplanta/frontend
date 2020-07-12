@@ -104,17 +104,18 @@ export const MapGeolocated = geolocated({
       super(props);
 
       this.state = {
-        position: defaultPosition,
+        position: props.position || defaultPosition,
       };
 
       this.ref = React.createRef();
       this.toGoMyLocation = this.toGoMyLocation.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-      const { position, coords, onPositionChange } = this.props;
+    componentDidUpdate(prevProps, prevState) {
+      const { coords, onPositionChange } = this.props;
+      const { position } = this.state;
       if (
-        position !== prevProps.position &&
+        position !== prevState.position &&
         typeof onPositionChange === "function"
       ) {
         onPositionChange(position);
