@@ -8,9 +8,10 @@ function OccurrenceAddStepTwo({
   setMarkerPosition,
   askImgPosition,
   setStep,
+  images,
 }) {
   const [addLocation, setAddLocation] = React.useState(
-    markerPosition !== defaultPosition
+    markerPosition !== defaultPosition || images.length == 0
   );
 
   function onPositionChange(position) {

@@ -29,7 +29,7 @@ function Home(props) {
             variant="contained"
             color="primary"
             component={RouterLink}
-            to={`/mapa/adicionar`}
+            to={`/adicionar`}
           >
             Adicionar no mapa
           </Button>

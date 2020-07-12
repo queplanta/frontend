@@ -15,41 +15,59 @@ function OccurrenceAddStepThree({
   lifeNode,
   occurrenceType,
   setOccurrenceType,
+  images,
 }) {
+  React.useEffect(() => {
+    if (images.length === 0) {
+      setOccurrenceType("occurrence");
+    }
+  }, [images, setOccurrenceType]);
+
   const handleChange = (event) => {
     setOccurrenceType(event.target.value);
   };
 
   return (
     <div className={classes.container}>
-      <Typography variant="body2">
-        Sabe a espécie ou gostaria de pedir identificação?
-      </Typography>
-      <RadioGroup
-        aria-label="selectType"
-        name="selectType"
-        value={occurrenceType}
-        onChange={handleChange}
-        className={classes.RadioGroup}
-      >
-        <FormControlLabel
-          value="occurrence"
-          control={<Radio />}
-          label="Sei a espécie"
+      {images.length === 0 && (
+        <PlantSelectField
+          environment={environment}
+          onChange={setLifeNode}
+          value={lifeNode}
         />
-        {occurrenceType === "occurrence" && (
-          <PlantSelectField
-            environment={environment}
-            onChange={setLifeNode}
-            value={lifeNode}
-          />
-        )}
-        <FormControlLabel
-          value="identify"
-          control={<Radio />}
-          label="Pedir identificação"
-        />
-      </RadioGroup>
+      )}
+      {images.length >= 1 && (
+        <>
+          <Typography variant="body2">
+            Sabe a espécie ou gostaria de pedir identificação?
+          </Typography>
+          <RadioGroup
+            aria-label="selectType"
+            name="selectType"
+            value={occurrenceType}
+            onChange={handleChange}
+            className={classes.RadioGroup}
+          >
+            <FormControlLabel
+              value="occurrence"
+              control={<Radio />}
+              label="Sei a espécie"
+            />
+            {occurrenceType === "occurrence" && (
+              <PlantSelectField
+                environment={environment}
+                onChange={setLifeNode}
+                value={lifeNode}
+              />
+            )}
+            <FormControlLabel
+              value="identify"
+              control={<Radio />}
+              label="Pedir identificação"
+            />
+          </RadioGroup>
+        </>
+      )}
     </div>
   );
 }

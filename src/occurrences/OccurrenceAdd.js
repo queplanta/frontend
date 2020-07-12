@@ -181,6 +181,7 @@ function OccurrenceAdd({
       case 1:
         return (
           <StepTwo
+            images={images}
             markerPosition={markerPosition}
             setMarkerPosition={setMarkerPosition}
           />
@@ -188,6 +189,7 @@ function OccurrenceAdd({
       case 2:
         return (
           <StepThree
+            images={images}
             lifeNode={lifeNode}
             setLifeNode={setLifeNode}
             environment={environment}
@@ -205,7 +207,7 @@ function OccurrenceAdd({
   function getStepsNextValidation(step) {
     switch (step) {
       case 0:
-        return images.length === 0;
+        return false;
       case 1:
         return false;
       case 2:
