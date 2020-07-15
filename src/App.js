@@ -168,20 +168,6 @@ export class App extends Component {
                         </MenuItem>
                       </MenuList>
                     </Drawer>
-                    <Hidden mdUp implementation="css">
-                      <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={this.handleDrawerToggle}
-                        edge="start"
-                        className={clsx(
-                          classes.menuButton,
-                          drawerOpen && classes.hide
-                        )}
-                      >
-                        <MenuIcon />
-                      </IconButton>
-                    </Hidden>
                     <Typography
                       className={classes.title}
                       component={RouterLink}
@@ -206,6 +192,20 @@ export class App extends Component {
                     </Hidden>
                     <div className={classes.grow} />
                     <AccountNavbar me={viewer.me} />
+                    <Hidden mdUp implementation="css">
+                      <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={this.handleDrawerToggle}
+                        edge="start"
+                        className={clsx(
+                          classes.menuButton,
+                          drawerOpen && classes.hide
+                        )}
+                      >
+                        <MenuIcon />
+                      </IconButton>
+                    </Hidden>
                   </Toolbar>
 
                   <Hidden smDown implementation="css">
