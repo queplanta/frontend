@@ -1,8 +1,9 @@
 import React from "react";
-import { withStyles } from "@material-ui/core";
+import { BottomNavigationAction, withStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import MapIcon from "@material-ui/icons/Map";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import {
   BottomNavigationRoute,
   BottomNavigationActionRoute,
@@ -31,6 +32,7 @@ function BottomNavbar(props) {
         activeClassName="Mui-selected"
         icon={<MapIcon />}
       />
+      <BottomNavigationAction label="User" icon={<AccountCircleIcon />} />
     </BottomNavigationRoute>
   );
 }
