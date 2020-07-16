@@ -4,7 +4,6 @@ import {
   Avatar,
   Button,
   Divider,
-  IconButton,
   Menu,
   MenuItem,
   ListItemText,
@@ -13,7 +12,6 @@ import {
 } from "@material-ui/core";
 import { Link as RouterLink } from "found";
 import _ from "lodash";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Media from "react-media";
 import { hasPerm } from "../lib/perms.js";
 import fragmentSpec from "./Navbar.query.js";
@@ -53,77 +51,83 @@ class AccountNavbar extends Component {
 
     if (me !== null && me.isAuthenticated === true) {
       return (
-        <div>
-          <Tooltip title={me.username} placement="top">
-            <Avatar
-              className={classes.avatar}
-              alt={me.username}
-              src={_.get(me, "avatar.url", null)}
-              onClick={this.handleOpen}
-            />
-          </Tooltip>
-          <Menu
-            id="user-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClick={this.handleClose}
-            onClose={this.handleClose}
-            getContentAnchorEl={null}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-          >
-            {hasPerm(me, "add_post") && (
-              <MenuItem
-                to={`/blog/novo`}
-                component={RouterLink}
-                activeClassName={classes.drawerListItemActive}
-              >
-                <ListItemText primary="Nova Post no Blog" />
-              </MenuItem>
-            )}
-            {hasPerm(me, "add_page") && (
-              <MenuItem
-                to={`/paginas/nova`}
-                component={RouterLink}
-                activeClassName={classes.drawerListItemActive}
-              >
-                <ListItemText primary="Nova Página" />
-              </MenuItem>
-            )}
-            {(hasPerm(me, "add_page") || hasPerm(me, "add_post")) && (
-              <Divider />
-            )}
-            <MenuItem
-              to={`/u/${me.username}`}
-              component={RouterLink}
-              activeClassName={classes.drawerListItemActive}
-            >
-              <ListItemText primary="Meu perfil" />
-            </MenuItem>
-            <MenuItem
-              to={`/conta/editar`}
-              component={RouterLink}
-              activeClassName={classes.drawerListItemActive}
-            >
-              <ListItemText primary="Editar perfil" />
-            </MenuItem>
-            <Divider />
-            <MenuItem onClick={this.handleLogout}>Sair</MenuItem>
-          </Menu>
-        </div>
+        <Media query="(min-width: 768px)">
+          {(matches) =>
+            matches && (
+              <React.Fragment>
+                <Tooltip title={me.username} placement="top">
+                  <Avatar
+                    className={classes.avatar}
+                    alt={me.username}
+                    src={_.get(me, "avatar.url", null)}
+                    onClick={this.handleOpen}
+                  />
+                </Tooltip>
+                <Menu
+                  id="user-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClick={this.handleClose}
+                  onClose={this.handleClose}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                >
+                  {hasPerm(me, "add_post") && (
+                    <MenuItem
+                      to={`/blog/novo`}
+                      component={RouterLink}
+                      activeClassName={classes.drawerListItemActive}
+                    >
+                      <ListItemText primary="Nova Post no Blog" />
+                    </MenuItem>
+                  )}
+                  {hasPerm(me, "add_page") && (
+                    <MenuItem
+                      to={`/paginas/nova`}
+                      component={RouterLink}
+                      activeClassName={classes.drawerListItemActive}
+                    >
+                      <ListItemText primary="Nova Página" />
+                    </MenuItem>
+                  )}
+                  {(hasPerm(me, "add_page") || hasPerm(me, "add_post")) && (
+                    <Divider />
+                  )}
+                  <MenuItem
+                    to={`/u/${me.username}`}
+                    component={RouterLink}
+                    activeClassName={classes.drawerListItemActive}
+                  >
+                    <ListItemText primary="Meu perfil" />
+                  </MenuItem>
+                  <MenuItem
+                    to={`/conta/editar`}
+                    component={RouterLink}
+                    activeClassName={classes.drawerListItemActive}
+                  >
+                    <ListItemText primary="Editar perfil" />
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={this.handleLogout}>Sair</MenuItem>
+                </Menu>
+              </React.Fragment>
+            )
+          }
+        </Media>
       );
     } else {
       return (
         <Media query="(min-width: 768px)">
           {(matches) =>
-            matches ? (
+            matches && (
               <div>
                 Quer participar?{" "}
                 <Button
@@ -135,15 +139,6 @@ class AccountNavbar extends Component {
                 </Button>{" "}
                 em segundos.
               </div>
-            ) : (
-              <Tooltip title="Minha conta" placement="top">
-                <IconButton
-                  onClick={this.handleOpenLoginDialog}
-                  className={classes.accountIcon}
-                >
-                  <AccountCircleIcon />
-                </IconButton>
-              </Tooltip>
             )
           }
         </Media>
@@ -167,7 +162,7 @@ const styles = {
     },
   },
   accountIcon: {
-    color: "#FFF",
+    color: "inherit",
   },
 };
 

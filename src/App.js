@@ -299,7 +299,7 @@ export class App extends Component {
                   <Footer />
                 </Hidden>
                 <Hidden mdUp implementation="css">
-                  <BottomNavbar />
+                  <BottomNavbar viewer={viewer} />
                 </Hidden>
               </PageviewTracking>
             </LoginRequiredProvider>

@@ -93,7 +93,7 @@ function Profile(props) {
                     <ListItemText primary="Alterar senha" />
                   </ListItem>
                   <ListItem button to={`/conta/editar/avatar`} component={Link}>
-                    <ListItemText primary="Alterar imagem de exibição" />
+                    <ListItemText primary="Alterar foto" />
                   </ListItem>
                 </List>
               </Dialog>
