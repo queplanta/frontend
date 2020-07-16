@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Grid, TextField, Hidden, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import NotFound from "../pages/NotFound.js";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import ProfileChangePasswordMutation from "./ProfileChangePassword.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import Link from "../lib/Link.js";

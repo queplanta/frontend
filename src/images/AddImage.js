@@ -12,7 +12,7 @@ import _ from "lodash";
 import { useSnackbar } from "notistack";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import { useFormInput } from "../lib/forms.js";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import ImgWithLocation from "../lib/ImgWithLocation.js";
 // import clsx from 'clsx';
 // import { createRefetchContainer } from 'react-relay';

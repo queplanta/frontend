@@ -22,7 +22,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { useRouter } from "found";
 import { useSnackbar } from "notistack";
-import { hasFormErrors } from "../FormErrors.js";
+import { hasFormErrors } from "../lib/FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import OccurrenceAddMutation from "./OccurrenceAdd.mutation.js";
 import AddIdentifyMutation from "./identify/AddIdentify.mutation.js";

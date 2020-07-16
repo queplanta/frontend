@@ -11,7 +11,7 @@ import {
 import { createFragmentContainer } from "react-relay";
 import { useSnackbar } from "notistack";
 import ButtonWithProgress from "../../lib/ButtonWithProgress.js";
-import { hasFormErrors, FormErrors } from "../../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../../lib/FormErrors.js";
 import { useFormInput, clearFormInput } from "../../lib/forms.js";
 import SuggestionItem from "./SuggestionItem.js";
 import SuggestionAddMutation from "./SuggestionAdd.mutation.js";

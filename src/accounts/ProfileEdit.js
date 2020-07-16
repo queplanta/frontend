@@ -9,7 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
-} from "../FormErrors.js";
+} from "../lib/FormErrors.js";
 import ProfileEditMutation from "./ProfileEdit.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";

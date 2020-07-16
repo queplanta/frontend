@@ -20,7 +20,7 @@ import {
   FormErrors,
   TextFieldWithError,
   SnackbarErrorContent,
-} from "../FormErrors.js";
+} from "../lib/FormErrors.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import withWidth from "../lib/withWidth.js";
 import { withSnackbar } from "notistack";

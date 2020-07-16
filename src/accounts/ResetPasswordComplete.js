@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Grid, TextField, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { useRouter } from "found";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import ResetPasswordCompleteMutation from "./ResetPasswordComplete.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
