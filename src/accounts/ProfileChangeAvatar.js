@@ -3,7 +3,7 @@ import { Grid, Button, Hidden, withStyles } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useSnackbar } from "notistack";
 import NotFound from "../pages/NotFound.js";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import ProfileChangeAvatarMutation from "./ProfileChangeAvatar.mutation.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PageTitle from "../lib/PageTitle.js";

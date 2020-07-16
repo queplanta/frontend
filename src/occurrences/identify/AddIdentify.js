@@ -6,7 +6,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import _ from "lodash";
 import { useSnackbar } from "notistack";
-import { hasFormErrors, FormErrors } from "../../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../../lib/FormErrors.js";
 import ImgWithLocation from "../../lib/ImgWithLocation.js";
 import { useFormInput, clearFormInput } from "../../lib/forms.js";
 import ButtonWithProgress from "../../lib/ButtonWithProgress.js";

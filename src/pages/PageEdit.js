@@ -7,7 +7,7 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useSnackbar } from "notistack";
 import { useRouter } from "found";
 import _ from "lodash";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import PageEditMutation from "./PageEdit.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";

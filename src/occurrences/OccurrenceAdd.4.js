@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, withStyles } from "@material-ui/core";
-import { FormErrors } from "../FormErrors.js";
+import { FormErrors } from "../lib/FormErrors.js";
 
 function OccurrenceAddStepFour({ classes, when, notes }) {
   return (

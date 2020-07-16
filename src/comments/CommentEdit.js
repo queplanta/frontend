@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { TextField, Button, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import CommentEditMutation from "./CommentEdit.mutation.js";

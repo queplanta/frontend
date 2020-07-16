@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import _ from "lodash";
 import { SnackbarContent, TextField, withStyles } from "@material-ui/core";
-import { getDisplayName } from "./lib/helpers.js";
+import { getDisplayName } from "./helpers.js";
 
 function reducer(state, action) {
   switch (action.type) {

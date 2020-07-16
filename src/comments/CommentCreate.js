@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Card, CardContent, TextField, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
-import { hasFormErrors, FormErrors } from "../FormErrors.js";
+import { hasFormErrors, FormErrors } from "../lib/FormErrors.js";
 import { useFormInput, clearFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import CommentCreateMutation from "./CommentCreate.mutation.js";

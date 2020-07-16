@@ -9,7 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
-} from "../FormErrors.js";
+} from "../lib/FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PlantEditMutation from "./PlantEdit.mutation.js";
