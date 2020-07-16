@@ -1,38 +1,35 @@
 import React from "react";
-import { BottomNavigationAction, withStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
-import MapIcon from "@material-ui/icons/Map";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import RoomIcon from "@material-ui/icons/Room";
+import UserBottomNav from "./accounts/UserBottomNav.js";
 import {
   BottomNavigationRoute,
   BottomNavigationActionRoute,
 } from "./lib/BottomNavbars.js";
 
 function BottomNavbar(props) {
-  const { classes } = props;
+  const { classes, viewer } = props;
 
   return (
     <BottomNavigationRoute showLabels className={classes.root}>
       <BottomNavigationActionRoute
         value="/plantas"
-        label="Buscar"
         activeClassName="Mui-selected"
         icon={<SearchIcon />}
       />
       <BottomNavigationActionRoute
         value="/adicionar"
-        label="Foto"
         activeClassName="Mui-selected"
         icon={<CameraAltIcon />}
       />
       <BottomNavigationActionRoute
         value="/mapa"
-        label="Mapa"
         activeClassName="Mui-selected"
-        icon={<MapIcon />}
+        icon={<RoomIcon />}
       />
-      <BottomNavigationAction label="User" icon={<AccountCircleIcon />} />
+      <UserBottomNav me={viewer.me} />
     </BottomNavigationRoute>
   );
 }
