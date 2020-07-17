@@ -8,6 +8,7 @@ import OccurrencesMap from "./OccurrencesMap.js";
 
 function Home(props) {
   const { classes, environment } = props;
+  console.log(props);
 
   // const [bounds, setBounds] = useState(null);
   // onViewportChanged={onViewportChanged}
