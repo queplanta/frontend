@@ -15,10 +15,8 @@ import BottomNavbar from "./BottomNavbar.js";
 import headerNavBackground from "./assets/background.jpg";
 import { LoginRequiredProvider } from "./accounts/LoginRequired.js";
 import Jumbotron from "./Jumbotron.js";
-
+import { ToolbarHeaderContext } from "./ToolbarHeaderContext.js";
 import "./index.css";
-
-export const toolbarHeaderContext = React.createContext(null);
 
 export class App extends Component {
   constructor(props) {
@@ -50,9 +48,15 @@ export class App extends Component {
                   position={appbarPosition}
                   className={clsx(classes.bgNv, classes.appbar)}
                 >
-                  <toolbarHeaderContext.Provider>
-                    <HeaderToolbar viewer={viewer} location={pathname} />
-                  </toolbarHeaderContext.Provider>
+                  <ToolbarHeaderContext.Provider
+                    value={
+                      <HeaderToolbar viewer={viewer} location={pathname} />
+                    }
+                  >
+                    <ToolbarHeaderContext.Consumer>
+                      {(value) => <b>{value}</b>}
+                    </ToolbarHeaderContext.Consumer>
+                  </ToolbarHeaderContext.Provider>
                 </AppBar>
 
                 <div className={classes.pagelet}>

@@ -4,12 +4,16 @@ import { Paper, withStyles } from "@material-ui/core";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import PostList from "./PostList.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Home(props) {
   const { viewer } = props;
 
   return (
     <Width>
+      <ToolbarHeaderContext.Consumer>
+        {(context) => <b>CONTEXT</b>}
+      </ToolbarHeaderContext.Consumer>
       <Helmet title="Blog" />
       <PageTitle>Blog</PageTitle>
       <Paper>
