@@ -12,7 +12,10 @@ function UserListItem(props) {
     <Grid item xs={12} sm={6} md={4}>
       <Grid container spacing={2}>
         <Grid item xs={2}>
-          <Avatar alt={user.username} src={user.avatar.url} />
+          <Avatar
+            alt={user.username}
+            src={user.avatar ? user.avatar.url : ""}
+          />
         </Grid>
         <Grid item xs={10} sm container>
           <Grid item xs container direction="column" spacing={2}>
