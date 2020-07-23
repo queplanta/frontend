@@ -23,8 +23,16 @@ export class App extends Component {
     super(props);
     this.state = {
       appbarPosition: "static",
+      toolbarHeader: (
+        <HeaderToolbar viewer={props.viewer} location={props.match.location} />
+      ),
     };
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.setToolbarHeader = this.setToolbarHeader.bind(this);
+  }
+
+  setToolbarHeader(toolbarHeader) {
+    this.setState({ toolbarHeader });
   }
 
   render() {
@@ -39,43 +47,44 @@ export class App extends Component {
           <SnackbarProvider maxSnack={3}>
             <LoginRequiredProvider viewer={viewer}>
               <PageviewTracking>
-                <CssBaseline />
-                <Helmet
-                  titleTemplate="%s | Que Planta"
-                  defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-                />
-                <AppBar
-                  position={appbarPosition}
-                  className={clsx(classes.bgNv, classes.appbar)}
+                <ToolbarHeaderContext.Provider
+                  value={{
+                    header: this.state.toolbarHeader,
+                    setToolbarHeader: this.setToolbarHeader,
+                  }}
                 >
-                  <ToolbarHeaderContext.Provider
-                    value={
-                      <HeaderToolbar viewer={viewer} location={pathname} />
-                    }
+                  <CssBaseline />
+                  <Helmet
+                    titleTemplate="%s | Que Planta"
+                    defaultTitle="Que Planta - Conectando Pessoas e Plantas"
+                  />
+                  <AppBar
+                    position={appbarPosition}
+                    className={clsx(classes.bgNv, classes.appbar)}
                   >
                     <ToolbarHeaderContext.Consumer>
-                      {(value) => <b>{value}</b>}
+                      {({ header }) => <>{header}</>}
                     </ToolbarHeaderContext.Consumer>
-                  </ToolbarHeaderContext.Provider>
-                </AppBar>
+                  </AppBar>
 
-                <div className={classes.pagelet}>
-                  <Hidden mdUp implementation="css">
-                    {(!viewer.me || !viewer.me.isAuthenticated) &&
-                      isHomeRoute && (
-                        <Jumbotron
-                          className={clsx(classes.bgNv, classes.jumbotron)}
-                        />
-                      )}
+                  <div className={classes.pagelet}>
+                    <Hidden mdUp implementation="css">
+                      {(!viewer.me || !viewer.me.isAuthenticated) &&
+                        isHomeRoute && (
+                          <Jumbotron
+                            className={clsx(classes.bgNv, classes.jumbotron)}
+                          />
+                        )}
+                    </Hidden>
+                    {this.props.children}
+                  </div>
+                  <Hidden mdDown implementation="css">
+                    <Footer />
                   </Hidden>
-                  {this.props.children}
-                </div>
-                <Hidden mdDown implementation="css">
-                  <Footer />
-                </Hidden>
-                <Hidden mdUp implementation="css">
-                  <BottomNavbar viewer={viewer} />
-                </Hidden>
+                  <Hidden mdUp implementation="css">
+                    <BottomNavbar viewer={viewer} />
+                  </Hidden>
+                </ToolbarHeaderContext.Provider>
               </PageviewTracking>
             </LoginRequiredProvider>
           </SnackbarProvider>

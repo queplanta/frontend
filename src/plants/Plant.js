@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import {
   Paper,
@@ -26,9 +26,17 @@ import WishItem from "./buttons/WishItem.js";
 import CollectionItem from "./buttons/CollectionItem.js";
 import DeleteButton from "../lib/DeleteButton.js";
 import PlantDeleteMutation from "./PlantDelete.mutation.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Plant(props) {
+  const toolbarContext = useContext(ToolbarHeaderContext);
   const { classes, plant, relay, children } = props;
+
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <div>this is my other header tool bar</div>
+    );
+  }, []);
 
   if (!plant) {
     return <NotFound />;

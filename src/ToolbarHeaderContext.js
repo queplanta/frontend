@@ -1,3 +1,6 @@
 import React from "react";
 
-export const ToolbarHeaderContext = React.createContext(null);
+export const ToolbarHeaderContext = React.createContext({
+  header: null,
+  setToolbarHeader: () => {},
+});
