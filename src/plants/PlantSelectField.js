@@ -125,15 +125,13 @@ class PlantSelectField extends React.Component {
             this.setState((state) => ({ ...state, searchTerm: newInputValue }))
           }
           open={showResults}
-          onOpen={() => this.openResults()}
-          onClose={() => this.closeResults()}
+          onOpen={this.openResults}
+          onClose={this.closeResults}
           loading={isLoading}
-          options={plants}
-          getOptionSelected={(option, value) =>
-            option.node.title === value.node.title
-          }
-          getOptionLabel={(option) => option.node.title}
-          renderOption={({ node: plant }) => (
+          options={plants.map(({ node: plant }) => plant)}
+          getOptionSelected={(option, value) => option.title === value.title}
+          getOptionLabel={(option) => option.title}
+          renderOption={(plant) => (
             <PlantItem key={plant.id} plant={plant} classes={classes} />
           )}
           renderInput={(params) => (
