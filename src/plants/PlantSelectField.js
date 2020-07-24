@@ -2,17 +2,15 @@ import React from "react";
 import { QueryRenderer, createRefetchContainer } from "react-relay";
 import {
   TextField,
-  List,
-  ListItem,
   ListItemText,
   ListItemAvatar,
   ListItemSecondaryAction,
   LinearProgress,
-  Paper,
+  CircularProgress,
   IconButton,
-  ClickAwayListener,
   withStyles,
 } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";
 import _ from "lodash";
 import {
@@ -33,9 +31,9 @@ class PlantSelectField extends React.Component {
       disposable: null,
     };
 
-    this.handleChangeSearchTerm = this.handleChangeSearchTerm.bind(this);
+    this.openResults = this.openResults.bind(this);
     this.closeResults = this.closeResults.bind(this);
-    this.deselectPlant = this.deselectPlant.bind(this);
+    this.selectPlant = this.selectPlant.bind(this);
     this.searchPlants = _.debounce(this.searchPlants, 300);
   }
 
@@ -57,39 +55,52 @@ class PlantSelectField extends React.Component {
           if (error) {
             console.error(error);
           }
-          this.setState({ isLoading: false, showResults: true });
+          this.setState({ ...state, isLoading: false, showResults: true });
         }
       );
 
-      return { isLoading: true, disposable };
+      return { ...state, isLoading: true, disposable };
     });
   }
 
-  handleChangeSearchTerm(e) {
-    const { value } = e.target;
-    this.setState((state) => ({ searchTerm: value }));
-
-    if (value.length > 4) {
-      this.searchPlants(value);
+  openResults() {
+    const {
+      viewer: {
+        allLifeNode: { edges: plants },
+      },
+    } = this.props;
+    if (plants.length) {
+      this.setState((state) => ({
+        ...state,
+        showResults: true,
+      }));
     }
   }
 
   closeResults() {
-    this.setState({
+    this.setState((state) => ({
+      ...state,
       showResults: false,
-    });
+    }));
   }
 
   selectPlant(plant) {
-    this.setState({
+    this.setState((state) => ({
+      ...state,
       searchTerm: "",
       showResults: false,
-    });
+    }));
     this.props.onChange(plant);
   }
 
-  deselectPlant() {
-    this.props.onChange(null);
+  componentDidUpdate(_, prevState) {
+    const { value: selectedPlant } = this.props;
+
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      if (this.state.searchTerm.length > 4 && !selectedPlant) {
+        this.searchPlants(this.state.searchTerm);
+      }
+    }
   }
 
   render() {
@@ -105,75 +116,58 @@ class PlantSelectField extends React.Component {
     const { searchTerm, showResults, isLoading } = this.state;
 
     return (
-      <ClickAwayListener onClickAway={this.closeResults}>
-        <div className={classes.selectWraper}>
-          {selectedPlant && (
-            <List component={Paper}>
-              <PlantItem
-                plant={selectedPlant}
-                classes={classes}
-                deselectPlant={this.deselectPlant}
-              />
-            </List>
+      <>
+        <Autocomplete
+          value={selectedPlant}
+          onChange={(e, newSelectedPlant) => this.selectPlant(newSelectedPlant)}
+          inputValue={searchTerm}
+          onInputChange={(e, newInputValue) =>
+            this.setState((state) => ({ ...state, searchTerm: newInputValue }))
+          }
+          open={showResults}
+          onOpen={() => this.openResults()}
+          onClose={() => this.closeResults()}
+          loading={isLoading}
+          options={plants}
+          getOptionSelected={(option, value) =>
+            option.node.title === value.node.title
+          }
+          getOptionLabel={(option) => option.node.title}
+          renderOption={({ node: plant }) => (
+            <PlantItem key={plant.id} plant={plant} classes={classes} />
           )}
-
-          {!selectedPlant && (
+          renderInput={(params) => (
             <TextField
-              label="Espécie"
-              placeholder="mangifera indica, plinia cauliflora, plinia cauliflora..."
-              type="text"
-              margin="normal"
-              variant="outlined"
-              fullWidth
-              className={classes.searchField}
-              value={searchTerm}
-              onChange={this.handleChangeSearchTerm}
+              {...params}
               {...textFieldProps}
+              placeholder="mangifera indica, plinia cauliflora, plinia cauliflora..."
+              fullWidth
+              margin="normal"
+              type="text"
+              label="Espécie"
+              variant="outlined"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {isLoading ? <CircularProgress size={20} /> : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
             />
           )}
-
-          {(showResults || isLoading) && !selectedPlant && (
-            <List
-              component={Paper}
-              className={classes.results}
-              onClick={this.closeResults}
-            >
-              {plants.map(({ node: plant }) => {
-                return (
-                  <PlantItem
-                    key={plant.id}
-                    plant={plant}
-                    classes={classes}
-                    button
-                    onClick={this.selectPlant.bind(this, plant)}
-                  />
-                );
-              })}
-              {!isLoading && plants.length === 0 && (
-                <ListItem>
-                  <ListItemText>Nada encontrado com esse nome.</ListItemText>
-                </ListItem>
-              )}
-              {isLoading && (
-                <ListItem>
-                  <ListItemText>
-                    <LinearProgress />
-                  </ListItemText>
-                </ListItem>
-              )}
-            </List>
-          )}
-        </div>
-      </ClickAwayListener>
+        />
+      </>
     );
   }
 }
 
 function PlantItem(props) {
-  const { plant, classes, button, deselectPlant, ...otherProps } = props;
+  const { plant, classes, deselectPlant } = props;
   let mainImage = _.get(plant, "images.edges[0].node");
   return (
-    <ListItem button={button} {...otherProps}>
+    <>
       <ListItemAvatar>
         {mainImage ? (
           <img
@@ -197,7 +191,7 @@ function PlantItem(props) {
           </IconButton>
         </ListItemSecondaryAction>
       )}
-    </ListItem>
+    </>
   );
 }
 
