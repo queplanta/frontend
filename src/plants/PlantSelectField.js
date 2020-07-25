@@ -55,11 +55,11 @@ class PlantSelectField extends React.Component {
           if (error) {
             console.error(error);
           }
-          this.setState({ ...state, isLoading: false, showResults: true });
+          this.setState({ isLoading: false, showResults: true });
         }
       );
 
-      return { ...state, isLoading: true, disposable };
+      return { isLoading: true, disposable };
     });
   }
 
@@ -70,26 +70,23 @@ class PlantSelectField extends React.Component {
       },
     } = this.props;
     if (plants.length) {
-      this.setState((state) => ({
-        ...state,
+      this.setState({
         showResults: true,
-      }));
+      });
     }
   }
 
   closeResults() {
-    this.setState((state) => ({
-      ...state,
+    this.setState({
       showResults: false,
-    }));
+    });
   }
 
   selectPlant(plant) {
-    this.setState((state) => ({
-      ...state,
+    this.setState({
       searchTerm: "",
       showResults: false,
-    }));
+    });
     this.props.onChange(plant);
   }
 
@@ -122,7 +119,7 @@ class PlantSelectField extends React.Component {
           onChange={(e, newSelectedPlant) => this.selectPlant(newSelectedPlant)}
           inputValue={searchTerm}
           onInputChange={(e, newInputValue) =>
-            this.setState((state) => ({ ...state, searchTerm: newInputValue }))
+            this.setState((state) => ({ searchTerm: newInputValue }))
           }
           open={showResults}
           onOpen={this.openResults}
@@ -134,6 +131,8 @@ class PlantSelectField extends React.Component {
           renderOption={(plant) => (
             <PlantItem key={plant.id} plant={plant} classes={classes} />
           )}
+          filterOptions={(x) => x}
+          noOptionsText="Nada encontrado com esse nome."
           renderInput={(params) => (
             <TextField
               {...params}
