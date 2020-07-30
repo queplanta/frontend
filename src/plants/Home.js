@@ -3,9 +3,11 @@ import { Helmet } from "react-helmet";
 import { InputBase, Paper, Hidden, withStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import PageTitle from "../lib/PageTitle.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { TabsRoute, TabRoute } from "../lib/Tabs.js";
 import { Width } from "../ui";
 import PlantList from "./PlantList.js";
-import { TabsRoute, TabRoute } from "../lib/Tabs.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 export class PlantsHome extends Component {
   constructor(props) {
@@ -15,6 +17,11 @@ export class PlantsHome extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.onChangeSearch = this.onChangeSearch.bind(this);
+  }
+
+  componentDidMount() {
+    const toolbarContext = this.context;
+    toolbarContext.setToolbarHeader(<SingleHeader>Plantas</SingleHeader>);
   }
 
   onChangeSearch(e) {
@@ -28,7 +35,6 @@ export class PlantsHome extends Component {
 
   render() {
     const { classes, viewer, relay } = this.props;
-
     let title = relay.variables.edibles ? `Plantas Comestíveis` : `Plantas`;
 
     if (relay.variables.search) {
@@ -74,6 +80,8 @@ export class PlantsHome extends Component {
     );
   }
 }
+
+PlantsHome.contextType = ToolbarHeaderContext;
 
 const styles = (theme) => ({
   paper: {

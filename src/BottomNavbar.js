@@ -1,5 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core";
+import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import RoomIcon from "@material-ui/icons/Room";
@@ -14,6 +15,12 @@ function BottomNavbar(props) {
 
   return (
     <BottomNavigationRoute showLabels className={classes.root}>
+      <BottomNavigationActionRoute
+        value="/"
+        activeClassName="Mui-selected"
+        exact={true}
+        icon={<HomeIcon />}
+      />
       <BottomNavigationActionRoute
         value="/plantas"
         activeClassName="Mui-selected"

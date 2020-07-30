@@ -22,6 +22,7 @@ import ImgDefault from "./PlantImgDefault.js";
 import { TabsRoute, TabRoute } from "../lib/Tabs.js";
 import ImageThumbnail from "../lib/ImageThumbnail.js";
 import { hasPerm } from "../lib/perms.js";
+import SingleHeader from "../lib/SingleHeader.js";
 import WishItem from "./buttons/WishItem.js";
 import CollectionItem from "./buttons/CollectionItem.js";
 import DeleteButton from "../lib/DeleteButton.js";
@@ -33,9 +34,7 @@ function Plant(props) {
   const { classes, plant, relay, children } = props;
 
   useEffect(() => {
-    toolbarContext.setToolbarHeader(
-      <div>this is my other header tool bar</div>
-    );
+    toolbarContext.setToolbarHeader(<SingleHeader>Planta</SingleHeader>);
   }, []);
 
   if (!plant) {

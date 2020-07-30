@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Button,
   Card,
@@ -22,15 +22,24 @@ import DoneIcon from "@material-ui/icons/Done";
 import MessageIcon from "@material-ui/icons/Message";
 import { Helmet } from "react-helmet";
 import PageTitle from "../lib/PageTitle.js";
+import SingleHeader from "../lib/SingleHeader.js";
 import { Link as RouterLink } from "found";
 import ProfileLink from "../accounts/ProfileLink.js";
 import { RelativeDate, Width } from "../ui";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function RevisionList(props) {
+  const toolbarContext = useContext(ToolbarHeaderContext);
   const { classes, node } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState(null);
+
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Historico de alterações</SingleHeader>
+    );
+  }, []);
 
   const handleClick = (openState, message) => (event) => {
     setAnchorEl(event.currentTarget);

@@ -51,6 +51,7 @@ export class App extends Component {
                   value={{
                     header: this.state.toolbarHeader,
                     setToolbarHeader: this.setToolbarHeader,
+                    location: pathname,
                   }}
                 >
                   <CssBaseline />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import {
   Card,
@@ -30,14 +30,23 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import ProfileLink from "../accounts/ProfileLink.js";
 import { useLoginRequired } from "../accounts/LoginRequired.js";
 import RevisionRevertMutation from "./RevisionRevert.mutation.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function RevisionItem(props) {
+  const toolbarContext = useContext(ToolbarHeaderContext);
   const { environment, classes, revision } = props;
   const object = revision.object;
   const { isAuthenticated } = useLoginRequired();
   const { enqueueSnackbar } = useSnackbar();
   const [isSaving, setIsSaving] = useState(false);
   const { router } = useRouter();
+
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Revisão: {revision.id}</SingleHeader>
+    );
+  }, []);
 
   function handleRevisionRevert(e) {
     e.preventDefault();
