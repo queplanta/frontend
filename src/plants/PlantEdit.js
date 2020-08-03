@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Grid, MenuItem, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
@@ -13,6 +13,8 @@ import {
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PlantEditMutation from "./PlantEdit.mutation.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Plant(props) {
   const {
@@ -24,13 +26,16 @@ function Plant(props) {
     environment,
   } = props;
   const { enqueueSnackbar } = useSnackbar();
-
   const titleField = useFormInput(plant.title);
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
-
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Editar planta</SingleHeader>);
+  }, []);
 
   if (!plant) {
     return <NotFound />;

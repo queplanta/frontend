@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Grid, MenuItem, withStyles } from "@material-ui/core";
 import { useRouter } from "found";
@@ -14,6 +14,8 @@ import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PlantSelectField from "./PlantSelectField.js";
 import PlantAddMutation from "./PlantAdd.mutation.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function PlantAdd(props) {
   const { classes, edibilities, ranks, setFormErrors, environment } = props;
@@ -24,8 +26,14 @@ function PlantAdd(props) {
   const descriptionField = useFormInput("");
   const edibilityField = useFormInput("");
   const rankField = useFormInput("");
-
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Adicionar planta</SingleHeader>
+    );
+  }, []);
 
   function onSuccess(response) {
     setIsSaving(false);
