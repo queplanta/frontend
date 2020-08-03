@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import {
   IconButton,
@@ -23,16 +23,23 @@ import Link from "../lib/Link.js";
 import DialogTitle from "../lib/DialogTitle.js";
 import { Width } from "../ui";
 import { TabsRoute, TabRoute } from "../lib/Tabs.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function Profile(props) {
+  const toolbarContext = useContext(ToolbarHeaderContext);
   const { classes, children, me, user: profile } = props;
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Perfil</SingleHeader>);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);

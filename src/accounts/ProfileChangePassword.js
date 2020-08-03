@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Grid, TextField, Hidden, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
@@ -9,14 +9,20 @@ import { useFormInput } from "../lib/forms.js";
 import Link from "../lib/Link.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function ProfileChangePassword({ environment, setFormErrors, me, classes }) {
   const { enqueueSnackbar } = useSnackbar();
   const old_password = useFormInput();
   const new_password1 = useFormInput();
   const new_password2 = useFormInput();
-
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Alterar senha</SingleHeader>);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();

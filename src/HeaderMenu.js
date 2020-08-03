@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Divider,
-  Link,
   Drawer,
   IconButton,
   MenuList,
@@ -13,7 +12,7 @@ import { Link as RouterLink } from "found";
 import MenuIcon from "@material-ui/icons/Menu";
 
 function HeaderMenu(props) {
-  const { classes, viewer } = props;
+  const { classes } = props;
   const [drawerOpen, setDrawerOpen] = useState(false);
   function handleDrawerToggle() {
     setDrawerOpen(!drawerOpen);

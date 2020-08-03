@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Grid, TextField, Hidden, withStyles } from "@material-ui/core";
 import slugify from "slugify";
@@ -14,14 +14,20 @@ import ProfileEditMutation from "./ProfileEdit.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function ProfileEdit({ environment, setFormErrors, me, classes }) {
+  const toolbarContext = useContext(ToolbarHeaderContext);
   const { enqueueSnackbar } = useSnackbar();
   const [username, setUsername] = useState(me.username);
   const firstName = useFormInput(me.firstName);
   const email = useFormInput(me.email);
-
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Editar perfil</SingleHeader>);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();

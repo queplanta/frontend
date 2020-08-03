@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Grid, Button, Hidden, withStyles } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useSnackbar } from "notistack";
@@ -8,13 +8,19 @@ import ProfileChangeAvatarMutation from "./ProfileChangeAvatar.mutation.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PageTitle from "../lib/PageTitle.js";
 import Link from "../lib/Link.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function ProfileChangeAvatar(props) {
   const { environment, setFormErrors, me, classes } = props;
-
   const { enqueueSnackbar } = useSnackbar();
   const [image, setImage] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Alterar foto</SingleHeader>);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
