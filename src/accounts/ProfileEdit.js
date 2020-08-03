@@ -18,13 +18,13 @@ import SingleHeader from "../lib/SingleHeader.js";
 import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function ProfileEdit({ environment, setFormErrors, me, classes }) {
-  const toolbarContext = useContext(ToolbarHeaderContext);
   const { enqueueSnackbar } = useSnackbar();
   const [username, setUsername] = useState(me.username);
   const firstName = useFormInput(me.firstName);
   const email = useFormInput(me.email);
   const [isSaving, setIsSaving] = useState(false);
 
+  const toolbarContext = useContext(ToolbarHeaderContext);
   useEffect(() => {
     toolbarContext.setToolbarHeader(<SingleHeader>Editar perfil</SingleHeader>);
   }, []);
