@@ -43,9 +43,7 @@ function RevisionItem(props) {
   const { router } = useRouter();
 
   useEffect(() => {
-    toolbarContext.setToolbarHeader(
-      <SingleHeader>Revisão: {revision.id}</SingleHeader>
-    );
+    toolbarContext.setToolbarHeader(<SingleHeader>Revisão</SingleHeader>);
   }, []);
 
   function handleRevisionRevert(e) {
