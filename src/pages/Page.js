@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Paper, withStyles } from "@material-ui/core";
 import { RelativeDate, Width } from "../ui";
@@ -8,9 +8,16 @@ import ProfileLink from "../accounts/ProfileLink.js";
 import NotFound from "./NotFound.js";
 import { hasPerm } from "../lib/perms.js";
 import JsxParser from "../lib/JsxParser.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Page(props) {
   const { classes, page, environment } = props;
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>{page.title}</SingleHeader>);
+  }, []);
 
   if (!page) {
     return <NotFound />;
