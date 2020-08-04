@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Grid, withStyles } from "@material-ui/core";
 import { RelativeDate, Width } from "../ui";
@@ -9,9 +9,16 @@ import CommentsList from "../comments/CommentsList.js";
 import { hasPerm } from "../lib/perms.js";
 import Link from "../lib/Link.js";
 import JsxParser from "../lib/JsxParser.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Post(props) {
   const { post, environment } = props;
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Blog</SingleHeader>);
+  }, []);
 
   return (
     <Width>

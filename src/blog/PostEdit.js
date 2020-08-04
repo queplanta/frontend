@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import moment from "moment";
 import { Grid, TextField, IconButton, withStyles } from "@material-ui/core";
@@ -15,6 +15,8 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import AddImage from "../images/AddImage.js";
 import ImageThumbnail from "../lib/ImageThumbnail.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function PostEdit({ classes, environment, setFormErrors, post }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -31,6 +33,11 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
   );
 
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(<SingleHeader>Editado post</SingleHeader>);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();

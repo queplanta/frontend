@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import moment from "moment";
 import { Grid, TextField, withStyles } from "@material-ui/core";
@@ -10,6 +10,8 @@ import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function PostCreate({ environment, classes, setFormErrors }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -22,6 +24,13 @@ function PostCreate({ environment, classes, setFormErrors }) {
   const tags = useFormInput("");
 
   const [isSaving, setIsSaving] = useState(false);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Escrever novo post</SingleHeader>
+    );
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
