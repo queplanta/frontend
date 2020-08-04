@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Button, Grid, withStyles } from "@material-ui/core";
 import { Link as RouterLink } from "found";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import OccurrencesMap from "./OccurrencesMap.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function Home(props) {
   const { classes, environment } = props;
-  console.log(props);
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Pedidos de identificação</SingleHeader>
+    );
+  }, []);
 
   // const [bounds, setBounds] = useState(null);
   // onViewportChanged={onViewportChanged}

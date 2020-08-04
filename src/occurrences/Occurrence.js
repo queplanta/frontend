@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { withStyles } from "@material-ui/core";
 import { Width } from "../ui";
@@ -7,12 +7,21 @@ import Link from "../lib/Link.js";
 import NotFound from "../pages/NotFound.js";
 import WhatIsThis from "./identify/WhatIsThis.js";
 import OccurrenceDetails from "./OccurrenceDetails.js";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function OccurrencePage(props) {
   const {
     occurrence,
     relay: { environment },
   } = props;
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Pedido de identificação</SingleHeader>
+    );
+  }, []);
 
   if (!occurrence) {
     return <NotFound />;

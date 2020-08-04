@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { QueryRenderer } from "react-relay";
 import {
   CardMedia,
@@ -16,9 +16,18 @@ import query from "./OccurrencesMap.query.js";
 import PlantLink from "../plants/PlantLink.js";
 // import { RelativeDate } from '../ui';
 import imgDefault from "../assets/plant-default.svg";
+import SingleHeader from "../lib/SingleHeader.js";
+import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
 
 function OccurrencesMap(props) {
   const { classes, environment, plantId, ...otherProps } = props;
+
+  const toolbarContext = useContext(ToolbarHeaderContext);
+  useEffect(() => {
+    toolbarContext.setToolbarHeader(
+      <SingleHeader>Mapa de Árvores</SingleHeader>
+    );
+  }, []);
 
   return (
     <MapGeolocated {...otherProps}>
