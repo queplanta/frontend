@@ -105,11 +105,21 @@ export class App extends Component {
       this.setState({ appbarPosition: "fixed" });
     }
     window.addEventListener("resize", this.updateDimensions);
+
+    const toolbarContext = this.context;
+    toolbarContext.setToolbarHeader(
+      <HeaderToolbar
+        viewer={this.props.viewer}
+        location={this.props.match.location}
+      />
+    );
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
   }
 }
+
+App.contextType = ToolbarHeaderContext;
 
 const styles = (theme) => ({
   pagelet: {
