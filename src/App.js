@@ -115,6 +115,7 @@ const styles = (theme) => ({
   pagelet: {
     [theme.breakpoints.down("xs")]: {
       paddingTop: 56,
+      paddingBottom: 56,
     },
   },
   appbar: {},

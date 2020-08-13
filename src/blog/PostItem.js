@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Hidden,
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
@@ -19,13 +20,15 @@ function PostItem(props) {
       <ListItemText>{post.title}</ListItemText>
       <ListItemSecondaryAction classes={{ root: classes.actionRoot }}>
         {/*<a href="#">{post.voting.countUps} gostaram</a>
-      {` . `}
-      <a href="#">{post.voting.countDowns} não gostaram</a>
-      {` . `}
-      <a href="#">{ post.commenting.count } comentarios</a>
-      {` . `}*/}
-        enviada por <ProfileLink user={post.revisionCreated.author} />
-        {` . `}
+          {` . `}
+          <a href="#">{post.voting.countDowns} não gostaram</a>
+          {` . `}
+          <a href="#">{ post.commenting.count } comentarios</a>
+          {` . `}*/}
+        <Hidden mdDown>
+          enviada por <ProfileLink user={post.revisionCreated.author} />
+          {` . `}
+        </Hidden>
         <RelativeDate date={post.publishedAt} />
       </ListItemSecondaryAction>
     </ListItem>

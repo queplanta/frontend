@@ -9,6 +9,7 @@ import {
   Link,
   Paper,
   Popper,
+  TableContainer,
   Table,
   TableHead,
   TableBody,
@@ -100,69 +101,71 @@ function RevisionList(props) {
         </Card>
       </Popper>
       <Paper>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Indice</TableCell>
-              <TableCell>Autor</TableCell>
-              <TableCell>Quando</TableCell>
-              <TableCell>Tipo</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {node.revisions &&
-              node.revisions.edges.map(function (edge, i) {
-                var revision = edge.node;
+        <TableContainer>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Indice</TableCell>
+                <TableCell>Autor</TableCell>
+                <TableCell>Quando</TableCell>
+                <TableCell>Tipo</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {node.revisions &&
+                node.revisions.edges.map(function (edge, i) {
+                  var revision = edge.node;
 
-                var current;
-                if (revision.isTip) {
-                  current = (
-                    <Chip
-                      icon={<DoneIcon />}
-                      label="Atual"
-                      size="small"
-                      className={classes.isCurrent}
-                    />
+                  var current;
+                  if (revision.isTip) {
+                    current = (
+                      <Chip
+                        icon={<DoneIcon />}
+                        label="Atual"
+                        size="small"
+                        className={classes.isCurrent}
+                      />
+                    );
+                  }
+
+                  return (
+                    <TableRow key={i}>
+                      <TableCell>
+                        {revision.index}ª:{" "}
+                        <Link
+                          to={`/revisions/revision/${revision.id}`}
+                          component={RouterLink}
+                        >
+                          {revision.idInt}
+                        </Link>{" "}
+                        {current}
+                      </TableCell>
+                      <TableCell>
+                        <ProfileLink user={revision.author} />
+                      </TableCell>
+                      <TableCell>
+                        <RelativeDate date={revision.createdAt} />
+                      </TableCell>
+                      <TableCell>{revision.typeDisplay}</TableCell>
+                      <TableCell>
+                        {revision.message && (
+                          <Tooltip title="Mensagem" placement="top">
+                            <IconButton
+                              color="primary"
+                              onClick={handleClick(true, `${revision.message}`)}
+                            >
+                              <MessageIcon />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                      </TableCell>
+                    </TableRow>
                   );
-                }
-
-                return (
-                  <TableRow key={i}>
-                    <TableCell>
-                      {revision.index}ª:{" "}
-                      <Link
-                        to={`/revisions/revision/${revision.id}`}
-                        component={RouterLink}
-                      >
-                        {revision.idInt}
-                      </Link>{" "}
-                      {current}
-                    </TableCell>
-                    <TableCell>
-                      <ProfileLink user={revision.author} />
-                    </TableCell>
-                    <TableCell>
-                      <RelativeDate date={revision.createdAt} />
-                    </TableCell>
-                    <TableCell>{revision.typeDisplay}</TableCell>
-                    <TableCell>
-                      {revision.message && (
-                        <Tooltip title="Mensagem" placement="top">
-                          <IconButton
-                            color="primary"
-                            onClick={handleClick(true, `${revision.message}`)}
-                          >
-                            <MessageIcon />
-                          </IconButton>
-                        </Tooltip>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </Width>
   );
