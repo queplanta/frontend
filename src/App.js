@@ -79,7 +79,7 @@ export class App extends Component {
                     </Hidden>
                     {this.props.children}
                   </div>
-                  <Hidden mdDown implementation="css">
+                  <Hidden xsDown implementation="css">
                     <Footer />
                   </Hidden>
                   <Hidden mdUp implementation="css">
