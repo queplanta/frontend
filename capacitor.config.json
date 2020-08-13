@@ -1,0 +1,17 @@
+{
+  "appId": "com.queplanta.app",
+  "appName": "Que Planta",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "server": {
+    "url": "https://queplanta.com",
+    "allowNavigation": ["https://queplanta.com"]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
