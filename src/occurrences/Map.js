@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Button, Tooltip, withStyles } from "@material-ui/core";
+import { Button, Tooltip, withStyles, TextField } from "@material-ui/core";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
+import SearchIcon from "@material-ui/icons/Search";
 // import markerIcon from "leaflet/dist/images/marker-icon.png";
 // import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import markerIconShadow from "leaflet/dist/images/marker-shadow.png";
@@ -65,6 +66,14 @@ export class Map extends Component {
     this.setState({ isLoading: false });
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.newZoom !== this.props.newZoom &&
+      prevProps.center[0] !== this.props.center[0]
+    )
+      this.setState({ zoom: this.props.newZoom });
+  }
+
   onZoom(e) {
     const { _zoom: zoom } = e.target;
     this.setState({ zoom });
@@ -74,6 +83,7 @@ export class Map extends Component {
     if (!LeafletMap || !LeafletMap | !TileLayer) return null;
 
     const { children, ...mapProps } = this.props;
+    console.log(mapProps.center);
     const { zoom } = this.state;
 
     return (
@@ -105,10 +115,13 @@ export const MapGeolocated = geolocated({
 
       this.state = {
         position: props.position || defaultPosition,
+        searchValue: "",
+        zoom: 14,
       };
 
       this.ref = React.createRef();
       this.toGoMyLocation = this.toGoMyLocation.bind(this);
+      this.handlerInputSearch = this.handlerInputSearch.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -126,18 +139,82 @@ export const MapGeolocated = geolocated({
       }
     }
 
+    handlerInputSearch(event) {
+      this.setState({ searchValue: event.target.value });
+    }
+
+    calcZoom(placeType) {
+      switch (placeType) {
+        case "address":
+          return 30;
+        case "country":
+          return 5;
+        case "region":
+          return 8;
+        case "district":
+          return 10;
+        case "place":
+          return 14;
+        case "locality":
+          return 18;
+        case "neighborhood":
+          return 24;
+        case "poi":
+          return 40;
+        default:
+          return 14;
+      }
+    }
+
+    getDataAPI() {
+      const { searchValue } = this.state;
+      fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?access_token=pk.eyJ1IjoicXVlcGxhbnRhIiwiYSI6ImNrOWRqemM2MzAycHQzaGxsd2RjMm02eGEifQ.hWRMUFwqlSf8nbEiJIE5BQ&fuzzyMatch=false&language=pt-BR`
+      )
+        .then((data) => data.json())
+        .then((json) => {
+          this.setState({
+            position: json.features[0].center.reverse(),
+            zoom: this.calcZoom(json.features[0].place_type[0]),
+          });
+        });
+    }
+
     toGoMyLocation(e) {
       e.preventDefault();
       e.stopPropagation();
-      this.ref.current.props.getLocation();
+      console.log(this.ref.current.props.getLocation);
+      this.setState({ zoom: 14 });
     }
 
     render() {
       const { children, ...mapProps } = this.props;
-      const { position } = this.state;
-
+      const { position, searchValue, zoom } = this.state;
       return (
-        <Map ref={this.ref} center={position} {...mapProps}>
+        <Map newZoom={zoom} ref={this.ref} center={position} {...mapProps}>
+          <div
+            style={{ position: "absolute", top: 20, right: 20, zIndex: 1000 }}
+          >
+            <TextField
+              size="small"
+              label="Endereço"
+              variant="outlined"
+              value={searchValue}
+              onChange={(event) => this.handlerInputSearch(event)}
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
+            />
+            <Button
+              size="large"
+              color="primary"
+              variant="contained"
+              aria-label="add"
+              onClick={() => {
+                this.getDataAPI();
+              }}
+            >
+              <SearchIcon />
+            </Button>
+          </div>
           {children}
           <Tooltip title="Minha localização atual" placement="top">
             <MapButton
