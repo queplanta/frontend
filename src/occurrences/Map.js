@@ -82,15 +82,15 @@ export class Map extends Component {
   render() {
     if (!LeafletMap || !LeafletMap | !TileLayer) return null;
 
-    const { children, ...mapProps } = this.props;
-    console.log(mapProps.center);
-    const { zoom } = this.state;
+    const { children, mapRef, ...mapProps } = this.props;
+    const { zoom, viewport } = this.state;
 
     return (
       <LeafletMap
         zoom={zoom}
         onZoom={this.onZoom}
         attributionControl={false}
+        ref={mapRef}
         {...mapProps}
       >
         {/*<TileLayer
@@ -143,29 +143,6 @@ export const MapGeolocated = geolocated({
       this.setState({ searchValue: event.target.value });
     }
 
-    calcZoom(placeType) {
-      switch (placeType) {
-        case "address":
-          return 30;
-        case "country":
-          return 5;
-        case "region":
-          return 8;
-        case "district":
-          return 10;
-        case "place":
-          return 14;
-        case "locality":
-          return 18;
-        case "neighborhood":
-          return 24;
-        case "poi":
-          return 40;
-        default:
-          return 14;
-      }
-    }
-
     getDataAPI() {
       const { searchValue } = this.state;
       fetch(
@@ -173,25 +150,26 @@ export const MapGeolocated = geolocated({
       )
         .then((data) => data.json())
         .then((json) => {
-          this.setState({
-            position: json.features[0].center.reverse(),
-            zoom: this.calcZoom(json.features[0].place_type[0]),
-          });
+          const location = json.features[0];
+          this.ref.current.leafletElement.fitBounds([
+            [location.bbox[1], location.bbox[0]],
+            [location.bbox[3], location.bbox[2]],
+          ]);
         });
     }
 
     toGoMyLocation(e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log(this.ref.current.props.getLocation);
       this.setState({ zoom: 14 });
     }
 
     render() {
       const { children, ...mapProps } = this.props;
       const { position, searchValue, zoom } = this.state;
+
       return (
-        <Map newZoom={zoom} ref={this.ref} center={position} {...mapProps}>
+        <Map newZoom={zoom} mapRef={this.ref} center={position} {...mapProps}>
           <div
             style={{ position: "absolute", top: 20, right: 20, zIndex: 1000 }}
           >
