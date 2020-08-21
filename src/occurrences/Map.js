@@ -1,5 +1,16 @@
 import React, { Component } from "react";
-import { Button, Tooltip, withStyles, TextField } from "@material-ui/core";
+import {
+  Button,
+  Tooltip,
+  withStyles,
+  FormControl,
+  InputLabel,
+  FilledInput,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
+
 import MyLocationIcon from "@material-ui/icons/MyLocation";
 import SearchIcon from "@material-ui/icons/Search";
 // import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -116,7 +127,7 @@ export const MapGeolocated = geolocated({
       this.state = {
         position: props.position || defaultPosition,
         searchValue: "",
-        zoom: 14,
+        error: null,
       };
 
       this.ref = React.createRef();
@@ -126,12 +137,16 @@ export const MapGeolocated = geolocated({
 
     componentDidUpdate(prevProps, prevState) {
       const { coords, onPositionChange } = this.props;
-      const { position } = this.state;
+      const { position, error, searchValue } = this.state;
       if (
         position !== prevState.position &&
         typeof onPositionChange === "function"
       ) {
         onPositionChange(position);
+      }
+
+      if (error && error.triedSearchValue !== searchValue) {
+        this.setState({ error: null });
       }
 
       if (coords !== prevProps.coords) {
@@ -145,17 +160,41 @@ export const MapGeolocated = geolocated({
 
     getDataAPI() {
       const { searchValue } = this.state;
-      fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?access_token=pk.eyJ1IjoicXVlcGxhbnRhIiwiYSI6ImNrOWRqemM2MzAycHQzaGxsd2RjMm02eGEifQ.hWRMUFwqlSf8nbEiJIE5BQ&fuzzyMatch=false&language=pt-BR`
-      )
-        .then((data) => data.json())
-        .then((json) => {
-          const location = json.features[0];
-          this.ref.current.leafletElement.fitBounds([
-            [location.bbox[1], location.bbox[0]],
-            [location.bbox[3], location.bbox[2]],
-          ]);
+      const MAPBOX_API_KEY =
+        "pk.eyJ1IjoicXVlcGxhbnRhIiwiYSI6ImNrOWRqemM2MzAycHQzaGxsd2RjMm02eGEifQ.hWRMUFwqlSf8nbEiJIE5BQ";
+      if (searchValue.length) {
+        fetch(
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?access_token=${MAPBOX_API_KEY}&fuzzyMatch=false&language=pt-BR`
+        )
+          .then((data) => data.json())
+          .then((json) => {
+            if (
+              json.features &&
+              json.features.length &&
+              json.features[0].bbox
+            ) {
+              const location = json.features[0];
+              this.ref.current.leafletElement.fitBounds([
+                [location.bbox[1], location.bbox[0]],
+                [location.bbox[3], location.bbox[2]],
+              ]);
+            } else {
+              this.setState({
+                error: {
+                  msg: "Nenhum resultado encontrado!",
+                  triedSearchValue: searchValue,
+                },
+              });
+            }
+          });
+      } else {
+        this.setState({
+          error: {
+            msg: "O campo de busca não pode estar vazio",
+            triedSearchValue: searchValue,
+          },
         });
+      }
     }
 
     toGoMyLocation(e) {
@@ -166,33 +205,64 @@ export const MapGeolocated = geolocated({
 
     render() {
       const { children, ...mapProps } = this.props;
-      const { position, searchValue, zoom } = this.state;
+      const { position, searchValue, error } = this.state;
 
       return (
-        <Map newZoom={zoom} mapRef={this.ref} center={position} {...mapProps}>
-          <div
-            style={{ position: "absolute", top: 20, right: 20, zIndex: 1000 }}
+        <Map mapRef={this.ref} center={position} {...mapProps}>
+          <form
+            style={{
+              position: "absolute",
+              width: "25%",
+              top: 10,
+              right: 10,
+              zIndex: 1000,
+            }}
+            autoComplete="off"
+            onClick={(e) => e.stopPropagation()}
+            onDoubleClick={(e) => e.stopPropagation()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              this.getDataAPI();
+            }}
           >
-            <TextField
-              size="small"
-              label="Endereço"
-              variant="outlined"
-              value={searchValue}
-              onChange={(event) => this.handlerInputSearch(event)}
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
-            />
-            <Button
-              size="large"
-              color="primary"
-              variant="contained"
-              aria-label="add"
-              onClick={() => {
-                this.getDataAPI();
-              }}
+            <FormControl
+              variant="filled"
+              style={{ width: "100%" }}
+              error={!!error}
+              onDoubleClick={(e) => e.stopPropagation()}
             >
-              <SearchIcon />
-            </Button>
-          </div>
+              <InputLabel style={{ fontSize: "14px" }} htmlFor="input-map">
+                Buscar por endereço
+              </InputLabel>
+              <FilledInput
+                id="input-map"
+                value={searchValue}
+                style={{ backgroundColor: "rgba(255,255,255,0.65)" }}
+                onClick={(e) => e.stopPropagation()}
+                onDoubleClick={(e) => e.stopPropagation()}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton type="submit" edge="end">
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+                onChange={(event) => this.handlerInputSearch(event)}
+              />
+              {error && (
+                <Alert
+                  severity="error"
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.65)",
+                    marginTop: "10px",
+                  }}
+                >
+                  <AlertTitle>Erro ao buscar endereço.</AlertTitle>
+                  {error.msg}
+                </Alert>
+              )}
+            </FormControl>
+          </form>
           {children}
           <Tooltip title="Minha localização atual" placement="top">
             <MapButton
@@ -227,7 +297,7 @@ export class Popup extends Component {
   }
 }
 
-export const MapButton = withStyles({
+const style = () => ({
   root: {
     background: "white",
     minWidth: 0,
@@ -236,4 +306,6 @@ export const MapButton = withStyles({
     padding: "3px 3px",
     borderWidth: "2px",
   },
-})(Button);
+});
+
+export const MapButton = withStyles(style)(Button);
