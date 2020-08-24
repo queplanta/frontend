@@ -8,6 +8,7 @@ import { TabsRoute, TabRoute } from "../lib/Tabs.js";
 import { Width } from "../ui";
 import PlantList from "./PlantList.js";
 import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 export class PlantsHome extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export class PlantsHome extends Component {
 
     return (
       <Width>
+        <BreadcrumbsItem to="/plantas">Plantas</BreadcrumbsItem>
         <Helmet title={title} />
         <Hidden mdUp implementation="css">
           <Paper className={classes.paper}>

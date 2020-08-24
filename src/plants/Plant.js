@@ -28,6 +28,7 @@ import CollectionItem from "./buttons/CollectionItem.js";
 import DeleteButton from "../lib/DeleteButton.js";
 import PlantDeleteMutation from "./PlantDelete.mutation.js";
 import { ToolbarHeaderContext } from "../ToolbarHeaderContext.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Plant(props) {
   const toolbarContext = useContext(ToolbarHeaderContext);
@@ -54,6 +55,10 @@ function Plant(props) {
   return (
     <Width>
       <Helmet title={pageTitle} />
+      <BreadcrumbsItem to="/plantas">Plantas</BreadcrumbsItem>
+      <BreadcrumbsItem to={`/${plant.slug}-p${plant.idInt}`}>
+        Plantas
+      </BreadcrumbsItem>
       {commonName ? (
         <PageTitle className={classes.pageTitle}>
           {commonName}{" "}

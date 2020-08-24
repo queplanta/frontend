@@ -17,6 +17,9 @@ import { LoginRequiredProvider } from "./accounts/LoginRequired.js";
 import Jumbotron from "./Jumbotron.js";
 import { ToolbarHeaderContext } from "./ToolbarHeaderContext.js";
 import "./index.css";
+import { ThroughProvider } from "react-through";
+import { Breadcrumbs, BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+import { Link as RouterLink } from "found";
 
 export class App extends Component {
   constructor(props) {
@@ -44,51 +47,59 @@ export class App extends Component {
     return (
       <IntlProvider locale="pt-BR">
         <ThemeProvider theme={theme}>
-          <SnackbarProvider maxSnack={3}>
-            <LoginRequiredProvider viewer={viewer}>
-              <PageviewTracking>
-                <ToolbarHeaderContext.Provider
-                  value={{
-                    header: this.state.toolbarHeader,
-                    setToolbarHeader: this.setToolbarHeader,
-                    location: pathname,
-                  }}
-                >
-                  <CssBaseline />
-                  <Helmet
-                    titleTemplate="%s | Que Planta"
-                    defaultTitle="Que Planta - Conectando Pessoas e Plantas"
-                  />
-                  <AppBar
-                    position={appbarPosition}
-                    className={clsx(classes.bgNv, classes.appbar)}
+          <ThroughProvider>
+            <SnackbarProvider maxSnack={3}>
+              <LoginRequiredProvider viewer={viewer}>
+                <PageviewTracking>
+                  <ToolbarHeaderContext.Provider
+                    value={{
+                      header: this.state.toolbarHeader,
+                      setToolbarHeader: this.setToolbarHeader,
+                      location: pathname,
+                    }}
                   >
-                    <ToolbarHeaderContext.Consumer>
-                      {({ header }) => <>{header}</>}
-                    </ToolbarHeaderContext.Consumer>
-                  </AppBar>
-
-                  <div className={classes.pagelet}>
-                    <Hidden mdUp implementation="css">
-                      {(!viewer.me || !viewer.me.isAuthenticated) &&
-                        isHomeRoute && (
-                          <Jumbotron
-                            className={clsx(classes.bgNv, classes.jumbotron)}
-                          />
-                        )}
+                    <CssBaseline />
+                    <Helmet
+                      titleTemplate="%s | Que Planta"
+                      defaultTitle="Que Planta - Conectando Pessoas e Plantas"
+                    />
+                    <AppBar
+                      position={appbarPosition}
+                      className={clsx(classes.bgNv, classes.appbar)}
+                    >
+                      <ToolbarHeaderContext.Consumer>
+                        {({ header }) => <>{header}</>}
+                      </ToolbarHeaderContext.Consumer>
+                    </AppBar>
+                    <Breadcrumbs
+                      hideIfEmpty={true}
+                      separator={<b> / </b>}
+                      item={RouterLink}
+                      finalItem={"b"}
+                    />
+                    <BreadcrumbsItem to="/">Main Page</BreadcrumbsItem>
+                    <div className={classes.pagelet}>
+                      <Hidden mdUp implementation="css">
+                        {(!viewer.me || !viewer.me.isAuthenticated) &&
+                          isHomeRoute && (
+                            <Jumbotron
+                              className={clsx(classes.bgNv, classes.jumbotron)}
+                            />
+                          )}
+                      </Hidden>
+                      {this.props.children}
+                    </div>
+                    <Hidden xsDown implementation="css">
+                      <Footer />
                     </Hidden>
-                    {this.props.children}
-                  </div>
-                  <Hidden xsDown implementation="css">
-                    <Footer />
-                  </Hidden>
-                  <Hidden mdUp implementation="css">
-                    <BottomNavbar viewer={viewer} />
-                  </Hidden>
-                </ToolbarHeaderContext.Provider>
-              </PageviewTracking>
-            </LoginRequiredProvider>
-          </SnackbarProvider>
+                    <Hidden mdUp implementation="css">
+                      <BottomNavbar viewer={viewer} />
+                    </Hidden>
+                  </ToolbarHeaderContext.Provider>
+                </PageviewTracking>
+              </LoginRequiredProvider>
+            </SnackbarProvider>
+          </ThroughProvider>
         </ThemeProvider>
       </IntlProvider>
     );
