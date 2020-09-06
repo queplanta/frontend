@@ -106,7 +106,7 @@ function OccurrencesMap(props) {
                             Adicionada por:{" "}
                             <ProfileLink user={occurrence.author} />
                             {/*<br />
-                      <RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />*/}
+                            <RelativeDate prefix="Publicado" date={occurrence.revisionCreated.createdAt} />*/}
                           </CardContent>
                         </div>
                       </div>

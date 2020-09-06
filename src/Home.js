@@ -1,17 +1,12 @@
 import React from "react";
 import Route from "./relay/RouteWithLoading";
 import { withStyles } from "@material-ui/core";
-import { Width } from "./ui";
 import HomeQuery from "./Home.query.js";
 import OccurrencesMap from "./occurrences/OccurrencesMap.js";
 
 function Home(props) {
   const { classes, environment } = props;
-  return (
-    <Width component="div">
-      <OccurrencesMap className={classes.map} environment={environment} />
-    </Width>
-  );
+  return <OccurrencesMap className={classes.map} environment={environment} />;
 }
 
 const styles = (theme) => ({
@@ -25,7 +20,7 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(2),
   },
   map: {
-    height: 500,
+    height: "calc(100vh - 56px - 56px)" /* minus footer and header */,
   },
 });
 
