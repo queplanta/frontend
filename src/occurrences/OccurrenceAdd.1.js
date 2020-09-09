@@ -30,7 +30,7 @@ function OccurrenceAddStepOne({
     if (images.length === 0) {
       fileRef.current.click();
     }
-  }, []);
+  }, [images.length]);
 
   function onChange(e) {
     for (var i = 0; i < e.target.files.length; i++) {
