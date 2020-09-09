@@ -68,7 +68,7 @@ function OccurrenceAdd({
           ? "Você começou a preencher o formulário. Tem certeza que deseja descartar as alterações?"
           : true
       ),
-    [router]
+    [router, images.length]
   );
 
   const handleNext = () => {
