@@ -1,6 +1,5 @@
 import React from "react";
-import { Grid, Paper, Typography, Button, withStyles } from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
+import { Grid, Paper, Typography, withStyles } from "@material-ui/core";
 import _ from "lodash";
 import { createFragmentContainer } from "react-relay";
 import { Map, Marker } from "./Map.js";
