@@ -21,7 +21,7 @@ function OccurrencePage(props) {
   let headerTitle = `Pedido de identificação: ${occurrence.idInt}`;
   let title = `Pedido de identificação: ${occurrence.idInt}`;
 
-  if (!occurrence.isRequest) {
+  if (!occurrence.isRequest && occurrence.identity !== null) {
     const plant = occurrence.identity;
     const plantTitle = plant.commonName
       ? `${plant.commonName.name} (${plant.title})`
@@ -43,7 +43,7 @@ function OccurrencePage(props) {
       </Helmet>
       <PageTitle>{title}</PageTitle>
 
-      {occurrence.isRequest ? (
+      {occurrence.isRequest || occurrence.identity === null ? (
         <WhatIsThis occurrence={occurrence} environment={environment} />
       ) : (
         <OccurrenceDetails occurrence={occurrence} environment={environment} />
