@@ -8,6 +8,8 @@ import ProfileLink from "../accounts/ProfileLink.js";
 import NotFound from "./NotFound.js";
 import { hasPerm } from "../lib/perms.js";
 import JsxParser from "../lib/JsxParser.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Page(props) {
   const { classes, page, environment } = props;
@@ -19,6 +21,9 @@ function Page(props) {
   return (
     <Width>
       <Helmet title={page.title} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/${page.url}`}>{page.title}</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Paper className={classes.root}>
         <PageTitle>{page.title}</PageTitle>
         <JsxParser jsx={page.body} environment={environment} />

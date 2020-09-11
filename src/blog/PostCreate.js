@@ -10,6 +10,8 @@ import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PostCreate({ environment, classes, setFormErrors }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -52,6 +54,10 @@ function PostCreate({ environment, classes, setFormErrors }) {
   return (
     <React.Fragment>
       <Helmet title="Escrever novo Post" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/blog">Blog</BreadcrumbsItem>
+        <BreadcrumbsItem to="/blog/novo">Escrever novo Post</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid
         container
         spacing={3}

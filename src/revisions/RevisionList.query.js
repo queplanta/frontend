@@ -29,14 +29,18 @@ const query = graphql`
 
       ... on Post {
         title
+        url
       }
 
       ... on Page {
         title
+        url
       }
 
       ... on LifeNode {
+        idInt
         title
+        slug
       }
     }
   }

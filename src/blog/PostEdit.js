@@ -15,6 +15,8 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import AddImage from "../images/AddImage.js";
 import ImageThumbnail from "../lib/ImageThumbnail.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PostEdit({ classes, environment, setFormErrors, post }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -77,6 +79,12 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
   return (
     <React.Fragment>
       <Helmet title={`Editando Post: ${post.title}`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/blog">Blog</BreadcrumbsItem>
+        <BreadcrumbsItem
+          to={`/blog/${post.id}/editar`}
+        >{`Editando Post: ${post.title}`}</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid
         container
         spacing={3}

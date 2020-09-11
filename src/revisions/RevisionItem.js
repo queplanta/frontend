@@ -30,6 +30,8 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import ProfileLink from "../accounts/ProfileLink.js";
 import { useLoginRequired } from "../accounts/LoginRequired.js";
 import RevisionRevertMutation from "./RevisionRevert.mutation.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function RevisionItem(props) {
   const { environment, classes, revision } = props;
@@ -80,6 +82,16 @@ function RevisionItem(props) {
   revision_pretty_text["Page"] = "Página";
   revision_pretty_text["Suggestion"] = "Sugestão";
   revision_pretty_text["SuggestionID"] = "Sugestão";
+
+  var objectUrl;
+  if (object.__typename === "Post") {
+    objectUrl = `/blog/${object.url}`;
+  } else if (object.__typename === "Page") {
+    objectUrl = `/${object.url}`;
+  } else if (object.__typename === "Comment") {
+  } else if (object.__typename === "LifeNode") {
+    objectUrl = `/${object.slug}-p${object.idInt}`;
+  }
 
   if (object.__typename === "Comment") {
     var comment = object;
@@ -304,6 +316,15 @@ function RevisionItem(props) {
   return (
     <Width>
       <Helmet title={`Revisão: ${revision.id}`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={objectUrl}>{object.title}</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/revisions/${object.id}`}>
+          Historico de alterações
+        </BreadcrumbsItem>
+        <BreadcrumbsItem to={`/revisions/revision/${revision.id}`}>
+          Revisão
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       {not_current_alert}
       <Card className={classes.cardRoot}>
         <CardContent>

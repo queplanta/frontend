@@ -9,6 +9,8 @@ import CommentsList from "../comments/CommentsList.js";
 import { hasPerm } from "../lib/perms.js";
 import Link from "../lib/Link.js";
 import JsxParser from "../lib/JsxParser.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Post(props) {
   const { post, environment } = props;
@@ -16,6 +18,10 @@ function Post(props) {
   return (
     <Width>
       <Helmet title={post.title} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/blog">Blog</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/blog/${post.url}`}>{post.title}</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <PageTitle>{post.title}</PageTitle>

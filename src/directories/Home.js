@@ -4,6 +4,8 @@ import { Box, Paper, Typography, withStyles } from "@material-ui/core";
 import { Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";
 import { TabsRoute, TabRoute } from "../lib/Tabs.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Home(props) {
   const {
@@ -43,6 +45,11 @@ function Home(props) {
   return (
     <Width>
       <Helmet title={`Diretório de membros - ${params.letter.toUpperCase()}`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/diretorio/membros/${params.letter}`}>
+          Membros
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Paper className={classes.root}>
         <PageTitle>Diretório de membros</PageTitle>
         <Typography variant="body2" component="p">

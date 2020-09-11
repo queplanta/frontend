@@ -6,6 +6,8 @@ import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import PlantList from "./PlantList.js";
 import { TabsRoute, TabRoute } from "../lib/Tabs.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 export class PlantsHome extends Component {
   constructor(props) {
@@ -38,6 +40,13 @@ export class PlantsHome extends Component {
     return (
       <Width>
         <Helmet title={title} />
+        <BreadcrumbsWithHome>
+          <BreadcrumbsItem
+            to={relay.variables.edibles ? `/plantas/comestíveis` : `/plantas`}
+          >
+            {title}
+          </BreadcrumbsItem>
+        </BreadcrumbsWithHome>
         <Hidden mdUp implementation="css">
           <Paper className={classes.paper}>
             <form className={classes.search} onSubmit={this.handleSearch}>

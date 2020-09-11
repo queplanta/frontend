@@ -23,6 +23,8 @@ import Link from "../lib/Link.js";
 import DialogTitle from "../lib/DialogTitle.js";
 import { Width } from "../ui";
 import { TabsRoute, TabRoute } from "../lib/Tabs.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -52,6 +54,11 @@ function Profile(props) {
   return (
     <Width>
       <Helmet title={`${profile.firstName} (${profile.username}) | Membros`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={baseUrl}>
+          Perfil de {profile.firstName}
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container spacing={3}>
         <Grid className={classes.textAlignCenter} item xs={4} md={2}>
           <Avatar

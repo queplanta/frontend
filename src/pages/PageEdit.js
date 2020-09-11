@@ -15,6 +15,8 @@ import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import AddImage from "../images/AddImage.js";
 import ImageThumbnail from "../lib/ImageThumbnail.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PageEdit({ classes, environment, setFormErrors, page }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -74,6 +76,11 @@ function PageEdit({ classes, environment, setFormErrors, page }) {
   return (
     <React.Fragment>
       <Helmet title={`Editando Página: ${page.title}`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/paginas/${page.id}/editar`}>
+          {`Editando Página: ${page.title}`}
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid
         container
         spacing={3}

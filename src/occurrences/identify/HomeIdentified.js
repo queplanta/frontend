@@ -4,6 +4,8 @@ import { withStyles } from "@material-ui/core";
 import HomeTabs from "./HomeTabs.js";
 import PageTitle from "../../lib/PageTitle.js";
 import LatestWhatIsThis from "./LatestWhatIsThis.js";
+import BreadcrumbsWithHome from "../../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Home(props) {
   const { viewer, environment } = props;
@@ -11,6 +13,12 @@ function Home(props) {
   return (
     <HomeTabs>
       <Helmet title="Identificação" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/identificacao">Identificação</BreadcrumbsItem>
+        <BreadcrumbsItem to="/identificacao/identificadas">
+          Identificadas
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <PageTitle>Últimos pedidos de identificação</PageTitle>
       <LatestWhatIsThis
         identified={true}
