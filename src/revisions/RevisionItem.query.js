@@ -56,6 +56,7 @@ const query = graphql`
         ... on Post {
           title
           body
+          url
           publishedAt
           tags(first: 50) {
             edges {
@@ -70,11 +71,14 @@ const query = graphql`
         ... on Page {
           title
           body
+          url
           publishedAt
         }
 
         ... on LifeNode {
+          idInt
           title
+          slug
           description
           edibility
           edibilityDisplay

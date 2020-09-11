@@ -65,14 +65,14 @@ export const accountsRoutes = (
     </Route>
     <Route path="/conta" Component={ProfileSettings}>
       <Route
-        path="editar"
+        path="/editar"
         query={ProfileEditQuery}
         render={(args) => {
           return <ProfileEdit {...args.props} environment={args.environment} />;
         }}
       />
       <Route
-        path="editar/senha"
+        path="/editar/senha"
         query={ProfileChangePasswordQuery}
         render={(args) => {
           return (
@@ -84,7 +84,7 @@ export const accountsRoutes = (
         }}
       />
       <Route
-        path="editar/avatar"
+        path="/editar/avatar"
         query={ProfileChangeAvatarQuery}
         render={(args) => {
           return (
@@ -97,7 +97,7 @@ export const accountsRoutes = (
       />
     </Route>
     <Route
-      path="conta/resetar-senha/:uidb64/:token"
+      path="/conta/resetar-senha/:uidb64/:token"
       query={ResetPasswordCompleteQuery}
       render={(args) => {
         return (

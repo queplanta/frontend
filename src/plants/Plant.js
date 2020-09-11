@@ -26,6 +26,8 @@ import WishItem from "./buttons/WishItem.js";
 import CollectionItem from "./buttons/CollectionItem.js";
 import DeleteButton from "../lib/DeleteButton.js";
 import PlantDeleteMutation from "./PlantDelete.mutation.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Plant(props) {
   const { classes, plant, relay, children } = props;
@@ -47,6 +49,12 @@ function Plant(props) {
   return (
     <Width>
       <Helmet title={pageTitle} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/plantas">Plantas</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/${plant.slug}-p${plant.idInt}`}>
+          {plant.title}
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       {commonName ? (
         <PageTitle className={classes.pageTitle}>
           {commonName}{" "}

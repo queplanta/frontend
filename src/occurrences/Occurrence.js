@@ -7,6 +7,8 @@ import Link from "../lib/Link.js";
 import NotFound from "../pages/NotFound.js";
 import WhatIsThis from "./identify/WhatIsThis.js";
 import OccurrenceDetails from "./OccurrenceDetails.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function OccurrencePage(props) {
   const {
@@ -41,6 +43,12 @@ function OccurrencePage(props) {
       <Helmet title={headerTitle}>
         <meta name="robots" content="noindex" />
       </Helmet>
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/observacoes/${occurrence.id}`}>
+          {headerTitle}
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
+
       <PageTitle>{title}</PageTitle>
 
       {occurrence.isRequest || occurrence.identity === null ? (

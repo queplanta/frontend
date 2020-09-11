@@ -14,6 +14,8 @@ import ProfileEditMutation from "./ProfileEdit.mutation.js";
 import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function ProfileEdit({ environment, setFormErrors, me, classes }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -63,6 +65,10 @@ function ProfileEdit({ environment, setFormErrors, me, classes }) {
   return (
     <React.Fragment>
       <Helmet title="Editar perfil" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/u/${me.username}`}>Perfil</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/conta/editar`}>Editar</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
         <Grid item xs={12}>
           <PageTitle>Editar Perfil</PageTitle>

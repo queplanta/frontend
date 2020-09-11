@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Grid, Button, Hidden, withStyles } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useSnackbar } from "notistack";
@@ -8,6 +9,8 @@ import ProfileChangeAvatarMutation from "./ProfileChangeAvatar.mutation.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PageTitle from "../lib/PageTitle.js";
 import Link from "../lib/Link.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function ProfileChangeAvatar(props) {
   const { environment, setFormErrors, me, classes } = props;
@@ -15,6 +18,8 @@ function ProfileChangeAvatar(props) {
   const { enqueueSnackbar } = useSnackbar();
   const [image, setImage] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+
+  const pageTitle = "Alterar imagem de exibição";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -51,9 +56,14 @@ function ProfileChangeAvatar(props) {
 
   return (
     <React.Fragment>
+      <Helmet title={pageTitle} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/u/${me.username}`}>Perfil</BreadcrumbsItem>
+        <BreadcrumbsItem to="/conta/editar/avatar">{pageTitle}</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container spacing={3} component="form" onSubmit={handleSubmit}>
         <Grid item xs={12}>
-          <PageTitle>Alterar imagem de exibição</PageTitle>
+          <PageTitle>{pageTitle}</PageTitle>
           <FormErrors />
         </Grid>
         <Grid item xs={12}>

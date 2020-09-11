@@ -13,6 +13,8 @@ import {
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PlantEditMutation from "./PlantEdit.mutation.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Plant(props) {
   const {
@@ -66,6 +68,12 @@ function Plant(props) {
   return (
     <Width>
       <Helmet title={`Editando: ${plant.title}`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/plantas">Plantas</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/${plant.slug}-p${plant.idInt}/editar`}>
+          {`Editando: ${plant.title}`}
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <PageTitle>Editando: {plant.title}</PageTitle>
       <Grid container spacing={3}>
         <Grid item xs={12}>

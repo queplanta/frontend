@@ -32,6 +32,8 @@ import PageTitle from "../lib/PageTitle.js";
 import { defaultPosition } from "./Map.js";
 import { useLoginRequired } from "../accounts/LoginRequired.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 import StepOne from "./OccurrenceAdd.1.js";
 import StepTwo from "./OccurrenceAdd.2.js";
@@ -356,6 +358,11 @@ function OccurrenceAdd({
   return (
     <Width component="div">
       <Helmet title="Adicionar localização de uma espécie ou pedido de identificação por foto" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/adicionar">
+          Adicionar localização ou pedido de identificação
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <PageTitle>
         Adicionar localização de espécie ou pedir identificação por foto
       </PageTitle>

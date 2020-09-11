@@ -10,6 +10,8 @@ import { useFormInput } from "../lib/forms.js";
 import PageTitle from "../lib/PageTitle.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import JsxPreviewField from "../lib/JsxPreviewField.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PageCreate({ classes, environment, setFormErrors }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -53,6 +55,11 @@ function PageCreate({ classes, environment, setFormErrors }) {
   return (
     <React.Fragment>
       <Helmet title="Escrever nova Página" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={`/paginas/nova`}>
+          Escrever nova Página
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid
         container
         spacing={3}

@@ -5,6 +5,8 @@ import { Link as RouterLink } from "found";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import OccurrencesMap from "./OccurrencesMap.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function Home(props) {
   const { classes, environment } = props;
@@ -20,6 +22,9 @@ function Home(props) {
   return (
     <Width>
       <Helmet title="Mapa de Árvores" />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/mapa">Mapa de Árvores</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container>
         <Grid item xs={12} sm={6}>
           <PageTitle>Mapa de Árvores</PageTitle>

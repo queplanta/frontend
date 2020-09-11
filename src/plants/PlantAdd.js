@@ -14,6 +14,8 @@ import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
 import PlantSelectField from "./PlantSelectField.js";
 import PlantAddMutation from "./PlantAdd.mutation.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PlantAdd(props) {
   const { classes, edibilities, ranks, setFormErrors, environment } = props;
@@ -61,6 +63,12 @@ function PlantAdd(props) {
   return (
     <Width>
       <Helmet title={`Adicionar Planta`} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to="/plantas">Plantas</BreadcrumbsItem>
+        <BreadcrumbsItem to="/plantas/adicionar">
+          Adicionar Planta
+        </BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <PageTitle>Adicionar Planta</PageTitle>
       <Grid container spacing={3}>
         <Grid item xs={12}>
