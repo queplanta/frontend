@@ -926,7 +926,21 @@
                 {
                   "defaultValue": null,
                   "description": null,
+<<<<<<< HEAD
                   "name": "first",
+=======
+                  "name": "author",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "withinBbox",
+>>>>>>> c601549... users' occurrences
                   "type": {
                     "kind": "SCALAR",
                     "name": "Int",
@@ -1037,6 +1051,16 @@
                   "defaultValue": null,
                   "description": null,
                   "name": "identity",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "author",
                   "type": {
                     "kind": "SCALAR",
                     "name": "ID",
@@ -1396,42 +1420,66 @@
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "Page",
+=======
+              "name": "Occurrence",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "LifeNode",
+=======
+              "name": "Image",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "CommonName",
+=======
+              "name": "SuggestionID",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "Characteristic",
+=======
+              "name": "Post",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "CollectionItem",
+=======
+              "name": "Imaging",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "WishItem",
+=======
+              "name": "Tag",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "Page",
               "ofType": null
             },
             {
               "kind": "OBJECT",
-              "name": "LifeNode",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "CommonName",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
               "name": "Characteristic",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "CollectionItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "WishItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Occurrence",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "SuggestionID",
               "ofType": null
             },
             {
@@ -2738,7 +2786,1190 @@
               }
             },
             {
+<<<<<<< HEAD
               "args": [
+=======
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "CommentsNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "VotesNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "LifeNode",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "idInt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "myPerms",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "document",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Document",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisionCurrent",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisionCreated",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "INTERFACE",
+          "name": "DocumentNode",
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "LifeNode",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "CollectionItem",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Comment",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Vote",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "WishItem",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Occurrence",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Image",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SuggestionID",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Post",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Tag",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Page",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Characteristic",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "CommonName",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "List",
+              "ofType": null
+            }
+          ]
+        },
+        {
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31 - 1) and 2^31 - 1 since represented in JSON as double-precision floating point numbers specifiedby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Int",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "String",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The ID of the object.",
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "owner",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "privacy",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "DocumentIDPrivacy",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revisionsCount",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revisionTipId",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revisionCreatedId",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "createdAt",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "updatedAt",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "deletedAt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "owns",
+              "type": {
+                "kind": "OBJECT",
+                "name": "DocumentConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revisionSet",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "authoredRevisions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "publishedAt",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "postImage",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "publishedAt",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "postMainImage",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "publishedAt",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "postTagged",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "pageImage",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PageConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "comments",
+              "type": {
+                "kind": "OBJECT",
+                "name": "CommentConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "votes",
+              "type": {
+                "kind": "OBJECT",
+                "name": "VoteConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "votesAuthor",
+              "type": {
+                "kind": "OBJECT",
+                "name": "VoteConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "children",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "lifeNodeCommonname",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "lifeNodeImage",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "characteristicTag",
+              "type": {
+                "kind": "OBJECT",
+                "name": "CharacteristicConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+>>>>>>> c601549... users' occurrences
                 {
                   "defaultValue": null,
                   "description": null,
@@ -3817,6 +5048,217 @@
                   }
                 }
               ],
+<<<<<<< HEAD
+=======
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "wishList",
+              "type": {
+                "kind": "OBJECT",
+                "name": "WishItemConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "occurrencesList",
+              "type": {
+                "kind": "OBJECT",
+                "name": "OccurrenceConnection",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "User",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `DateTime` scalar type represents a DateTime\nvalue as specified by\n[iso8601](https://en.wikipedia.org/wiki/ISO_8601).",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "DateTime",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The ID of the object.",
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "type",
+              "type": {
+                "kind": "ENUM",
+                "name": "RevisionType",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "index",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revisionDocumentId",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "parent",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "document",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Document",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "author",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "authorIp",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "authorUseragent",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+>>>>>>> c601549... users' occurrences
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
@@ -4911,7 +6353,11 @@
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "LifeNode",
+=======
+              "name": "Occurrence",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             },
             {
@@ -4921,22 +6367,30 @@
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "CollectionItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "WishItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Occurrence",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
+=======
               "name": "SuggestionID",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+<<<<<<< HEAD
+              "name": "WishItem",
+=======
+              "name": "Post",
+>>>>>>> c601549... users' occurrences
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Page",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Characteristic",
               "ofType": null
             },
             {
@@ -5459,7 +6913,11 @@
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "CommonName",
+=======
+              "name": "Occurrence",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             },
             {
@@ -5469,17 +6927,29 @@
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "CollectionItem",
+=======
+              "name": "SuggestionID",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "WishItem",
+=======
+              "name": "Post",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             },
             {
               "kind": "OBJECT",
+<<<<<<< HEAD
               "name": "Occurrence",
+=======
+              "name": "Characteristic",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             },
             {
@@ -6567,6 +8037,7 @@
           "possibleTypes": null
         },
         {
+<<<<<<< HEAD
           "description": null,
           "enumValues": null,
           "fields": [
@@ -6699,6 +8170,8 @@
           "possibleTypes": null
         },
         {
+=======
+>>>>>>> c601549... users' occurrences
           "description": null,
           "enumValues": null,
           "fields": [
@@ -6732,7 +8205,11 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
+<<<<<<< HEAD
                     "name": "TagEdge",
+=======
+                    "name": "OccurrenceEdge",
+>>>>>>> c601549... users' occurrences
                     "ofType": null
                   }
                 }
@@ -6766,11 +8243,19 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "TagConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `Tag` and its cursor.",
+=======
+          "name": "OccurrenceConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Occurrence` and its cursor.",
+>>>>>>> c601549... users' occurrences
           "enumValues": null,
           "fields": [
             {
@@ -6781,7 +8266,11 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
+<<<<<<< HEAD
                 "name": "Tag",
+=======
+                "name": "Occurrence",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -6805,7 +8294,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "TagEdge",
+=======
+          "name": "OccurrenceEdge",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -6867,17 +8360,13 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
-              "name": "title",
+              "name": "identity",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "OBJECT",
+                "name": "LifeNode",
+                "ofType": null
               }
             },
             {
@@ -6885,6 +8374,7 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "slug",
               "type": {
                 "kind": "NON_NULL",
@@ -6950,6 +8440,13 @@
                   "name": "String",
                   "ofType": null
                 }
+=======
+              "name": "identityAlt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+>>>>>>> c601549... users' occurrences
               }
             },
             {
@@ -6957,6 +8454,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "revisionCurrent",
               "type": {
                 "kind": "OBJECT",
@@ -7026,6 +8524,12 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "RevisionConnection",
+=======
+              "name": "author",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -7074,6 +8578,7 @@
               ],
               "deprecationReason": null,
               "description": null,
+<<<<<<< HEAD
               "isDeprecated": false,
               "name": "allPosts",
               "type": {
@@ -7179,17 +8684,24 @@
               "args": [],
               "deprecationReason": null,
               "description": "The item at the end of the edge",
+=======
+>>>>>>> c601549... users' occurrences
               "isDeprecated": false,
               "name": "node",
               "type": {
                 "kind": "OBJECT",
+<<<<<<< HEAD
                 "name": "Page",
+=======
+                "name": "ImageConnection",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
+<<<<<<< HEAD
               "description": "A cursor for use in pagination",
               "isDeprecated": false,
               "name": "cursor",
@@ -7201,6 +8713,15 @@
                   "name": "String",
                   "ofType": null
                 }
+=======
+              "description": "",
+              "isDeprecated": false,
+              "name": "when",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+>>>>>>> c601549... users' occurrences
               }
             }
           ],
@@ -7216,6 +8737,7 @@
           "fields": [
             {
               "args": [],
+<<<<<<< HEAD
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
@@ -7232,13 +8754,22 @@
             },
             {
               "args": [],
+=======
+>>>>>>> c601549... users' occurrences
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "document",
               "type": {
                 "kind": "OBJECT",
                 "name": "Document",
+=======
+              "name": "location",
+              "type": {
+                "kind": "OBJECT",
+                "name": "GeometryObjectType",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -7246,6 +8777,77 @@
               "args": [],
               "deprecationReason": null,
               "description": "",
+<<<<<<< HEAD
+=======
+              "isDeprecated": false,
+              "name": "locationExtra",
+              "type": {
+                "kind": "SCALAR",
+                "name": "JSONString",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "where",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "notes",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isCultivated",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isRequest",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+>>>>>>> c601549... users' occurrences
               "isDeprecated": false,
               "name": "isTip",
               "type": {
@@ -7396,6 +8998,7 @@
               }
             },
             {
+<<<<<<< HEAD
               "args": [],
               "deprecationReason": null,
               "description": null,
@@ -7448,6 +9051,8 @@
               }
             },
             {
+=======
+>>>>>>> c601549... users' occurrences
               "args": [
                 {
                   "defaultValue": null,
@@ -7493,10 +9098,17 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "revisions",
               "type": {
                 "kind": "OBJECT",
                 "name": "RevisionConnection",
+=======
+              "name": "suggestions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SuggestionIDConnection",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -7505,6 +9117,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "commenting",
               "type": {
                 "kind": "OBJECT",
@@ -7521,6 +9134,12 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Imaging",
+=======
+              "name": "answer",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SuggestionID",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             }
@@ -7544,12 +9163,20 @@
             },
             {
               "kind": "INTERFACE",
+<<<<<<< HEAD
               "name": "ImagesNode",
+=======
+              "name": "VotesNode",
+>>>>>>> c601549... users' occurrences
               "ofType": null
             }
           ],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "Page",
+=======
+          "name": "Occurrence",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -8086,13 +9713,217 @@
                 "name": "Voting",
                 "ofType": null
               }
+<<<<<<< HEAD
+=======
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "CommentsNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "VotesNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "Image",
+          "possibleTypes": null
+        },
+        {
+          "description": "\n`GeometryObjectType` represents a pair of values:\n- Geometry `type`\n- Geometry `coordinates`\n",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "type",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             {
               "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "coordinates",
+              "type": {
+                "kind": "SCALAR",
+                "name": "GenericScalar",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "GeometryObjectType",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `GenericScalar` scalar type represents a generic\nGraphQL scalar value that could be:\nString, Boolean, Int, Float, List or Object.",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "GenericScalar",
+          "possibleTypes": null
+        },
+        {
+          "description": "Allows use of a JSON String for input / output from the GraphQL schema.\n\nUse of this type is *not recommended* as you lose the benefits of having a defined, static\nschema (one of the key benefits of GraphQL).",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "JSONString",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Pagination data for this connection.",
+              "isDeprecated": false,
+              "name": "pageInfo",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Contains the nodes in this connection.",
+              "isDeprecated": false,
+              "name": "edges",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SuggestionIDEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "totalCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+>>>>>>> c601549... users' occurrences
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+<<<<<<< HEAD
               "name": "parents",
+=======
+              "name": "edgeCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "SuggestionIDConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `SuggestionID` and its cursor.",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The item at the end of the edge",
+              "isDeprecated": false,
+              "name": "node",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SuggestionID",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "A cursor for use in pagination",
+              "isDeprecated": false,
+              "name": "cursor",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "SuggestionIDEdge",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revision",
+>>>>>>> c601549... users' occurrences
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -8128,6 +9959,7 @@
               }
             },
             {
+<<<<<<< HEAD
               "args": [
                 {
                   "defaultValue": null,
@@ -8170,10 +10002,53 @@
                   }
                 }
               ],
+=======
+              "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "occurrence",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Occurrence",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "author",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "identity",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNode",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+>>>>>>> c601549... users' occurrences
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+<<<<<<< HEAD
               "name": "children",
+=======
+              "name": "notes",
+>>>>>>> c601549... users' occurrences
               "type": {
                 "kind": "OBJECT",
                 "name": "LifeNodeConnection",
@@ -8181,6 +10056,7 @@
               }
             },
             {
+<<<<<<< HEAD
               "args": [
                 {
                   "defaultValue": null,
@@ -8221,6 +10097,32 @@
                     "name": "Int",
                     "ofType": null
                   }
+=======
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isCorrect",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+>>>>>>> c601549... users' occurrences
                 }
               ],
               "deprecationReason": null,
@@ -8323,55 +10225,33 @@
               }
             },
             {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
+              "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "wishList",
               "type": {
                 "kind": "OBJECT",
                 "name": "WishItemConnection",
+=======
+              "name": "commenting",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Commenting",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "voting",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Voting",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             }
@@ -8400,6 +10280,7 @@
             }
           ],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "LifeNode",
           "possibleTypes": null
         },
@@ -8459,17 +10340,47 @@
               "description": "Cultivar",
               "isDeprecated": false,
               "name": "VARIETY"
+=======
+          "name": "SuggestionID",
+          "possibleTypes": null
+        },
+        {
+          "description": "An enumeration.",
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Publico",
+              "isDeprecated": false,
+              "name": "A_1"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Amigos",
+              "isDeprecated": false,
+              "name": "A_2"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Privado",
+              "isDeprecated": false,
+              "name": "A_3"
+>>>>>>> c601549... users' occurrences
             }
           ],
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "kind": "ENUM",
+<<<<<<< HEAD
           "name": "Rank",
+=======
+          "name": "DocumentIDPrivacy",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
           "description": null,
+<<<<<<< HEAD
           "enumValues": [
             {
               "deprecationReason": null,
@@ -8513,6 +10424,90 @@
           "interfaces": null,
           "kind": "ENUM",
           "name": "Edibility",
+=======
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Pagination data for this connection.",
+              "isDeprecated": false,
+              "name": "pageInfo",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Contains the nodes in this connection.",
+              "isDeprecated": false,
+              "name": "edges",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "DocumentEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "DocumentConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Document` and its cursor.",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The item at the end of the edge",
+              "isDeprecated": false,
+              "name": "node",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Document",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "A cursor for use in pagination",
+              "isDeprecated": false,
+              "name": "cursor",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "DocumentEdge",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -8549,7 +10544,11 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
+<<<<<<< HEAD
                     "name": "CommonNameEdge",
+=======
+                    "name": "PostEdge",
+>>>>>>> c601549... users' occurrences
                     "ofType": null
                   }
                 }
@@ -8583,11 +10582,19 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "CommonNameConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `CommonName` and its cursor.",
+=======
+          "name": "PostConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Post` and its cursor.",
+>>>>>>> c601549... users' occurrences
           "enumValues": null,
           "fields": [
             {
@@ -8598,7 +10605,11 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
+<<<<<<< HEAD
                 "name": "CommonName",
+=======
+                "name": "Post",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -8622,7 +10633,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "CommonNameEdge",
+=======
+          "name": "PostEdge",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -8714,61 +10729,12 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "country",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "region",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "id",
+=======
+              "name": "body",
               "type": {
                 "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "idInt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "myPerms",
-              "type": {
-                "kind": "LIST",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
@@ -8780,12 +10746,82 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
-              "name": "revisionCurrent",
+              "name": "summary",
               "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "publishedAt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "images",
+>>>>>>> c601549... users' occurrences
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -8794,10 +10830,16 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "revisionCreated",
+<<<<<<< HEAD
+              "name": "region",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+=======
+              "name": "mainImage",
               "type": {
                 "kind": "OBJECT",
-                "name": "Revision",
+                "name": "Image",
                 "ofType": null
               }
             },
@@ -8847,251 +10889,11 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "revisions",
+              "name": "tags",
               "type": {
                 "kind": "OBJECT",
-                "name": "RevisionConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "voting",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Voting",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "CommonName",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "CharacteristicEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "totalCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "edgeCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "CharacteristicConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Characteristic` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Characteristic",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "CharacteristicEdge",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revision",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Revision",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "document",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Document",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "isTip",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "isDeleted",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "tag",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Tag",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "lifeNode",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Document",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "value",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "name": "TagConnection",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -9129,6 +10931,8 @@
               "description": null,
               "isDeprecated": false,
               "name": "myPerms",
+<<<<<<< HEAD
+=======
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -9245,10 +11049,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "title",
+              "name": "imaging",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "Imaging",
                 "ofType": null
               }
             }
@@ -9274,10 +11078,362 @@
               "kind": "INTERFACE",
               "name": "VotesNode",
               "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "ImagesNode",
+              "ofType": null
             }
           ],
           "kind": "OBJECT",
-          "name": "Characteristic",
+          "name": "Post",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "imaging",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Imaging",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "INTERFACE",
+          "name": "ImagesNode",
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "Post",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Page",
+              "ofType": null
+            }
+          ]
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The ID of the object.",
+              "isDeprecated": false,
+              "name": "id",
+>>>>>>> c601549... users' occurrences
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+<<<<<<< HEAD
+                  "name": "String",
+=======
+                  "name": "ID",
+>>>>>>> c601549... users' occurrences
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+<<<<<<< HEAD
+              "name": "revisionCurrent",
+=======
+              "name": "count",
+>>>>>>> c601549... users' occurrences
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+<<<<<<< HEAD
+              "name": "revisionCreated",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "voting",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Voting",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "VotesNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "CommonName",
+=======
+              "name": "images",
+              "type": {
+                "kind": "OBJECT",
+                "name": "ImageConnection",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "Imaging",
+>>>>>>> c601549... users' occurrences
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Pagination data for this connection.",
+              "isDeprecated": false,
+              "name": "pageInfo",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Contains the nodes in this connection.",
+              "isDeprecated": false,
+              "name": "edges",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "TagEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "totalCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "edgeCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "TagConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Tag` and its cursor.",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The item at the end of the edge",
+              "isDeprecated": false,
+              "name": "node",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Tag",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "A cursor for use in pagination",
+              "isDeprecated": false,
+              "name": "cursor",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "TagEdge",
           "possibleTypes": null
         },
         {
@@ -9339,24 +11495,44 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
-              "name": "plant",
+              "name": "title",
               "type": {
-                "kind": "OBJECT",
-                "name": "LifeNode",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               }
             },
             {
               "args": [],
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
-              "name": "user",
+              "name": "slug",
               "type": {
-                "kind": "OBJECT",
-                "name": "User",
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "description",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -9472,6 +11648,367 @@
                 }
               ],
               "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "allPosts",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostConnection",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "Tag",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Revision",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "document",
+              "type": {
+<<<<<<< HEAD
+                "kind": "OBJECT",
+                "name": "Document",
+                "ofType": null
+=======
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PageEdge",
+                    "ofType": null
+                  }
+                }
+>>>>>>> c601549... users' occurrences
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isTip",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isDeleted",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+<<<<<<< HEAD
+            },
+=======
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "PageConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Page` and its cursor.",
+          "enumValues": null,
+          "fields": [
+>>>>>>> c601549... users' occurrences
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "plant",
+              "type": {
+                "kind": "OBJECT",
+<<<<<<< HEAD
+                "name": "LifeNode",
+=======
+                "name": "Page",
+>>>>>>> c601549... users' occurrences
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "user",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+<<<<<<< HEAD
+            },
+=======
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "PageEdge",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+>>>>>>> c601549... users' occurrences
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "idInt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "myPerms",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+<<<<<<< HEAD
+              "name": "revisionCurrent",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+=======
+              "name": "title",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "url",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+>>>>>>> c601549... users' occurrences
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+<<<<<<< HEAD
+              "name": "revisionCreated",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+=======
+              "name": "body",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+>>>>>>> c601549... users' occurrences
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+<<<<<<< HEAD
               "description": null,
               "isDeprecated": false,
               "name": "revisions",
@@ -9598,6 +12135,14 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "LifeNode",
+=======
+              "description": "",
+              "isDeprecated": false,
+              "name": "images",
+              "type": {
+                "kind": "OBJECT",
+                "name": "DocumentConnection",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -9606,10 +12151,17 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "user",
               "type": {
                 "kind": "OBJECT",
                 "name": "User",
+=======
+              "name": "publishedAt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -9751,6 +12303,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "voting",
               "type": {
                 "kind": "OBJECT",
@@ -9887,13 +12440,47 @@
                   "name": "String",
                   "ofType": null
                 }
+=======
+              "name": "imaging",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Imaging",
+                "ofType": null
+>>>>>>> c601549... users' occurrences
               }
             }
           ],
           "inputFields": null,
+<<<<<<< HEAD
           "interfaces": [],
           "kind": "OBJECT",
           "name": "CollectionItemEdge",
+=======
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "CommentsNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "ImagesNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "Page",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -9930,7 +12517,11 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
+<<<<<<< HEAD
                     "name": "WishItemEdge",
+=======
+                    "name": "LifeNodeEdge",
+>>>>>>> c601549... users' occurrences
                     "ofType": null
                   }
                 }
@@ -9964,11 +12555,19 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "WishItemConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `WishItem` and its cursor.",
+=======
+          "name": "LifeNodeConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `LifeNode` and its cursor.",
+>>>>>>> c601549... users' occurrences
           "enumValues": null,
           "fields": [
             {
@@ -9979,7 +12578,11 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
+<<<<<<< HEAD
                 "name": "WishItem",
+=======
+                "name": "LifeNode",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -10003,7 +12606,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "WishItemEdge",
+=======
+          "name": "LifeNodeEdge",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -10040,7 +12647,11 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
+<<<<<<< HEAD
                     "name": "OccurrenceEdge",
+=======
+                    "name": "CharacteristicEdge",
+>>>>>>> c601549... users' occurrences
                     "ofType": null
                   }
                 }
@@ -10074,11 +12685,19 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "OccurrenceConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `Occurrence` and its cursor.",
+=======
+          "name": "CharacteristicConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Characteristic` and its cursor.",
+>>>>>>> c601549... users' occurrences
           "enumValues": null,
           "fields": [
             {
@@ -10089,7 +12708,11 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
+<<<<<<< HEAD
                 "name": "Occurrence",
+=======
+                "name": "Characteristic",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -10113,7 +12736,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "OccurrenceEdge",
+=======
+          "name": "CharacteristicEdge",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -10177,6 +12804,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "identity",
               "type": {
                 "kind": "OBJECT",
@@ -10306,18 +12934,12 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "notes",
+=======
+              "name": "tag",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "Tag",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -10326,6 +12948,23 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "lifeNode",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Document",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+<<<<<<< HEAD
               "name": "isCultivated",
               "type": {
                 "kind": "NON_NULL",
@@ -10351,6 +12990,13 @@
                   "name": "Boolean",
                   "ofType": null
                 }
+=======
+              "name": "value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+>>>>>>> c601549... users' occurrences
               }
             },
             {
@@ -10499,6 +13145,7 @@
               }
             },
             {
+<<<<<<< HEAD
               "args": [
                 {
                   "defaultValue": null,
@@ -10552,14 +13199,23 @@
               }
             },
             {
+=======
+>>>>>>> c601549... users' occurrences
               "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+<<<<<<< HEAD
               "name": "answer",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionID",
+=======
+              "name": "title",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+>>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             }
@@ -10588,7 +13244,11 @@
             }
           ],
           "kind": "OBJECT",
+<<<<<<< HEAD
           "name": "Occurrence",
+=======
+          "name": "Characteristic",
+>>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {

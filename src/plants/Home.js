@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { InputBase, Paper, Hidden, withStyles } from "@material-ui/core";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  FormControlLabel,
+  FormGroup,
+  Checkbox,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+  Grid,
+  InputBase,
+  Paper,
+  Hidden,
+  withStyles,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import PlantList from "./PlantList.js";
@@ -34,12 +52,13 @@ export class PlantsHome extends Component {
     let title = relay.variables.edibles ? `Plantas Comestíveis` : `Plantas`;
 
     if (relay.variables.search) {
-      title = `Busca de plantas por: ${relay.variables.search}`;
+      title = `Busca de plantas por:
+      ${relay.variables.search}`;
     }
 
     return (
       <Width>
-        <Helmet title={title} />
+        <Helmet title={title} /> <PageTitle>{title}</PageTitle>
         <Hidden mdUp>
           <BreadcrumbsWithHome>
             <BreadcrumbsItem
@@ -62,25 +81,73 @@ export class PlantsHome extends Component {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
-                inputProps={{ "aria-label": "search" }}
+                inputProps={{
+                  "aria-label": "search",
+                }}
                 value={this.state.searchBy}
                 onChange={this.onChangeSearch}
-              />
-            </form>
-          </Paper>
-        </Hidden>
-        <Paper className={classes.paper}>
-          <TabsRoute indicatorColor="primary" textColor="primary">
-            <TabRoute label="Todas" wrapped value="/plantas" />
-            <TabRoute
-              label="Comestíveis"
-              wrapped
-              value="/plantas/comestiveis"
-            />
-          </TabsRoute>
-        </Paper>
-        <PageTitle>{title}</PageTitle>
-        <PlantList viewer={viewer} count={30} />
+              />{" "}
+            </form>{" "}
+          </Paper>{" "}
+        </Hidden>{" "}
+        <Grid container spacing={3}>
+          <Grid item md={4}>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Taxonomia</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <FormGroup component={List}>
+                  {["Familia", "Genero", "Espécie"].map((label) => (
+                    <FormControlLabel
+                      control={<Checkbox name="gilad" />}
+                      label={label}
+                    />
+                  ))}
+                </FormGroup>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Extrato</Typography>{" "}
+              </AccordionSummary>{" "}
+              <AccordionDetails>
+                <FormGroup component={List}>
+                  {["Baixo", "Médio", "Alto", "Emergente"].map((label) => (
+                    <FormControlLabel
+                      control={<Checkbox name="gilad" />}
+                      label={label}
+                    />
+                  ))}
+                </FormGroup>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Comestibilidade</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <FormGroup component={List}>
+                  {["Baixa", "Média", "Alta"].map((label) => (
+                    <FormControlLabel
+                      control={<Checkbox name="gilad" />}
+                      label={label}
+                    />
+                  ))}
+                </FormGroup>
+              </AccordionDetails>
+            </Accordion>
+            {/*<TabsRoute
+              indicatorColor="primary" textColor="primary"
+              orientation="vertical" variant="scrollable"> <TabRoute
+              label="Todas" wrapped value="/plantas" /> <TabRoute
+                label="Comestíveis" wrapped value="/plantas/comestiveis" />
+                </TabsRoute>*/}{" "}
+          </Grid>
+          <Grid item md={8}>
+            <PlantList viewer={viewer} count={30} />
+          </Grid>
+        </Grid>
       </Width>
     );
   }
