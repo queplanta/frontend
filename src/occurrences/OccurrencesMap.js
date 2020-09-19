@@ -18,7 +18,7 @@ import PlantLink from "../plants/PlantLink.js";
 import imgDefault from "../assets/plant-default.svg";
 
 function OccurrencesMap(props) {
-  const { classes, environment, plantId, ...otherProps } = props;
+  const { classes, environment, plantId, authorId, ...otherProps } = props;
 
   return (
     <MapGeolocated {...otherProps}>
@@ -28,6 +28,7 @@ function OccurrencesMap(props) {
         variables={{
           count: 500,
           identity: plantId ? plantId : null,
+          author: authorId ? authorId : null,
         }}
         render={({ error, props }) => {
           if (!props) {

@@ -16,6 +16,9 @@ const query = graphql`
       wishList {
         totalCount
       }
+      occurrencesList {
+        totalCount
+      }
       ...UserActivityList_user
     }
     me {

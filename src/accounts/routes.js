@@ -17,6 +17,8 @@ import UserPlantList from "./UserPlantList.js";
 import UserPlantListQuery from "./UserPlantList.query.js";
 import UserCollectionList from "./UserCollectionList.js";
 import UserCollectionListQuery from "./UserCollectionList.query.js";
+import UserOccurrenceMap from "./UserOccurrenceMap.js";
+import UserOccurrenceMapQuery from "./UserOccurrenceMap.query.js";
 
 export const accountsRoutes = (
   <React.Fragment>
@@ -61,6 +63,31 @@ export const accountsRoutes = (
           ...params,
           count: 30,
         })}
+      />
+      <Route
+        path="tenho"
+        query={UserCollectionListQuery}
+        render={(args) => {
+          return (
+            <UserCollectionList
+              {...args.props}
+              environment={args.environment}
+            />
+          );
+        }}
+        prepareVariables={(params) => ({
+          ...params,
+          count: 30,
+        })}
+      />
+      <Route
+        path="mapeadas"
+        query={UserOccurrenceMapQuery}
+        render={(args) => {
+          return (
+            <UserOccurrenceMap {...args.props} environment={args.environment} />
+          );
+        }}
       />
     </Route>
     <Route path="/conta" Component={ProfileSettings}>
