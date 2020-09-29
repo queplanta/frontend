@@ -9481,6 +9481,13 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-breadcrumbs-dynamic@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-breadcrumbs-dynamic/-/react-breadcrumbs-dynamic-1.2.1.tgz#7e9f046f717b45fc4e56d23d73fe81b212615472"
+  integrity sha512-6vw1RHQ2cHaHptRVQ+pwt6Vej/O6NGNBnEzC5fgW53ZhwABKtNW2xpljPppF+L8hVkNDBdjKSVMYp9K2U1j9qw==
+  dependencies:
+    react-through "^1.1.4"
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -9743,6 +9750,11 @@ react-syntax-highlighter@12.0.2:
     lowlight "~1.11.0"
     prismjs "^1.8.4"
     refractor "^2.4.1"
+
+react-through@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-through/-/react-through-1.1.4.tgz#163485b56bb03ddd2e5f971ada50a57e76737b78"
+  integrity sha512-7VuRPSfKS3ihmMlTgQwOspjd+TV3u7tpFs07MMgLVA0g/bH7UHodKLpGS1LgJJlWTUqJKeN4wT9getqGUN37iA==
 
 react-transition-group@^4.3.0, react-transition-group@^4.4.0:
   version "4.4.1"
