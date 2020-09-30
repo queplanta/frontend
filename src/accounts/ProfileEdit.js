@@ -66,7 +66,7 @@ function ProfileEdit({ environment, setFormErrors, me, classes }) {
     <React.Fragment>
       <Helmet title="Editar perfil" />
       <BreadcrumbsWithHome>
-        <BreadcrumbsItem to={`/u/${me.username}`}>Perfil</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/u/${me.username}`}>Meu perfil</BreadcrumbsItem>
         <BreadcrumbsItem to={`/conta/editar`}>Editar</BreadcrumbsItem>
       </BreadcrumbsWithHome>
       <Grid container spacing={3} component="form" onSubmit={handleSubmit}>

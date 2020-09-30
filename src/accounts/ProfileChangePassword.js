@@ -54,7 +54,7 @@ function ProfileChangePassword({ environment, setFormErrors, me, classes }) {
     <React.Fragment>
       <Helmet title="Alterar senha" />
       <BreadcrumbsWithHome>
-        <BreadcrumbsItem to={`/u/${me.username}`}>Perfil</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/u/${me.username}`}>Meu perfil</BreadcrumbsItem>
         <BreadcrumbsItem to="/conta/editar/senha">
           Alterar senha
         </BreadcrumbsItem>

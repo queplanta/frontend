@@ -2,13 +2,18 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Grid, Avatar, withStyles } from "@material-ui/core";
 import ProfileLink from "../accounts/ProfileLink.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PlantWishList(props) {
   const { plant } = props;
+  const baseUrl = `/${plant.slug}-p${plant.idInt}`;
 
   return (
     <React.Fragment>
       <Helmet title={`Quem Quer Ter ${plant.title}`} />
+      <BreadcrumbsItem to={`${baseUrl}/quem-quer-ter`}>
+        Quer ter
+      </BreadcrumbsItem>
       <Grid container spacing={2}>
         {plant.wishList.edges.map((edge) => {
           if (!edge.node) {

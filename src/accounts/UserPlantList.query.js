@@ -38,6 +38,9 @@ export const query = graphql`
       id
       ...UserPlantList_viewer @arguments(count: $count, cursor: $cursor)
     }
+    me {
+      id
+    }
   }
 `;
 

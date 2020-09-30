@@ -58,7 +58,7 @@ function ProfileChangeAvatar(props) {
     <React.Fragment>
       <Helmet title={pageTitle} />
       <BreadcrumbsWithHome>
-        <BreadcrumbsItem to={`/u/${me.username}`}>Perfil</BreadcrumbsItem>
+        <BreadcrumbsItem to={`/u/${me.username}`}>Meu perfil</BreadcrumbsItem>
         <BreadcrumbsItem to="/conta/editar/avatar">{pageTitle}</BreadcrumbsItem>
       </BreadcrumbsWithHome>
       <Grid container spacing={3} component="form" onSubmit={handleSubmit}>

@@ -56,7 +56,7 @@ function Profile(props) {
       <Helmet title={`${profile.firstName} (${profile.username}) | Membros`} />
       <BreadcrumbsWithHome>
         <BreadcrumbsItem to={baseUrl}>
-          Perfil de {profile.firstName}
+          {isMe ? `Meu perfil` : `Perfil de ${profile.firstName}`}
         </BreadcrumbsItem>
       </BreadcrumbsWithHome>
       <Grid container spacing={3}>
