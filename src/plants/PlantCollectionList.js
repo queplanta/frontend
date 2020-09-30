@@ -2,13 +2,16 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Grid, Avatar, withStyles } from "@material-ui/core";
 import ProfileLink from "../accounts/ProfileLink.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PlantCollectionList(props) {
   const { plant } = props;
+  const baseUrl = `/${plant.slug}-p${plant.idInt}`;
 
   return (
     <React.Fragment>
       <Helmet title={`Quem Tem ${plant.title}`} />
+      <BreadcrumbsItem to={`${baseUrl}/quem-tem`}>Quem tem</BreadcrumbsItem>
       <Grid container spacing={2}>
         {plant.collectionList.edges.map((edge) => {
           if (!edge.node) {

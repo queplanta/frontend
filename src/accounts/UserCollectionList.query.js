@@ -42,6 +42,9 @@ export const query = graphql`
       id
       ...UserCollectionList_viewer @arguments(count: $count, cursor: $cursor)
     }
+    me {
+      id
+    }
   }
 `;
 

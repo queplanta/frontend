@@ -4,19 +4,29 @@ import { Grid, withStyles } from "@material-ui/core";
 import { createPaginationContainer } from "react-relay";
 import PlantItem from "../plants/PlantItem.js";
 import { fragmentSpec, query } from "./UserCollectionList.query.js";
+import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function UserCollectionList(props) {
-  const { user } = props;
+  const { user, me } = props;
 
   if (!user.collectionList || !user.collectionList.edges) {
     return null;
   }
 
   const title = `Tenho | Plantas | ${user.username}`;
+  const baseUrl = `/u/${user.username}`;
+  const isMe = me !== null && me.id === user.id;
 
   return (
     <React.Fragment>
       <Helmet title={title} />
+      <BreadcrumbsWithHome>
+        <BreadcrumbsItem to={baseUrl}>
+          {isMe ? `Meu perfil` : `Perfil de ${user.firstName}`}
+        </BreadcrumbsItem>
+        <BreadcrumbsItem to={`${baseUrl}/tenho`}>Tenho</BreadcrumbsItem>
+      </BreadcrumbsWithHome>
       <Grid container spacing={3}>
         {user.collectionList.edges.map((edge) => {
           const { plant } = edge.node;
