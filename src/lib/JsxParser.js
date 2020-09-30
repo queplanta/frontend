@@ -1,6 +1,6 @@
 import React from "react";
 import ReactJsxParser from "react-jsx-parser";
-import { Typography, Grid, Paper, withStyles } from "@material-ui/core";
+import { Button, Typography, Grid, Paper, withStyles } from "@material-ui/core";
 import {
   Timeline,
   TimelineItem,
@@ -15,6 +15,8 @@ import withWidth, { isWidthDown, isWidthUp } from "./withWidth.js";
 import Link from "./Link.js";
 import Image from "./JsxParser/Image.js";
 
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+
 const TimelineOppositeContentMobile = withStyles({})(TimelineOppositeContent);
 
 const TimelineItemMobile = withStyles((theme) => ({
@@ -26,6 +28,17 @@ const TimelineItemMobile = withStyles((theme) => ({
     },
   },
 }))(TimelineItem);
+
+const NextButton = (props) => (
+  <Button
+    variant="contained"
+    size="large"
+    color="primary"
+    component={Link}
+    endIcon={<ArrowForwardIosIcon />}
+    {...props}
+  />
+);
 
 const JsxParser = (props) => {
   const { environment, classes, width, ...otherProps } = props;
@@ -45,10 +58,14 @@ const JsxParser = (props) => {
           isWidthDown: isWidthDownWith,
           isWidthUp: isWidthUpWith,
           width,
+          Link: Link,
+          ArrowForwardIosIcon: ArrowForwardIosIcon,
+          NextButton,
         }}
         showWarnings={true}
         renderInWrapper={false}
         components={{
+          Button,
           Link,
           Image: (imgProps) => (
             <Image environment={environment} {...imgProps} />
@@ -64,6 +81,8 @@ const JsxParser = (props) => {
           TimelineContent,
           TimelineDot,
           TimelineOppositeContent,
+          ArrowForwardIosIcon,
+          NextButton,
         }}
         {...otherProps}
       />
