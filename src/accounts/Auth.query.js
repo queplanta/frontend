@@ -6,6 +6,7 @@ const query = graphql`
     me {
       username
       isAuthenticated
+      myPerms
     }
   }
 `;

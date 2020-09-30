@@ -6,6 +6,7 @@ import AuthDialog from "./AuthDialog.js";
 import { getDisplayName } from "../lib/helpers.js";
 
 export const LoginRequiredContext = React.createContext({
+  currentUser: null,
   isAuthenticated: () => {},
   toggleAuthDialog: () => {},
   openAuthDialog: () => {},
@@ -41,6 +42,7 @@ export const LoginRequiredProvider = createFragmentContainer(function ({
   }
 
   const contextValue = {
+    currentUser: viewer.me,
     isAuthenticated,
     toggleAuthDialog,
     openAuthDialog,

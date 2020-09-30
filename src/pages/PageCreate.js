@@ -13,9 +13,12 @@ import JsxPreviewField from "../lib/JsxPreviewField.js";
 
 function PageCreate({ classes, environment, setFormErrors }) {
   const { enqueueSnackbar } = useSnackbar();
-  const { router } = useRouter();
+  const {
+    router,
+    match: { location },
+  } = useRouter();
 
-  const url = useFormInput("");
+  const url = useFormInput(location.query.url);
   const title = useFormInput("");
   const publishedAt = useFormInput(moment().format("YYYY-MM-DDTHH:mm:ss"));
   const body = useFormInput("");
