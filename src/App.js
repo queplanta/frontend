@@ -316,17 +316,15 @@ export class App extends Component {
                           />
                         )}
                     </Hidden>
-                    <Hidden mdUp implementation="css">
-                      <BreadcrumbsDynamic
-                        hideIfEmpty={true}
-                        item={RouterLink}
-                        finalItem={"b"}
-                        container={Breadcrumbs}
-                        containerProps={{
-                          className: classes.breadcrumbs,
-                        }}
-                      />
-                    </Hidden>
+                    <BreadcrumbsDynamic
+                      hideIfEmpty={true}
+                      item={RouterLink}
+                      finalItem={"b"}
+                      container={Breadcrumbs}
+                      containerProps={{
+                        className: classes.breadcrumbs,
+                      }}
+                    />
                     {this.props.children}
                   </div>
                   <Hidden smDown implementation="css">
