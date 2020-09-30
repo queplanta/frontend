@@ -8,6 +8,9 @@ export const Width = withStyles((theme) => ({
     width: "100%",
     margin: "0 auto",
     padding: 20,
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 0,
+    },
   },
 }))(({ classes, component, ...others }) => {
   let Component = "div";
