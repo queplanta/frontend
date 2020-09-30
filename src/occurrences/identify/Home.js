@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { withStyles } from "@material-ui/core";
+import { Hidden, withStyles } from "@material-ui/core";
 import HomeTabs from "./HomeTabs.js";
 import PageTitle from "../../lib/PageTitle.js";
 import LatestWhatIsThis from "./LatestWhatIsThis.js";
@@ -13,9 +13,11 @@ function Home(props) {
   return (
     <HomeTabs>
       <Helmet title="Identificação" />
-      <BreadcrumbsWithHome>
-        <BreadcrumbsItem to="/identificacao">Identificação</BreadcrumbsItem>
-      </BreadcrumbsWithHome>
+      <Hidden mdUp>
+        <BreadcrumbsWithHome>
+          <BreadcrumbsItem to="/identificacao">Identificação</BreadcrumbsItem>
+        </BreadcrumbsWithHome>
+      </Hidden>
       <PageTitle>Últimos pedidos de identificação</PageTitle>
       <LatestWhatIsThis
         identified={false}

@@ -40,13 +40,15 @@ export class PlantsHome extends Component {
     return (
       <Width>
         <Helmet title={title} />
-        <BreadcrumbsWithHome>
-          <BreadcrumbsItem
-            to={relay.variables.edibles ? `/plantas/comestíveis` : `/plantas`}
-          >
-            {title}
-          </BreadcrumbsItem>
-        </BreadcrumbsWithHome>
+        <Hidden mdUp>
+          <BreadcrumbsWithHome>
+            <BreadcrumbsItem
+              to={relay.variables.edibles ? `/plantas/comestíveis` : `/plantas`}
+            >
+              {title}
+            </BreadcrumbsItem>
+          </BreadcrumbsWithHome>
+        </Hidden>
         <Hidden mdUp implementation="css">
           <Paper className={classes.paper}>
             <form className={classes.search} onSubmit={this.handleSearch}>

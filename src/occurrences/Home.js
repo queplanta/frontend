@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Button, Grid, withStyles } from "@material-ui/core";
+import { Button, Grid, Hidden, withStyles } from "@material-ui/core";
 import { Link as RouterLink } from "found";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
@@ -22,9 +22,11 @@ function Home(props) {
   return (
     <Width>
       <Helmet title="Mapa de Árvores" />
-      <BreadcrumbsWithHome>
-        <BreadcrumbsItem to="/mapa">Mapa de Árvores</BreadcrumbsItem>
-      </BreadcrumbsWithHome>
+      <Hidden mdUp>
+        <BreadcrumbsWithHome>
+          <BreadcrumbsItem to="/mapa">Mapa de Árvores</BreadcrumbsItem>
+        </BreadcrumbsWithHome>
+      </Hidden>
       <Grid container>
         <Grid item xs={12} sm={6}>
           <PageTitle>Mapa de Árvores</PageTitle>

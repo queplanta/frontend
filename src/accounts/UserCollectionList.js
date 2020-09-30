@@ -16,7 +16,7 @@ function UserCollectionList(props) {
 
   const title = `Tenho | Plantas | ${user.username}`;
   const baseUrl = `/u/${user.username}`;
-  const isMe = me !== null && me.id === user.id;
+  const isMe = me && me.id === user.id;
 
   return (
     <React.Fragment>
