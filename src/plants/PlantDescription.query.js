@@ -8,7 +8,8 @@ const query = graphql`
       description
       myPerms
       ...TaxoClimb_lifeNode
-      commonNames(first: 20) @connection(key: "lifeNode__commonNames") {
+      commonNames(first: 5, order: "-avg", language: "por")
+        @connection(key: "lifeNode__commonNames") {
         edges {
           node {
             id
@@ -16,6 +17,10 @@ const query = graphql`
           }
         }
       }
+      commonNamesStats: commonNames {
+        totalCount
+      }
+      ...CommonNamesDialog__commonNames
       commenting {
         ...CommentsList_commenting
       }
