@@ -212,6 +212,7 @@ export const MapGeolocated = withStyles(mapStyles)(
                 .then((json) => {
                   if (json.features && json.features.length) {
                     const location = json.features[0];
+                    console.log(location);
                     if (location.bbox) {
                       this.ref.current.leafletElement.fitBounds([
                         [location.bbox[1], location.bbox[0]],
@@ -222,6 +223,12 @@ export const MapGeolocated = withStyles(mapStyles)(
                         [location.center[1], location.center[0]],
                         this.getZoomByType(location.place_type)
                       );
+                    }
+
+                    if (location.center) {
+                      this.setState({
+                        position: [location.center[1], location.center[0]],
+                      });
                     }
                   } else {
                     this.setState({
@@ -247,6 +254,7 @@ export const MapGeolocated = withStyles(mapStyles)(
       toGoMyLocation(e) {
         e.preventDefault();
         e.stopPropagation();
+        this.ref.current.props.getLocation();
         this.setState({ zoom: 14 });
       }
 
@@ -261,6 +269,7 @@ export const MapGeolocated = withStyles(mapStyles)(
               autoComplete="off"
               onSubmit={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 this.getDataAPI();
               }}
             >
