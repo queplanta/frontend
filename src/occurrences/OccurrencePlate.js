@@ -66,7 +66,7 @@ function OccurrencePlatePage(props) {
           </div>
         </Grid>
         <Grid item xs={3} style={{ textAlign: "right", paddingTop: 80 }}>
-          <QRCode value={url} size={115} />
+          <QRCode value={url} size={115} renderAs="svg" />
         </Grid>
       </Grid>
     </div>
