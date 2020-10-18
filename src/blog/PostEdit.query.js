@@ -7,7 +7,14 @@ const query = graphql`
       url
       title
       body
+      summary
+      mainImage {
+        id
+      }
       publishedAt
+      mainImage {
+        id
+      }
       tags(first: 50) {
         edges {
           node {

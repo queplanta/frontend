@@ -4,6 +4,8 @@ import moment from "moment";
 import { Grid, TextField, IconButton, withStyles } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import StarOutlineIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
 import { useSnackbar } from "notistack";
 import { useRouter } from "found";
 import _ from "lodash";
@@ -28,6 +30,8 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
     moment(post.publishedAt).format("YYYY-MM-DDTHH:mm:ss")
   );
   const body = useFormInput(post.body);
+  const summary = useFormInput(post.summary);
+  const mainImage = useFormInput(post.mainImage ? post.mainImage.id : "");
   const tags = useFormInput(
     post.tags.edges.map((edge) => edge.node.title).join(", ")
   );
@@ -44,6 +48,8 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
         title: title.value,
         publishedAt: publishedAt.value,
         body: body.value,
+        summary: summary.value,
+        mainImage: mainImage.value,
         tags: tags.value,
       },
       {
@@ -73,6 +79,14 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
           value: `${body.value}\n<Image id="${imageId}" width="200" height="200" />`,
         },
       });
+    }
+  }
+
+  function makeMainImage(imageId) {
+    if (imageId === mainImage.value) {
+      mainImage.onChange({ target: { value: "" } });
+    } else {
+      mainImage.onChange({ target: { value: imageId } });
     }
   }
 
@@ -118,10 +132,14 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
           />
         </Grid>
         <Grid item xs={12}>
+          <TextField label="Summary" fullWidth multiline {...summary} />
+        </Grid>
+        <Grid item xs={12}>
           <TextField label="Tags" fullWidth {...tags} />
         </Grid>
         <Grid item xs={12}>
           {post.imaging.images.edges.map(({ node }) => {
+            const isMainImage = mainImage.value === node.id;
             return (
               <span key={node.id} className={classes.imageThumb}>
                 <ImageThumbnail
@@ -142,6 +160,13 @@ function PostEdit({ classes, environment, setFormErrors, post }) {
                   onClick={() => appendImage(node.id)}
                 >
                   <AddPhotoAlternateIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  className={classes.imgMainButton}
+                  onClick={() => makeMainImage(node.id)}
+                >
+                  {isMainImage ? <StarIcon /> : <StarOutlineIcon />}
                 </IconButton>
               </span>
             );
@@ -195,5 +220,16 @@ export default withStyles((theme) => ({
     position: "absolute",
     top: -10,
     left: -10,
+    // "& svg": {
+    //   background: "rgba(0, 0, 0, 0.4)"
+    // }
+  },
+  imgMainButton: {
+    position: "absolute",
+    bottom: -10,
+    left: -10,
+    // "& svg": {
+    //   background: "rgba(0, 0, 0, 0.4)"
+    // }
   },
 }))(hasFormErrors(PostEdit));
