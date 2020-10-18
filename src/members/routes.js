@@ -5,7 +5,7 @@ import HomeDirectoryQuery from "./Home.query.js";
 import UserList from "./UserList.js";
 import UserListQuery from "./UserList.query.js";
 
-export const directoriesRoutes = (
+export const membersRoutes = (
   <React.Fragment>
     <Route
       path="/diretorio/membros"
