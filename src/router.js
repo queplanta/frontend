@@ -5,12 +5,12 @@ import { queryMiddleware } from "farce";
 import App from "./App.js";
 import AppQuery from "./App.query.js";
 import RouteWithLoading from "./relay/RouteWithLoading.js";
-import { homeRoute } from "./Home.js";
+import { homeRoute } from "./Home";
 import { accountsRoutes } from "./accounts/routes.js";
 import { blogRoutes } from "./blog/routes.js";
 import { pagesRoutes } from "./pages/routes.js";
 import { plantsRoutes } from "./plants/routes.js";
-import { directoriesRoutes } from "./directories/routes.js";
+import { membersRoutes } from "./members/routes.js";
 import { occurrencesRoutes } from "./occurrences/routes.js";
 import { revisionsRoutes } from "./revisions/routes.js";
 
@@ -40,7 +40,7 @@ export const routeConfig = makeRouteConfig(
       {blogRoutes}
       {occurrencesRoutes}
       {accountsRoutes}
-      {directoriesRoutes}
+      {membersRoutes}
       {revisionsRoutes}
 
       {/*needs to be last one*/}

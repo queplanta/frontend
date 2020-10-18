@@ -14,6 +14,9 @@ export const fragmentQuery = graphql`
       edges {
         node {
           id
+          title
+          body
+          url
           ...PostItem_post
         }
       }
