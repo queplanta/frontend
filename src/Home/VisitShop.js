@@ -1,10 +1,8 @@
 import React from "react";
 import {
-  Button,
   Card,
   CardActionArea,
   CardContent,
-  CardActions,
   CardMedia,
   Link,
   Typography,
@@ -16,7 +14,6 @@ import banner4 from "../assets/banners/shop/banner4.jpg";
 import banner5 from "../assets/banners/shop/banner5.jpg";
 
 function VisitShop(props) {
-  const { classes, banner } = props;
   const Images = [banner1, banner2, banner3, banner4, banner5];
   const randomNum = Math.floor(Math.random() * Images.length);
 

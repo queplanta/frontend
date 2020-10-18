@@ -37,7 +37,6 @@ import logoImg from "./assets/queplanta-icon.svg";
 import logoTextImg from "./assets/queplanta-text-light.svg";
 import AccountNavbar from "./accounts/Navbar.js";
 import Footer from "./Footer.js";
-import { Width } from "./ui";
 import BottomNavbar from "./BottomNavbar.js";
 import headerNavBackground from "./assets/background.jpg";
 import { LoginRequiredProvider } from "./accounts/LoginRequired.js";
