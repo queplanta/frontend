@@ -11,7 +11,7 @@ import {
   Link,
   withStyles,
 } from "@material-ui/core";
-import { fragmentSpec, query } from "../blog/PostList.query.js";
+import { fragmentSpec, query } from "./RecentPosts.query.js";
 
 function RecentPosts(props) {
   const {
@@ -30,13 +30,14 @@ function RecentPosts(props) {
         {posts.map(({ node: post }) => (
           <Grid item xs={12} md={4} key={post.id}>
             <Card>
-              <CardMedia
-                to={`/blog/${post.url}`}
-                component={RouterLink}
-                // className={classes.cover}
-                // image={mainImage}
-                alt={post.title}
-              />
+              {post.mainImage && (
+                <CardMedia
+                  to={`/blog/${post.url}`}
+                  component={RouterLink}
+                  image={post.mainImage.smallImage.url}
+                  alt={post.title}
+                />
+              )}
               <CardContent>
                 <Link to={`/blog/${post.url}`} component={RouterLink}>
                   <Typography component="h6" variant="h6">
@@ -44,7 +45,7 @@ function RecentPosts(props) {
                   </Typography>
                 </Link>
                 <Typography variant="subtitle1" color="textSecondary">
-                  {post.body}
+                  {post.summary}
                 </Typography>
               </CardContent>
             </Card>
