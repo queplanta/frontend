@@ -35,7 +35,7 @@ const MostDesiredPlantItem = ({ plant }) => {
 function MostDesiredPlants(props) {
   const {
     viewer: {
-      allLifeNode: { edges: plants },
+      mostDesiredPlants: { edges: plants },
     },
   } = props;
 
@@ -67,7 +67,7 @@ export default createPaginationContainer(MostDesiredPlants, fragmentSpec, {
   direction: "forward",
   query: query,
   getConnectionFromProps(props) {
-    return props.viewer.allLifeNode;
+    return props.viewer.mostDesiredPlants;
   },
   getVariables(props, paginationInfo, fragmentVariables) {
     return {
