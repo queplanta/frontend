@@ -6,8 +6,11 @@ export const fragmentQuery = graphql`
       count: { type: "Int", defaultValue: 30 }
       cursor: { type: "String" }
     ) {
-    allLifeNode(first: $count, after: $cursor, orderBy: "-wish_count")
-      @connection(key: "MostDesiredPlants_allLifeNode") {
+    mostDesiredPlants: allLifeNode(
+      first: $count
+      after: $cursor
+      orderBy: "-wish_count"
+    ) @connection(key: "MostDesiredPlants_mostDesiredPlants") {
       pageInfo {
         endCursor
         hasNextPage
