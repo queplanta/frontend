@@ -1,6 +1,7 @@
 import React from "react";
 import Route from "../relay/RouteWithLoading";
-import { Grid, withStyles } from "@material-ui/core";
+import { Button, Grid, Paper, Typography, withStyles } from "@material-ui/core";
+import { Link as RouterLink } from "found";
 import HomeQuery from "./index.query.js";
 import OccurrencesMap from "../occurrences/OccurrencesMap.js";
 import PeopleWhoPlant from "./PeopleWhoPlant.js";
@@ -16,6 +17,21 @@ function Home(props) {
   return (
     <Width>
       <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.BannerAddPlant}>
+            <Typography variant="h3" component="h2" gutterBottom>
+              Ajude o Que Planta a catalogar sua cidade!
+            </Typography>
+            <Button
+              component={RouterLink}
+              to="/adicionar"
+              variant="contained"
+              color="primary"
+            >
+              Começar a catalogar
+            </Button>
+          </Paper>
+        </Grid>
         <Grid item xs={12} md={8}>
           <OccurrencesMap
             className={classes.map}
@@ -61,10 +77,14 @@ const styles = (theme) => ({
     boxShadow:
       "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
     height: "100%",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       height: "240px",
-      marginTop: "24px",
     },
+  },
+  BannerAddPlant: {
+    marginTop: "12px",
+    padding: theme.spacing(4),
+    textAlign: "center",
   },
 });
 

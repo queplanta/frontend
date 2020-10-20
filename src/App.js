@@ -308,8 +308,9 @@ export class App extends Component {
                               className={classes.btn}
                               component={RouterLink}
                               to="/adicionar"
+                              variant="outlined"
                             >
-                              <CameraAltIcon />
+                              <CameraAltIcon /> Adicionar identificação
                             </Button>
                           </Tooltip>
                         </Toolbar>
