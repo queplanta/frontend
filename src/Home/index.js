@@ -17,7 +17,14 @@ function Home(props) {
     <Width>
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
-          <OccurrencesMap className={classes.map} environment={environment} />
+          <OccurrencesMap
+            className={classes.map}
+            environment={environment}
+            boxZoom={false}
+            scrollWheelZoom={false}
+            dragging={false}
+            noMoveStart={false}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
           <VisitShop />
@@ -54,6 +61,10 @@ const styles = (theme) => ({
     boxShadow:
       "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
     height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      height: "240px",
+      marginTop: "24px",
+    },
   },
 });
 

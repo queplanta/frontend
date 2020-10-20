@@ -6,7 +6,8 @@ export const fragmentQuery = graphql`
       count: { type: "Int", defaultValue: 30 }
       cursor: { type: "String" }
     ) {
-    allPosts(first: $count, after: $cursor) @connection(key: "Blog_allPosts") {
+    recentPosts: allPosts(first: $count, after: $cursor)
+      @connection(key: "RecentPosts_recentPosts") {
       pageInfo {
         endCursor
         hasNextPage
@@ -23,7 +24,6 @@ export const fragmentQuery = graphql`
             }
           }
           url
-          ...PostItem_post
         }
       }
     }

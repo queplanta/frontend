@@ -9,15 +9,51 @@ import {
   Grid,
   Typography,
   Link,
-  withStyles,
+  makeStyles,
 } from "@material-ui/core";
-import { fragmentSpec, query } from "../blog/PostList.query.js";
+import { fragmentSpec, query } from "./RecentPosts.query.js";
+
+const useStyles = makeStyles({
+  media: {
+    height: 160,
+  },
+});
+
+const RecentPostItem = ({ post }) => {
+  const classes = useStyles();
+
+  return (
+    <Grid item xs={12} md={4} key={post.id}>
+      <Card>
+        {post.mainImage && (
+          <CardMedia
+            to={`/blog/${post.url}`}
+            component={RouterLink}
+            className={classes.media}
+            image={post.mainImage.smallImage.url}
+            height="123"
+            alt={post.title}
+          />
+        )}
+        <CardContent>
+          <Link to={`/blog/${post.url}`} component={RouterLink}>
+            <Typography component="h6" variant="h6">
+              {post.title}
+            </Typography>
+          </Link>
+          <Typography variant="subtitle1" color="textSecondary">
+            {post.summary}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+};
 
 function RecentPosts(props) {
   const {
-    classes,
     viewer: {
-      allPosts: { edges: posts },
+      recentPosts: { edges: posts },
     },
   } = props;
 
@@ -28,27 +64,7 @@ function RecentPosts(props) {
       </Typography>
       <Grid container spacing={3}>
         {posts.map(({ node: post }) => (
-          <Grid item xs={12} md={4} key={post.id}>
-            <Card>
-              <CardMedia
-                to={`/blog/${post.url}`}
-                component={RouterLink}
-                // className={classes.cover}
-                // image={mainImage}
-                alt={post.title}
-              />
-              <CardContent>
-                <Link to={`/blog/${post.url}`} component={RouterLink}>
-                  <Typography component="h6" variant="h6">
-                    {post.title}
-                  </Typography>
-                </Link>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {post.body}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <RecentPostItem post={post} key={post.id} />
         ))}
       </Grid>
     </>
@@ -59,7 +75,7 @@ export default createPaginationContainer(RecentPosts, fragmentSpec, {
   direction: "forward",
   query: query,
   getConnectionFromProps(props) {
-    return props.viewer.allUsers;
+    return props.viewer.recentPosts;
   },
   getVariables(props, paginationInfo, fragmentVariables) {
     return {
