@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Que Planta</string>
+    <string name="title_activity_main">Que Planta</string>
+    <string name="package_name">com.queplanta.app</string>
+    <string name="custom_url_scheme">com.queplanta.app</string>
+</resources>
