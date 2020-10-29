@@ -10,6 +10,7 @@ import MostDesiredPlants from "./MostDesiredPlants.js";
 import RecentPosts from "./RecentPosts.js";
 import VisitShop from "./VisitShop.js";
 import { Width } from "../ui";
+import mapExample from "../assets/map-example.jpg";
 
 function Home(props) {
   const { classes, environment, viewer } = props;
@@ -17,7 +18,7 @@ function Home(props) {
   return (
     <Width>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        {/*<Grid item xs={12}>
           <Paper className={classes.BannerAddPlant}>
             <Typography variant="h3" component="h2" gutterBottom>
               Ajude o Que Planta a catalogar sua cidade!
@@ -31,16 +32,19 @@ function Home(props) {
               Começar a catalogar
             </Button>
           </Paper>
-        </Grid>
+        </Grid>*/}
         <Grid item xs={12} md={8}>
-          <OccurrencesMap
+          <RouterLink to={`/mapa`} className={classes.mapLink}>
+            <img className={classes.map} src={mapExample} />
+            <span className={classes.mapTitle}>Mapa de plantas</span>
+          </RouterLink>
+          {/*<OccurrencesMap
             className={classes.map}
             environment={environment}
-            boxZoom={false}
             scrollWheelZoom={false}
-            dragging={false}
-            noMoveStart={false}
-          />
+            hideSearch={true}
+            hideControls={true}
+          />*/}
         </Grid>
         <Grid item xs={12} md={4}>
           <VisitShop />
@@ -72,11 +76,34 @@ const styles = (theme) => ({
   gridPaddingBottom: {
     paddingBottom: theme.spacing(2),
   },
-  map: {
+  mapLink: {
+    display: "inline-block",
     borderRadius: "4px",
     boxShadow:
       "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+    position: "relative",
+    overflow: "hidden",
+  },
+  mapTitle: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginLeft: -166,
+    marginTop: -37,
+    background: "rgba(0, 0, 0, 0.6)",
+    fontWeight: "bold",
+    fontSize: 40,
+    color: "#fff",
+    borderRadius: "4px",
+    padding: theme.spacing(1, 2),
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.4)",
+    },
+  },
+  map: {
     height: "100%",
+    minHeight: 200,
+    display: "block",
     [theme.breakpoints.down("sm")]: {
       height: "240px",
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardActionArea,
@@ -13,9 +13,19 @@ import banner3 from "../assets/banners/shop/banner3.jpg";
 import banner4 from "../assets/banners/shop/banner4.jpg";
 import banner5 from "../assets/banners/shop/banner5.jpg";
 
+const images = [banner1, banner2, banner3, banner4, banner5];
+
 function VisitShop(props) {
-  const Images = [banner1, banner2, banner3, banner4, banner5];
-  const randomNum = Math.floor(Math.random() * Images.length);
+  const [image, setImage] = useState(banner1);
+
+  useEffect(() => {
+    const randomNum = Math.floor(Math.random() * images.length);
+    setImage(images[randomNum]);
+  }, []);
+
+  if (!image) {
+    return null;
+  }
 
   return (
     <Card>
@@ -28,7 +38,7 @@ function VisitShop(props) {
         <CardMedia
           component="img"
           height="300"
-          image={Images[randomNum]}
+          image={image}
           title="Loja Que Planta"
         />
         <CardContent>
@@ -36,7 +46,7 @@ function VisitShop(props) {
             Loja Que Planta
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Something here
+            Ajude-nos a manter esse projeto vivo.
           </Typography>
         </CardContent>
       </CardActionArea>
