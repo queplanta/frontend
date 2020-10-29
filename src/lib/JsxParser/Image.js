@@ -43,22 +43,24 @@ const Image = ({
           );
         }
 
-        if (props) {
+        if (props && props.image) {
           return (
             <React.Fragment>
-              <ImageThumbnail
-                alt={props.image.description}
-                image={props.image}
-                src={props.image.smallImage.url}
-                width={width}
-                height={height}
-                className={clsx(classes.img, {
-                  [classes.imgLeft]: float === "left" && noCard,
-                  [classes.imgRight]: float === "right" && noCard,
-                  [classes.imgResponsive]: responsive,
-                })}
-                {...props}
-              />
+              {props.image && (
+                <ImageThumbnail
+                  alt={props.image.description}
+                  image={props.image}
+                  src={props.image.smallImage.url}
+                  width={width}
+                  height={height}
+                  className={clsx(classes.img, {
+                    [classes.imgLeft]: float === "left" && noCard,
+                    [classes.imgRight]: float === "right" && noCard,
+                    [classes.imgResponsive]: responsive,
+                  })}
+                  {...props}
+                />
+              )}
               {!noDescription && props.image.description && (
                 <Typography
                   component="p"

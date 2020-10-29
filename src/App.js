@@ -18,7 +18,6 @@ import {
   IconButton,
   MenuList,
   MenuItem,
-  ListItemText,
   Hidden,
   withStyles,
 } from "@material-ui/core";
@@ -37,7 +36,6 @@ import logoImg from "./assets/queplanta-icon.svg";
 import logoTextImg from "./assets/queplanta-text-light.svg";
 import AccountNavbar from "./accounts/Navbar.js";
 import Footer from "./Footer.js";
-import { Width } from "./ui";
 import BottomNavbar from "./BottomNavbar.js";
 import headerNavBackground from "./assets/background.jpg";
 import { LoginRequiredProvider } from "./accounts/LoginRequired.js";
@@ -119,7 +117,7 @@ export class App extends Component {
                             exact={true}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Início" />
+                            Início
                           </MenuItem>
                           <MenuItem
                             to="/plantas"
@@ -127,21 +125,32 @@ export class App extends Component {
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Plantas" />
+                            Plantas
                           </MenuItem>
                           <MenuItem
                             to="/mapa"
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Mapa" />
+                            Mapa
                           </MenuItem>
                           <MenuItem
                             to="/identificacao"
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Identificação" />
+                            Identificação
+                          </MenuItem>
+                          <MenuItem
+                            href="https://loja.queplanta.com/"
+                            component="a"
+                          >
+                            Loja{" "}
+                            <Chip
+                              label="Novidade"
+                              color="primary"
+                              size="small"
+                            />
                           </MenuItem>
                           <Divider />
                           <MenuItem
@@ -149,28 +158,28 @@ export class App extends Component {
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="O que é" />
+                            O que é
                           </MenuItem>
                           <MenuItem
                             to="/como-funciona"
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Como Funciona" />
+                            Como Funciona
                           </MenuItem>
                           <MenuItem
                             to="/contribua"
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Contribua" />
+                            Contribua
                           </MenuItem>
                           <MenuItem
                             to="/blog"
                             component={RouterLink}
                             activeClassName={classes.drawerListItemActive}
                           >
-                            <ListItemText primary="Blog" />
+                            Blog
                           </MenuItem>
                         </MenuList>
                       </Drawer>
@@ -299,8 +308,9 @@ export class App extends Component {
                               className={classes.btn}
                               component={RouterLink}
                               to="/adicionar"
+                              variant="outlined"
                             >
-                              <CameraAltIcon />
+                              <CameraAltIcon /> Adicionar identificação
                             </Button>
                           </Tooltip>
                         </Toolbar>

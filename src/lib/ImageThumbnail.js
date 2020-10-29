@@ -14,15 +14,7 @@ import { createRefetchContainer } from "react-relay";
 import { fragmentSpec, refetchQuery } from "./ImageThumbnail.query.js";
 
 function ImageThumbnail(props) {
-  const {
-    relay,
-    classes,
-    image,
-    className,
-    width,
-    height,
-    ...imgProps
-  } = props;
+  const { relay, classes, image, className, ...imgProps } = props;
   const [isOpen, setOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const theme = useTheme();
@@ -56,8 +48,6 @@ function ImageThumbnail(props) {
         alt=""
         onClick={onClick}
         className={clsx(classes.img, className)}
-        width={width}
-        height={height}
         {...imgProps}
       />
       <Dialog

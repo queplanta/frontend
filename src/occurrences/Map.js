@@ -259,66 +259,81 @@ export const MapGeolocated = withStyles(mapStyles)(
       }
 
       render() {
-        const { classes, children, ...mapProps } = this.props;
+        const {
+          classes,
+          children,
+          hideSearch,
+          hideControls,
+          ...mapProps
+        } = this.props;
         const { position, searchValue, error } = this.state;
 
         return (
-          <Map mapRef={this.ref} center={position} {...mapProps}>
-            <form
-              className={classes.searchForm}
-              autoComplete="off"
-              onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.getDataAPI();
-              }}
-            >
-              <TextField
-                style={{ width: "100%" }}
-                placeholder="Buscar por endereço"
-                value={searchValue}
-                InputProps={{
-                  className: classes.input,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton type="submit" size="small">
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
+          <Map
+            mapRef={this.ref}
+            center={position}
+            zoomControl={!hideControls}
+            {...mapProps}
+          >
+            {!hideSearch && (
+              <form
+                className={classes.searchForm}
+                autoComplete="off"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.getDataAPI();
                 }}
-                onChange={(event) => this.handlerInputSearch(event)}
-                size="small"
-                variant="outlined"
-              />
-              {error && (
-                <Alert
-                  severity="error"
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.65)",
-                    marginTop: "10px",
-                  }}
-                >
-                  <AlertTitle>Erro ao buscar endereço.</AlertTitle>
-                  {error.msg}
-                </Alert>
-              )}
-            </form>
-            {children}
-            <Tooltip title="Minha localização atual" placement="top">
-              <MapButton
-                variant="outlined"
-                style={{
-                  position: "absolute",
-                  top: 80,
-                  left: 10,
-                  zIndex: 1000,
-                }}
-                onClick={this.toGoMyLocation}
               >
-                <MyLocationIcon />
-              </MapButton>
-            </Tooltip>
+                <TextField
+                  style={{ width: "100%" }}
+                  placeholder="Buscar por endereço"
+                  value={searchValue}
+                  InputProps={{
+                    className: classes.input,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton type="submit" size="small">
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  onChange={(event) => this.handlerInputSearch(event)}
+                  size="small"
+                  variant="outlined"
+                />
+                {error && (
+                  <Alert
+                    severity="error"
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.65)",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <AlertTitle>Erro ao buscar endereço.</AlertTitle>
+                    {error.msg}
+                  </Alert>
+                )}
+              </form>
+            )}
+            {children}
+            {!hideControls && (
+              <Tooltip title="Minha localização atual" placement="top">
+                <MapButton
+                  variant="outlined"
+                  style={{
+                    position: "absolute",
+                    top: 80,
+                    left: 10,
+                    zIndex: 1000,
+                  }}
+                  onClick={this.toGoMyLocation}
+                >
+                  <MyLocationIcon />
+                </MapButton>
+              </Tooltip>
+            )}
           </Map>
         );
       }

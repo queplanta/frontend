@@ -1,12 +1,13 @@
 import graphql from "babel-plugin-relay/macro";
 
 export const fragmentQuery = graphql`
-  fragment PostList_viewer on Query
+  fragment RecentPosts_viewer on Query
     @argumentDefinitions(
       count: { type: "Int", defaultValue: 30 }
       cursor: { type: "String" }
     ) {
-    allPosts(first: $count, after: $cursor) @connection(key: "Blog_allPosts") {
+    recentPosts: allPosts(first: $count, after: $cursor)
+      @connection(key: "RecentPosts_recentPosts") {
       pageInfo {
         endCursor
         hasNextPage
@@ -15,9 +16,14 @@ export const fragmentQuery = graphql`
         node {
           id
           title
-          body
+          summary
+          mainImage {
+            id
+            smallImage: image(width: 225, height: 300) {
+              url
+            }
+          }
           url
-          ...PostItem_post
         }
       }
     }
@@ -29,9 +35,9 @@ export const fragmentSpec = {
 };
 
 export const query = graphql`
-  query PostListQuery($count: Int!, $cursor: String) {
+  query RecentPostsQuery($count: Int!, $cursor: String) {
     viewer {
-      ...PostList_viewer @arguments(count: $count, cursor: $cursor)
+      ...RecentPosts_viewer @arguments(count: $count, cursor: $cursor)
     }
   }
 `;
