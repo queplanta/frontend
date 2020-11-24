@@ -145,7 +145,7 @@ export class App extends Component {
                             href="https://loja.queplanta.com/"
                             component="a"
                           >
-                            Loja{" "}
+                            Loja&nbsp;
                             <Chip
                               label="Novidade"
                               color="primary"
