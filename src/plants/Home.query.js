@@ -1,10 +1,21 @@
 import graphql from "babel-plugin-relay/macro";
 
 const query = graphql`
-  query HomePlantQuery($search: String, $edibles: Boolean) {
+  query HomePlantQuery {
     viewer {
       id
-      ...PlantList_viewer @arguments(edibles: $edibles, search: $search)
+    }
+    ranks: __type(name: "Rank") {
+      enumValues {
+        name
+        description
+      }
+    }
+    edibilities: __type(name: "Edibility") {
+      enumValues {
+        name
+        description
+      }
     }
   }
 `;

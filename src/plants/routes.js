@@ -28,9 +28,6 @@ export const plantsRoutes = (
         const { props, ...otherProps } = args;
         return <HomePlants {...props} relay={otherProps} />;
       }}
-      prepareVariables={(params, { location }) => {
-        return { ...params, search: location.query.q };
-      }}
     />
     <Route
       path="/plantas/comestiveis"
