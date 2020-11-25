@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { QueryRenderer } from "react-relay";
 import {
   Accordion,
   AccordionSummary,
@@ -8,24 +9,35 @@ import {
   FormGroup,
   Checkbox,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Typography,
   Grid,
   InputBase,
   Paper,
   Hidden,
+  LinearProgress,
   withStyles,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { withRouter } from "found";
 import PageTitle from "../lib/PageTitle.js";
 import { Width } from "../ui";
 import PlantList from "./PlantList.js";
-import { TabsRoute, TabRoute } from "../lib/Tabs.js";
 import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+import query from "./Home.filterQuery.js";
+
+function getArrayOfValues(a) {
+  if (typeof a === "string") {
+    return [a];
+  }
+
+  if (!a) {
+    return [];
+  }
+
+  return a;
+}
 
 export class PlantsHome extends Component {
   constructor(props) {
@@ -35,6 +47,7 @@ export class PlantsHome extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.onChangeSearch = this.onChangeSearch.bind(this);
+    this.handleChangeFilter = this.handleChangeFilter.bind(this);
   }
 
   onChangeSearch(e) {
@@ -46,8 +59,55 @@ export class PlantsHome extends Component {
     this.props.router.push(`/plantas?q=${this.state.searchBy}`);
   }
 
+  handleChangeFilter(e) {
+    const { name, value } = e.target;
+    const currentQuery = this.props.match.location.query;
+    const currentValues = getArrayOfValues(currentQuery[name]);
+    const exists = currentValues.indexOf(value) >= 0;
+
+    if (!exists) {
+      this.props.router.push({
+        pathname: this.props.match.location.pathname,
+        query: {
+          ...currentQuery,
+          [name]: [...currentValues, value],
+        },
+      });
+    } else {
+      this.props.router.push({
+        pathname: this.props.match.location.pathname,
+        query: {
+          ...currentQuery,
+          [name]: currentValues.filter((item) => item !== value),
+        },
+      });
+    }
+  }
+
+  renderFilterOptions(options, name) {
+    const currentQuery = this.props.match.location.query;
+    const currentValues = getArrayOfValues(currentQuery[name]);
+    return options.map((option) => {
+      const checked = currentValues.indexOf(option.name) >= 0;
+      return (
+        <FormControlLabel
+          key={option.name}
+          control={
+            <Checkbox
+              checked={checked}
+              name={name}
+              value={option.name}
+              onChange={this.handleChangeFilter}
+            />
+          }
+          label={option.description}
+        />
+      );
+    });
+  }
+
   render() {
-    const { classes, viewer, relay } = this.props;
+    const { classes, relay, ranks, edibilities } = this.props;
 
     let title = relay.variables.edibles ? `Plantas Comestíveis` : `Plantas`;
 
@@ -55,6 +115,8 @@ export class PlantsHome extends Component {
       title = `Busca de plantas por:
       ${relay.variables.search}`;
     }
+
+    const { location } = this.props.match;
 
     return (
       <Width>
@@ -98,16 +160,11 @@ export class PlantsHome extends Component {
               </AccordionSummary>
               <AccordionDetails>
                 <FormGroup component={List}>
-                  {["Familia", "Genero", "Espécie"].map((label) => (
-                    <FormControlLabel
-                      control={<Checkbox name="gilad" />}
-                      label={label}
-                    />
-                  ))}
+                  {this.renderFilterOptions(ranks.enumValues, "rank")}
                 </FormGroup>
               </AccordionDetails>
             </Accordion>
-            <Accordion>
+            {/*<Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Extrato</Typography>{" "}
               </AccordionSummary>{" "}
@@ -121,19 +178,17 @@ export class PlantsHome extends Component {
                   ))}
                 </FormGroup>
               </AccordionDetails>
-            </Accordion>
+            </Accordion>*/}
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Comestibilidade</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <FormGroup component={List}>
-                  {["Baixa", "Média", "Alta"].map((label) => (
-                    <FormControlLabel
-                      control={<Checkbox name="gilad" />}
-                      label={label}
-                    />
-                  ))}
+                  {this.renderFilterOptions(
+                    edibilities.enumValues,
+                    "edibility"
+                  )}
                 </FormGroup>
               </AccordionDetails>
             </Accordion>
@@ -145,7 +200,21 @@ export class PlantsHome extends Component {
                 </TabsRoute>*/}{" "}
           </Grid>
           <Grid item md={8}>
-            <PlantList viewer={viewer} count={30} />
+            <QueryRenderer
+              environment={relay.environment}
+              query={query}
+              variables={{
+                search: location.query.q,
+                rank: location.query.rank,
+                edibility: location.query.edibility,
+              }}
+              render={({ error, props }) => {
+                if (!props) {
+                  return <LinearProgress />;
+                }
+                return <PlantList count={30} {...props} />;
+              }}
+            />
           </Grid>
         </Grid>
       </Width>
@@ -189,4 +258,4 @@ const styles = (theme) => ({
     fontSize: "44px",
   },
 });
-export default withStyles(styles)(PlantsHome);
+export default withRouter(withStyles(styles)(PlantsHome));
