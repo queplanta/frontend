@@ -21,15 +21,15 @@ function Home(props) {
 
   return (
     <Width>
-      <Helmet title="Mapa de Árvores" />
+      <Helmet title="Mapa de Plantas" />
       <Hidden mdUp>
         <BreadcrumbsWithHome>
-          <BreadcrumbsItem to="/mapa">Mapa de Árvores</BreadcrumbsItem>
+          <BreadcrumbsItem to="/mapa">Mapa de Plantas</BreadcrumbsItem>
         </BreadcrumbsWithHome>
       </Hidden>
       <Grid container>
         <Grid item xs={12} sm={6}>
-          <PageTitle>Mapa de Árvores</PageTitle>
+          <PageTitle>Mapa de Plantas</PageTitle>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.buttonWraper}>
           <Button
