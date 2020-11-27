@@ -1188,11 +1188,7 @@
                 {
                   "defaultValue": null,
                   "description": null,
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  "name": "first",
-=======
-                  "name": "author",
+                  "name": "identity",
                   "type": {
                     "kind": "SCALAR",
                     "name": "ID",
@@ -1202,11 +1198,7 @@
                 {
                   "defaultValue": null,
                   "description": null,
-                  "name": "withinBbox",
->>>>>>> c601549... users' occurrences
-=======
-                  "name": "identity",
->>>>>>> 672050e... plants list filters
+                  "name": "author",
                   "type": {
                     "kind": "SCALAR",
                     "name": "ID",
@@ -1564,80 +1556,32 @@
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "Page",
-=======
               "name": "Occurrence",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Post",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "LifeNode",
-=======
               "name": "Image",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Imaging",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "CommonName",
-=======
               "name": "SuggestionID",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Image",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "Characteristic",
-=======
               "name": "Post",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Tag",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "CollectionItem",
-=======
               "name": "Imaging",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Page",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "WishItem",
-=======
               "name": "Tag",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Characteristic",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
@@ -2578,47 +2522,7 @@
               }
             },
             {
-<<<<<<< HEAD
               "args": [
-<<<<<<< HEAD
-=======
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "LifeNode",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "id",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-=======
                 {
                   "defaultValue": null,
                   "description": null,
@@ -2658,21 +2562,10 @@
                     "name": "Int",
                     "ofType": null
                   }
->>>>>>> 672050e... plants list filters
                 }
-              }
-            },
-            {
-              "args": [],
+              ],
               "deprecationReason": null,
               "description": null,
-<<<<<<< HEAD
-              "isDeprecated": false,
-              "name": "idInt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-=======
               "isDeprecated": false,
               "name": "wishList",
               "type": {
@@ -2879,12 +2772,22 @@
             },
             {
               "kind": "OBJECT",
-              "name": "Post",
+              "name": "Occurrence",
               "ofType": null
             },
             {
               "kind": "OBJECT",
               "name": "Image",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SuggestionID",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Post",
               "ofType": null
             },
             {
@@ -2900,16 +2803,6 @@
             {
               "kind": "OBJECT",
               "name": "Characteristic",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Occurrence",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "SuggestionID",
               "ofType": null
             },
             {
@@ -3951,25 +3844,10 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ImageConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
             {
-<<<<<<< HEAD
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "myPerms",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-=======
               "args": [
                 {
                   "defaultValue": null,
@@ -4010,50 +3888,15 @@
                     "name": "Int",
                     "ofType": null
                   }
->>>>>>> 672050e... plants list filters
                 }
-              }
-            },
-            {
-              "args": [],
+              ],
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "document",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Document",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "revisionCurrent",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "revisionCreated",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-=======
               "name": "occurrenceIdentity",
               "type": {
                 "kind": "OBJECT",
                 "name": "OccurrenceConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4098,8 +3941,6 @@
                     "name": "Int",
                     "ofType": null
                   }
-<<<<<<< HEAD
-=======
                 }
               ],
               "deprecationReason": null,
@@ -4153,253 +3994,15 @@
                     "name": "Int",
                     "ofType": null
                   }
->>>>>>> 672050e... plants list filters
                 }
               ],
               "deprecationReason": null,
-              "description": null,
+              "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "revisions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-=======
               "name": "occurrenceImage",
               "type": {
                 "kind": "OBJECT",
                 "name": "OccurrenceConnection",
->>>>>>> 672050e... plants list filters
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "INTERFACE",
-          "name": "DocumentNode",
-          "possibleTypes": [
-            {
-              "kind": "OBJECT",
-              "name": "LifeNode",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "CollectionItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Comment",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Vote",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "WishItem",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Occurrence",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Image",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "SuggestionID",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Post",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Tag",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Page",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Characteristic",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "CommonName",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "List",
-              "ofType": null
-            }
-          ]
-        },
-        {
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31 - 1) and 2^31 - 1 since represented in JSON as double-precision floating point numbers specifiedby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "Int",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "String",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The ID of the object.",
-              "isDeprecated": false,
-              "name": "id",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "owner",
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "privacy",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "DocumentIDPrivacy",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revisionsCount",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revisionTipId",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revisionCreatedId",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "createdAt",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "updatedAt",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "deletedAt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4449,17 +4052,10 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "owns",
-              "type": {
-                "kind": "OBJECT",
-                "name": "DocumentConnection",
-=======
               "name": "suggestionOccurrence",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4509,17 +4105,10 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "revisionSet",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-=======
               "name": "suggestionAuthor",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4569,17 +4158,10 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "authoredRevisions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-=======
               "name": "suggestionIdentity",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4624,32 +4206,15 @@
                     "name": "Int",
                     "ofType": null
                   }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
                 }
               ],
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-=======
               "name": "collectionItemPlant",
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionItemConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4694,35 +4259,15 @@
                     "name": "Int",
                     "ofType": null
                   }
-<<<<<<< HEAD
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
-=======
->>>>>>> 672050e... plants list filters
                 }
               ],
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postMainImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-=======
               "name": "collectionItemUser",
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionItemConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -4767,32 +4312,15 @@
                     "name": "Int",
                     "ofType": null
                   }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
                 }
               ],
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postTagged",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-=======
               "name": "wishItemPlant",
               "type": {
                 "kind": "OBJECT",
                 "name": "WishItemConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -5011,13 +4539,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "pageImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PageConnection",
-                "ofType": null
-=======
               "name": "email",
               "type": {
                 "kind": "NON_NULL",
@@ -5027,7 +4548,6 @@
                   "name": "String",
                   "ofType": null
                 }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -5035,13 +4555,6 @@
               "deprecationReason": null,
               "description": "Indica que o usu\u00e1rio ser\u00e1 tratado como ativo. Ao inv\u00e9s de excluir contas de usu\u00e1rio, desmarque isso.",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "comments",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CommentConnection",
-                "ofType": null
-=======
               "name": "isActive",
               "type": {
                 "kind": "NON_NULL",
@@ -5051,7 +4564,6 @@
                   "name": "Boolean",
                   "ofType": null
                 }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -5059,13 +4571,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "votes",
-              "type": {
-                "kind": "OBJECT",
-                "name": "VoteConnection",
-                "ofType": null
-=======
               "name": "dateJoined",
               "type": {
                 "kind": "NON_NULL",
@@ -5075,7 +4580,6 @@
                   "name": "DateTime",
                   "ofType": null
                 }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -5112,17 +4616,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "votesAuthor",
-              "type": {
-                "kind": "OBJECT",
-                "name": "VoteConnection",
-=======
               "name": "avatar",
               "type": {
                 "kind": "OBJECT",
                 "name": "File",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -5131,13 +4628,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "children",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-                "ofType": null
-=======
               "name": "reputation",
               "type": {
                 "kind": "NON_NULL",
@@ -5147,7 +4637,6 @@
                   "name": "Int",
                   "ofType": null
                 }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -5191,24 +4680,7 @@
                     "name": "Int",
                     "ofType": null
                   }
-<<<<<<< HEAD
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "lifeNodeCommonname",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-=======
                 },
->>>>>>> 672050e... plants list filters
                 {
                   "defaultValue": null,
                   "description": null,
@@ -5253,12 +4725,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "lifeNodeImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-=======
               "name": "socialAuth",
               "type": {
                 "kind": "OBJECT",
@@ -5319,7 +4785,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -5369,43 +4834,15 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "characteristicTag",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CharacteristicConnection",
-=======
               "name": "actions",
               "type": {
                 "kind": "OBJECT",
                 "name": "RevisionConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
             {
               "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
->>>>>>> c601549... users' occurrences
                 {
                   "defaultValue": null,
                   "description": null,
@@ -5445,363 +4882,15 @@
                     "name": "Int",
                     "ofType": null
                   }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
                 }
               ],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-=======
               "name": "collectionList",
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionItemConnection",
->>>>>>> 672050e... plants list filters
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "wishList",
-              "type": {
-                "kind": "OBJECT",
-                "name": "WishItemConnection",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "User",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `DateTime` scalar type represents a DateTime\nvalue as specified by\n[iso8601](https://en.wikipedia.org/wiki/ISO_8601).",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "DateTime",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The ID of the object.",
-              "isDeprecated": false,
-              "name": "id",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "type",
-              "type": {
-                "kind": "ENUM",
-                "name": "RevisionType",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postMainImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-                "ofType": null
-=======
-              "name": "index",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revisionDocumentId",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "parent",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "document",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Document",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "author",
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "authorIp",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "authorUseragent",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "message",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "createdAt",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                }
->>>>>>> 672050e... plants list filters
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "publishedAt",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DateTime",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "postTagged",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-=======
-              "name": "revisionSet",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
->>>>>>> 672050e... plants list filters
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "pageImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PageConnection",
-=======
-              "name": "idInt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -5848,815 +4937,6 @@
                   }
                 }
               ],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "comments",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CommentConnection",
-=======
-              "name": "after",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
->>>>>>> 672050e... plants list filters
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "votes",
-=======
-              "name": "before",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "OBJECT",
-                "name": "VoteConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "votesAuthor",
-              "type": {
-                "kind": "OBJECT",
-                "name": "VoteConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "children",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "lifeNodeCommonname",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "lifeNodeImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNodeConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "characteristicTag",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CharacteristicConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "characteristicLifenode",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CharacteristicConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "occurrenceIdentity",
-              "type": {
-                "kind": "OBJECT",
-                "name": "OccurrenceConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "occurrenceAuthor",
-              "type": {
-                "kind": "OBJECT",
-                "name": "OccurrenceConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "occurrenceImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "OccurrenceConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "suggestionOccurrence",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionIDConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "suggestionAuthor",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionIDConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "suggestionIdentity",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionIDConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "collectionItemPlant",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CollectionItemConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-<<<<<<< HEAD
-=======
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
@@ -6865,15 +5145,30 @@
             },
             {
               "args": [],
->>>>>>> c601549... users' occurrences
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "collectionItemUser",
+              "name": "message",
               "type": {
-                "kind": "OBJECT",
-                "name": "CollectionItemConnection",
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "createdAt",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             },
             {
@@ -6922,10 +5217,22 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "wishItemPlant",
+              "name": "revisionSet",
               "type": {
                 "kind": "OBJECT",
-                "name": "WishItemConnection",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "idInt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -6973,12 +5280,12 @@
                 }
               ],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
-              "name": "wishItemUser",
+              "name": "after",
               "type": {
                 "kind": "OBJECT",
-                "name": "WishItemConnection",
+                "name": "RevisionConnection",
                 "ofType": null
               }
             },
@@ -6987,7 +5294,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "revisionTip",
+              "name": "before",
               "type": {
                 "kind": "OBJECT",
                 "name": "Revision",
@@ -6999,39 +5306,6 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "revisionCreated",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Document",
-          "possibleTypes": null
-        },
-        {
-          "description": "An enumeration.",
-          "enumValues": [
-            {
-              "deprecationReason": null,
-              "description": "Publico",
-              "isDeprecated": false,
-              "name": "A_1"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Amigos",
-=======
               "name": "object",
               "type": {
                 "kind": "INTERFACE",
@@ -7088,7 +5362,6 @@
             {
               "deprecationReason": null,
               "description": "Altera\u00e7\u00e3o",
->>>>>>> 672050e... plants list filters
               "isDeprecated": false,
               "name": "UPDATE"
             },
@@ -7892,15 +6165,7 @@
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "LifeNode",
-=======
               "name": "Occurrence",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Post",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
@@ -7910,28 +6175,12 @@
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "CollectionItem",
-=======
               "name": "SuggestionID",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Page",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "WishItem",
-=======
               "name": "Post",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Characteristic",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
@@ -8464,15 +6713,7 @@
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "CommonName",
-=======
               "name": "Occurrence",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Post",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
@@ -8482,41 +6723,17 @@
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "CollectionItem",
-=======
               "name": "SuggestionID",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Characteristic",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "WishItem",
-=======
               "name": "Post",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "Occurrence",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
               "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "Occurrence",
-=======
               "name": "Characteristic",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "SuggestionID",
->>>>>>> 672050e... plants list filters
               "ofType": null
             },
             {
@@ -9390,42 +7607,6 @@
           "possibleTypes": null
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "description": null,
-          "enumValues": null,
-          "fields": [
-=======
-          "description": "An enumeration.",
-          "enumValues": [
->>>>>>> 672050e... plants list filters
-            {
-              "deprecationReason": null,
-              "description": "Publico",
-              "isDeprecated": false,
-              "name": "A_1"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Amigos",
-              "isDeprecated": false,
-              "name": "A_2"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Privado",
-              "isDeprecated": false,
-              "name": "A_3"
-            }
-          ],
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "ENUM",
-          "name": "DocumentIDPrivacy",
-          "possibleTypes": null
-        },
-        {
           "description": null,
           "enumValues": null,
           "fields": [
@@ -9459,103 +7640,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "DocumentEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "DocumentConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Document` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Document",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "DocumentEdge",
-          "possibleTypes": null
-        },
-        {
-=======
->>>>>>> c601549... users' occurrences
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    "name": "TagEdge",
-=======
                     "name": "OccurrenceEdge",
->>>>>>> c601549... users' occurrences
-=======
-                    "name": "PostEdge",
->>>>>>> 672050e... plants list filters
                     "ofType": null
                   }
                 }
@@ -9589,27 +7674,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "TagConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Tag` and its cursor.",
-=======
           "name": "OccurrenceConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `Occurrence` and its cursor.",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "PostConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Post` and its cursor.",
->>>>>>> 672050e... plants list filters
           "enumValues": null,
           "fields": [
             {
@@ -9620,15 +7689,7 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "name": "Tag",
-=======
                 "name": "Occurrence",
->>>>>>> c601549... users' occurrences
-=======
-                "name": "Post",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -9652,15 +7713,7 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "TagEdge",
-=======
           "name": "OccurrenceEdge",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "PostEdge",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -9736,73 +7789,11 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "slug",
-=======
-              "name": "url",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "body",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "summary",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-=======
               "name": "identityAlt",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> c601549... users' occurrences
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-<<<<<<< HEAD
-              "description": null,
-              "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "revisionCurrent",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
               }
             },
             {
@@ -9810,77 +7801,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "revisionCreated",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-=======
-              "description": "",
->>>>>>> 672050e... plants list filters
-              "isDeprecated": false,
-              "name": "publishedAt",
-              "type": {
-<<<<<<< HEAD
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-=======
               "name": "author",
               "type": {
                 "kind": "OBJECT",
                 "name": "User",
->>>>>>> c601549... users' occurrences
-=======
-                "kind": "SCALAR",
-                "name": "DateTime",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -9928,144 +7852,18 @@
                 }
               ],
               "deprecationReason": null,
-<<<<<<< HEAD
               "description": null,
-<<<<<<< HEAD
               "isDeprecated": false,
-              "name": "allPosts",
+              "name": "images",
               "type": {
                 "kind": "OBJECT",
-                "name": "PostConnection",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Tag",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "PageEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "totalCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "edgeCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "PageConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Page` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-=======
->>>>>>> c601549... users' occurrences
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-<<<<<<< HEAD
-                "name": "Page",
-=======
                 "name": "ImageConnection",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
-<<<<<<< HEAD
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-=======
               "description": "",
               "isDeprecated": false,
               "name": "when",
@@ -10073,55 +7871,17 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> c601549... users' occurrences
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "PageEdge",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-<<<<<<< HEAD
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "revision",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Revision",
-                  "ofType": null
-                }
               }
             },
             {
               "args": [],
-=======
->>>>>>> c601549... users' occurrences
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "document",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Document",
-=======
               "name": "location",
               "type": {
                 "kind": "OBJECT",
                 "name": "GeometryObjectType",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -10129,8 +7889,6 @@
               "args": [],
               "deprecationReason": null,
               "description": "",
-<<<<<<< HEAD
-=======
               "isDeprecated": false,
               "name": "locationExtra",
               "type": {
@@ -10160,21 +7918,12 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-=======
-              "description": "",
-              "isDeprecated": false,
-              "name": "images",
-              "type": {
-                "kind": "OBJECT",
-                "name": "DocumentConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
-<<<<<<< HEAD
               "description": "",
               "isDeprecated": false,
               "name": "isCultivated",
@@ -10202,78 +7951,12 @@
                   "name": "Boolean",
                   "ofType": null
                 }
-=======
-              "description": null,
-              "isDeprecated": false,
-              "name": "mainImage",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Image",
-                "ofType": null
->>>>>>> 672050e... plants list filters
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-<<<<<<< HEAD
->>>>>>> c601549... users' occurrences
-=======
-              "isDeprecated": false,
-              "name": "tags",
-              "type": {
-                "kind": "OBJECT",
-                "name": "TagConnection",
-                "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
               "description": null,
->>>>>>> 672050e... plants list filters
               "isDeprecated": false,
               "name": "id",
               "type": {
@@ -10416,120 +8099,6 @@
               }
             },
             {
-<<<<<<< HEAD
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "imaging",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Imaging",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "ImagesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Post",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "imaging",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Imaging",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "INTERFACE",
-          "name": "ImagesNode",
-          "possibleTypes": [
-            {
-              "kind": "OBJECT",
-              "name": "Post",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Page",
-              "ofType": null
-            }
-          ]
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The ID of the object.",
-              "isDeprecated": false,
-              "name": "id",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "count",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-=======
->>>>>>> c601549... users' occurrences
               "args": [
                 {
                   "defaultValue": null,
@@ -10575,18 +8144,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "revisions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-=======
               "name": "suggestions",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDConnection",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -10595,35 +8156,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "commenting",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Commenting",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "imaging",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Imaging",
-=======
               "name": "answer",
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionID",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "images",
-              "type": {
-                "kind": "OBJECT",
-                "name": "ImageConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             }
@@ -10634,7 +8170,6 @@
               "kind": "INTERFACE",
               "name": "Node",
               "ofType": null
-<<<<<<< HEAD
             },
             {
               "kind": "INTERFACE",
@@ -10648,26 +8183,12 @@
             },
             {
               "kind": "INTERFACE",
-<<<<<<< HEAD
-              "name": "ImagesNode",
-=======
               "name": "VotesNode",
->>>>>>> c601549... users' occurrences
               "ofType": null
             }
           ],
           "kind": "OBJECT",
-<<<<<<< HEAD
-          "name": "Page",
-=======
           "name": "Occurrence",
->>>>>>> c601549... users' occurrences
-=======
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Imaging",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -11045,8 +8566,6 @@
                 "name": "Voting",
                 "ofType": null
               }
-<<<<<<< HEAD
-=======
             }
           ],
           "inputFields": null,
@@ -11182,16 +8701,12 @@
                 "name": "Int",
                 "ofType": null
               }
->>>>>>> c601549... users' occurrences
             },
             {
               "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "parents",
-=======
               "name": "edgeCount",
               "type": {
                 "kind": "SCALAR",
@@ -11240,238 +8755,9 @@
             }
           ],
           "inputFields": null,
-<<<<<<< HEAD
           "interfaces": [],
           "kind": "OBJECT",
           "name": "SuggestionIDEdge",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-=======
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
->>>>>>> 672050e... plants list filters
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Image",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-<<<<<<< HEAD
-              "description": "",
-              "isDeprecated": false,
-              "name": "revision",
->>>>>>> c601549... users' occurrences
-=======
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "TagEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "totalCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "edgeCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "TagConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Tag` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Tag",
-                "ofType": null
-              }
-            },
-            {
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-=======
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "occurrence",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Occurrence",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "author",
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "identity",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNode",
-                "ofType": null
-=======
-              "args": [],
-              "deprecationReason": null,
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "TagEdge",
           "possibleTypes": null
         },
         {
@@ -11533,54 +8819,45 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
-              "name": "title",
+              "name": "occurrence",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
->>>>>>> 672050e... plants list filters
+                "kind": "OBJECT",
+                "name": "Occurrence",
+                "ofType": null
               }
             },
             {
               "args": [],
-<<<<<<< HEAD
->>>>>>> c601549... users' occurrences
-=======
->>>>>>> 672050e... plants list filters
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "author",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "identity",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNode",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "children",
-=======
               "name": "notes",
->>>>>>> c601549... users' occurrences
-=======
-              "name": "slug",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "description",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -11588,49 +8865,6 @@
               }
             },
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-=======
               "args": [],
               "deprecationReason": null,
               "description": "",
@@ -11643,8 +8877,6 @@
               }
             },
             {
-=======
->>>>>>> 672050e... plants list filters
               "args": [],
               "deprecationReason": null,
               "description": null,
@@ -11657,10 +8889,6 @@
                   "kind": "SCALAR",
                   "name": "ID",
                   "ofType": null
-<<<<<<< HEAD
->>>>>>> c601549... users' occurrences
-=======
->>>>>>> 672050e... plants list filters
                 }
               }
             },
@@ -11770,17 +8998,10 @@
               }
             },
             {
-<<<<<<< HEAD
               "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "wishList",
-              "type": {
-                "kind": "OBJECT",
-                "name": "WishItemConnection",
-=======
               "name": "commenting",
               "type": {
                 "kind": "OBJECT",
@@ -11797,7 +9018,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Voting",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             }
@@ -11826,67 +9046,6 @@
             }
           ],
           "kind": "OBJECT",
-<<<<<<< HEAD
-          "name": "LifeNode",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": [
-            {
-              "deprecationReason": null,
-              "description": "Reino",
-              "isDeprecated": false,
-              "name": "KINGDOM"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Filo",
-              "isDeprecated": false,
-              "name": "PHYLUM"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Classe",
-              "isDeprecated": false,
-              "name": "CLASS"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Ordem",
-              "isDeprecated": false,
-              "name": "ORDER"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Fam\u00edlia",
-              "isDeprecated": false,
-              "name": "FAMILY"
-            },
-            {
-              "deprecationReason": null,
-              "description": "G\u00e9nero",
-              "isDeprecated": false,
-              "name": "GENUS"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Esp\u00e9cie",
-              "isDeprecated": false,
-              "name": "SPECIES"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Subesp\u00e9cie",
-              "isDeprecated": false,
-              "name": "INFRASPECIES"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Cultivar",
-              "isDeprecated": false,
-              "name": "VARIETY"
-=======
           "name": "SuggestionID",
           "possibleTypes": null
         },
@@ -11910,119 +9069,17 @@
               "description": "Privado",
               "isDeprecated": false,
               "name": "A_3"
->>>>>>> c601549... users' occurrences
             }
           ],
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "kind": "ENUM",
-<<<<<<< HEAD
-          "name": "Rank",
-=======
           "name": "DocumentIDPrivacy",
->>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
           "description": null,
-<<<<<<< HEAD
-          "enumValues": [
-            {
-              "deprecationReason": null,
-              "description": "N\u00e3o",
-              "isDeprecated": false,
-              "name": "BAD"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Sim (falta informa\u00e7\u00e3o)",
-              "isDeprecated": false,
-              "name": "SOME"
-            },
-            {
-              "deprecationReason": null,
-              "description": "Ruim",
-              "isDeprecated": false,
-              "name": "POOR"
-            },
-            {
-=======
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
->>>>>>> 672050e... plants list filters
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "allPosts",
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostConnection",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-<<<<<<< HEAD
-              "deprecationReason": null,
-              "description": "Excelente",
-              "isDeprecated": false,
-              "name": "EXCELLENT"
-            }
-          ],
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "ENUM",
-          "name": "Edibility",
-=======
           "enumValues": null,
           "fields": [
             {
@@ -12105,16 +9162,6 @@
           "interfaces": [],
           "kind": "OBJECT",
           "name": "DocumentEdge",
->>>>>>> c601549... users' occurrences
-=======
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Tag",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -12151,15 +9198,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    "name": "CommonNameEdge",
-=======
                     "name": "PostEdge",
->>>>>>> c601549... users' occurrences
-=======
-                    "name": "PageEdge",
->>>>>>> 672050e... plants list filters
                     "ofType": null
                   }
                 }
@@ -12193,27 +9232,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "CommonNameConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `CommonName` and its cursor.",
-=======
           "name": "PostConnection",
           "possibleTypes": null
         },
         {
           "description": "A Relay edge containing a `Post` and its cursor.",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "PageConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Page` and its cursor.",
->>>>>>> 672050e... plants list filters
           "enumValues": null,
           "fields": [
             {
@@ -12224,15 +9247,7 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "name": "CommonName",
-=======
                 "name": "Post",
->>>>>>> c601549... users' occurrences
-=======
-                "name": "Page",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -12256,15 +9271,7 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "CommonNameEdge",
-=======
           "name": "PostEdge",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "PageEdge",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -12328,7 +9335,7 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "name",
+              "name": "title",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -12344,11 +9351,15 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "language",
+              "name": "url",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               }
             },
             {
@@ -12356,9 +9367,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "country",
-=======
               "name": "body",
               "type": {
                 "kind": "NON_NULL",
@@ -12445,10 +9453,9 @@
               "description": "",
               "isDeprecated": false,
               "name": "images",
->>>>>>> c601549... users' occurrences
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "DocumentConnection",
                 "ofType": null
               }
             },
@@ -12457,12 +9464,6 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "region",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-=======
               "name": "mainImage",
               "type": {
                 "kind": "OBJECT",
@@ -12520,7 +9521,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "TagConnection",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
             },
@@ -12557,13 +9557,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
               "name": "myPerms",
-<<<<<<< HEAD
-=======
-=======
-              "name": "title",
->>>>>>> 672050e... plants list filters
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -12579,23 +9573,11 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
               "name": "revisionCurrent",
               "type": {
                 "kind": "OBJECT",
                 "name": "Revision",
                 "ofType": null
-=======
-              "name": "url",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -12603,23 +9585,11 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
               "name": "revisionCreated",
               "type": {
                 "kind": "OBJECT",
                 "name": "Revision",
                 "ofType": null
-=======
-              "name": "body",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -12666,21 +9636,12 @@
                 }
               ],
               "deprecationReason": null,
-<<<<<<< HEAD
               "description": null,
               "isDeprecated": false,
               "name": "revisions",
               "type": {
                 "kind": "OBJECT",
                 "name": "RevisionConnection",
-=======
-              "description": "",
-              "isDeprecated": false,
-              "name": "images",
-              "type": {
-                "kind": "OBJECT",
-                "name": "DocumentConnection",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -12689,17 +9650,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
               "name": "commenting",
               "type": {
                 "kind": "OBJECT",
                 "name": "Commenting",
-=======
-              "name": "publishedAt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -12804,17 +9758,12 @@
               "description": "The ID of the object.",
               "isDeprecated": false,
               "name": "id",
->>>>>>> c601549... users' occurrences
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-<<<<<<< HEAD
-                  "name": "String",
-=======
                   "name": "ID",
->>>>>>> c601549... users' occurrences
                   "ofType": null
                 }
               }
@@ -12824,14 +9773,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "revisionCurrent",
-=======
               "name": "count",
->>>>>>> c601549... users' occurrences
               "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -12881,229 +9826,6 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "revisionCreated",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Revision",
-                "ofType": null
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "revisions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "RevisionConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "commenting",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Commenting",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "imaging",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Imaging",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "ImagesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "Page",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "LifeNodeEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "totalCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "edgeCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "LifeNodeConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `LifeNode` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNode",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-<<<<<<< HEAD
-          "name": "CommonName",
-=======
               "name": "images",
               "type": {
                 "kind": "OBJECT",
@@ -13122,10 +9844,6 @@
           ],
           "kind": "OBJECT",
           "name": "Imaging",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "LifeNodeEdge",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -13557,14 +10275,6 @@
               "isDeprecated": false,
               "name": "edges",
               "type": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "kind": "OBJECT",
-                "name": "Document",
-                "ofType": null
-=======
-=======
->>>>>>> 672050e... plants list filters
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
@@ -13572,18 +10282,10 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-<<<<<<< HEAD
                     "name": "PageEdge",
                     "ofType": null
                   }
                 }
->>>>>>> c601549... users' occurrences
-=======
-                    "name": "OccurrenceEdge",
-                    "ofType": null
-                  }
-                }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -13609,18 +10311,11 @@
                 "name": "Int",
                 "ofType": null
               }
-<<<<<<< HEAD
-<<<<<<< HEAD
-            },
-=======
-=======
->>>>>>> 672050e... plants list filters
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
           "name": "PageConnection",
           "possibleTypes": null
         },
@@ -13628,16 +10323,6 @@
           "description": "A Relay edge containing a `Page` and its cursor.",
           "enumValues": null,
           "fields": [
->>>>>>> c601549... users' occurrences
-=======
-          "name": "OccurrenceConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Occurrence` and its cursor.",
-          "enumValues": null,
-          "fields": [
->>>>>>> 672050e... plants list filters
             {
               "args": [],
               "deprecationReason": null,
@@ -13646,15 +10331,7 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "name": "LifeNode",
-=======
                 "name": "Page",
->>>>>>> c601549... users' occurrences
-=======
-                "name": "Occurrence",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -13673,32 +10350,18 @@
                   "ofType": null
                 }
               }
-<<<<<<< HEAD
-<<<<<<< HEAD
-            },
-=======
-=======
->>>>>>> 672050e... plants list filters
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
           "name": "PageEdge",
-=======
-          "name": "OccurrenceEdge",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
           "description": null,
           "enumValues": null,
           "fields": [
-<<<<<<< HEAD
->>>>>>> c601549... users' occurrences
-=======
->>>>>>> 672050e... plants list filters
             {
               "args": [],
               "deprecationReason": null,
@@ -13756,29 +10419,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "revisionCurrent",
-=======
-              "name": "identity",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "OBJECT",
-                "name": "LifeNode",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "identityAlt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-=======
               "name": "title",
               "type": {
                 "kind": "NON_NULL",
@@ -13804,7 +10444,6 @@
                   "name": "String",
                   "ofType": null
                 }
->>>>>>> c601549... users' occurrences
               }
             },
             {
@@ -13812,17 +10451,6 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "revisionCreated",
-=======
-              "name": "author",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-=======
               "name": "body",
               "type": {
                 "kind": "NON_NULL",
@@ -13832,7 +10460,6 @@
                   "name": "String",
                   "ofType": null
                 }
->>>>>>> c601549... users' occurrences
               }
             },
             {
@@ -13879,86 +10506,12 @@
                 }
               ],
               "deprecationReason": null,
-<<<<<<< HEAD
-              "description": null,
-              "isDeprecated": false,
-              "name": "images",
-              "type": {
-                "kind": "OBJECT",
-                "name": "ImageConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "when",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "location",
-              "type": {
-                "kind": "OBJECT",
-                "name": "GeometryObjectType",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "locationExtra",
-              "type": {
-                "kind": "SCALAR",
-                "name": "JSONString",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "where",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "notes",
-              "type": {
-<<<<<<< HEAD
-                "kind": "OBJECT",
-                "name": "LifeNode",
-=======
               "description": "",
               "isDeprecated": false,
               "name": "images",
               "type": {
                 "kind": "OBJECT",
                 "name": "DocumentConnection",
->>>>>>> c601549... users' occurrences
-=======
-                "kind": "SCALAR",
-                "name": "String",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -13967,46 +10520,11 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "user",
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-=======
               "name": "publishedAt",
               "type": {
                 "kind": "SCALAR",
                 "name": "DateTime",
->>>>>>> c601549... users' occurrences
                 "ofType": null
-=======
-              "name": "isCultivated",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "isRequest",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -14147,163 +10665,15 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 672050e... plants list filters
-              "name": "voting",
-              "type": {
-                "kind": "OBJECT",
-                "name": "Voting",
-                "ofType": null
-<<<<<<< HEAD
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-          "name": "WishItem",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "CollectionItemEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "totalCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "edgeCount",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "CollectionItemConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `CollectionItem` and its cursor.",
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "The item at the end of the edge",
-              "isDeprecated": false,
-              "name": "node",
-              "type": {
-                "kind": "OBJECT",
-                "name": "CollectionItem",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "A cursor for use in pagination",
-              "isDeprecated": false,
-              "name": "cursor",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-=======
               "name": "imaging",
               "type": {
                 "kind": "OBJECT",
                 "name": "Imaging",
                 "ofType": null
->>>>>>> c601549... users' occurrences
               }
             }
           ],
           "inputFields": null,
-<<<<<<< HEAD
-          "interfaces": [],
-          "kind": "OBJECT",
-          "name": "CollectionItemEdge",
-=======
           "interfaces": [
             {
               "kind": "INTERFACE",
@@ -14328,7 +10698,6 @@
           ],
           "kind": "OBJECT",
           "name": "Page",
->>>>>>> c601549... users' occurrences
           "possibleTypes": null
         },
         {
@@ -14365,242 +10734,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-<<<<<<< HEAD
-                    "name": "WishItemEdge",
-=======
                     "name": "LifeNodeEdge",
->>>>>>> c601549... users' occurrences
-                    "ofType": null
-                  }
-                }
-=======
->>>>>>> 672050e... plants list filters
-              }
-            },
-            {
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "suggestions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionIDConnection",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "answer",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionID",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "DocumentNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "CommentsNode",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "VotesNode",
-              "ofType": null
-            }
-          ],
-          "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "WishItemConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `WishItem` and its cursor.",
-=======
-          "name": "LifeNodeConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `LifeNode` and its cursor.",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "Occurrence",
-          "possibleTypes": null
-        },
-        {
-          "description": "\n`GeometryObjectType` represents a pair of values:\n- Geometry `type`\n- Geometry `coordinates`\n",
->>>>>>> 672050e... plants list filters
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "type",
-              "type": {
-<<<<<<< HEAD
-                "kind": "OBJECT",
-<<<<<<< HEAD
-                "name": "WishItem",
-=======
-                "name": "LifeNode",
->>>>>>> c601549... users' occurrences
-=======
-                "kind": "SCALAR",
-                "name": "String",
->>>>>>> 672050e... plants list filters
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "coordinates",
-              "type": {
-                "kind": "SCALAR",
-                "name": "GenericScalar",
-                "ofType": null
-              }
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "WishItemEdge",
-=======
-          "name": "LifeNodeEdge",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "GeometryObjectType",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `GenericScalar` scalar type represents a generic\nGraphQL scalar value that could be:\nString, Boolean, Int, Float, List or Object.",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "GenericScalar",
-          "possibleTypes": null
-        },
-        {
-          "description": "Allows use of a JSON String for input / output from the GraphQL schema.\n\nUse of this type is *not recommended* as you lose the benefits of having a defined, static\nschema (one of the key benefits of GraphQL).",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "JSONString",
->>>>>>> 672050e... plants list filters
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": [
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Pagination data for this connection.",
-              "isDeprecated": false,
-              "name": "pageInfo",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "Contains the nodes in this connection.",
-              "isDeprecated": false,
-              "name": "edges",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    "name": "OccurrenceEdge",
-=======
-                    "name": "CharacteristicEdge",
->>>>>>> c601549... users' occurrences
-=======
-                    "name": "SuggestionIDEdge",
->>>>>>> 672050e... plants list filters
                     "ofType": null
                   }
                 }
@@ -14634,27 +10768,11 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "OccurrenceConnection",
+          "name": "LifeNodeConnection",
           "possibleTypes": null
         },
         {
-          "description": "A Relay edge containing a `Occurrence` and its cursor.",
-=======
-          "name": "CharacteristicConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `Characteristic` and its cursor.",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "SuggestionIDConnection",
-          "possibleTypes": null
-        },
-        {
-          "description": "A Relay edge containing a `SuggestionID` and its cursor.",
->>>>>>> 672050e... plants list filters
+          "description": "A Relay edge containing a `LifeNode` and its cursor.",
           "enumValues": null,
           "fields": [
             {
@@ -14665,15 +10783,7 @@
               "name": "node",
               "type": {
                 "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "name": "Occurrence",
-=======
-                "name": "Characteristic",
->>>>>>> c601549... users' occurrences
-=======
-                "name": "SuggestionID",
->>>>>>> 672050e... plants list filters
+                "name": "LifeNode",
                 "ofType": null
               }
             },
@@ -14697,15 +10807,117 @@
           "inputFields": null,
           "interfaces": [],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "OccurrenceEdge",
-=======
+          "name": "LifeNodeEdge",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Pagination data for this connection.",
+              "isDeprecated": false,
+              "name": "pageInfo",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Contains the nodes in this connection.",
+              "isDeprecated": false,
+              "name": "edges",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CharacteristicEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "totalCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "edgeCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "CharacteristicConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Characteristic` and its cursor.",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The item at the end of the edge",
+              "isDeprecated": false,
+              "name": "node",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Characteristic",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "A cursor for use in pagination",
+              "isDeprecated": false,
+              "name": "cursor",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
           "name": "CharacteristicEdge",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "SuggestionIDEdge",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
@@ -14769,50 +10981,10 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "identity",
-=======
-              "name": "occurrence",
->>>>>>> 672050e... plants list filters
-              "type": {
-                "kind": "OBJECT",
-                "name": "Occurrence",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "author",
-              "type": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "identity",
-              "type": {
-<<<<<<< HEAD
-                "kind": "SCALAR",
-                "name": "String",
-=======
               "name": "tag",
               "type": {
                 "kind": "OBJECT",
                 "name": "Tag",
->>>>>>> c601549... users' occurrences
-=======
-                "kind": "OBJECT",
-                "name": "LifeNode",
->>>>>>> 672050e... plants list filters
                 "ofType": null
               }
             },
@@ -14837,47 +11009,11 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-              "name": "isCultivated",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "isRequest",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-=======
               "name": "value",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> c601549... users' occurrences
-=======
-              "name": "isCorrect",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
->>>>>>> 672050e... plants list filters
               }
             },
             {
@@ -15024,84 +11160,18 @@
                 "name": "Voting",
                 "ofType": null
               }
-<<<<<<< HEAD
             },
             {
-<<<<<<< HEAD
-              "args": [
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "before",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "after",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "first",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                {
-                  "defaultValue": null,
-                  "description": null,
-                  "name": "last",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                }
-              ],
-              "deprecationReason": null,
-              "description": null,
-              "isDeprecated": false,
-              "name": "suggestions",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionIDConnection",
-                "ofType": null
-              }
-            },
-            {
-=======
->>>>>>> c601549... users' occurrences
               "args": [],
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-<<<<<<< HEAD
-              "name": "answer",
-              "type": {
-                "kind": "OBJECT",
-                "name": "SuggestionID",
-=======
               "name": "title",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
->>>>>>> c601549... users' occurrences
                 "ofType": null
               }
-=======
->>>>>>> 672050e... plants list filters
             }
           ],
           "inputFields": null,
@@ -15128,15 +11198,7 @@
             }
           ],
           "kind": "OBJECT",
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "name": "Occurrence",
-=======
           "name": "Characteristic",
->>>>>>> c601549... users' occurrences
-=======
-          "name": "SuggestionID",
->>>>>>> 672050e... plants list filters
           "possibleTypes": null
         },
         {
