@@ -11,6 +11,7 @@ import RecentPosts from "./RecentPosts.js";
 import VisitShop from "./VisitShop.js";
 import { Width } from "../ui";
 import mapExample from "../assets/map-example.jpg";
+import { FullscreenExit } from "@material-ui/icons";
 
 function Home(props) {
   const { classes, environment, viewer } = props;
@@ -77,19 +78,17 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(2),
   },
   mapLink: {
-    display: "inline-block",
+    display: "flex",
     borderRadius: "4px",
     boxShadow:
       "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
     position: "relative",
     overflow: "hidden",
+    justifyContent: "center",
   },
   mapTitle: {
     position: "absolute",
-    top: "50%",
-    left: "50%",
-    marginLeft: -166,
-    marginTop: -37,
+    alignSelf: "center",
     background: "rgba(0, 0, 0, 0.6)",
     fontWeight: "bold",
     fontSize: 40,
@@ -102,10 +101,10 @@ const styles = (theme) => ({
   },
   map: {
     height: "100%",
-    minHeight: 200,
-    display: "block",
+    display: "flex",
     [theme.breakpoints.down("sm")]: {
-      height: "240px",
+      marginTop: "20px",
+      width: "100%",
     },
   },
   BannerAddPlant: {
