@@ -37,7 +37,7 @@ function Home(props) {
         <Grid item xs={12} md={8}>
           <RouterLink to={`/mapa`} className={classes.mapLink}>
             <img className={classes.map} src={mapExample} />
-            <span className={classes.mapTitle}>Mapa de plantas</span>
+            <span className={classes.mapTitle}>Mapa de Plantas</span>
           </RouterLink>
           {/*<OccurrencesMap
             className={classes.map}
@@ -82,7 +82,6 @@ const styles = (theme) => ({
     borderRadius: "4px",
     boxShadow:
       "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
-    position: "relative",
     overflow: "hidden",
     justifyContent: "center",
   },
@@ -97,6 +96,9 @@ const styles = (theme) => ({
     padding: theme.spacing(1, 2),
     "&:hover": {
       background: "rgba(0, 0, 0, 0.4)",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 30,
     },
   },
   map: {
