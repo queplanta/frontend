@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "@capacitor/android": "2.4.2",
-    "@capacitor/cli": "^2.4.2",
-    "@capacitor/core": "^2.4.2",
+    "@capacitor/cli": "^2.4.4",
+    "@capacitor/core": "^2.4.4",
+    "@capacitor/ios": "2.4.4",
     "@datapunt/matomo-tracker-react": "^0.1.5",
     "@material-ui/core": "4.11.0",
     "@material-ui/icons": "^4.9.1",
