@@ -1,6 +1,11 @@
 import React, { useReducer } from "react";
 import _ from "lodash";
-import { SnackbarContent, TextField, withStyles } from "@material-ui/core";
+import {
+  SnackbarContent,
+  TextField,
+  MenuItem,
+  withStyles,
+} from "@material-ui/core";
 import { getDisplayName } from "./lib/helpers.js";
 
 function reducer(state, action) {
@@ -77,6 +82,32 @@ export function TextFieldWithError(props) {
         const hasError = filteredErrors.length > 0;
         return (
           <TextField error={hasError} helperText={errorText} {...others} />
+        );
+      }}
+    </FormErrorsContext.Consumer>
+  );
+}
+
+export function ChoiceFieldWithError(props) {
+  const { errorFilter, choices, ...others } = props;
+  return (
+    <FormErrorsContext.Consumer>
+      {(errors) => {
+        const filteredErrors = errorFilter
+          ? _.filter(errors, errorFilter).map((error) => error.message)
+          : [];
+        const errorText = _.join(filteredErrors, " \n");
+        const hasError = filteredErrors.length > 0;
+        return (
+          <TextField error={hasError} helperText={errorText} {...others}>
+            {choices.enumValues.map((e, i) => {
+              return (
+                <MenuItem key={i} value={e.name}>
+                  {e.description}
+                </MenuItem>
+              );
+            })}
+          </TextField>
         );
       }}
     </FormErrorsContext.Consumer>
