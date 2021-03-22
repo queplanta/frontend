@@ -9,6 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
+  ChoiceFieldWithError,
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
@@ -22,6 +23,9 @@ function Plant(props) {
     plant,
     edibilities,
     ranks,
+    flowertypes,
+    flowercolors,
+    growthhabits,
     setFormErrors,
     environment,
   } = props;
@@ -31,6 +35,9 @@ function Plant(props) {
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
+  const flowerTypeField = useFormInput("");
+  const flowerColorField = useFormInput("");
+  const growthHabitField = useFormInput("");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -50,6 +57,10 @@ function Plant(props) {
         description: descriptionField.value,
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
+
+        flower_types: flowerTypeField.value,
+        flower_colors: flowerColorField.value,
+        growth_habit: growthHabitField.value,
       },
       {
         setFormErrors,
@@ -129,6 +140,34 @@ function Plant(props) {
                 );
               })}
             </TextFieldWithError>
+
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Flower Type"
+              errorFilter={{ location: "flower_types" }}
+              fullWidth
+              select
+              {...flowerTypeField}
+              choices={flowertypes}
+            />
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Flower Color"
+              errorFilter={{ location: "flower_colors" }}
+              fullWidth
+              select
+              {...flowerColorField}
+              choices={flowercolors}
+            />
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Growth Habit"
+              errorFilter={{ location: "growth_habit" }}
+              fullWidth
+              select
+              {...growthHabitField}
+              choices={growthhabits}
+            />
 
             <FormErrors
               filter={(error) => ["__all__", null].indexOf(error.location) >= 0}

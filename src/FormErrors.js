@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import _ from "lodash";
+import PropTypes from "prop-types";
 import {
   SnackbarContent,
   TextField,
@@ -113,3 +114,11 @@ export function ChoiceFieldWithError(props) {
     </FormErrorsContext.Consumer>
   );
 }
+
+ChoiceFieldWithError.defaultProps = {
+  choices: {},
+};
+
+ChoiceFieldWithError.propTypes = {
+  choices: PropTypes.object.isRequired,
+};

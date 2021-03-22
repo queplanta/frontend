@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Grid, MenuItem, withStyles } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 import { useRouter } from "found";
 import { useSnackbar } from "notistack";
 import { Width } from "../ui";
@@ -9,6 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
+  ChoiceFieldWithError,
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
@@ -18,7 +19,16 @@ import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 function PlantAdd(props) {
-  const { classes, edibilities, ranks, setFormErrors, environment } = props;
+  const {
+    classes,
+    edibilities,
+    ranks,
+    flowertypes,
+    flowercolors,
+    growthhabits,
+    setFormErrors,
+    environment,
+  } = props;
   const { router } = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [lifeNode, setLifeNode] = useState(null);
@@ -26,6 +36,13 @@ function PlantAdd(props) {
   const descriptionField = useFormInput("");
   const edibilityField = useFormInput("");
   const rankField = useFormInput("");
+
+  const heightField = useFormInput("");
+  const spreadField = useFormInput("");
+  const sunField = useFormInput("");
+  const flowerTypeField = useFormInput("");
+  const flowerColorField = useFormInput("");
+  const growthHabitField = useFormInput("");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -48,6 +65,12 @@ function PlantAdd(props) {
         description: descriptionField.value,
         edibility: edibilityField.value,
         rank: rankField.value,
+        // height: heightField.value,
+        // spread: spreadField.value,
+        // sun: sunField.value,
+        flower_types: flowerTypeField.value,
+        flower_colors: flowerColorField.value,
+        growth_habit: growthHabitField.value,
       },
       {
         setFormErrors,
@@ -86,57 +109,86 @@ function PlantAdd(props) {
               fullWidth
               {...titleField}
             />
-
             <TextFieldWithError
               margin="dense"
               label="Descrição"
               errorFilter={{ location: "description" }}
-              fullWidth
               required
+              fullWidth
               multiline
               {...descriptionField}
             />
-
-            <TextFieldWithError
+            <ChoiceFieldWithError
               margin="dense"
               label="Comestibilidade"
               errorFilter={{ location: "edibility" }}
+              required
               fullWidth
               select
-              required
               {...edibilityField}
-            >
-              {edibilities.enumValues.map((e, i) => {
-                return (
-                  <MenuItem key={i} value={e.name}>
-                    {e.description}
-                  </MenuItem>
-                );
-              })}
-            </TextFieldWithError>
-
-            <TextFieldWithError
+              choices={edibilities}
+            />
+            <ChoiceFieldWithError
               margin="dense"
               label="Rank"
               errorFilter={{ location: "rank" }}
-              fullWidth
               required
+              fullWidth
               select
               {...rankField}
-            >
-              {ranks.enumValues.map((e, i) => {
-                return (
-                  <MenuItem key={i} value={e.name}>
-                    {e.description}
-                  </MenuItem>
-                );
-              })}
-            </TextFieldWithError>
-
+              choices={"ranks"}
+            />
+            <TextFieldWithError
+              margin="dense"
+              label="Altura"
+              errorFilter={{ location: "height" }}
+              fullWidth
+              {...heightField}
+            />
+            <TextFieldWithError
+              margin="dense"
+              label="Spread"
+              errorFilter={{ location: "spread" }}
+              fullWidth
+              {...spreadField}
+            />
+            <TextFieldWithError
+              margin="dense"
+              label="Sol"
+              errorFilter={{ location: "sun" }}
+              fullWidth
+              {...sunField}
+            />
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Flower Type"
+              errorFilter={{ location: "flower_types" }}
+              fullWidth
+              select
+              {...flowerTypeField}
+              choices={flowertypes}
+            />
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Flower Color"
+              errorFilter={{ location: "flower_colors" }}
+              fullWidth
+              select
+              {...flowerColorField}
+              choices={flowercolors}
+            />
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Growth Habit"
+              errorFilter={{ location: "growth_habit" }}
+              fullWidth
+              select
+              {...growthHabitField}
+              choices={growthhabits}
+            />
             <FormErrors
               filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
             />
-
             <ButtonWithProgress
               variant="outlined"
               className={classes.button}

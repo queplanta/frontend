@@ -24,6 +24,24 @@ const query = graphql`
         description
       }
     }
+    flowertypes: __type(name: "FlowerType") {
+      enumValues {
+        name
+        description
+      }
+    }
+    flowercolors: __type(name: "FlowerColor") {
+      enumValues {
+        name
+        description
+      }
+    }
+    growthhabits: __type(name: "GrowthHabit") {
+      enumValues {
+        name
+        description
+      }
+    }
   }
 `;
 export default query;
