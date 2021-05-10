@@ -15,7 +15,7 @@
     "found-relay": "^0.8.0",
     "hoist-non-react-statics": "^3.3.2",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.25.3",
     "notistack": "^0.9.13",
