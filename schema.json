@@ -2000,9 +2000,13 @@
               "isDeprecated": false,
               "name": "flowerColors",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerColor",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerColor",
+                  "ofType": null
+                }
               }
             },
             {
@@ -15675,9 +15679,13 @@
               "description": null,
               "name": "flowerColors",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerColor",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerColor",
+                  "ofType": null
+                }
               }
             },
             {
@@ -15685,9 +15693,13 @@
               "description": null,
               "name": "flowerTypes",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerType",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerType",
+                  "ofType": null
+                }
               }
             },
             {

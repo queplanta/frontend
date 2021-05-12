@@ -11,6 +11,9 @@ const query = graphql`
       document {
         id
       }
+      flowerTypes
+      flowerColors
+      growthHabit
     }
     ranks: __type(name: "Rank") {
       enumValues {

@@ -35,7 +35,7 @@ function Plant(props) {
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
-  const flowerTypeField = useFormInput("");
+  const [flowerTypeField, setFlowerTypeField] = React.useState([]);
   const flowerColorField = useFormInput("");
   const growthHabitField = useFormInput("");
 
@@ -58,9 +58,9 @@ function Plant(props) {
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
 
-        flower_types: flowerTypeField.value,
-        flower_colors: flowerColorField.value,
-        growth_habit: growthHabitField.value,
+        flowerTypes: flowerTypeField.value,
+        // flowerColors: flowerColorField.value,
+        // growthHabit: growthHabitField.value,
       },
       {
         setFormErrors,
@@ -144,25 +144,27 @@ function Plant(props) {
             <ChoiceFieldWithError
               margin="dense"
               label="Flower Type"
-              errorFilter={{ location: "flower_types" }}
+              errorFilter={{ location: "flowerTypes" }}
               fullWidth
               select
               {...flowerTypeField}
               choices={flowertypes}
             />
+
             <ChoiceFieldWithError
               margin="dense"
               label="Flower Color"
-              errorFilter={{ location: "flower_colors" }}
+              errorFilter={{ location: "flowerColors" }}
               fullWidth
               select
+              multiple
               {...flowerColorField}
               choices={flowercolors}
             />
             <ChoiceFieldWithError
               margin="dense"
               label="Growth Habit"
-              errorFilter={{ location: "growth_habit" }}
+              errorFilter={{ location: "growthHabit" }}
               fullWidth
               select
               {...growthHabitField}
