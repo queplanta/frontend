@@ -23,9 +23,9 @@ function Plant(props) {
     plant,
     edibilities,
     ranks,
-    flowertypes,
-    flowercolors,
-    growthhabits,
+    flowerTypes,
+    flowerColors,
+    growthHabits,
     setFormErrors,
     environment,
   } = props;
@@ -35,9 +35,9 @@ function Plant(props) {
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
-  const [flowerTypeField, setFlowerTypeField] = React.useState([]);
-  const flowerColorField = useFormInput("");
-  const growthHabitField = useFormInput("");
+  const flowerTypeField = useFormInput(plant.flowerTypes || []);
+  const flowerColorsField = useFormInput(plant.flowerColors || []);
+  const growthHabitField = useFormInput(plant.growthHabit || "");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -59,8 +59,8 @@ function Plant(props) {
         rank: edibilityField.rankField,
 
         flowerTypes: flowerTypeField.value,
-        // flowerColors: flowerColorField.value,
-        // growthHabit: growthHabitField.value,
+        flowerColors: flowerColorsField.value,
+        growthHabit: growthHabitField.value,
       },
       {
         setFormErrors,
@@ -147,8 +147,11 @@ function Plant(props) {
               errorFilter={{ location: "flowerTypes" }}
               fullWidth
               select
+              SelectProps={{
+                multiple: true
+              }}
               {...flowerTypeField}
-              choices={flowertypes}
+              choices={flowerTypes}
             />
 
             <ChoiceFieldWithError
@@ -157,9 +160,11 @@ function Plant(props) {
               errorFilter={{ location: "flowerColors" }}
               fullWidth
               select
-              multiple
-              {...flowerColorField}
-              choices={flowercolors}
+              SelectProps={{
+                multiple: true
+              }}
+              {...flowerColorsField}
+              choices={flowerColors}
             />
             <ChoiceFieldWithError
               margin="dense"
@@ -168,7 +173,7 @@ function Plant(props) {
               fullWidth
               select
               {...growthHabitField}
-              choices={growthhabits}
+              choices={growthHabits}
             />
 
             <FormErrors
