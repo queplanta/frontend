@@ -402,6 +402,8 @@ const styles = (theme) => ({
       paddingTop: 56,
       paddingBottom: 56,
     },
+    paddingLeft: "env(safe-area-inset-left)",
+    paddingRight: "env(safe-area-inset-right)",
   },
   drawer: {
     width: drawerWidth,
@@ -409,8 +411,15 @@ const styles = (theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    paddingTop: "env(safe-area-inset-top)",
+    paddingLeft: "env(safe-area-inset-left)",
+    paddingBottom: "env(safe-area-inset-bottom)",
   },
-  appbar: {},
+  appbar: {
+    paddingTop: "env(safe-area-inset-top)",
+    paddingLeft: "env(safe-area-inset-left)",
+    paddingRight: "env(safe-area-inset-right)",
+  },
   bgNv: {
     color: "#FFFFFF",
     backgroundColor: "#047c4d",
