@@ -22,7 +22,7 @@ function fetchQuery(operation, variables, cacheConfig, uploadables) {
     });
   }
 
-  return fetch("/graphql", {
+  return fetch("https://queplanta.com/graphql", {
     ...requestVariables,
     body,
   }).then((response) => {
