@@ -35,6 +35,11 @@ function Plant(props) {
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
+
+  const sunField = useFormInput(plant.sun);
+  const spreadField = useFormInput(plant.spread);
+  const heightField = useFormInput(plant.height);
+
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
   const growthHabitField = useFormInput(plant.growthHabit || []);
@@ -61,6 +66,9 @@ function Plant(props) {
         flowerTypes: flowerTypeField.value,
         flowerColors: flowerColorsField.value,
         growthHabit: growthHabitField.value,
+        sun: sunField.value,
+        spread: spreadField.value,
+        height: heightField.value,
       },
       {
         setFormErrors,
@@ -105,6 +113,33 @@ function Plant(props) {
               fullWidth
               multiline
               {...descriptionField}
+            />
+
+            <TextFieldWithError
+              margin="dense"
+              label="Sun"
+              errorFilter={{ location: "sun" }}
+              required
+              fullWidth
+              {...sunField}
+            />
+
+            <TextFieldWithError
+              margin="dense"
+              label="Spread"
+              errorFilter={{ location: "spread" }}
+              required
+              fullWidth
+              {...spreadField}
+            />
+
+            <TextFieldWithError
+              margin="dense"
+              label="Height"
+              errorFilter={{ location: "height" }}
+              required
+              fullWidth
+              {...heightField}
             />
 
             <TextFieldWithError
