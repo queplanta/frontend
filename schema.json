@@ -2016,9 +2016,13 @@
               "isDeprecated": false,
               "name": "flowerTypes",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerType",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerType",
+                  "ofType": null
+                }
               }
             },
             {
@@ -2044,9 +2048,13 @@
               "isDeprecated": false,
               "name": "growthHabit",
               "type": {
-                "kind": "ENUM",
-                "name": "GrowthHabit",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthHabit",
+                  "ofType": null
+                }
               }
             },
             {
@@ -2268,6 +2276,42 @@
               "description": null,
               "isDeprecated": false,
               "name": "rankDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "flowerColorsdisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "flowerTypesdisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "growthHabitdisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -15707,9 +15751,13 @@
               "description": null,
               "name": "growthHabit",
               "type": {
-                "kind": "ENUM",
-                "name": "GrowthHabit",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthHabit",
+                  "ofType": null
+                }
               }
             },
             {

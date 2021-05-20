@@ -37,7 +37,7 @@ function Plant(props) {
   const rankField = useFormInput(plant.rank);
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
-  const growthHabitField = useFormInput(plant.growthHabit || "");
+  const growthHabitField = useFormInput(plant.growthHabit || []);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -148,7 +148,7 @@ function Plant(props) {
               fullWidth
               select
               SelectProps={{
-                multiple: true
+                multiple: true,
               }}
               {...flowerTypeField}
               choices={flowerTypes}
@@ -161,7 +161,7 @@ function Plant(props) {
               fullWidth
               select
               SelectProps={{
-                multiple: true
+                multiple: true,
               }}
               {...flowerColorsField}
               choices={flowerColors}
@@ -169,9 +169,12 @@ function Plant(props) {
             <ChoiceFieldWithError
               margin="dense"
               label="Growth Habit"
-              errorFilter={{ location: "growthHabit" }}
+              errorFilter={{ location: "growthHabits" }}
               fullWidth
               select
+              SelectProps={{
+                multiple: true,
+              }}
               {...growthHabitField}
               choices={growthHabits}
             />
