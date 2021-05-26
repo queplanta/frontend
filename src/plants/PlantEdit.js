@@ -68,7 +68,7 @@ function Plant(props) {
         growthHabit: growthHabitField.value,
         sun: sunField.value,
         spread: spreadField.value,
-        height: heightField.value,
+        // height: heightField.value,
       },
       {
         setFormErrors,
@@ -119,7 +119,6 @@ function Plant(props) {
               margin="dense"
               label="Sun"
               errorFilter={{ location: "sun" }}
-              required
               fullWidth
               {...sunField}
             />
@@ -128,7 +127,6 @@ function Plant(props) {
               margin="dense"
               label="Spread"
               errorFilter={{ location: "spread" }}
-              required
               fullWidth
               {...spreadField}
             />
@@ -137,7 +135,6 @@ function Plant(props) {
               margin="dense"
               label="Height"
               errorFilter={{ location: "height" }}
-              required
               fullWidth
               {...heightField}
             />
