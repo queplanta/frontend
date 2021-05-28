@@ -74,6 +74,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "proxy": "https://queplanta.com"
+  }
 }

@@ -6,8 +6,7 @@
   "webDir": "build",
   "linuxAndroidStudioPath": "/home/gabriel/android-studio/bin/studio.sh",
   "server": {
-    "url": "https://queplanta.com",
-    "allowNavigation": ["https://queplanta.com"]
+    "hostname": "queplanta.com"
   },
   "plugins": {
     "SplashScreen": {

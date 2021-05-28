@@ -6,6 +6,7 @@ function fetchQuery(operation, variables, cacheConfig, uploadables) {
     headers: {
       Accept: "application/json",
     },
+    credentials: "include",
   };
 
   let body;
