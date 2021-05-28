@@ -26,6 +26,9 @@ function Plant(props) {
     flowerTypes,
     flowerColors,
     growthHabits,
+    growthRates,
+    successions,
+    threateneds,
     setFormErrors,
     environment,
   } = props;
@@ -43,6 +46,9 @@ function Plant(props) {
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
   const growthHabitField = useFormInput(plant.growthHabit || []);
+  const growthRateField = useFormInput(plant.growthRate || []);
+  const successionField = useFormInput(plant.succession || []);
+  const threatenedField = useFormInput(plant.threatened || []);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -66,9 +72,12 @@ function Plant(props) {
         flowerTypes: flowerTypeField.value,
         flowerColors: flowerColorsField.value,
         growthHabit: growthHabitField.value,
+        growthRate: growthRateField.value,
         sun: sunField.value,
         spread: spreadField.value,
-        // height: heightField.value,
+        height: heightField.value,
+        threatened: threatenedField.value,
+        succession: successionField.value,
       },
       {
         setFormErrors,
@@ -209,6 +218,45 @@ function Plant(props) {
               }}
               {...growthHabitField}
               choices={growthHabits}
+            />
+
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Succession"
+              errorFilter={{ location: "succession" }}
+              fullWidth
+              select
+              SelectProps={{
+                multiple: true,
+              }}
+              {...successionField}
+              choices={successions}
+            />
+
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Threatened"
+              errorFilter={{ location: "threatened" }}
+              fullWidth
+              select
+              SelectProps={{
+                multiple: true,
+              }}
+              {...threatenedField}
+              choices={threateneds}
+            />
+
+            <ChoiceFieldWithError
+              margin="dense"
+              label="Growth Rate"
+              errorFilter={{ location: "growth_rate" }}
+              fullWidth
+              select
+              SelectProps={{
+                multiple: true,
+              }}
+              {...growthRateField}
+              choices={growthRates}
             />
 
             <FormErrors

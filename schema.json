@@ -1908,8 +1908,8 @@
               "isDeprecated": false,
               "name": "height",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
                 "ofType": null
               }
             },
@@ -1920,8 +1920,8 @@
               "isDeprecated": false,
               "name": "spread",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
                 "ofType": null
               }
             },
@@ -1932,23 +1932,23 @@
               "isDeprecated": false,
               "name": "sun",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
                 "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
               "name": "growthRate",
               "type": {
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "ENUM",
+                  "name": "GrowthRate",
                   "ofType": null
                 }
               }
@@ -1956,13 +1956,17 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
               "name": "succession",
               "type": {
-                "kind": "ENUM",
-                "name": "LifeNodeSuccession",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Succession",
+                  "ofType": null
+                }
               }
             },
             {
@@ -1972,8 +1976,8 @@
               "isDeprecated": false,
               "name": "timeToFruit",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
                 "ofType": null
               }
             },
@@ -2088,9 +2092,13 @@
               "isDeprecated": false,
               "name": "threatened",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Threatened",
+                  "ofType": null
+                }
               }
             },
             {
@@ -2296,6 +2304,42 @@
               "description": null,
               "isDeprecated": false,
               "name": "growthHabitdisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "growthRatedisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "threatenedDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "successionDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -11708,32 +11752,106 @@
           "possibleTypes": null
         },
         {
-          "description": "An enumeration.",
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "lower",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "upper",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "DecimalRangeObjectType",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `Decimal` scalar type represents a python Decimal.",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Decimal",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Primary",
+              "description": "Slow",
               "isDeprecated": false,
-              "name": "A_10"
+              "name": "SLOW"
             },
             {
               "deprecationReason": null,
-              "description": "Secondary",
+              "description": "Moderate",
               "isDeprecated": false,
-              "name": "A_20"
+              "name": "MODERATE"
             },
             {
               "deprecationReason": null,
-              "description": "Climax",
+              "description": "Fast",
               "isDeprecated": false,
-              "name": "A_30"
+              "name": "FAST"
             }
           ],
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "kind": "ENUM",
-          "name": "LifeNodeSuccession",
+          "name": "GrowthRate",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Primary",
+              "isDeprecated": false,
+              "name": "PRIMARY"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Secondary",
+              "isDeprecated": false,
+              "name": "SECONDARY"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Climax",
+              "isDeprecated": false,
+              "name": "CLIMAX"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "Succession",
           "possibleTypes": null
         },
         {
@@ -11929,6 +12047,77 @@
           "interfaces": null,
           "kind": "ENUM",
           "name": "GrowthHabit",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Extinct",
+              "isDeprecated": false,
+              "name": "EXTINCT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Extinct in the Wild",
+              "isDeprecated": false,
+              "name": "EXTINCT_IN_THE_WILD"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Critically Endangered",
+              "isDeprecated": false,
+              "name": "CRITICALLY_ENDANGERED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Endangered",
+              "isDeprecated": false,
+              "name": "ENDANGERED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Vulnerable",
+              "isDeprecated": false,
+              "name": "VULNERABLE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Near Threatened",
+              "isDeprecated": false,
+              "name": "NEAR_THREATENED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Conservation Dependent",
+              "isDeprecated": false,
+              "name": "CONSERVATION_DEPENDENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Least Concern",
+              "isDeprecated": false,
+              "name": "LEAST_CONCERN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Data Deficient",
+              "isDeprecated": false,
+              "name": "DATA_DEFICIENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Not Evaluated",
+              "isDeprecated": false,
+              "name": "NOT_EVALUATED"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "Threatened",
           "possibleTypes": null
         },
         {
@@ -15747,10 +15936,52 @@
             {
               "defaultValue": null,
               "description": null,
+              "name": "growthRate",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthRate",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "succession",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Succession",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "threatened",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Threatened",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
               "name": "sun",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
                 "ofType": null
               }
             },
@@ -15759,8 +15990,8 @@
               "description": null,
               "name": "spread",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
                 "ofType": null
               }
             },
@@ -15877,16 +16108,6 @@
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "DecimalRangeType",
-          "possibleTypes": null
-        },
-        {
-          "description": "The `Decimal` scalar type represents a python Decimal.",
-          "enumValues": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "kind": "SCALAR",
-          "name": "Decimal",
           "possibleTypes": null
         },
         {

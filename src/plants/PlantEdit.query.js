@@ -17,6 +17,8 @@ const query = graphql`
       sun
       spread
       height
+      succession
+      threatened
     }
     ranks: __type(name: "Rank") {
       enumValues {
@@ -43,6 +45,24 @@ const query = graphql`
       }
     }
     growthHabits: __type(name: "GrowthHabit") {
+      enumValues {
+        name
+        description
+      }
+    }
+    growthRates: __type(name: "GrowthRate") {
+      enumValues {
+        name
+        description
+      }
+    }
+    successions: __type(name: "Succession") {
+      enumValues {
+        name
+        description
+      }
+    }
+    threateneds: __type(name: "Threatened") {
       enumValues {
         name
         description
