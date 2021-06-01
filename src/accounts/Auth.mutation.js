@@ -1,9 +1,11 @@
 import graphql from "babel-plugin-relay/macro";
 import { commitMutation } from "react-relay";
+import { Storage } from "@capacitor/storage";
 
 const mutation = graphql`
   mutation AuthMutation($input: AuthenticateInput!) {
     authenticate(input: $input) {
+      token
       viewer {
         id
         me {
@@ -40,7 +42,7 @@ function commit(environment, input, config) {
         rootViewer.setLinkedRecord(me, "me");
       }
     },
-    onCompleted(response, errors) {
+    async onCompleted(response, errors) {
       if (response.authenticate.errors.length > 0) {
         if (typeof config.setFormErrors === "function") {
           config.setFormErrors(response.authenticate.errors);
@@ -49,6 +51,10 @@ function commit(environment, input, config) {
           config.onError(response);
         }
       } else {
+        await Storage.set({
+          key: "auth_token",
+          value: response.authenticate.token,
+        });
         if (typeof config.onSuccess === "function") {
           config.onSuccess(response);
         }

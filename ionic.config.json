@@ -1,6 +1,8 @@
 {
   "name": "Que Planta",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react",
   "id": "35379e2d"
 }

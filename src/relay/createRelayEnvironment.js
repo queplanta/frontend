@@ -1,10 +1,14 @@
 import { Environment, Network, RecordSource, Store } from "relay-runtime";
+import { Storage } from "@capacitor/storage";
 
-function fetchQuery(operation, variables, cacheConfig, uploadables) {
+async function fetchQuery(operation, variables, cacheConfig, uploadables) {
+  const { value: authToken } = await Storage.get({ key: "auth_token" });
+
   let requestVariables = {
     method: "POST",
     headers: {
       Accept: "application/json",
+      Authorization: `JWT ${authToken ? authToken : ""}`,
     },
     credentials: "include",
   };
