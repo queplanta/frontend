@@ -12404,6 +12404,201 @@
         },
         {
           "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "White",
+              "isDeprecated": false,
+              "name": "WHITE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Red",
+              "isDeprecated": false,
+              "name": "RED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Orange",
+              "isDeprecated": false,
+              "name": "ORANGE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Yellow",
+              "isDeprecated": false,
+              "name": "YELLOW"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Pink",
+              "isDeprecated": false,
+              "name": "PINK"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Lilac",
+              "isDeprecated": false,
+              "name": "LILAC"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Blue",
+              "isDeprecated": false,
+              "name": "BLUE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Light Blue",
+              "isDeprecated": false,
+              "name": "LIGHT_BLUE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Green",
+              "isDeprecated": false,
+              "name": "GREEN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Purple",
+              "isDeprecated": false,
+              "name": "PURPLE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Black",
+              "isDeprecated": false,
+              "name": "BLACK"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Brown",
+              "isDeprecated": false,
+              "name": "BROWN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Nut Brown",
+              "isDeprecated": false,
+              "name": "NUT_BROWN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Wine",
+              "isDeprecated": false,
+              "name": "WINE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Cream",
+              "isDeprecated": false,
+              "name": "CREAM"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "FlowerColor",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Inflorescence",
+              "isDeprecated": false,
+              "name": "INFLORESCENCE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Composite Flower",
+              "isDeprecated": false,
+              "name": "PSEUDANTHIUM"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Solitary Flower",
+              "isDeprecated": false,
+              "name": "SOLITARY"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "FlowerType",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Herb",
+              "isDeprecated": false,
+              "name": "HERB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Graminoid",
+              "isDeprecated": false,
+              "name": "GRAMINOID"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Lichenous",
+              "isDeprecated": false,
+              "name": "LICHENOUS"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Nonvascular",
+              "isDeprecated": false,
+              "name": "NONVASCULAR"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Succulent",
+              "isDeprecated": false,
+              "name": "SUCCULENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Shrub",
+              "isDeprecated": false,
+              "name": "SHRUB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Subshrub",
+              "isDeprecated": false,
+              "name": "SUBSHRUB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Tree",
+              "isDeprecated": false,
+              "name": "TREE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Vine",
+              "isDeprecated": false,
+              "name": "VINE"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "GrowthHabit",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
           "enumValues": null,
           "fields": [
             {

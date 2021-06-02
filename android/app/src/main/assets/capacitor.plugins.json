@@ -1,0 +1,6 @@
+[
+  {
+    "pkg": "@capacitor/storage",
+    "classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+  }
+]
