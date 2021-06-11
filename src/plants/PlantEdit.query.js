@@ -14,9 +14,19 @@ const query = graphql`
       flowerTypes
       flowerColors
       growthHabit
-      sun
-      spread
-      height
+      growthRate
+      sun {
+        lower
+        upper
+      }
+      spread {
+        lower
+        upper
+      }
+      height {
+        lower
+        upper
+      }
       succession
       threatened
     }

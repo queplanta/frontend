@@ -20,7 +20,11 @@
             }
           ],
           "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-          "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
           "name": "include"
         },
         {
@@ -41,7 +45,11 @@
             }
           ],
           "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-          "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+          "locations": [
+            "FIELD",
+            "FRAGMENT_SPREAD",
+            "INLINE_FRAGMENT"
+          ],
           "name": "skip"
         }
       ],
@@ -2092,13 +2100,9 @@
               "isDeprecated": false,
               "name": "threatened",
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "Threatened",
-                  "ofType": null
-                }
+                "kind": "ENUM",
+                "name": "Threatened",
+                "ofType": null
               }
             },
             {
@@ -2279,7 +2283,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "flowerColorsdisplay",
+              "name": "flowerColorsDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -2291,7 +2295,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "flowerTypesdisplay",
+              "name": "flowerTypesDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -2303,7 +2307,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "growthHabitdisplay",
+              "name": "growthHabitDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -2315,7 +2319,7 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
-              "name": "growthRatedisplay",
+              "name": "growthRateDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -15966,13 +15970,9 @@
               "description": null,
               "name": "threatened",
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "Threatened",
-                  "ofType": null
-                }
+                "kind": "ENUM",
+                "name": "Threatened",
+                "ofType": null
               }
             },
             {

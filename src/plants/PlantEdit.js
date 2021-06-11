@@ -39,16 +39,16 @@ function Plant(props) {
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
 
-  const sunField = useFormInput(plant.sun || "");
-  const spreadField = useFormInput(plant.spread || "");
-  const heightField = useFormInput(plant.height || "");
+  const sunField = useFormInput(plant.sun.lower || "");
+  const spreadField = useFormInput(plant.spread.lower || "");
+  const heightField = useFormInput(plant.height.lower || "");
 
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
   const growthHabitField = useFormInput(plant.growthHabit || []);
   const growthRateField = useFormInput(plant.growthRate || []);
-  const successionField = useFormInput(plant.succession || []);
-  const threatenedField = useFormInput(plant.threatened || []);
+  const successionField = useFormInput(plant.succession || "");
+  const threatenedField = useFormInput(plant.threatened || "");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -69,15 +69,24 @@ function Plant(props) {
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
 
-        flowerTypes: flowerTypeField.value,
-        flowerColors: flowerColorsField.value,
-        growthHabit: growthHabitField.value,
-        growthRate: growthRateField.value,
-        sun: sunField.value,
-        spread: spreadField.value,
-        height: heightField.value,
-        threatened: threatenedField.value,
-        succession: successionField.value,
+        flowerTypes: flowerTypeField.value.length ? flowerTypeField.value : undefined,
+        flowerColors: flowerColorsField.value.length ? flowerColorsField.value : undefined,
+        growthHabit: growthHabitField.value.length ? growthHabitField.value : undefined,
+        growthRate: growthRateField.value.length ? growthRateField.value : undefined,
+        sun: sunField.value ? {
+          lower: sunField.value,
+          upper: parseInt(sunField.value, 10) + 1,
+        } : undefined,
+        spread: spreadField.value ? {
+          lower: spreadField.value,
+          upper: parseInt(spreadField.value, 10) + 1,
+        } : undefined,
+        height: heightField.value ? {
+          lower: heightField.value,
+          upper: parseInt(heightField.value, 10) + 1,
+        } : undefined,
+        threatened: threatenedField.value ? threatenedField.value : undefined,
+        succession: successionField.value ? successionField.value : undefined,
       },
       {
         setFormErrors,
@@ -226,9 +235,6 @@ function Plant(props) {
               errorFilter={{ location: "succession" }}
               fullWidth
               select
-              SelectProps={{
-                multiple: true,
-              }}
               {...successionField}
               choices={successions}
             />
@@ -239,9 +245,6 @@ function Plant(props) {
               errorFilter={{ location: "threatened" }}
               fullWidth
               select
-              SelectProps={{
-                multiple: true,
-              }}
               {...threatenedField}
               choices={threateneds}
             />
