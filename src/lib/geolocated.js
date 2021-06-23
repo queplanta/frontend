@@ -1,6 +1,7 @@
 // copied from https://raw.githubusercontent.com/no23reason/react-geolocated/master/src/index.js
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Geolocation } from "@capacitor/geolocation";
 
 const getDisplayName = (WrappedComponent) =>
   `Geolocated(${
@@ -17,8 +18,7 @@ export const geolocated = ({
   userDecisionTimeout = null,
   suppressLocationOnMount = false,
   watchPosition = false,
-  geolocationProvider = typeof navigator !== "undefined" &&
-    navigator.geolocation,
+  geolocationProvider = Geolocation,
 } = {}) => (WrappedComponent) => {
   let result = class Geolocated extends Component {
     isCurrentlyMounted = false;
@@ -53,7 +53,11 @@ export const geolocated = ({
       }
     };
 
-    onPositionSuccess = (position) => {
+    onPositionSuccess = (position, err) => {
+      if (err) {
+        throw new Error(err);
+      }
+
       this.cancelUserDecisionTimeout();
       if (this.isCurrentlyMounted) {
         this.setState({
@@ -87,11 +91,13 @@ export const geolocated = ({
         }, userDecisionTimeout);
       }
 
-      this.watchId = funcPosition(
-        this.onPositionSuccess,
-        this.onPositionError,
-        positionOptions
-      );
+      if (watchPosition) {
+        funcPosition(positionOptions, this.onPositionSuccess);
+      } else {
+        funcPosition(positionOptions)
+          .then(this.onPositionSuccess)
+          .catch(this.onPositionError);
+      }
     };
 
     componentDidMount() {
@@ -104,9 +110,6 @@ export const geolocated = ({
     componentWillUnmount() {
       this.isCurrentlyMounted = false;
       this.cancelUserDecisionTimeout();
-      if (watchPosition) {
-        geolocationProvider.clearWatch(this.watchId);
-      }
     }
 
     render() {

@@ -6,6 +6,7 @@
     "@capacitor/android": "^3.0.0",
     "@capacitor/cli": "^3.0.0",
     "@capacitor/core": "^3.0.0",
+    "@capacitor/geolocation": "^1.0.1",
     "@capacitor/ios": "^3.0.0",
     "@capacitor/storage": "^1.0.0",
     "@datapunt/matomo-tracker-react": "^0.1.5",
