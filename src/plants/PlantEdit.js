@@ -9,6 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
+  InputRangeFieldWithError,
   ChoiceFieldWithError,
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
@@ -39,7 +40,7 @@ function Plant(props) {
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
 
-  const sunField = useFormInput(plant.sun.lower || "");
+  const sunField = useFormInput(plant.sun || undefined);
   const spreadField = useFormInput(plant.spread.lower || "");
   const heightField = useFormInput(plant.height.lower || "");
 
@@ -69,22 +70,36 @@ function Plant(props) {
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
 
-        flowerTypes: flowerTypeField.value.length ? flowerTypeField.value : undefined,
-        flowerColors: flowerColorsField.value.length ? flowerColorsField.value : undefined,
-        growthHabit: growthHabitField.value.length ? growthHabitField.value : undefined,
-        growthRate: growthRateField.value.length ? growthRateField.value : undefined,
-        sun: sunField.value ? {
-          lower: sunField.value,
-          upper: parseInt(sunField.value, 10) + 1,
-        } : undefined,
-        spread: spreadField.value ? {
-          lower: spreadField.value,
-          upper: parseInt(spreadField.value, 10) + 1,
-        } : undefined,
-        height: heightField.value ? {
-          lower: heightField.value,
-          upper: parseInt(heightField.value, 10) + 1,
-        } : undefined,
+        flowerTypes: flowerTypeField.value.length
+          ? flowerTypeField.value
+          : undefined,
+        flowerColors: flowerColorsField.value.length
+          ? flowerColorsField.value
+          : undefined,
+        growthHabit: growthHabitField.value.length
+          ? growthHabitField.value
+          : undefined,
+        growthRate: growthRateField.value.length
+          ? growthRateField.value
+          : undefined,
+        sun: sunField.value
+          ? {
+              lower: sunField.value,
+              upper: parseInt(sunField.value, 10) + 1,
+            }
+          : undefined,
+        spread: spreadField.value
+          ? {
+              lower: spreadField.value,
+              upper: parseInt(spreadField.value, 10) + 1,
+            }
+          : undefined,
+        height: heightField.value
+          ? {
+              lower: heightField.value,
+              upper: parseInt(heightField.value, 10) + 1,
+            }
+          : undefined,
         threatened: threatenedField.value ? threatenedField.value : undefined,
         succession: successionField.value ? successionField.value : undefined,
       },
@@ -132,12 +147,10 @@ function Plant(props) {
               multiline
               {...descriptionField}
             />
-
-            <TextFieldWithError
+            <InputRangeFieldWithError
               margin="dense"
               label="Sun"
               errorFilter={{ location: "sun" }}
-              fullWidth
               {...sunField}
             />
 
