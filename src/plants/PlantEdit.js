@@ -131,9 +131,9 @@ function Plant(props) {
         </BreadcrumbsItem>
       </BreadcrumbsWithHome>
       <PageTitle>Editando: {plant.title}</PageTitle>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12}>
             <TextFieldWithError
               margin="dense"
               label="Titulo"
@@ -142,7 +142,8 @@ function Plant(props) {
               fullWidth
               {...titleField}
             />
-
+          </Grid>
+          <Grid item xs={12} md={12}>
             <TextFieldWithError
               margin="dense"
               label="Descrição"
@@ -151,55 +152,62 @@ function Plant(props) {
               multiline
               {...descriptionField}
             />
-
-            <Box>
-              <TextFieldWithError
-                margin="dense"
-                label="Sun lower"
-                errorFilter={{ location: "sun" }}
-                {...sunLowerField}
-              />
-              <Box sx={{ mx: 2 }}> até </Box>
-              <TextFieldWithError
-                margin="dense"
-                label="Sun upper"
-                errorFilter={{ location: "sun" }}
-                {...sunUpperField}
-              />
-            </Box>
-
-            <Box>
-              <TextFieldWithError
-                margin="dense"
-                label="Spread lower"
-                errorFilter={{ location: "spread" }}
-                {...spreadLowerField}
-              />
-              <Box sx={{ mx: 2 }}> até </Box>
-              <TextFieldWithError
-                margin="dense"
-                label="spread upper"
-                errorFilter={{ location: "spread" }}
-                {...spreadUpperField}
-              />
-            </Box>
-
-            <Box>
-              <TextFieldWithError
-                margin="dense"
-                label="height lower"
-                errorFilter={{ location: "height" }}
-                {...heightLowerField}
-              />
-              <Box sx={{ mx: 2 }}> até </Box>
-              <TextFieldWithError
-                margin="dense"
-                label="height upper"
-                errorFilter={{ location: "height" }}
-                {...heightUpperField}
-              />
-            </Box>
-
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sun lower"
+              fullWidth
+              errorFilter={{ location: "sun" }}
+              {...sunLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sun upper"
+              fullWidth
+              errorFilter={{ location: "sun" }}
+              {...sunUpperField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Spread lower"
+              fullWidth
+              errorFilter={{ location: "spread" }}
+              {...spreadLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="spread upper"
+              fullWidth
+              errorFilter={{ location: "spread" }}
+              {...spreadUpperField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="height lower"
+              fullWidth
+              errorFilter={{ location: "height" }}
+              {...heightLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="height upper"
+              fullWidth
+              errorFilter={{ location: "height" }}
+              {...heightUpperField}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
             <TextFieldWithError
               margin="dense"
               label="Comestibilidade"
@@ -216,7 +224,8 @@ function Plant(props) {
                 );
               })}
             </TextFieldWithError>
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <TextFieldWithError
               margin="dense"
               label="Rank"
@@ -233,7 +242,8 @@ function Plant(props) {
                 );
               })}
             </TextFieldWithError>
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Flower Type"
@@ -246,7 +256,8 @@ function Plant(props) {
               {...flowerTypeField}
               choices={flowerTypes}
             />
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Flower Color"
@@ -259,6 +270,8 @@ function Plant(props) {
               {...flowerColorsField}
               choices={flowerColors}
             />
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Growth Habit"
@@ -271,7 +284,8 @@ function Plant(props) {
               {...growthHabitField}
               choices={growthHabits}
             />
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Succession"
@@ -281,7 +295,8 @@ function Plant(props) {
               {...successionField}
               choices={successions}
             />
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Threatened"
@@ -291,7 +306,8 @@ function Plant(props) {
               {...threatenedField}
               choices={threateneds}
             />
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
               margin="dense"
               label="Growth Rate"
@@ -304,11 +320,11 @@ function Plant(props) {
               {...growthRateField}
               choices={growthRates}
             />
-
+          </Grid>
+          <Grid item xs={12} md={12}>
             <FormErrors
               filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
             />
-
             <ButtonWithProgress
               variant="outlined"
               className={classes.button}
@@ -317,9 +333,9 @@ function Plant(props) {
             >
               salvar alteração
             </ButtonWithProgress>
-          </form>
+          </Grid>
         </Grid>
-      </Grid>
+      </form>
     </Width>
   );
 }
