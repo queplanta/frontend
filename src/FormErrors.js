@@ -115,54 +115,6 @@ export function ChoiceFieldWithError(props) {
     </FormErrorsContext.Consumer>
   );
 }
-export function InputRangeFieldWithError(props) {
-  const {
-    errorFilter,
-    value: { lower, upper },
-    ...others
-  } = props;
-  const [lowerValue, setLower] = useState(lower);
-  const [upperValue, setUpper] = useState(upper);
-  const handleLowerChange = (e) => {
-    setLower(e.target.value);
-    console.log(`lower on change ${e.target.value}`);
-  };
-  const handleUpperChange = (e) => {
-    setUpper(e.target.value);
-    console.log(`upper on change ${e.target.value}`);
-  };
-
-  return (
-    <FormErrorsContext.Consumer>
-      {(errors) => {
-        const filteredErrors = errorFilter
-          ? _.filter(errors, errorFilter).map((error) => error.message)
-          : [];
-        const errorText = _.join(filteredErrors, " \n");
-        const hasError = filteredErrors.length > 0;
-        return (
-          <>
-            <TextField
-              onChange={handleLowerChange}
-              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-              value={lowerValue}
-              error={hasError}
-              helperText={errorText}
-            />
-            <Box sx={{ mx: 2 }}> até </Box>
-            <TextField
-              onChange={handleUpperChange}
-              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-              value={upperValue}
-              error={hasError}
-              helperText={errorText}
-            />
-          </>
-        );
-      }}
-    </FormErrorsContext.Consumer>
-  );
-}
 
 ChoiceFieldWithError.defaultProps = {
   choices: {},

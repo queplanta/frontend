@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Grid, MenuItem, withStyles } from "@material-ui/core";
+import { Box, Grid, MenuItem, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";
@@ -9,7 +9,6 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
-  InputRangeFieldWithError,
   ChoiceFieldWithError,
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
@@ -40,9 +39,14 @@ function Plant(props) {
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
 
-  const sunField = useFormInput(plant.sun || undefined);
-  const spreadField = useFormInput(plant.spread.lower || "");
-  const heightField = useFormInput(plant.height.lower || "");
+  const sunLowerField = useFormInput(plant.sun.lower || "");
+  const sunUpperField = useFormInput(plant.sun.upper || "");
+
+  const spreadLowerField = useFormInput(plant.spread.lower || "");
+  const spreadUpperField = useFormInput(plant.spread.upper || "");
+
+  const heightLowerField = useFormInput(plant.height.lower || "");
+  const heightUpperField = useFormInput(plant.height.upper || "");
 
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
@@ -82,22 +86,22 @@ function Plant(props) {
         growthRate: growthRateField.value.length
           ? growthRateField.value
           : undefined,
-        sun: sunField.value
+        sun: sunLowerField.value
           ? {
-              lower: sunField.value,
-              upper: parseInt(sunField.value, 10) + 1,
+              lower: sunLowerField.value,
+              upper: sunUpperField.value,
             }
           : undefined,
-        spread: spreadField.value
+        spread: spreadLowerField.value
           ? {
-              lower: spreadField.value,
-              upper: parseInt(spreadField.value, 10) + 1,
+              lower: spreadLowerField.value,
+              upper: spreadUpperField.value,
             }
           : undefined,
-        height: heightField.value
+        height: heightLowerField.value
           ? {
-              lower: heightField.value,
-              upper: parseInt(heightField.value, 10) + 1,
+              lower: heightLowerField.value,
+              upper: heightUpperField.value,
             }
           : undefined,
         threatened: threatenedField.value ? threatenedField.value : undefined,
@@ -147,28 +151,54 @@ function Plant(props) {
               multiline
               {...descriptionField}
             />
-            <InputRangeFieldWithError
-              margin="dense"
-              label="Sun"
-              errorFilter={{ location: "sun" }}
-              {...sunField}
-            />
 
-            <TextFieldWithError
-              margin="dense"
-              label="Spread"
-              errorFilter={{ location: "spread" }}
-              fullWidth
-              {...spreadField}
-            />
+            <Box>
+              <TextFieldWithError
+                margin="dense"
+                label="Sun lower"
+                errorFilter={{ location: "sun" }}
+                {...sunLowerField}
+              />
+              <Box sx={{ mx: 2 }}> até </Box>
+              <TextFieldWithError
+                margin="dense"
+                label="Sun upper"
+                errorFilter={{ location: "sun" }}
+                {...sunUpperField}
+              />
+            </Box>
 
-            <TextFieldWithError
-              margin="dense"
-              label="Height"
-              errorFilter={{ location: "height" }}
-              fullWidth
-              {...heightField}
-            />
+            <Box>
+              <TextFieldWithError
+                margin="dense"
+                label="Spread lower"
+                errorFilter={{ location: "spread" }}
+                {...spreadLowerField}
+              />
+              <Box sx={{ mx: 2 }}> até </Box>
+              <TextFieldWithError
+                margin="dense"
+                label="spread upper"
+                errorFilter={{ location: "spread" }}
+                {...spreadUpperField}
+              />
+            </Box>
+
+            <Box>
+              <TextFieldWithError
+                margin="dense"
+                label="height lower"
+                errorFilter={{ location: "height" }}
+                {...heightLowerField}
+              />
+              <Box sx={{ mx: 2 }}> até </Box>
+              <TextFieldWithError
+                margin="dense"
+                label="height upper"
+                errorFilter={{ location: "height" }}
+                {...heightUpperField}
+              />
+            </Box>
 
             <TextFieldWithError
               margin="dense"
