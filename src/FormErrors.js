@@ -3,9 +3,14 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import {
   SnackbarContent,
+  Select,
+  Input,
+  InputLabel,
+  Checkbox,
+  ListItemText,
   TextField,
+  FormControl,
   MenuItem,
-  Box,
   withStyles,
 } from "@material-ui/core";
 import { getDisplayName } from "./lib/helpers.js";
@@ -91,7 +96,8 @@ export function TextFieldWithError(props) {
 }
 
 export function ChoiceFieldWithError(props) {
-  const { errorFilter, choices, ...others } = props;
+  const { errorFilter, label, value, choices, ...others } = props;
+  console.log(value);
   return (
     <FormErrorsContext.Consumer>
       {(errors) => {
@@ -101,15 +107,26 @@ export function ChoiceFieldWithError(props) {
         const errorText = _.join(filteredErrors, " \n");
         const hasError = filteredErrors.length > 0;
         return (
-          <TextField error={hasError} helperText={errorText} {...others}>
-            {choices.enumValues.map((e, i) => {
-              return (
-                <MenuItem key={i} value={e.name}>
-                  {e.description}
-                </MenuItem>
-              );
-            })}
-          </TextField>
+          <FormControl margin="dense" fullWidth={true}>
+            <InputLabel>{label}</InputLabel>
+            <Select
+              multiple
+              value={value}
+              input={<Input />}
+              renderValue={(selected) => selected.join(", ")}
+              error={hasError}
+              {...others}
+            >
+              {choices.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    <Checkbox checked={value.indexOf(e.name) > -1} />
+                    <ListItemText primary={e.description} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
         );
       }}
     </FormErrorsContext.Consumer>

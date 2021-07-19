@@ -52,8 +52,8 @@ function Plant(props) {
   const flowerColorsField = useFormInput(plant.flowerColors || []);
   const growthHabitField = useFormInput(plant.growthHabit || []);
   const growthRateField = useFormInput(plant.growthRate || []);
-  const successionField = useFormInput(plant.succession || "");
-  const threatenedField = useFormInput(plant.threatened || "");
+  const successionField = useFormInput(plant.succession || []);
+  const threatenedField = useFormInput(plant.threatened || []);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -243,84 +243,42 @@ function Plant(props) {
               })}
             </TextFieldWithError>
           </Grid>
+
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              margin="dense"
               label="Flower Type"
               errorFilter={{ location: "flowerTypes" }}
-              fullWidth
-              select
-              SelectProps={{
-                multiple: true,
-              }}
               {...flowerTypeField}
               choices={flowerTypes}
             />
           </Grid>
+
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              margin="dense"
               label="Flower Color"
               errorFilter={{ location: "flowerColors" }}
-              fullWidth
-              select
-              SelectProps={{
-                multiple: true,
-              }}
               {...flowerColorsField}
               choices={flowerColors}
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              margin="dense"
               label="Growth Habit"
               errorFilter={{ location: "growthHabits" }}
-              fullWidth
-              select
-              SelectProps={{
-                multiple: true,
-              }}
               {...growthHabitField}
               choices={growthHabits}
             />
           </Grid>
+
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              margin="dense"
-              label="Succession"
-              errorFilter={{ location: "succession" }}
-              fullWidth
-              select
-              {...successionField}
-              choices={successions}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <ChoiceFieldWithError
-              margin="dense"
-              label="Threatened"
-              errorFilter={{ location: "threatened" }}
-              fullWidth
-              select
-              {...threatenedField}
-              choices={threateneds}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <ChoiceFieldWithError
-              margin="dense"
               label="Growth Rate"
               errorFilter={{ location: "growth_rate" }}
-              fullWidth
-              select
-              SelectProps={{
-                multiple: true,
-              }}
               {...growthRateField}
               choices={growthRates}
             />
           </Grid>
+
           <Grid item xs={12} md={12}>
             <FormErrors
               filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
