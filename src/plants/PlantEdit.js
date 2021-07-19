@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Box, Grid, MenuItem, withStyles } from "@material-ui/core";
+import { Grid, InputAdornment, MenuItem, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";
@@ -156,8 +156,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="Sun lower"
+              label="Sol mínimo"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+              }}
               errorFilter={{ location: "sun" }}
               {...sunLowerField}
             />
@@ -165,8 +168,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="Sun upper"
+              label="Sol máximo"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+              }}
               errorFilter={{ location: "sun" }}
               {...sunUpperField}
             />
@@ -174,8 +180,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="Spread lower"
+              label="Raio de copa mínima"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
               errorFilter={{ location: "spread" }}
               {...spreadLowerField}
             />
@@ -183,8 +192,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="spread upper"
+              label="Raio de copa máxima"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
               errorFilter={{ location: "spread" }}
               {...spreadUpperField}
             />
@@ -192,8 +204,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="height lower"
+              label="Altura mínima"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
               errorFilter={{ location: "height" }}
               {...heightLowerField}
             />
@@ -201,8 +216,11 @@ function Plant(props) {
           <Grid item xs={6} md={3}>
             <TextFieldWithError
               margin="dense"
-              label="height upper"
+              label="Altura máxima"
               fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
               errorFilter={{ location: "height" }}
               {...heightUpperField}
             />
@@ -246,7 +264,7 @@ function Plant(props) {
 
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              label="Flower Type"
+              label="Tipo da flor"
               errorFilter={{ location: "flowerTypes" }}
               {...flowerTypeField}
               choices={flowerTypes}
@@ -255,7 +273,7 @@ function Plant(props) {
 
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              label="Flower Color"
+              label="Cor da flor"
               errorFilter={{ location: "flowerColors" }}
               {...flowerColorsField}
               choices={flowerColors}
@@ -263,7 +281,7 @@ function Plant(props) {
           </Grid>
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              label="Growth Habit"
+              label="Hábito de crescimento"
               errorFilter={{ location: "growthHabits" }}
               {...growthHabitField}
               choices={growthHabits}
@@ -272,11 +290,48 @@ function Plant(props) {
 
           <Grid item xs={12} md={6}>
             <ChoiceFieldWithError
-              label="Growth Rate"
+              label="Taxa de crescimento"
               errorFilter={{ location: "growth_rate" }}
               {...growthRateField}
               choices={growthRates}
             />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sucessão"
+              errorFilter={{ location: "succession" }}
+              fullWidth
+              select
+              {...successionField}
+            >
+              {successions.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    {e.description}
+                  </MenuItem>
+                );
+              })}
+            </TextFieldWithError>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextFieldWithError
+              margin="dense"
+              label="Ameaçada de exintação?"
+              errorFilter={{ location: "threatened" }}
+              fullWidth
+              select
+              {...threatenedField}
+            >
+              {threateneds.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    {e.description}
+                  </MenuItem>
+                );
+              })}
+            </TextFieldWithError>
           </Grid>
 
           <Grid item xs={12} md={12}>

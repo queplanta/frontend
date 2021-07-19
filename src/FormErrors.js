@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import {
@@ -97,7 +97,13 @@ export function TextFieldWithError(props) {
 
 export function ChoiceFieldWithError(props) {
   const { errorFilter, label, value, choices, ...others } = props;
-  console.log(value);
+  const renderValue = (selected) => {
+    const enumsSelected = _.filter(
+      choices.enumValues,
+      (o) => selected.indexOf(o.name) >= 0
+    );
+    return enumsSelected.map((o) => o.description).join(", ");
+  };
   return (
     <FormErrorsContext.Consumer>
       {(errors) => {
@@ -112,8 +118,8 @@ export function ChoiceFieldWithError(props) {
             <Select
               multiple
               value={value}
-              input={<Input />}
-              renderValue={(selected) => selected.join(", ")}
+              input={<Input helperText={errorText} />}
+              renderValue={renderValue}
               error={hasError}
               {...others}
             >
