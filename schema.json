@@ -1904,93 +1904,77 @@
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
               "name": "height",
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "spread",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "sun",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "growthRate",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "succession",
-              "type": {
-                "kind": "ENUM",
-                "name": "LifeNodeSuccession",
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
                 "ofType": null
               }
             },
             {
               "args": [],
               "deprecationReason": null,
-              "description": "",
+              "description": null,
               "isDeprecated": false,
-              "name": "timeToFruit",
+              "name": "spread",
+              "type": {
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "sun",
+              "type": {
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "growthRate",
               "type": {
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
+                  "kind": "ENUM",
+                  "name": "GrowthRate",
                   "ofType": null
                 }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "succession",
+              "type": {
+                "kind": "ENUM",
+                "name": "Succession",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "timeToFruit",
+              "type": {
+                "kind": "OBJECT",
+                "name": "DecimalRangeObjectType",
+                "ofType": null
               }
             },
             {
@@ -2003,8 +1987,8 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "ENUM",
+                  "name": "FlowerColor",
                   "ofType": null
                 }
               }
@@ -2019,8 +2003,8 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "ENUM",
+                  "name": "FlowerType",
                   "ofType": null
                 }
               }
@@ -2051,8 +2035,8 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "ENUM",
+                  "name": "GrowthHabit",
                   "ofType": null
                 }
               }
@@ -2104,8 +2088,8 @@
               "isDeprecated": false,
               "name": "threatened",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "Threatened",
                 "ofType": null
               }
             },
@@ -2276,6 +2260,78 @@
               "description": null,
               "isDeprecated": false,
               "name": "rankDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "flowerColorsDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "flowerTypesDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "growthHabitDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "growthRateDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "threatenedDisplay",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "successionDisplay",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -11688,42 +11744,372 @@
           "possibleTypes": null
         },
         {
-          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "lower",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "upper",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "DecimalRangeObjectType",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `Decimal` scalar type represents a python Decimal.",
           "enumValues": null,
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "kind": "SCALAR",
-          "name": "Float",
+          "name": "Decimal",
           "possibleTypes": null
         },
         {
-          "description": "An enumeration.",
+          "description": null,
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Primary",
+              "description": "Slow",
               "isDeprecated": false,
-              "name": "A_10"
+              "name": "SLOW"
             },
             {
               "deprecationReason": null,
-              "description": "Secondary",
+              "description": "Moderate",
               "isDeprecated": false,
-              "name": "A_20"
+              "name": "MODERATE"
             },
             {
               "deprecationReason": null,
-              "description": "Climax",
+              "description": "Fast",
               "isDeprecated": false,
-              "name": "A_30"
+              "name": "FAST"
             }
           ],
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "kind": "ENUM",
-          "name": "LifeNodeSuccession",
+          "name": "GrowthRate",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Primary",
+              "isDeprecated": false,
+              "name": "PRIMARY"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Secondary",
+              "isDeprecated": false,
+              "name": "SECONDARY"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Climax",
+              "isDeprecated": false,
+              "name": "CLIMAX"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "Succession",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "White",
+              "isDeprecated": false,
+              "name": "WHITE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Red",
+              "isDeprecated": false,
+              "name": "RED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Orange",
+              "isDeprecated": false,
+              "name": "ORANGE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Yellow",
+              "isDeprecated": false,
+              "name": "YELLOW"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Pink",
+              "isDeprecated": false,
+              "name": "PINK"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Lilac",
+              "isDeprecated": false,
+              "name": "LILAC"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Blue",
+              "isDeprecated": false,
+              "name": "BLUE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Light Blue",
+              "isDeprecated": false,
+              "name": "LIGHT_BLUE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Green",
+              "isDeprecated": false,
+              "name": "GREEN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Purple",
+              "isDeprecated": false,
+              "name": "PURPLE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Black",
+              "isDeprecated": false,
+              "name": "BLACK"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Brown",
+              "isDeprecated": false,
+              "name": "BROWN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Nut Brown",
+              "isDeprecated": false,
+              "name": "NUT_BROWN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Wine",
+              "isDeprecated": false,
+              "name": "WINE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Cream",
+              "isDeprecated": false,
+              "name": "CREAM"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "FlowerColor",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Inflorescence",
+              "isDeprecated": false,
+              "name": "INFLORESCENCE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Composite Flower",
+              "isDeprecated": false,
+              "name": "PSEUDANTHIUM"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Solitary Flower",
+              "isDeprecated": false,
+              "name": "SOLITARY"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "FlowerType",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Herb",
+              "isDeprecated": false,
+              "name": "HERB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Graminoid",
+              "isDeprecated": false,
+              "name": "GRAMINOID"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Lichenous",
+              "isDeprecated": false,
+              "name": "LICHENOUS"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Nonvascular",
+              "isDeprecated": false,
+              "name": "NONVASCULAR"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Succulent",
+              "isDeprecated": false,
+              "name": "SUCCULENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Shrub",
+              "isDeprecated": false,
+              "name": "SHRUB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Subshrub",
+              "isDeprecated": false,
+              "name": "SUBSHRUB"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Tree",
+              "isDeprecated": false,
+              "name": "TREE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Vine",
+              "isDeprecated": false,
+              "name": "VINE"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "GrowthHabit",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": [
+            {
+              "deprecationReason": null,
+              "description": "Extinct",
+              "isDeprecated": false,
+              "name": "EXTINCT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Extinct in the Wild",
+              "isDeprecated": false,
+              "name": "EXTINCT_IN_THE_WILD"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Critically Endangered",
+              "isDeprecated": false,
+              "name": "CRITICALLY_ENDANGERED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Endangered",
+              "isDeprecated": false,
+              "name": "ENDANGERED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Vulnerable",
+              "isDeprecated": false,
+              "name": "VULNERABLE"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Near Threatened",
+              "isDeprecated": false,
+              "name": "NEAR_THREATENED"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Conservation Dependent",
+              "isDeprecated": false,
+              "name": "CONSERVATION_DEPENDENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Least Concern",
+              "isDeprecated": false,
+              "name": "LEAST_CONCERN"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Data Deficient",
+              "isDeprecated": false,
+              "name": "DATA_DEFICIENT"
+            },
+            {
+              "deprecationReason": null,
+              "description": "Not Evaluated",
+              "isDeprecated": false,
+              "name": "NOT_EVALUATED"
+            }
+          ],
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "ENUM",
+          "name": "Threatened",
           "possibleTypes": null
         },
         {
@@ -12546,6 +12932,16 @@
           "interfaces": [],
           "kind": "OBJECT",
           "name": "DjangoDebugSQL",
+          "possibleTypes": null
+        },
+        {
+          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "kind": "SCALAR",
+          "name": "Float",
           "possibleTypes": null
         },
         {
@@ -15184,6 +15580,36 @@
             {
               "defaultValue": null,
               "description": null,
+              "name": "flowerColors",
+              "type": {
+                "kind": "ENUM",
+                "name": "FlowerColor",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "flowerTypes",
+              "type": {
+                "kind": "ENUM",
+                "name": "FlowerType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "growthHabit",
+              "type": {
+                "kind": "ENUM",
+                "name": "GrowthHabit",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
               "name": "parent",
               "type": {
                 "kind": "SCALAR",
@@ -15460,6 +15886,112 @@
             {
               "defaultValue": null,
               "description": null,
+              "name": "flowerColors",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerColor",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "flowerTypes",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerType",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "growthHabit",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthHabit",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "growthRate",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthRate",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "succession",
+              "type": {
+                "kind": "ENUM",
+                "name": "Succession",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "threatened",
+              "type": {
+                "kind": "ENUM",
+                "name": "Threatened",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "sun",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "spread",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "height",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
               "name": "parent",
               "type": {
                 "kind": "SCALAR",
@@ -15529,6 +16061,37 @@
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "LifeNodeEditInput",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "lower",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "upper",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            }
+          ],
+          "interfaces": null,
+          "kind": "INPUT_OBJECT",
+          "name": "DecimalRangeType",
           "possibleTypes": null
         },
         {
@@ -16642,6 +17205,42 @@
               "deprecationReason": null,
               "description": null,
               "isDeprecated": false,
+              "name": "token",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "payload",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "refreshExpiresIn",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
               "name": "clientMutationId",
               "type": {
                 "kind": "SCALAR",
@@ -16783,6 +17382,42 @@
                   "name": "Error",
                   "ofType": null
                 }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "token",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "payload",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "refreshExpiresIn",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               }
             },
             {

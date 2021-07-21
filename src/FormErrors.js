@@ -1,6 +1,18 @@
 import React, { useReducer } from "react";
 import _ from "lodash";
-import { SnackbarContent, TextField, withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import {
+  SnackbarContent,
+  Select,
+  Input,
+  InputLabel,
+  Checkbox,
+  ListItemText,
+  TextField,
+  FormControl,
+  MenuItem,
+  withStyles,
+} from "@material-ui/core";
 import { getDisplayName } from "./lib/helpers.js";
 
 function reducer(state, action) {
@@ -82,3 +94,55 @@ export function TextFieldWithError(props) {
     </FormErrorsContext.Consumer>
   );
 }
+
+export function ChoiceFieldWithError(props) {
+  const { errorFilter, label, value, choices, ...others } = props;
+  const renderValue = (selected) => {
+    const enumsSelected = _.filter(
+      choices.enumValues,
+      (o) => selected.indexOf(o.name) >= 0
+    );
+    return enumsSelected.map((o) => o.description).join(", ");
+  };
+  return (
+    <FormErrorsContext.Consumer>
+      {(errors) => {
+        const filteredErrors = errorFilter
+          ? _.filter(errors, errorFilter).map((error) => error.message)
+          : [];
+        const errorText = _.join(filteredErrors, " \n");
+        const hasError = filteredErrors.length > 0;
+        return (
+          <FormControl margin="dense" fullWidth={true}>
+            <InputLabel>{label}</InputLabel>
+            <Select
+              multiple
+              value={value}
+              input={<Input helperText={errorText} />}
+              renderValue={renderValue}
+              error={hasError}
+              {...others}
+            >
+              {choices.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    <Checkbox checked={value.indexOf(e.name) > -1} />
+                    <ListItemText primary={e.description} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        );
+      }}
+    </FormErrorsContext.Consumer>
+  );
+}
+
+ChoiceFieldWithError.defaultProps = {
+  choices: {},
+};
+
+ChoiceFieldWithError.propTypes = {
+  choices: PropTypes.object.isRequired,
+};

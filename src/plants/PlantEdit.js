@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Grid, MenuItem, withStyles } from "@material-ui/core";
+import { Grid, InputAdornment, MenuItem, withStyles } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { Width } from "../ui";
 import PageTitle from "../lib/PageTitle.js";
@@ -9,6 +9,7 @@ import {
   hasFormErrors,
   FormErrors,
   TextFieldWithError,
+  ChoiceFieldWithError,
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
@@ -22,6 +23,12 @@ function Plant(props) {
     plant,
     edibilities,
     ranks,
+    flowerTypes,
+    flowerColors,
+    growthHabits,
+    growthRates,
+    successions,
+    threateneds,
     setFormErrors,
     environment,
   } = props;
@@ -31,6 +38,22 @@ function Plant(props) {
   const descriptionField = useFormInput(plant.description);
   const edibilityField = useFormInput(plant.edibility);
   const rankField = useFormInput(plant.rank);
+
+  const sunLowerField = useFormInput(plant.sun.lower || "");
+  const sunUpperField = useFormInput(plant.sun.upper || "");
+
+  const spreadLowerField = useFormInput(plant.spread.lower || "");
+  const spreadUpperField = useFormInput(plant.spread.upper || "");
+
+  const heightLowerField = useFormInput(plant.height.lower || "");
+  const heightUpperField = useFormInput(plant.height.upper || "");
+
+  const flowerTypeField = useFormInput(plant.flowerTypes || []);
+  const flowerColorsField = useFormInput(plant.flowerColors || []);
+  const growthHabitField = useFormInput(plant.growthHabit || []);
+  const growthRateField = useFormInput(plant.growthRate || []);
+  const successionField = useFormInput(plant.succession || []);
+  const threatenedField = useFormInput(plant.threatened || []);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -50,6 +73,39 @@ function Plant(props) {
         description: descriptionField.value,
         edibility: edibilityField.value,
         rank: edibilityField.rankField,
+
+        flowerTypes: flowerTypeField.value.length
+          ? flowerTypeField.value
+          : undefined,
+        flowerColors: flowerColorsField.value.length
+          ? flowerColorsField.value
+          : undefined,
+        growthHabit: growthHabitField.value.length
+          ? growthHabitField.value
+          : undefined,
+        growthRate: growthRateField.value.length
+          ? growthRateField.value
+          : undefined,
+        sun: sunLowerField.value
+          ? {
+              lower: sunLowerField.value,
+              upper: sunUpperField.value,
+            }
+          : undefined,
+        spread: spreadLowerField.value
+          ? {
+              lower: spreadLowerField.value,
+              upper: spreadUpperField.value,
+            }
+          : undefined,
+        height: heightLowerField.value
+          ? {
+              lower: heightLowerField.value,
+              upper: heightUpperField.value,
+            }
+          : undefined,
+        threatened: threatenedField.value ? threatenedField.value : undefined,
+        succession: successionField.value ? successionField.value : undefined,
       },
       {
         setFormErrors,
@@ -75,9 +131,9 @@ function Plant(props) {
         </BreadcrumbsItem>
       </BreadcrumbsWithHome>
       <PageTitle>Editando: {plant.title}</PageTitle>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12}>
             <TextFieldWithError
               margin="dense"
               label="Titulo"
@@ -86,7 +142,8 @@ function Plant(props) {
               fullWidth
               {...titleField}
             />
-
+          </Grid>
+          <Grid item xs={12} md={12}>
             <TextFieldWithError
               margin="dense"
               label="Descrição"
@@ -95,7 +152,80 @@ function Plant(props) {
               multiline
               {...descriptionField}
             />
-
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sol mínimo"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+              }}
+              errorFilter={{ location: "sun" }}
+              {...sunLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sol máximo"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+              }}
+              errorFilter={{ location: "sun" }}
+              {...sunUpperField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Raio de copa mínima"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
+              errorFilter={{ location: "spread" }}
+              {...spreadLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Raio de copa máxima"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
+              errorFilter={{ location: "spread" }}
+              {...spreadUpperField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Altura mínima"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
+              errorFilter={{ location: "height" }}
+              {...heightLowerField}
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <TextFieldWithError
+              margin="dense"
+              label="Altura máxima"
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end">m</InputAdornment>,
+              }}
+              errorFilter={{ location: "height" }}
+              {...heightUpperField}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
             <TextFieldWithError
               margin="dense"
               label="Comestibilidade"
@@ -112,7 +242,8 @@ function Plant(props) {
                 );
               })}
             </TextFieldWithError>
-
+          </Grid>
+          <Grid item xs={12} md={6}>
             <TextFieldWithError
               margin="dense"
               label="Rank"
@@ -129,11 +260,84 @@ function Plant(props) {
                 );
               })}
             </TextFieldWithError>
+          </Grid>
 
+          <Grid item xs={12} md={6}>
+            <ChoiceFieldWithError
+              label="Tipo da flor"
+              errorFilter={{ location: "flowerTypes" }}
+              {...flowerTypeField}
+              choices={flowerTypes}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <ChoiceFieldWithError
+              label="Cor da flor"
+              errorFilter={{ location: "flowerColors" }}
+              {...flowerColorsField}
+              choices={flowerColors}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ChoiceFieldWithError
+              label="Hábito de crescimento"
+              errorFilter={{ location: "growthHabits" }}
+              {...growthHabitField}
+              choices={growthHabits}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <ChoiceFieldWithError
+              label="Taxa de crescimento"
+              errorFilter={{ location: "growth_rate" }}
+              {...growthRateField}
+              choices={growthRates}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <TextFieldWithError
+              margin="dense"
+              label="Sucessão"
+              errorFilter={{ location: "succession" }}
+              fullWidth
+              select
+              {...successionField}
+            >
+              {successions.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    {e.description}
+                  </MenuItem>
+                );
+              })}
+            </TextFieldWithError>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextFieldWithError
+              margin="dense"
+              label="Ameaçada de exintação?"
+              errorFilter={{ location: "threatened" }}
+              fullWidth
+              select
+              {...threatenedField}
+            >
+              {threateneds.enumValues.map((e, i) => {
+                return (
+                  <MenuItem key={i} value={e.name}>
+                    {e.description}
+                  </MenuItem>
+                );
+              })}
+            </TextFieldWithError>
+          </Grid>
+
+          <Grid item xs={12} md={12}>
             <FormErrors
               filter={(error) => ["__all__", null].indexOf(error.location) >= 0}
             />
-
             <ButtonWithProgress
               variant="outlined"
               className={classes.button}
@@ -142,9 +346,9 @@ function Plant(props) {
             >
               salvar alteração
             </ButtonWithProgress>
-          </form>
+          </Grid>
         </Grid>
-      </Grid>
+      </form>
     </Width>
   );
 }
