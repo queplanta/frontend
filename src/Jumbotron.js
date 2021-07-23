@@ -105,6 +105,7 @@ const styles = (theme) => ({
   },
   jumbotronListIcon: {
     width: 32,
+    height: 32,
   },
   listContainer: {
     maxWidth: 1045,
