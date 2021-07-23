@@ -4,6 +4,10 @@ const query = graphql`
   query PlantEditQuery($plantID: Int!) {
     plant: lifeNodeByIntID(documentId: $plantID) {
       id
+      parent {
+        id
+        title
+      }
       title
       description
       edibility

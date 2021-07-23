@@ -17,19 +17,37 @@ const query = graphql`
         description
       }
     }
-    flowertypes: __type(name: "FlowerType") {
+    flowerTypes: __type(name: "FlowerType") {
       enumValues {
         name
         description
       }
     }
-    flowercolors: __type(name: "FlowerColor") {
+    flowerColors: __type(name: "FlowerColor") {
       enumValues {
         name
         description
       }
     }
-    growthhabits: __type(name: "GrowthHabit") {
+    growthHabits: __type(name: "GrowthHabit") {
+      enumValues {
+        name
+        description
+      }
+    }
+    growthRates: __type(name: "GrowthRate") {
+      enumValues {
+        name
+        description
+      }
+    }
+    successions: __type(name: "Succession") {
+      enumValues {
+        name
+        description
+      }
+    }
+    threateneds: __type(name: "Threatened") {
       enumValues {
         name
         description
