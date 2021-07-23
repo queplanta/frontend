@@ -15582,9 +15582,13 @@
               "description": null,
               "name": "flowerColors",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerColor",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerColor",
+                  "ofType": null
+                }
               }
             },
             {
@@ -15592,9 +15596,13 @@
               "description": null,
               "name": "flowerTypes",
               "type": {
-                "kind": "ENUM",
-                "name": "FlowerType",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "FlowerType",
+                  "ofType": null
+                }
               }
             },
             {
@@ -15602,8 +15610,76 @@
               "description": null,
               "name": "growthHabit",
               "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthHabit",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "growthRate",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "GrowthRate",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "succession",
+              "type": {
                 "kind": "ENUM",
-                "name": "GrowthHabit",
+                "name": "Succession",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "threatened",
+              "type": {
+                "kind": "ENUM",
+                "name": "Threatened",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "sun",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "spread",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "height",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DecimalRangeType",
                 "ofType": null
               }
             },
@@ -15679,6 +15755,37 @@
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "LifeNodeCreateInput",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "lower",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "upper",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            }
+          ],
+          "interfaces": null,
+          "kind": "INPUT_OBJECT",
+          "name": "DecimalRangeType",
           "possibleTypes": null
         },
         {
@@ -16061,37 +16168,6 @@
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "LifeNodeEditInput",
-          "possibleTypes": null
-        },
-        {
-          "description": null,
-          "enumValues": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "defaultValue": null,
-              "description": null,
-              "name": "lower",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Decimal",
-                "ofType": null
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": null,
-              "name": "upper",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Decimal",
-                "ofType": null
-              }
-            }
-          ],
-          "interfaces": null,
-          "kind": "INPUT_OBJECT",
-          "name": "DecimalRangeType",
           "possibleTypes": null
         },
         {
