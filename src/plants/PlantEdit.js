@@ -13,6 +13,7 @@ import {
 } from "../FormErrors.js";
 import { useFormInput } from "../lib/forms.js";
 import ButtonWithProgress from "../lib/ButtonWithProgress.js";
+import PlantSelectField from "./PlantSelectField.js";
 import PlantEditMutation from "./PlantEdit.mutation.js";
 import BreadcrumbsWithHome from "../lib/BreadcrumbsWithHome.js";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
@@ -33,10 +34,11 @@ function Plant(props) {
     environment,
   } = props;
   const { enqueueSnackbar } = useSnackbar();
+  const [lifeNode, setLifeNode] = useState(plant.parent || null);
 
   const titleField = useFormInput(plant.title);
-  const descriptionField = useFormInput(plant.description);
-  const edibilityField = useFormInput(plant.edibility);
+  const descriptionField = useFormInput(plant.description || "");
+  const edibilityField = useFormInput(plant.edibility || "");
   const rankField = useFormInput(plant.rank);
 
   const sunLowerField = useFormInput(plant.sun.lower || "");
@@ -52,8 +54,8 @@ function Plant(props) {
   const flowerColorsField = useFormInput(plant.flowerColors || []);
   const growthHabitField = useFormInput(plant.growthHabit || []);
   const growthRateField = useFormInput(plant.growthRate || []);
-  const successionField = useFormInput(plant.succession || []);
-  const threatenedField = useFormInput(plant.threatened || []);
+  const successionField = useFormInput(plant.succession || "");
+  const threatenedField = useFormInput(plant.threatened || "");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -64,11 +66,11 @@ function Plant(props) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsSaving(true);
-    setIsSaving(true);
     PlantEditMutation.commit(
       environment,
       {
         id: plant.id,
+        parent: lifeNode ? lifeNode.id : null,
         title: titleField.value,
         description: descriptionField.value,
         edibility: edibilityField.value,
@@ -133,6 +135,13 @@ function Plant(props) {
       <PageTitle>Editando: {plant.title}</PageTitle>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
+          <Grid item xs={12} md={12}>
+            <PlantSelectField
+              environment={environment}
+              onChange={setLifeNode}
+              value={lifeNode}
+            />
+          </Grid>
           <Grid item xs={12} md={12}>
             <TextFieldWithError
               margin="dense"
@@ -248,6 +257,7 @@ function Plant(props) {
               margin="dense"
               label="Rank"
               errorFilter={{ location: "rank" }}
+              required
               fullWidth
               select
               {...rankField}

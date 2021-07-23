@@ -94,7 +94,7 @@ class PlantSelectField extends React.Component {
     const { value: selectedPlant } = this.props;
 
     if (prevState.searchTerm !== this.state.searchTerm) {
-      if (this.state.searchTerm.length > 4 && !selectedPlant) {
+      if (this.state.searchTerm.length > 3 && !selectedPlant) {
         this.searchPlants(this.state.searchTerm);
       }
     }

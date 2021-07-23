@@ -10,6 +10,7 @@ import {
   ListItemText,
   TextField,
   FormControl,
+  FormHelperText,
   MenuItem,
   withStyles,
 } from "@material-ui/core";
@@ -118,7 +119,7 @@ export function ChoiceFieldWithError(props) {
             <Select
               multiple
               value={value}
-              input={<Input helperText={errorText} />}
+              input={<Input />}
               renderValue={renderValue}
               error={hasError}
               {...others}
@@ -132,6 +133,7 @@ export function ChoiceFieldWithError(props) {
                 );
               })}
             </Select>
+            <FormHelperText>{errorText}</FormHelperText>
           </FormControl>
         );
       }}
