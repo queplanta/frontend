@@ -4,6 +4,7 @@ const query = graphql`
   query PlantEditQuery($plantID: Int!) {
     plant: lifeNodeByIntID(documentId: $plantID) {
       id
+      idInt
       parent {
         id
         title

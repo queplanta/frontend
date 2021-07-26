@@ -37,7 +37,7 @@ class PlantSelectField extends React.Component {
     this.searchPlants = _.debounce(this.searchPlants, 300);
   }
 
-  searchPlants(value) {
+  searchPlants(value, exclude) {
     const { relay } = this.props;
 
     this.setState((state) => {
@@ -49,6 +49,7 @@ class PlantSelectField extends React.Component {
         (fragmentVariables) => ({
           count: 10,
           search: value,
+          exclude: exclude,
         }),
         null,
         (error, se) => {
@@ -91,11 +92,11 @@ class PlantSelectField extends React.Component {
   }
 
   componentDidUpdate(_, prevState) {
-    const { value: selectedPlant } = this.props;
+    const { value: selectedPlant, exclude } = this.props;
 
     if (prevState.searchTerm !== this.state.searchTerm) {
       if (this.state.searchTerm.length > 3 && !selectedPlant) {
-        this.searchPlants(this.state.searchTerm);
+        this.searchPlants(this.state.searchTerm, exclude);
       }
     }
   }
@@ -103,6 +104,7 @@ class PlantSelectField extends React.Component {
   render() {
     const {
       value: selectedPlant,
+      exclude,
       classes,
       textFieldProps,
       viewer: {
@@ -121,6 +123,7 @@ class PlantSelectField extends React.Component {
           onInputChange={(e, newInputValue) =>
             this.setState((state) => ({ searchTerm: newInputValue }))
           }
+          exclude={exclude}
           open={showResults}
           onOpen={this.openResults}
           onClose={this.closeResults}

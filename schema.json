@@ -302,6 +302,16 @@
                 {
                   "defaultValue": null,
                   "description": null,
+                  "name": "exclude",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
                   "name": "totalFound2",
                   "type": {
                     "kind": "SCALAR",

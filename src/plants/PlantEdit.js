@@ -140,6 +140,7 @@ function Plant(props) {
               environment={environment}
               onChange={setLifeNode}
               value={lifeNode}
+              exclude={plant.idInt}
             />
           </Grid>
           <Grid item xs={12} md={12}>

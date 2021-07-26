@@ -5,9 +5,10 @@ export const query = graphql`
     @argumentDefinitions(
       count: { type: "Int", defaultValue: 0 }
       search: { type: "String" }
+      exclude: { type: "Int" }
     ) {
     id
-    allLifeNode(first: $count, search: $search) {
+    allLifeNode(first: $count, search: $search, exclude: $exclude) {
       edges {
         node {
           id
@@ -34,10 +35,11 @@ export const fragmentSpec = {
 };
 
 export const refetchQuery = graphql`
-  query PlantSelectFieldQuery($count: Int!, $search: String!) {
+  query PlantSelectFieldQuery($count: Int!, $search: String!, $exclude: Int) {
     viewer {
       id
-      ...PlantSelectField_viewer @arguments(count: $count, search: $search)
+      ...PlantSelectField_viewer
+        @arguments(count: $count, search: $search, exclude: $exclude)
     }
   }
 `;
