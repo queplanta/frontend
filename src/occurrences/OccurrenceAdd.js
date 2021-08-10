@@ -45,6 +45,10 @@ function OccurrenceAdd({
   environment,
   setFormErrors,
   viewer,
+  occurranceTypes,
+  trunkTypes,
+  canopyPositions,
+  healthStates,
   width: currentWidth,
 }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -54,6 +58,17 @@ function OccurrenceAdd({
   const theme = useTheme();
   const when = useFormInput("");
   const notes = useFormInput("");
+  const type = useFormInput("");
+  const regional_name = useFormInput("");
+  const local_population = useFormInput("");
+  const cbh = useFormInput(null);
+  const dbh = useFormInput(null);
+  const total_height = useFormInput(null);
+  const canopy_height = useFormInput(null);
+  const canopy_position = useFormInput("");
+  const current_health_state = useFormInput("");
+  const current_health_state_description = useFormInput("");
+  const type_of_trunk = useFormInput("");
   const [images, setImages] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
   const [markerPosition, setMarkerPosition] = useState(defaultPosition);
@@ -136,6 +151,18 @@ function OccurrenceAdd({
             lifeId: lifeNode.id,
             when: when.value,
             notes: notes.value,
+            type: type.value,
+            regionalName: regional_name.value,
+            cbh: cbh.value,
+            dbh: dbh.value,
+            totalHeight: total_height.value,
+            canopyHeight: canopy_height.value,
+            canopyPosition: canopy_position.value,
+            currentHealthState: current_health_state.value,
+            currentHealthStateDescription:
+              current_health_state_description.value,
+            typeOfTrunk: type_of_trunk.value,
+            localPopulation: local_population.value,
           },
           formData,
           mutationConfig
@@ -200,7 +227,28 @@ function OccurrenceAdd({
           />
         );
       case 3:
-        return <StepFour when={when} notes={notes} isSaving={isSaving} />;
+        return (
+          <StepFour
+            when={when}
+            notes={notes}
+            type={type}
+            occurranceTypes={occurranceTypes}
+            regional_name={regional_name}
+            local_population={local_population}
+            cbh={cbh}
+            dbh={dbh}
+            total_height={total_height}
+            canopy_height={canopy_height}
+            canopy_position={canopy_position}
+            canopyPositions={canopyPositions}
+            current_health_state={current_health_state}
+            current_health_state_description={current_health_state_description}
+            healthStates={healthStates}
+            type_of_trunk={type_of_trunk}
+            trunkTypes={trunkTypes}
+            isSaving={isSaving}
+          />
+        );
       default:
         return "Unknown step";
     }
