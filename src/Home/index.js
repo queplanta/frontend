@@ -3,7 +3,7 @@ import Route from "../relay/RouteWithLoading";
 import { Button, Grid, Paper, Typography, withStyles } from "@material-ui/core";
 import { Link as RouterLink } from "found";
 import HomeQuery from "./index.query.js";
-import OccurrencesMap from "../occurrences/OccurrencesMap.js";
+// import OccurrencesMap from "../occurrences/OccurrencesMap.js";
 import PeopleWhoPlant from "./PeopleWhoPlant.js";
 import PopularPlants from "./PopularPlants.js";
 import MostDesiredPlants from "./MostDesiredPlants.js";

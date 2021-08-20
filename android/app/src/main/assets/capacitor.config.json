@@ -1,22 +1,18 @@
 {
-  "appId": "com.queplanta.app",
-  "appName": "Que Planta",
-  "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "build",
-  "linuxAndroidStudioPath": "/home/gabriel/android-studio/bin/studio.sh",
-  "server": {
-    "hostname": "queplanta.com"
-  },
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 3000,
-      "launchAutoHide": true,
-      "backgroundColor": "#ffffffff",
-      "androidScaleType": "CENTER_CROP",
-      "splashFullScreen": true,
-      "splashImmersive": true
-    }
-  },
-  "cordova": {}
+	"appId": "com.queplanta.app",
+	"appName": "Que Planta",
+	"bundledWebRuntime": false,
+	"npmClient": "yarn",
+	"webDir": "build",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 3000,
+			"launchAutoHide": true,
+			"backgroundColor": "#ffffffff",
+			"androidScaleType": "CENTER_CROP",
+			"splashFullScreen": true,
+			"splashImmersive": true
+		}
+	},
+	"cordova": {}
 }

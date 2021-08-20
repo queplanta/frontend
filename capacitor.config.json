@@ -4,10 +4,6 @@
   "bundledWebRuntime": false,
   "npmClient": "yarn",
   "webDir": "build",
-  "linuxAndroidStudioPath": "/home/gabriel/android-studio/bin/studio.sh",
-  "server": {
-    "hostname": "queplanta.com"
-  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 3000,

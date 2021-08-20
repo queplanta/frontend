@@ -340,9 +340,7 @@ export class App extends Component {
                   <Hidden smDown implementation="css">
                     <Footer />
                   </Hidden>
-                  <Hidden mdUp implementation="css">
-                    <BottomNavbar viewer={viewer} />
-                  </Hidden>
+                  <BottomNavbar viewer={viewer} />
                 </PageviewTracking>
               </ThroughProvider>
             </LoginRequiredProvider>
@@ -399,8 +397,8 @@ const styles = (theme) => ({
   },
   pagelet: {
     [theme.breakpoints.down("xs")]: {
-      paddingTop: 56,
-      paddingBottom: 56,
+      paddingTop: "calc(env(safe-area-inset-top) + 56px)",
+      paddingBottom: "calc(env(safe-area-inset-bottom) + 56px)",
     },
     paddingLeft: "env(safe-area-inset-left)",
     paddingRight: "env(safe-area-inset-right)",

@@ -1,10 +1,10 @@
 [
-  {
-    "pkg": "@capacitor/geolocation",
-    "classpath": "com.capacitorjs.plugins.geolocation.GeolocationPlugin"
-  },
-  {
-    "pkg": "@capacitor/storage",
-    "classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
-  }
+	{
+		"pkg": "@capacitor/geolocation",
+		"classpath": "com.capacitorjs.plugins.geolocation.GeolocationPlugin"
+	},
+	{
+		"pkg": "@capacitor/storage",
+		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+	}
 ]
