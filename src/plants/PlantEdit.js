@@ -41,14 +41,14 @@ function Plant(props) {
   const edibilityField = useFormInput(plant.edibility || "");
   const rankField = useFormInput(plant.rank);
 
-  const sunLowerField = useFormInput(plant.sun.lower || "");
-  const sunUpperField = useFormInput(plant.sun.upper || "");
+  const sunLowerField = useFormInput(plant.sun?.lower || "");
+  const sunUpperField = useFormInput(plant.sun?.upper || "");
 
-  const spreadLowerField = useFormInput(plant.spread.lower || "");
-  const spreadUpperField = useFormInput(plant.spread.upper || "");
+  const spreadLowerField = useFormInput(plant.spread?.lower || "");
+  const spreadUpperField = useFormInput(plant.spread?.upper || "");
 
-  const heightLowerField = useFormInput(plant.height.lower || "");
-  const heightUpperField = useFormInput(plant.height.upper || "");
+  const heightLowerField = useFormInput(plant.height?.lower || "");
+  const heightUpperField = useFormInput(plant.height?.upper || "");
 
   const flowerTypeField = useFormInput(plant.flowerTypes || []);
   const flowerColorsField = useFormInput(plant.flowerColors || []);
