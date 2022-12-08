@@ -16,6 +16,7 @@ import { revisionsRoutes } from "./revisions/routes.js";
 
 import OccurrencePlate from "./occurrences/OccurrencePlate.js";
 import OccurrencePlateQuery from "./occurrences/OccurrencePlate.query.js";
+import { NotFoundPage } from "./pages/NotFoundPage/index.jsx";
 
 export const historyMiddlewares = [queryMiddleware];
 
@@ -46,6 +47,7 @@ export const routeConfig = makeRouteConfig(
       {/*needs to be last one*/}
       {pagesRoutes}
     </Route>
+    <Route path="*" Component={NotFoundPage} />
   </React.Fragment>
 );
 
