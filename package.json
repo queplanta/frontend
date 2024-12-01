@@ -17,7 +17,7 @@
     "leaflet": "^1.6.0",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "notistack": "^0.9.13",
     "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
