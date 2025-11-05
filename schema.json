@@ -1407,6 +1407,96 @@
               "deprecationReason": null,
               "description": "The ID of the object",
               "isDeprecated": false,
+              "name": "sowing",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Sowing",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "author",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "allSowings",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "id",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "The ID of the object",
+              "isDeprecated": false,
               "name": "list",
               "type": {
                 "kind": "OBJECT",
@@ -1602,6 +1692,11 @@
             {
               "kind": "OBJECT",
               "name": "Characteristic",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Sowing",
               "ofType": null
             },
             {
@@ -2869,6 +2964,11 @@
             {
               "kind": "OBJECT",
               "name": "Characteristic",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Sowing",
               "ofType": null
             },
             {
@@ -4228,6 +4328,165 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "sowingSpecies",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "sowingAuthor",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "sowingImage",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingConnection",
                 "ofType": null
               }
             },
@@ -6261,6 +6520,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "Sowing",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "List",
               "ofType": null
             }
@@ -6800,6 +7064,11 @@
             {
               "kind": "OBJECT",
               "name": "Characteristic",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Sowing",
               "ofType": null
             },
             {
@@ -8891,7 +9160,7 @@
             },
             {
               "deprecationReason": null,
-              "description": "Planted",
+              "description": "Plantada",
               "isDeprecated": false,
               "name": "PLANTED"
             }
@@ -8918,31 +9187,31 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Emergent",
+              "description": "Emergente",
               "isDeprecated": false,
               "name": "EMERGENT"
             },
             {
               "deprecationReason": null,
-              "description": "Canopy",
+              "description": "Dossel",
               "isDeprecated": false,
               "name": "CANOPY"
             },
             {
               "deprecationReason": null,
-              "description": "Sub-canopy",
+              "description": "Sub-dossel",
               "isDeprecated": false,
               "name": "SUB_CANOPY"
             },
             {
               "deprecationReason": null,
-              "description": "Sub-forest",
+              "description": "Ch\u00e3o da floresta",
               "isDeprecated": false,
               "name": "SUB_FOREST"
             },
             {
               "deprecationReason": null,
-              "description": "Isolated",
+              "description": "Isolada",
               "isDeprecated": false,
               "name": "ISOLATED"
             }
@@ -8959,13 +9228,13 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Healthy",
+              "description": "Saud\u00e1vel",
               "isDeprecated": false,
               "name": "HEALTHY"
             },
             {
               "deprecationReason": null,
-              "description": "Damaged",
+              "description": "Danificada",
               "isDeprecated": false,
               "name": "DAMAGED"
             }
@@ -8982,19 +9251,19 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Straight",
+              "description": "Reto",
               "isDeprecated": false,
               "name": "STRAIGHT"
             },
             {
               "deprecationReason": null,
-              "description": "Bifurcated",
+              "description": "Bifurcado",
               "isDeprecated": false,
               "name": "BIFURCATED"
             },
             {
               "deprecationReason": null,
-              "description": "Crooked",
+              "description": "Tortuoso",
               "isDeprecated": false,
               "name": "CROOKED"
             }
@@ -11559,6 +11828,523 @@
         },
         {
           "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Pagination data for this connection.",
+              "isDeprecated": false,
+              "name": "pageInfo",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "Contains the nodes in this connection.",
+              "isDeprecated": false,
+              "name": "edges",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SowingEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "totalCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "edgeCount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "SowingConnection",
+          "possibleTypes": null
+        },
+        {
+          "description": "A Relay edge containing a `Sowing` and its cursor.",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "The item at the end of the edge",
+              "isDeprecated": false,
+              "name": "node",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Sowing",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "A cursor for use in pagination",
+              "isDeprecated": false,
+              "name": "cursor",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "SowingEdge",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "revision",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Revision",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "document",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Document",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isTip",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "isDeleted",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "species",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LifeNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "author",
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "authorName",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "authorEmail",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "images",
+              "type": {
+                "kind": "OBJECT",
+                "name": "ImageConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "location",
+              "type": {
+                "kind": "OBJECT",
+                "name": "GeometryObjectType",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "where",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "notes",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "id",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "idInt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "myPerms",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisionCurrent",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisionCreated",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Revision",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "before",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "after",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "first",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "last",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "revisions",
+              "type": {
+                "kind": "OBJECT",
+                "name": "RevisionConnection",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "commenting",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Commenting",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "voting",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Voting",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "DocumentNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "CommentsNode",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "VotesNode",
+              "ofType": null
+            }
+          ],
+          "kind": "OBJECT",
+          "name": "Sowing",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
           "enumValues": [
             {
               "deprecationReason": null,
@@ -12112,19 +12898,19 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Primary",
+              "description": "Pioneira",
               "isDeprecated": false,
               "name": "PRIMARY"
             },
             {
               "deprecationReason": null,
-              "description": "Secondary",
+              "description": "Secund\u00e1ria",
               "isDeprecated": false,
               "name": "SECONDARY"
             },
             {
               "deprecationReason": null,
-              "description": "Climax",
+              "description": "Cl\u00edmax",
               "isDeprecated": false,
               "name": "CLIMAX"
             }
@@ -12141,91 +12927,91 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "White",
+              "description": "Branco",
               "isDeprecated": false,
               "name": "WHITE"
             },
             {
               "deprecationReason": null,
-              "description": "Red",
+              "description": "Vermelho",
               "isDeprecated": false,
               "name": "RED"
             },
             {
               "deprecationReason": null,
-              "description": "Orange",
+              "description": "Laranja",
               "isDeprecated": false,
               "name": "ORANGE"
             },
             {
               "deprecationReason": null,
-              "description": "Yellow",
+              "description": "Amarelo",
               "isDeprecated": false,
               "name": "YELLOW"
             },
             {
               "deprecationReason": null,
-              "description": "Pink",
+              "description": "Rosa",
               "isDeprecated": false,
               "name": "PINK"
             },
             {
               "deprecationReason": null,
-              "description": "Lilac",
+              "description": "Lil\u00e1s",
               "isDeprecated": false,
               "name": "LILAC"
             },
             {
               "deprecationReason": null,
-              "description": "Blue",
+              "description": "Azul",
               "isDeprecated": false,
               "name": "BLUE"
             },
             {
               "deprecationReason": null,
-              "description": "Light Blue",
+              "description": "Azul claro",
               "isDeprecated": false,
               "name": "LIGHT_BLUE"
             },
             {
               "deprecationReason": null,
-              "description": "Green",
+              "description": "Verde",
               "isDeprecated": false,
               "name": "GREEN"
             },
             {
               "deprecationReason": null,
-              "description": "Purple",
+              "description": "Roxo",
               "isDeprecated": false,
               "name": "PURPLE"
             },
             {
               "deprecationReason": null,
-              "description": "Black",
+              "description": "Preto",
               "isDeprecated": false,
               "name": "BLACK"
             },
             {
               "deprecationReason": null,
-              "description": "Brown",
+              "description": "Marrom",
               "isDeprecated": false,
               "name": "BROWN"
             },
             {
               "deprecationReason": null,
-              "description": "Nut Brown",
+              "description": "Castanho",
               "isDeprecated": false,
               "name": "NUT_BROWN"
             },
             {
               "deprecationReason": null,
-              "description": "Wine",
+              "description": "Vinho",
               "isDeprecated": false,
               "name": "WINE"
             },
             {
               "deprecationReason": null,
-              "description": "Cream",
+              "description": "Creme",
               "isDeprecated": false,
               "name": "CREAM"
             }
@@ -12242,19 +13028,19 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Inflorescence",
+              "description": "Infloresc\u00eancia",
               "isDeprecated": false,
               "name": "INFLORESCENCE"
             },
             {
               "deprecationReason": null,
-              "description": "Composite Flower",
+              "description": "Flor Composta",
               "isDeprecated": false,
               "name": "PSEUDANTHIUM"
             },
             {
               "deprecationReason": null,
-              "description": "Solitary Flower",
+              "description": "Flor Solit\u00e1ria",
               "isDeprecated": false,
               "name": "SOLITARY"
             }
@@ -12336,61 +13122,61 @@
           "enumValues": [
             {
               "deprecationReason": null,
-              "description": "Extinct",
+              "description": "Extinta",
               "isDeprecated": false,
               "name": "EXTINCT"
             },
             {
               "deprecationReason": null,
-              "description": "Extinct in the Wild",
+              "description": "Extinta na natureza",
               "isDeprecated": false,
               "name": "EXTINCT_IN_THE_WILD"
             },
             {
               "deprecationReason": null,
-              "description": "Critically Endangered",
+              "description": "Criticamente em perigo",
               "isDeprecated": false,
               "name": "CRITICALLY_ENDANGERED"
             },
             {
               "deprecationReason": null,
-              "description": "Endangered",
+              "description": "Em perigo",
               "isDeprecated": false,
               "name": "ENDANGERED"
             },
             {
               "deprecationReason": null,
-              "description": "Vulnerable",
+              "description": "Vulner\u00e1vel",
               "isDeprecated": false,
               "name": "VULNERABLE"
             },
             {
               "deprecationReason": null,
-              "description": "Near Threatened",
+              "description": "Quase amea\u00e7ada",
               "isDeprecated": false,
               "name": "NEAR_THREATENED"
             },
             {
               "deprecationReason": null,
-              "description": "Conservation Dependent",
+              "description": "Dependente de conserva\u00e7\u00e3o",
               "isDeprecated": false,
               "name": "CONSERVATION_DEPENDENT"
             },
             {
               "deprecationReason": null,
-              "description": "Least Concern",
+              "description": "Pouco preocupante",
               "isDeprecated": false,
               "name": "LEAST_CONCERN"
             },
             {
               "deprecationReason": null,
-              "description": "Data Deficient",
+              "description": "Dados deficientes",
               "isDeprecated": false,
               "name": "DATA_DEFICIENT"
             },
             {
               "deprecationReason": null,
-              "description": "Not Evaluated",
+              "description": "N\u00e3o avaliada",
               "isDeprecated": false,
               "name": "NOT_EVALUATED"
             }
@@ -14531,6 +15317,33 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "SuggestionIDDeletePayload",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": null,
+                  "name": "input",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SowingCreateInput",
+                      "ofType": null
+                    }
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "sowingCreate",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingCreatePayload",
                 "ofType": null
               }
             },
@@ -21460,6 +22273,164 @@
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "SuggestionIDDeleteInput",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "viewer",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Query",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "errors",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Error",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "sowing",
+              "type": {
+                "kind": "OBJECT",
+                "name": "SowingEdge",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": null,
+              "isDeprecated": false,
+              "name": "clientMutationId",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "SowingCreatePayload",
+          "possibleTypes": null
+        },
+        {
+          "description": null,
+          "enumValues": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "where",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "notes",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "location",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Geometry",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "species",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "name",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "email",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "clientMutationId",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": null,
+              "name": "revisionMessage",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          ],
+          "interfaces": null,
+          "kind": "INPUT_OBJECT",
+          "name": "SowingCreateInput",
           "possibleTypes": null
         },
         {
