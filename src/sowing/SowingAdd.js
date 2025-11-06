@@ -16,7 +16,6 @@ import {
   useTheme,
   isWidthDown,
   withStyles,
-  Chip,
   TextField,
 } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
@@ -38,6 +37,8 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import OccurrenceStepOne from "../occurrences/OccurrenceAdd.1.js";
 import OccurrenceStepTwo from "../occurrences/OccurrenceAdd.2.js";
 import { LoginRequiredContext } from "../accounts/LoginRequired.js";
+import SpeciesChips from "./SpeciesChips.js";
+import { MUVUCA_QUERY_VALUE, muvucaSpeciesList } from "./muvucaSpeciesData.js";
 
 function SowingAdd({
   classes,
@@ -72,10 +73,21 @@ function SowingAdd({
     return [];
   }
 
-  // Expect both speciesName and speciesId (relay global ID) in query params.
+  // When ?muvuca=TXV2dWNhOjE%3D is present we use a fixed list of species (with details).
+  // Otherwise expect both speciesName and speciesId (relay global ID) in query params.
   // Supports repeated params or comma-separated values.
-  const speciesList = useMemo(() => {
+  const { speciesList, isMuvuca } = useMemo(() => {
     const q = (location && location.query) || {};
+    const muvucaParam = q.muvuca;
+    const hasMuvuca =
+      (Array.isArray(muvucaParam) &&
+        muvucaParam.includes(MUVUCA_QUERY_VALUE)) ||
+      muvucaParam === MUVUCA_QUERY_VALUE;
+
+    if (hasMuvuca) {
+      return { speciesList: muvucaSpeciesList, isMuvuca: true };
+    }
+
     const ids = toArray(q.speciesId || q.species || []);
     const names = toArray(q.speciesName || []);
     const max = Math.max(ids.length, names.length);
@@ -85,7 +97,7 @@ function SowingAdd({
       const name = names[i] || ids[i] || null;
       if (id || name) items.push({ id, name });
     }
-    return items;
+    return { speciesList: items, isMuvuca: false };
   }, [location]);
 
   const steps = [
@@ -155,15 +167,12 @@ function SowingAdd({
                 <Typography variant="subtitle1" gutterBottom>
                   Espécies neste pacote:
                 </Typography>
-                <div className={classes.chips}>
-                  {speciesList.map((sp, idx) => (
-                    <Chip
-                      key={idx}
-                      label={sp.name || sp.id}
-                      className={classes.chip}
-                    />
-                  ))}
-                </div>
+                <SpeciesChips
+                  species={speciesList}
+                  enableDetails={isMuvuca}
+                  chipClassName={classes.chip}
+                  containerClassName={classes.chips}
+                />
               </div>
             )}
             <OccurrenceStepOne
