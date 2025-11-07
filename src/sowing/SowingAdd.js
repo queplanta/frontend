@@ -101,7 +101,7 @@ function SowingAdd({
   }, [location]);
 
   const steps = [
-    "Bem-vindos",
+    "Bem-vindo",
     "Adicionar Fotos",
     "Localização",
     "Notas e contato",
@@ -164,7 +164,7 @@ function SowingAdd({
         return (
           <div className={classes.welcomeStep}>
             <Typography variant="h5" gutterBottom>
-              Bem-vindos, gente que planta! 🌱
+              Bem-vindo, gente que planta! 🌱
             </Typography>
             <Typography variant="body1" paragraph>
               A <strong>muvuca de sementes</strong> é uma técnica de
@@ -185,7 +185,9 @@ function SowingAdd({
             {speciesList.length > 0 && (
               <div className={classes.speciesList}>
                 <Typography variant="subtitle1" gutterBottom>
-                  Espécies neste pacote de muvuca:
+                  <strong>
+                    Nesta mucuva podem conter as seguintes espécies:
+                  </strong>
                 </Typography>
                 <SpeciesChips
                   species={speciesList}
@@ -294,8 +296,10 @@ function SowingAdd({
     <Button
       variant="contained"
       color="primary"
+      size="large"
       onClick={handleNext}
       disabled={getStepsNextValidation(activeStep)}
+      className={classes.primaryButton}
     >
       Continuar
     </Button>
@@ -305,9 +309,11 @@ function SowingAdd({
     <ButtonWithProgress
       variant="contained"
       color="primary"
+      size="large"
       onClick={handleSubmit}
       disabled={getStepsNextValidation(activeStep)}
       isLoading={isSaving}
+      className={classes.primaryButton}
     >
       Salvar
     </ButtonWithProgress>
@@ -315,9 +321,12 @@ function SowingAdd({
 
   const continueMobileButton = (
     <Button
-      size="small"
+      size="large"
+      variant="contained"
+      color="primary"
       onClick={handleNext}
       disabled={getStepsNextValidation(activeStep)}
+      className={classes.mobileButton}
     >
       Continuar
       {theme.direction === "rtl" ? (
@@ -330,10 +339,13 @@ function SowingAdd({
 
   const saveMobileButton = (
     <ButtonWithProgress
-      size="small"
+      size="large"
+      variant="contained"
+      color="primary"
       onClick={handleSubmit}
       disabled={getStepsNextValidation(activeStep)}
       isLoading={isSaving}
+      className={classes.mobileButton}
     >
       Salvar
     </ButtonWithProgress>
@@ -450,12 +462,42 @@ const styles = (theme) => ({
   button: {
     marginRight: theme.spacing(3),
   },
+  primaryButton: {
+    minWidth: 140,
+    height: 48,
+    fontSize: "1.1rem",
+    fontWeight: 600,
+    textTransform: "none",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+    "&:hover": {
+      boxShadow: "0 6px 16px rgba(0, 0, 0, 0.2)",
+      transform: "translateY(-1px)",
+    },
+    "&:disabled": {
+      backgroundColor: "rgba(0, 0, 0, 0.12)",
+      color: "rgba(0, 0, 0, 0.26)",
+    },
+  },
+  mobileButton: {
+    minWidth: 120,
+    height: 44,
+    fontSize: "1rem",
+    fontWeight: 600,
+    textTransform: "none",
+    boxShadow: "0 3px 8px rgba(0, 0, 0, 0.15)",
+    "&:hover": {
+      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+    },
+  },
   dialogContent: {
     paddingTop: theme.spacing(7),
   },
   wrapButton: {
     margin: theme.spacing(3, 0, 0, 0),
-    textAlign: "text-right",
+    textAlign: "center",
+    padding: theme.spacing(2),
+    backgroundColor: "rgba(0, 0, 0, 0.02)",
+    borderRadius: theme.spacing(1),
   },
   welcomeStep: {
     padding: theme.spacing(3),
@@ -466,14 +508,6 @@ const styles = (theme) => ({
   },
   speciesList: {
     marginTop: theme.spacing(3),
-    textAlign: "left",
-    [theme.breakpoints.up("sm")]: {
-      marginBottom: theme.spacing(3),
-    },
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(3),
-      paddingBottom: 0,
-    },
   },
   chips: {
     display: "flex",
