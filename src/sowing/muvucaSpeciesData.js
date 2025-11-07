@@ -6,6 +6,7 @@ import jatobaPhoto from "./photos/jatoba.jpeg";
 import jucaraPhoto from "./photos/jucara.jpeg";
 import tamborilPhoto from "./photos/tamboril.jpeg";
 import xixaPhoto from "./photos/xixa.jpeg";
+import jacarePhoto from "./photos/jacare.jpeg";
 
 export const MUVUCA_QUERY_VALUE = "TXV2dWNhOjE=";
 
@@ -65,5 +66,12 @@ export const muvucaSpeciesList = [
     description:
       "O xixá (Sterculia apetala) é uma árvore grande do Cerrado, comum também na Amazônia. Seus frutos possuem sementes comestíveis, com gosto parecido com o amendoim. Prefere solos bem drenados e locais ensolarados, resistindo bem à seca e ao fogo.",
     image: xixaPhoto,
+  },
+  {
+    id: "TGlmZU5vZGU6MjI5Nzcx",
+    name: "Pau-jacaré",
+    description:
+      "O pau-jacaré (Piptadenia gonoacantha) é uma leguminosa de médio a grande porte e possui o tronco fissurado lembrando a pele de um jacaré, por isso esse nome, sendo essa semente coletada essa semente no nosso quintal agroflorestal.",
+    image: jacarePhoto,
   },
 ];

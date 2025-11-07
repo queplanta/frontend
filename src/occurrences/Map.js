@@ -133,7 +133,7 @@ const mapStyles = (theme) => ({
 export const MapGeolocated = withStyles(mapStyles)(
   geolocated({
     userDecisionTimeout: 20000,
-    suppressLocationOnMount: true,
+    suppressLocationOnMount: false,
     isOptimisticGeolocationEnabled: false,
   })(
     class extends Component {

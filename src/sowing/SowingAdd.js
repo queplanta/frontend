@@ -55,7 +55,7 @@ function SowingAdd({
 
   const [images, setImages] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
-  const [markerPosition, setMarkerPosition] = useState(null);
+  const [markerPosition, setMarkerPosition] = useState([-20.074, -43.3986]);
   const [activeStep, setActiveStep] = React.useState(0);
   const notes = useFormInput("");
   const name = useFormInput((location.query && location.query.name) || "");
@@ -101,6 +101,7 @@ function SowingAdd({
   }, [location]);
 
   const steps = [
+    "Bem-vindos",
     "Adicionar Fotos",
     "Localização",
     "Notas e contato",
@@ -161,11 +162,30 @@ function SowingAdd({
     switch (step) {
       case 0:
         return (
-          <div>
+          <div className={classes.welcomeStep}>
+            <Typography variant="h5" gutterBottom>
+              Bem-vindos, gente que planta! 🌱
+            </Typography>
+            <Typography variant="body1" paragraph>
+              A <strong>muvuca de sementes</strong> é uma técnica de
+              reflorestamento que consiste em:
+            </Typography>
+            <Typography variant="body1" paragraph>
+              • <strong>Misturar sementes</strong> de diferentes espécies
+              nativas
+              <br />• <strong>Criar diversidade biológica</strong> natural
+              <br />• <strong>Imitar o processo</strong> de regeneração da
+              floresta
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Onde várias espécies <strong>germinam juntas</strong>, criando um{" "}
+              <strong>ecossistema equilibrado</strong> e resiliente que favorece
+              a <strong>biodiversidade local</strong>.
+            </Typography>
             {speciesList.length > 0 && (
               <div className={classes.speciesList}>
                 <Typography variant="subtitle1" gutterBottom>
-                  Espécies neste pacote:
+                  Espécies neste pacote de muvuca:
                 </Typography>
                 <SpeciesChips
                   species={speciesList}
@@ -175,6 +195,11 @@ function SowingAdd({
                 />
               </div>
             )}
+          </div>
+        );
+      case 1:
+        return (
+          <div>
             <OccurrenceStepOne
               images={images}
               setImages={setImages}
@@ -183,7 +208,7 @@ function SowingAdd({
             />
           </div>
         );
-      case 1:
+      case 2:
         return (
           <OccurrenceStepTwo
             images={images}
@@ -191,7 +216,7 @@ function SowingAdd({
             setMarkerPosition={setMarkerPosition}
           />
         );
-      case 2:
+      case 3:
         return (
           <div className={classes.stepNotes}>
             <Typography gutterBottom>
@@ -233,7 +258,7 @@ function SowingAdd({
             )}
           </div>
         );
-      case 3:
+      case 4:
         return (
           <div className={classes.thanksStep}>
             <Typography variant="h6" gutterBottom>
@@ -256,8 +281,9 @@ function SowingAdd({
       case 0:
       case 1:
       case 2:
-        return false;
       case 3:
+        return false;
+      case 4:
         return true;
       default:
         return true;
@@ -431,7 +457,16 @@ const styles = (theme) => ({
     margin: theme.spacing(3, 0, 0, 0),
     textAlign: "text-right",
   },
+  welcomeStep: {
+    padding: theme.spacing(3),
+    textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(2),
+    },
+  },
   speciesList: {
+    marginTop: theme.spacing(3),
+    textAlign: "left",
     [theme.breakpoints.up("sm")]: {
       marginBottom: theme.spacing(3),
     },
