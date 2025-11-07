@@ -186,7 +186,7 @@ function SowingAdd({
               <div className={classes.speciesList}>
                 <Typography variant="subtitle1" gutterBottom>
                   <strong>
-                    Nesta mucuva podem conter as seguintes espécies:
+                    Nesta muvuca podem conter as seguintes espécies:
                   </strong>
                 </Typography>
                 <SpeciesChips
@@ -311,7 +311,7 @@ function SowingAdd({
       color="primary"
       size="large"
       onClick={handleSubmit}
-      disabled={getStepsNextValidation(activeStep)}
+      disabled={getStepsNextValidation(activeStep) || isSaving}
       isLoading={isSaving}
       className={classes.primaryButton}
     >
@@ -343,7 +343,7 @@ function SowingAdd({
       variant="contained"
       color="primary"
       onClick={handleSubmit}
-      disabled={getStepsNextValidation(activeStep)}
+      disabled={getStepsNextValidation(activeStep) || isSaving}
       isLoading={isSaving}
       className={classes.mobileButton}
     >
